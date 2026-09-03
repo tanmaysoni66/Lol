@@ -13,11 +13,6 @@ export function Hero() {
         backgroundImage: `url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='rgba(255,255,255,0.08)' stroke-width='1.5' fill='none' fill-rule='evenodd'%3E%3Cpath d='M20 20L100 100M100 20L20 100'/%3E%3Ccircle cx='20' cy='20' r='2' fill='rgba(16, 185, 129, 0.4)' stroke='none'/%3E%3Ccircle cx='100' cy='100' r='2' fill='rgba(139, 92, 246, 0.4)' stroke='none'/%3E%3Ccircle cx='100' cy='20' r='1.5' fill='rgba(255, 255, 255, 0.3)' stroke='none'/%3E%3Ccircle cx='20' cy='100' r='1.5' fill='rgba(255, 255, 255, 0.3)' stroke='none'/%3E%3Cpath d='M60 20L100 60M20 60L60 100M60 20L20 60M100 60L60 100' stroke-dasharray='4,4'/%3E%3C/g%3E%3C/svg%3E")`,
         backgroundSize: '120px 120px'
       }}></div>
-
-      <div className="absolute inset-0 z-0">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-[100px] animate-blob"></div>
-        <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-[100px] animate-blob animation-delay-2000"></div>
-      </div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 w-full mt-10">
         <div className="max-w-3xl">

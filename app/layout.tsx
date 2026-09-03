@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter, Poppins } from 'next/font/google';
 import './globals.css';
-import { Header } from '@/components/layout/Header';
+import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { BottomNav } from '@/components/layout/BottomNav';
 import { AIChatWidget } from '@/components/AIChatWidget';
@@ -32,9 +32,13 @@ export default function RootLayout({
         {/* Render background canvas absolutely behind everything (z-0) */}
         <MyceliumBackground />
         
+        {/* Render Navbar globally above everything */}
+        <div className="relative z-50">
+          <Navbar />
+        </div>
+        
         {/* Render all page content on top of the background (z-10) */}
         <div className="relative z-10 flex-1 flex flex-col">
-          <Header />
           <main className="flex-grow">{children}</main>
           <Footer />
         </div>

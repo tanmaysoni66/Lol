@@ -16,16 +16,6 @@ export function BottomNav() {
 
   return (
     <>
-      {/* WhatsApp Floating Button */}
-      <a
-        href="https://wa.me/919203544140"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="fixed bottom-[84px] right-4 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-xl hover:scale-105 transition-transform flex items-center justify-center border-[3px] border-[#0B0F19]"
-      >
-        <MessageCircle size={32} />
-      </a>
-
       {/* Sticky Bottom Nav */}
       <div className="fixed bottom-0 left-0 right-0 z-40 bg-[#111827]/80 backdrop-blur-2xl border-t border-white/5 pb-safe">
         {/* Colorful blur behind the nav */}
