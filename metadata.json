@@ -1,6 +1,6 @@
 {
-  "name": "",
-  "description": "",
+  "name": "Organic Mushroom Farm",
+  "description": "Organic Mushroom Farm - Setup, Training & Business Support",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

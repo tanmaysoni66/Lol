@@ -4,6 +4,7 @@ import './globals.css';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { BottomNav } from '@/components/layout/BottomNav';
+import { AIChatWidget } from '@/components/AIChatWidget';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const poppins = Poppins({
@@ -29,6 +30,7 @@ export default function RootLayout({
         <main className="flex-grow">{children}</main>
         <Footer />
         <BottomNav />
+        <AIChatWidget />
       </body>
     </html>
   );
