@@ -1,78 +1,68 @@
 @import "tailwindcss";
 
+:root {
+  /* Common SaaS Premium Variables */
+  --primary-gradient: linear-gradient(135deg, #7C3AED, #22C55E);
+  
+  /* Modern Light Pastel Gradient in 3 Sections */
+  --bg-gradient: linear-gradient(180deg, #faf5ff 0%, #f0fdf4 15%, #fefce8 30%, #f0fdf4 45%, #fefce8 60%, #f0f9ff 75%, #f0fdf4 85%, #fefce8 93%, #f0f9ff 100%);
+  
+  /* Unified Mode Variables (Modern Light) */
+  --bg-main: transparent;
+  --bg-alt: rgba(255, 255, 255, 0.3);
+  --bg-hero: transparent;
+  --bg-card: rgba(255, 255, 255, 0.6);
+  
+  --text-heading: #1A1A2E;
+  --text-body: #4A4A68;
+  --text-muted: rgba(74, 74, 104, 0.7);
+  
+  /* Glassmorphism Variables */
+  --glass-bg: linear-gradient(135deg, rgba(219, 234, 254, 0.15), rgba(233, 213, 255, 0.15), rgba(220, 252, 231, 0.15), rgba(254, 226, 226, 0.15));
+  --glass-border: rgba(255, 255, 255, 0.8);
+  --glass-shadow: 0 8px 32px 0 rgba(124, 58, 237, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  --btn-shadow: 0 10px 20px -5px rgba(124, 58, 237, 0.3);
+  --card-shadow: 0 20px 40px -10px rgba(124, 58, 237, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-gradient: linear-gradient(135deg, #1C1936, #162420);
+    --bg-main: transparent;
+    --bg-alt: rgba(0, 0, 0, 0.2);
+    --bg-hero: transparent;
+    --bg-card: rgba(20, 18, 38, 0.6);
+    
+    --text-heading: #FFFFFF;
+    --text-body: #E2E8F0;
+    --text-muted: rgba(226, 232, 240, 0.7);
+    
+    --glass-bg: rgba(30, 26, 56, 0.6);
+    --glass-border: rgba(124, 58, 237, 0.3);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    --btn-shadow: 0 10px 20px -5px rgba(124, 58, 237, 0.4);
+    --card-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(124, 58, 237, 0.2);
+  }
+}
+
 @theme {
-  --color-glass-bg: rgba(255, 255, 255, 0.05);
-  --color-glass-border: rgba(255, 255, 255, 0.1);
-  --color-primary-500: #10b981;
-  --color-primary-600: #059669;
-  --color-accent-purple: #8b5cf6;
-  --color-accent-blue: #3b82f6;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Poppins", sans-serif;
+  --color-primary-start: #7C3AED;
+  --color-primary-end: #22C55E;
 }
 
 @layer base {
-  :root {
-    --background: 222 47% 11%;
-    --foreground: 210 40% 98%;
-  }
-  
-  .dark {
-    --background: 222 47% 11%;
-    --foreground: 210 40% 98%;
+  html, body {
+    scroll-behavior: smooth !important;
+    background: var(--bg-gradient) !important;
+    background-attachment: fixed !important;
+    min-height: 100vh;
+    @apply font-sans antialiased overflow-x-hidden text-slate-800 dark:text-slate-200;
   }
 
-  body {
-    background-color: #0B0F19; /* Exact dark background from screenshots */
-    color: var(--foreground);
-    @apply antialiased selection:bg-emerald-500/30;
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    @apply tracking-tight font-bold;
   }
-}
-
-@layer utilities {
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-  .no-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-}
-
-@layer components {
-  .glass-panel {
-    @apply bg-white/5 backdrop-blur-md border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)];
-  }
-  
-  .glass-card {
-    @apply bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl shadow-xl transition-all duration-300;
-  }
-  
-  .glass-card:hover {
-    @apply shadow-2xl -translate-y-1 bg-white/10;
-  }
-
-  .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400;
-  }
-  
-  .text-gradient-purple {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-violet-400 to-indigo-400;
-  }
-}
-
-/* Base custom animations */
-@keyframes blob {
-  0% { transform: translate(0px, 0px) scale(1); }
-  33% { transform: translate(30px, -50px) scale(1.1); }
-  66% { transform: translate(-20px, 20px) scale(0.9); }
-  100% { transform: translate(0px, 0px) scale(1); }
-}
-
-.animate-blob {
-  animation: blob 7s infinite;
-}
-.animation-delay-2000 {
-  animation-delay: 2s;
-}
-.animation-delay-4000 {
-  animation-delay: 4s;
 }

@@ -7,6 +7,7 @@ import { BottomNav } from '@/components/layout/BottomNav';
 import { AIChatWidget } from '@/components/AIChatWidget';
 import { WhatsAppWidget } from '@/components/WhatsAppWidget';
 import { StickyJoinTrainingButton } from '@/components/StickyJoinTrainingButton';
+import { MyceliumBackground } from '@/components/MyceliumBackground';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const poppins = Poppins({
@@ -27,10 +28,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${poppins.variable} font-sans min-h-screen flex flex-col pb-24`}>
-        <Header />
-        <main className="flex-grow">{children}</main>
-        <Footer />
+      <body className={`${inter.variable} ${poppins.variable} font-sans antialiased min-h-screen relative flex flex-col pb-24`}>
+        {/* Render background canvas absolutely behind everything (z-0) */}
+        <MyceliumBackground />
+        
+        {/* Render all page content on top of the background (z-10) */}
+        <div className="relative z-10 flex-1 flex flex-col">
+          <Header />
+          <main className="flex-grow">{children}</main>
+          <Footer />
+        </div>
+        
         <BottomNav />
         {/* Left Side Floating Group (AI Chat & Training Button) */}
         <div className="fixed left-3 md:left-[30px] flex flex-col gap-2 md:gap-4 items-start pointer-events-none transition-all duration-300 ease-out bottom-[65px] md:bottom-[20px] z-[99999]">
