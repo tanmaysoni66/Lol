@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { Inter, Poppins } from 'next/font/google';
 import './globals.css';
 import { Navbar } from '@/components/Navbar';
-import { Footer } from '@/components/layout/Footer';
+import Footer from '@/components/Footer';
 import { BottomNav } from '@/components/layout/BottomNav';
 import { AIChatWidget } from '@/components/AIChatWidget';
 import { WhatsAppWidget } from '@/components/WhatsAppWidget';

@@ -1,60 +1,63 @@
 "use client";
+import React from "react";
+import Link from "next/link";
+import { motion } from "motion/react";
+import { Star, Quote } from "lucide-react";
 
-import { motion } from 'motion/react';
-import { Star, Quote } from 'lucide-react';
-
-export function Testimonials() {
-  const reviews = [
-    {
-      name: "Rajesh Kumar",
-      location: "Maharashtra",
-      text: "The turnkey setup from Organic Mushrooms Farm changed my life. Their F1 spawn yields are consistently 15-20% higher than local varieties.",
-      rating: 5
-    },
-    {
-      name: "Amit Singh",
-      location: "Madhya Pradesh",
-      text: "Tanish and his team provided excellent training. The ROI calculator they shared was accurate, and the buyback support is genuine.",
-      rating: 5
-    },
-    {
-      name: "Sarah Jenkins",
-      location: "Australia",
-      text: "Sourced their commercial equipment and consulting for our facility in NSW. Top-tier professional advice and reliable infrastructure.",
-      rating: 5
-    }
-  ];
-
+export default function Testimonials() {
   return (
-    <section className="py-24 bg-slate-50 relative overflow-hidden">
-      <div className="absolute right-0 top-0 w-64 h-64 bg-emerald-500/5 rounded-full blur-3xl"></div>
-      
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-poppins font-bold text-slate-900 mb-4">Farmer Success Stories</h2>
-          <p className="text-slate-600 text-lg">Hear from entrepreneurs who have successfully scaled their commercial farms with our support.</p>
+    <section className="section-padding">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-5">
+          <div className="badge mx-auto mb-4">Farmer Testimonials</div>
+          <h2 className="mb-4 uppercase">
+            Real Commercial <span className="gradient-text">Voices</span>
+          </h2>
+          <p>Join 5000+ commercial farmers trained by our expert team.</p>
         </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {reviews.map((review, idx) => (
-            <motion.div 
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 relative"
+        <div className="grid md:grid-cols-3 gap-5">
+          {[
+            {
+              name: "Rahul S.",
+              location: "Bhopal",
+              text: "Turnkey setup changed my perspective. Outstanding support even after 2 years.",
+              avatar: "RS",
+            },
+            {
+              name: "Deepak M.",
+              location: "Indore",
+              text: "Professional SOPs. Yield exceeded expectations by 20% due to climate design.",
+              avatar: "DM",
+            },
+            {
+              name: "Suresh K.",
+              location: "Sagar",
+              text: "Honest ROI analysis. No hidden costs, just pure business growth.",
+              avatar: "SK",
+            },
+          ].map((t, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 1, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="glass p-3 rounded-3xl border dark:border-white/5 border-black/5 flex flex-col h-full"
             >
-              <Quote className="absolute top-6 right-6 text-slate-100" size={48} />
-              <div className="flex gap-1 mb-6">
-                {[...Array(review.rating)].map((_, i) => (
-                  <Star key={i} size={18} className="fill-amber-400 text-amber-400" />
-                ))}
-              </div>
-              <p className="text-slate-600 mb-8 relative z-10">"{review.text}"</p>
-              <div>
-                <h4 className="font-poppins font-bold text-slate-900">{review.name}</h4>
-                <p className="text-sm text-slate-500">{review.location}</p>
+              <Quote size={20} className="text-primary-start mb-4 opacity-40" />
+              <p className="dark:text-slate-300 text-slate-700 text-[13px] italic mb-6 leading-relaxed flex-1">
+                "{t.text}"
+              </p>
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-full gradient-bg flex items-center justify-center font-bold dark:text-white text-slate-900 text-[10px] shadow-lg">
+                  {t.avatar}
+                </div>
+                <div>
+                  <div className="dark:text-white text-slate-900 font-bold text-[12px] tracking-tight">
+                    {t.name}
+                  </div>
+                  <div className="text-[8px] text-slate-500 font-black uppercase tracking-widest">
+                    {t.location}
+                  </div>
+                </div>
               </div>
             </motion.div>
           ))}

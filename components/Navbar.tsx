@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "motion/react";
 import { Home, Info, Award, Settings, MessageSquare, ChevronDown, Menu, X, Facebook, Instagram, Twitter, Youtube, Linkedin } from "lucide-react";
+import DynamicGreeting from "./DynamicGreeting";
 
 const NAV_ITEMS = [
   { name: "Home", href: "/", icon: Home },
@@ -85,6 +86,7 @@ export const Navbar = () => {
               <span className="text-[14px] xs:text-[16px] sm:text-sm md:text-xl lg:text-[12px] xl:text-[15px] 2xl:text-sm font-bold tracking-tight dark:text-white text-slate-900 leading-tight">
                 Organic <span className="text-transparent bg-clip-text" style={{ backgroundImage: 'var(--primary-gradient)' }}>Mushroom Farm</span>
               </span>
+              <DynamicGreeting />
             </div>
           </Link>
           
