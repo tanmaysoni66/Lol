@@ -5,6 +5,8 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { BottomNav } from '@/components/layout/BottomNav';
 import { AIChatWidget } from '@/components/AIChatWidget';
+import { WhatsAppWidget } from '@/components/WhatsAppWidget';
+import { StickyJoinTrainingButton } from '@/components/StickyJoinTrainingButton';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const poppins = Poppins({
@@ -30,7 +32,28 @@ export default function RootLayout({
         <main className="flex-grow">{children}</main>
         <Footer />
         <BottomNav />
-        <AIChatWidget />
+        {/* Left Side Floating Group (AI Chat & Training Button) */}
+        <div className="fixed left-3 md:left-[30px] flex flex-col gap-2 md:gap-4 items-start pointer-events-none transition-all duration-300 ease-out bottom-[65px] md:bottom-[20px] z-[99999]">
+          <div className="pointer-events-auto">
+            <AIChatWidget />
+          </div>
+          
+          <div className="flex-col gap-1.5 md:gap-3 items-start pointer-events-auto flex">
+            {/* Desktop Stack */}
+            <div className="hidden md:flex flex-col gap-3 items-start">
+              <div className="w-[140px] md:w-auto">
+                <StickyJoinTrainingButton size="normal" />
+              </div>
+            </div>
+            {/* Mobile Stack */}
+            <div className="h-[30px] w-auto min-w-[100px] max-w-[130px] md:hidden relative z-[99998]">
+              <StickyJoinTrainingButton size="small" />
+            </div>
+          </div>
+        </div>
+
+        {/* Right Side Floating Group (WhatsApp) */}
+        <WhatsAppWidget />
       </body>
     </html>
   );
