@@ -3,7 +3,7 @@ import { Inter, Poppins } from 'next/font/google';
 import './globals.css';
 import { Navbar } from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { BottomNav } from '@/components/layout/BottomNav';
+import { FloatingBottomMenu } from '@/components/FloatingBottomMenu';
 import { AIChatWidget } from '@/components/AIChatWidget';
 import { WhatsAppWidget } from '@/components/WhatsAppWidget';
 import { StickyJoinTrainingButton } from '@/components/StickyJoinTrainingButton';
@@ -43,7 +43,7 @@ export default function RootLayout({
           <Footer />
         </div>
         
-        <BottomNav />
+        <FloatingBottomMenu />
         {/* Left Side Floating Group (AI Chat & Training Button) */}
         <div className="fixed left-3 md:left-[30px] flex flex-col gap-2 md:gap-4 items-start pointer-events-none transition-all duration-300 ease-out bottom-[65px] md:bottom-[20px] z-[99999]">
           <div className="pointer-events-auto">
