@@ -331,7 +331,7 @@ export const AIChatWidget = () => {
         )}
       </AnimatePresence>
 
-      <div className="fixed bottom-4 left-4 md:bottom-6 md:left-6 z-[99999] flex flex-col items-center gap-1">
+      <div className="relative z-[99999] flex flex-col items-center gap-1">
         <AnimatePresence>
           {isGreeting && (
             <motion.div

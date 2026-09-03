@@ -70,8 +70,8 @@ export const Navbar = () => {
   return (
     <>
       <nav
-        className={`fixed top-3 md:top-6 left-1/2 -translate-x-1/2 w-[calc(100%-16px)] sm:w-[calc(100%-32px)] md:w-[calc(100%-48px)] max-w-7xl z-50 backdrop-blur-xl border border-white/20 dark:border-white/10 shadow-[0_8px_32px_0_rgba(31,38,135,0.1)] py-2.5 md:py-2 px-3 sm:px-5 md:px-6 lg:px-4 xl:px-5 transition-all duration-300 rounded-[2rem] ${isScrolled ? "translate-y-[-2px]" : ""}`}
-        style={{ background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.15) 0%, rgba(59, 130, 246, 0.15) 33%, rgba(34, 197, 94, 0.15) 66%, rgba(234, 179, 8, 0.15) 100%)' }}
+        className={`fixed top-3 md:top-6 left-1/2 -translate-x-1/2 w-[calc(100%-16px)] sm:w-[calc(100%-32px)] md:w-[calc(100%-48px)] max-w-7xl z-50 backdrop-blur-xl border py-2.5 md:py-2 px-3 sm:px-5 md:px-6 lg:px-4 xl:px-5 transition-all duration-300 rounded-[2rem] ${isScrolled ? "translate-y-[-2px]" : ""}`}
+        style={{ background: 'var(--glass-bg)', borderColor: 'var(--glass-border)', boxShadow: 'var(--glass-shadow)' }}
       >
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center gap-1.5 sm:gap-3 group shrink-0">
@@ -83,7 +83,7 @@ export const Navbar = () => {
             />
             <div className="flex flex-col">
               <span className="text-[14px] xs:text-[16px] sm:text-sm md:text-xl lg:text-[12px] xl:text-[15px] 2xl:text-sm font-bold tracking-tight dark:text-white text-slate-900 leading-tight">
-                Organic <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-emerald-500">Mushroom Farm</span>
+                Organic <span className="text-transparent bg-clip-text" style={{ backgroundImage: 'var(--primary-gradient)' }}>Mushroom Farm</span>
               </span>
             </div>
           </Link>
@@ -125,7 +125,7 @@ export const Navbar = () => {
                       {item.name}
                     </Link>
                     {isActive && (
-                      <motion.div layoutId="nav-active" className="absolute -bottom-1 left-2 right-2 xl:left-3 xl:right-3 h-0.5 bg-gradient-to-r from-purple-500 to-emerald-500 rounded-full" />
+                      <motion.div layoutId="nav-active" className="absolute -bottom-1 left-2 right-2 xl:left-3 xl:right-3 h-0.5 rounded-full" style={{ background: 'var(--primary-gradient)' }} />
                     )}
                   </div>
                 );
@@ -157,7 +157,7 @@ export const Navbar = () => {
                     </div>
                   )}
                   {isActive && (
-                    <motion.div layoutId="nav-active" className="absolute -bottom-1 left-3 right-3 h-0.5 bg-gradient-to-r from-purple-500 to-emerald-500 rounded-full" />
+                    <motion.div layoutId="nav-active" className="absolute -bottom-1 left-3 right-3 h-0.5 rounded-full" style={{ background: 'var(--primary-gradient)' }} />
                   )}
                 </div>
               );
