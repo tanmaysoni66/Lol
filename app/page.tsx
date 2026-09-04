@@ -16,12 +16,13 @@ import CriticalParameters from "@/components/home/CriticalParameters";
 import { ProductionSOP } from "@/components/home/ProductionSOP";
 import MushroomSEOSections from "@/components/home/MushroomSEOSections";
 import ComparisonTable from "@/components/home/ComparisonTable";
-import StatesSection from "@/components/home/StatesSection";
+import { GlobalHubs } from "@/components/home/GlobalHubs";
 import CTASection from "@/components/home/CTASection";
 import CompostUnits from "@/components/home/CompostUnits";
 import Testimonials from "@/components/home/Testimonials";
 import Marketplace from "@/components/home/Marketplace";
 import ResourcesSection from "@/components/home/ResourcesSection";
+import { DirectInquiry } from "@/components/home/DirectInquiry";
 import { JsonLd } from "@/components/JsonLd";
 
 export default function HomePage() {
@@ -54,8 +55,9 @@ export default function HomePage() {
       
       <MushroomSEOSections />
       <ComparisonTable />
-      <StatesSection />
       <CTASection />
+      <GlobalHubs />
+      <DirectInquiry />
     </>
   );
 }
