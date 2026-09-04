@@ -19,6 +19,18 @@ export const WhyChooseUs = () => {
       <div className="absolute top-1/4 left-0 w-96 h-96 bg-purple-500/10 blur-[120px] rounded-full pointer-events-none animate-pulse"></div>
       
       <div className="max-w-7xl mx-auto relative z-10">
+        <div className="text-center mb-14">
+          <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-slate-300 mb-5 shadow-sm">
+            Mushroom Infrastructure Leaders
+          </div>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black dark:text-white text-slate-900 leading-[1.15] mb-5 tracking-tight">
+            Why Choose <span className="text-purple-600 dark:text-[#8B5CF6]">Organic Mushrooms</span> Farm for Your Project?
+          </h2>
+          <p className="text-[11px] md:text-[13px] dark:text-slate-400 text-slate-600 mb-6 leading-relaxed max-w-2xl mx-auto font-medium">
+            India's most trusted commercial mushroom farming infrastructure partner delivering unmatched value, transparency, and high-yield performance globally.
+          </p>
+        </div>
+
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {chooseItems.map((item, i) => (
             <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="group relative">

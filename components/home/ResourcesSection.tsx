@@ -26,15 +26,15 @@ export default function ResourcesSection() {
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-6 lg:gap-20 items-start">
           <div>
-            <div className="badge mb-6 mx-auto lg:mx-0">
-              Documentation & Resources
+            <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-slate-300 mb-5 shadow-sm">
+              KNOWLEDGE BASE
             </div>
-            <h2 className="mb-6 uppercase text-center lg:text-left">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-black mb-4 uppercase tracking-tight dark:text-white text-slate-900 leading-[1.15]">
               <Link href="/cities" className="hover:text-current transition-colors">
-                Commercial Production <span className="gradient-text">SOPs & Guides</span>
+                COMMERCIAL <span className="text-purple-600 dark:text-[#8B5CF6]">PRODUCTION</span> <span className="text-emerald-500 dark:text-[#10B981]">SOPS & GUIDES</span>
               </Link>
             </h2>
-            <p className="mb-6 text-center lg:text-left">
+            <p className="mb-8 dark:text-slate-400 text-slate-600 text-[11px] md:text-[13px] font-medium leading-relaxed max-w-xl">
               Standard operating procedures used by commercial mushroom specialists nationwide and internationally.
             </p>
             <div className="md:hidden">

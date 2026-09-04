@@ -8,12 +8,16 @@ export default function Testimonials() {
   return (
     <section className="section-padding">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-5">
-          <div className="badge mx-auto mb-4">Farmer Testimonials</div>
-          <h2 className="mb-4 uppercase">
-            Real Commercial <span className="gradient-text">Voices</span>
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-slate-300 mb-5 shadow-sm">
+            SUCCESS STORIES
+          </div>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black mb-4 uppercase tracking-tight dark:text-white text-slate-900 leading-[1.15]">
+            REAL <span className="text-purple-600 dark:text-[#8B5CF6]">COMMERCIAL</span> <span className="text-emerald-500 dark:text-[#10B981]">VOICES</span>
           </h2>
-          <p>Join 5000+ commercial farmers trained by our expert team.</p>
+          <p className="max-w-xl mx-auto dark:text-slate-400 text-slate-600 text-[11px] md:text-[13px] font-medium leading-relaxed">
+            Join 5000+ commercial farmers trained by our expert team.
+          </p>
         </div>
         <div className="grid md:grid-cols-3 gap-5">
           {[

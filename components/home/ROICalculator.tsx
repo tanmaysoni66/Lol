@@ -29,12 +29,13 @@ export const ROICalculator = () => {
           
           <div className="grid lg:grid-cols-2 gap-10 items-center relative z-10">
             <div className="text-center lg:text-left">
-              <div className="inline-block px-4 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-xs font-bold uppercase tracking-wider mb-6 border border-slate-200 dark:border-slate-700">Profit Analytics</div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Personalized Mushroom Business <br/>
-                <span className="bg-clip-text text-transparent bg-[var(--primary-gradient)]">ROI Estimator</span>
+              <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-slate-300 mb-5 shadow-sm">
+                PROFIT ANALYTICS
+              </div>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black mb-4 dark:text-white text-slate-900 tracking-tight leading-[1.15]">
+                Personalized Mushroom<br/> Business <span className="text-purple-600 dark:text-[#8B5CF6]">ROI</span> <span className="text-emerald-500 dark:text-[#10B981]">Estimator</span>
               </h2>
-              <p className="mb-8 text-slate-500 max-w-lg mx-auto lg:mx-0">
+              <p className="mb-8 text-slate-500 max-w-lg mx-auto lg:mx-0 font-medium">
                 Estimate your mushroom farming profits based on real-time market averages.
               </p>
               

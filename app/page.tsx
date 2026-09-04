@@ -17,13 +17,16 @@ import { ProductionSOP } from "@/components/home/ProductionSOP";
 import MushroomSEOSections from "@/components/home/MushroomSEOSections";
 import { JourneyCTA } from "@/components/home/JourneyCTA";
 import { FAQSection } from "@/components/home/FAQSection";
+import { BenefitsCultivation } from "@/components/home/BenefitsCultivation";
 import ComparisonTable from "@/components/home/ComparisonTable";
+import { WhyChooseUs } from "@/components/home/WhyChooseUs";
 import { GlobalHubs } from "@/components/home/GlobalHubs";
 import CompostUnits from "@/components/home/CompostUnits";
 import Testimonials from "@/components/home/Testimonials";
 import Marketplace from "@/components/home/Marketplace";
 import ResourcesSection from "@/components/home/ResourcesSection";
 import { DirectInquiry } from "@/components/home/DirectInquiry";
+import { VirtualTour } from "@/components/home/VirtualTour";
 import { JsonLd } from "@/components/JsonLd";
 
 export default function HomePage() {
@@ -41,11 +44,14 @@ export default function HomePage() {
     <>
       <JsonLd />
       <Hero />
+      <WhyChooseUs />
+      <WhyChooseProgram />
       <JourneyCTA />
+      <BenefitsCultivation />
       <FAQSection />
       <Timeline />
       <EcosystemFlow />
-      <WhyChooseProgram />
+      <VirtualTour />
       <FarmingModels />
       <MushroomComparison />
       <ROICalculator />

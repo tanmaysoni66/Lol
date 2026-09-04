@@ -15,11 +15,13 @@ export const ProductionSOP = () => {
     <section className="py-20 px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <div className="inline-block px-4 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-xs font-bold uppercase tracking-wider mb-4 border border-slate-200 dark:border-slate-700">Scientific Methodology</div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 uppercase">
-            Commercial Production <span className="bg-clip-text text-transparent bg-[var(--primary-gradient)]">SOPs</span>
+          <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-slate-300 mb-5 shadow-sm">
+            SCIENTIFIC WORKFLOW
+          </div>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black mb-4 uppercase tracking-tight dark:text-white text-slate-900 leading-[1.15]">
+            COMMERCIAL <span className="text-purple-600 dark:text-[#8B5CF6]">PRODUCTION</span> <span className="text-emerald-500 dark:text-[#10B981]">CYCLE SOPS</span>
           </h2>
-          <p className="max-w-xl mx-auto text-slate-500 text-sm md:text-base">
+          <p className="max-w-xl mx-auto dark:text-slate-400 text-slate-600 text-[11px] md:text-[13px] font-medium leading-relaxed">
             Standard operating procedures followed in our commercial setups.
           </p>
         </div>

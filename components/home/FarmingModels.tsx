@@ -30,11 +30,14 @@ export const FarmingModels = () => {
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-10 gap-6 text-center lg:text-left">
           <div className="max-w-xl mx-auto lg:mx-0">
-            <div className="inline-block px-4 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-xs font-bold uppercase tracking-wider mb-4 border border-slate-200 dark:border-slate-700">Investment Paths</div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Commercial Farming <span className="bg-clip-text text-transparent bg-[var(--primary-gradient)]">Models</span>,<br/> Setup Cost & ROI
+            <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-slate-300 mb-5 shadow-sm">
+              INVESTMENT PATHS
+            </div>
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-black dark:text-white text-slate-900 leading-[1.15] mb-5 tracking-tight">
+              Commercial Farming <br/>
+              <span className="text-purple-600 dark:text-[#8B5CF6]">Models</span>, Setup Cost & ROI
             </h2>
-            <p className="dark:text-slate-400 text-slate-600 text-sm md:text-base">
+            <p className="text-[11px] md:text-[13px] dark:text-slate-400 text-slate-600 mb-6 leading-relaxed font-medium">
               Scientifically designed mushroom grow rooms optimized for Indian and diverse global climate conditions.
             </p>
           </div>

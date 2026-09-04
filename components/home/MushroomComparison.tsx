@@ -14,11 +14,11 @@ export const MushroomComparison = () => {
     <section className="py-20 px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-10">
-          <div className="inline-block px-4 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-xs font-bold uppercase tracking-wider mb-4 border border-slate-200 dark:border-slate-700">Top Searched Product Variants</div>
-          <h2 className="text-2xl md:text-3xl font-bold mb-4 uppercase tracking-tight">
-            <Link href="/blog" className="hover:opacity-80 transition-opacity">
-              High-Yield Commercial Mushroom <span className="bg-clip-text text-transparent bg-[var(--primary-gradient)]">Genetics</span>
-            </Link>
+          <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-slate-300 mb-5 shadow-sm">
+            TOP SEARCHED PRODUCT VARIANTS
+          </div>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black mb-4 uppercase tracking-tight dark:text-white text-slate-900 leading-[1.15]">
+            High-Yield Commercial Mushroom <span className="text-purple-600 dark:text-[#8B5CF6]">GEN</span><span className="text-emerald-500 dark:text-[#10B981]">ETICS</span>
           </h2>
         </div>
 

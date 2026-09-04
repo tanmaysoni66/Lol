@@ -126,7 +126,7 @@ export const Hero = () => {
         >
           <div className="absolute inset-0 bg-purple-500/20 blur-[100px] rounded-full animate-pulse"></div>
           <div className="relative bg-white/40 dark:bg-slate-900/40 rounded-[2rem] p-5 md:p-6 border border-white/20 dark:border-white/10 shadow-2xl backdrop-blur-2xl">
-            <div className="flex items-center justify-between mb-5">
+            <div className="flex items-start justify-between mb-5">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-green-500/20 flex items-center justify-center">
                   <ShieldCheck className="text-green-500" size={18} />
@@ -136,8 +136,19 @@ export const Hero = () => {
                   <div className="text-[9px] md:text-[10px] text-slate-500">Quality Certified Infrastructure</div>
                 </div>
               </div>
-              <div className="px-2.5 py-1 rounded-full bg-green-500/20 text-green-400 text-[7px] md:text-[8px] font-bold uppercase tracking-widest">
-                Active
+              <div className="absolute -top-4 -right-4 md:-top-6 md:-right-6 bg-[#161726] border border-white/10 rounded-xl p-3 shadow-xl backdrop-blur-md">
+                <div className="flex items-center gap-2 mb-1">
+                  <div className="w-6 h-6 rounded-md bg-green-500/20 flex items-center justify-center">
+                    <CheckCircle2 className="text-green-500" size={12} />
+                  </div>
+                  <div>
+                    <div className="text-[7px] md:text-[8px] text-slate-400 font-bold uppercase tracking-wider">GLOBAL ROI VERIFIED</div>
+                    <div className="text-[10px] md:text-xs text-white font-bold">120% Yearly Avg</div>
+                  </div>
+                </div>
+                <div className="text-right mt-1">
+                  <span className="text-[7px] md:text-[8px] text-green-500 font-bold tracking-widest uppercase">ACTIVE</span>
+                </div>
               </div>
             </div>
 
@@ -145,6 +156,7 @@ export const Hero = () => {
               {[
                 { label: "Commercial Room Size", value: "18 x 70 ft Standard", icon: Layers },
                 { label: "Annual High Yield", value: "35,000+ kg", icon: TrendingUp },
+                { label: "Cooling Sys (India)", value: "Daikin Industrial", icon: Zap },
               ].map((stat, i) => (
                 <div key={i} className="flex items-center justify-between dark:bg-white/5 bg-black/5 p-3 rounded-xl border dark:border-white/5 border-black/5">
                   <div className="flex items-center gap-2.5">

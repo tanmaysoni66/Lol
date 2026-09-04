@@ -18,17 +18,16 @@ export const GlobalHubs = () => {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] md:w-[700px] h-[300px] bg-purple-500/10 dark:bg-purple-900/20 blur-[100px] rounded-full pointer-events-none -z-10 animate-pulse"></div>
       
       <div className="max-w-5xl mx-auto text-center relative z-10">
-        <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-slate-300 dark:border-white/10 bg-white/50 dark:bg-[#11121E]/60 text-[9px] md:text-[10px] font-bold uppercase tracking-[0.15em] text-slate-800 dark:text-slate-300 mb-6 backdrop-blur-xl shadow-sm">
-          Global & National Service Area
+        <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-slate-300 mb-5 shadow-sm">
+          TRAINING ACADEMY
         </div>
         
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-black dark:text-white text-slate-900 leading-[1.2] mb-6 tracking-tight uppercase">
-          Active Commercial Project <span className="text-purple-600 dark:text-[#8B5CF6]">Hubs</span>{" "}
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-green-500 dark:from-[#8B5CF6] dark:to-[#10B981]">Globally</span>
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-black dark:text-white text-slate-900 leading-[1.15] mb-5 tracking-tight uppercase">
+          LOCATION-BASED <span className="text-purple-600 dark:text-[#8B5CF6]">LEARNING</span> <span className="text-emerald-500 dark:text-[#10B981]">VERTICALS</span>
         </h2>
         
-        <p className="text-[11px] md:text-xs dark:text-slate-300 text-slate-600 mb-10 leading-relaxed max-w-3xl mx-auto font-medium">
-          We provide commercial mushroom farming training and turnkey setup services across all states of India and key international markets, ensuring precision and high yield for every climate zone globally.
+        <p className="text-[11px] md:text-[13px] dark:text-slate-400 text-slate-600 mb-10 leading-relaxed max-w-3xl mx-auto font-medium">
+          Comprehensive Mushroom Training in India: Detailed offline & online coaching curriculums covering region-specific commercial farming standards across all major agricultural states.
         </p>
 
         <div className="flex flex-wrap justify-center gap-2.5 md:gap-3 mb-10 max-w-4xl mx-auto">

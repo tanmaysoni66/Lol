@@ -8,14 +8,16 @@ export default function CompostUnits() {
   return (
     <section id="compost-units" className="section-padding relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-5">
-          <div className="badge mx-auto mb-4">Commercial Infrastructure</div>
-          <h2 className="mb-4 uppercase">
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-slate-300 mb-5 shadow-sm">
+            RAW MATERIAL INFRASTRUCTURE
+          </div>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black mb-4 uppercase tracking-tight dark:text-white text-slate-900 leading-[1.15]">
             <Link href="/equipment" className="hover:text-current transition-colors">
-              Standard Commercial <span className="gradient-text">Compost Units</span>
+              STANDARD COMMERCIAL <span className="text-purple-600 dark:text-[#8B5CF6]">COMPOST</span> <span className="text-emerald-500 dark:text-[#10B981]">UNITS</span>
             </Link>
           </h2>
-          <p className="max-w-xl mx-auto text-xs md:text-sm text-slate-500 dark:text-slate-400">
+          <p className="max-w-xl mx-auto dark:text-slate-400 text-slate-600 text-[11px] md:text-[13px] font-medium leading-relaxed">
             Complete Phase-I + Phase-II commercial infrastructure with 15-day cycles.
           </p>
         </div>
