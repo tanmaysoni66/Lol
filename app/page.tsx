@@ -7,10 +7,10 @@ import { ArrowRight, BookOpen, Play, Quote } from "lucide-react";
 // Import your page components here:
 import { Hero } from "@/components/home/Hero";
 import { EcosystemFlow } from "@/components/home/EcosystemFlow";
-import WhyChooseUs from "@/components/home/WhyChooseUs";
+import { WhyChooseUs } from "@/components/home/WhyChooseUs";
 import FarmingModels from "@/components/home/FarmingModels";
 import MushroomComparison from "@/components/home/MushroomComparison";
-import ROICalculator from "@/components/home/ROICalculator";
+import { ROICalculator } from "@/components/home/ROICalculator";
 import CriticalParameters from "@/components/home/CriticalParameters";
 import ProductionSOP from "@/components/home/ProductionSOP";
 import MushroomSEOSections from "@/components/home/MushroomSEOSections";
@@ -21,6 +21,7 @@ import CompostUnits from "@/components/home/CompostUnits";
 import Testimonials from "@/components/home/Testimonials";
 import Marketplace from "@/components/home/Marketplace";
 import ResourcesSection from "@/components/home/ResourcesSection";
+import { JsonLd } from "@/components/JsonLd";
 
 export default function HomePage() {
   useEffect(() => {
@@ -35,6 +36,7 @@ export default function HomePage() {
 
   return (
     <>
+      <JsonLd />
       <Hero />
       <EcosystemFlow />
       <WhyChooseUs />

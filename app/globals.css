@@ -1,28 +1,33 @@
 @import "tailwindcss";
 
 :root {
-  /* Common SaaS Premium Variables */
   --primary-gradient: linear-gradient(135deg, #7C3AED, #22C55E);
+  --bg-gradient: linear-gradient(
+    180deg,
+    #faf5ff 0%,
+    #f0fdf4 15%,
+    #fefce8 30%,
+    #f0fdf4 45%,
+    #fefce8 60%,
+    #f0f9ff 75%,
+    #f0fdf4 85%,
+    #fefce8 93%,
+    #f0f9ff 100%
+  );
   
-  /* Modern Light Pastel Gradient in 3 Sections */
-  --bg-gradient: linear-gradient(180deg, #faf5ff 0%, #f0fdf4 15%, #fefce8 30%, #f0fdf4 45%, #fefce8 60%, #f0f9ff 75%, #f0fdf4 85%, #fefce8 93%, #f0f9ff 100%);
-  
-  /* Unified Mode Variables (Modern Light) */
   --bg-main: transparent;
   --bg-alt: rgba(255, 255, 255, 0.3);
-  --bg-hero: transparent;
   --bg-card: rgba(255, 255, 255, 0.6);
   
   --text-heading: #1A1A2E;
   --text-body: #4A4A68;
   --text-muted: rgba(74, 74, 104, 0.7);
   
-  /* Glassmorphism Variables */
   --glass-bg: linear-gradient(135deg, rgba(219, 234, 254, 0.15), rgba(233, 213, 255, 0.15), rgba(220, 252, 231, 0.15), rgba(254, 226, 226, 0.15));
   --glass-border: rgba(255, 255, 255, 0.8);
   --glass-shadow: 0 8px 32px 0 rgba(124, 58, 237, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  
   --btn-shadow: 0 10px 20px -5px rgba(124, 58, 237, 0.3);
-  --card-shadow: 0 20px 40px -10px rgba(124, 58, 237, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -30,7 +35,6 @@
     --bg-gradient: linear-gradient(135deg, #1C1936, #162420);
     --bg-main: transparent;
     --bg-alt: rgba(0, 0, 0, 0.2);
-    --bg-hero: transparent;
     --bg-card: rgba(20, 18, 38, 0.6);
     
     --text-heading: #FFFFFF;
@@ -41,13 +45,12 @@
     --glass-border: rgba(124, 58, 237, 0.3);
     --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
     --btn-shadow: 0 10px 20px -5px rgba(124, 58, 237, 0.4);
-    --card-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(124, 58, 237, 0.2);
   }
 }
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Poppins", sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-poppins), sans-serif;
   --color-primary-start: #7C3AED;
   --color-primary-end: #22C55E;
 }
@@ -60,9 +63,35 @@
     min-height: 100vh;
     @apply font-sans antialiased overflow-x-hidden text-slate-800 dark:text-slate-200;
   }
+}
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-display);
-    @apply tracking-tight font-bold;
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #7C3AED, #22C55E);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #7C3AED, #22C55E);
+  color: #ffffff;
+  box-shadow: var(--btn-shadow);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn-primary:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+@layer utilities {
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
   }
 }

@@ -2,147 +2,178 @@
 import React from "react";
 import Link from "next/link";
 import { motion } from "motion/react";
-import { CheckCircle2, ArrowRight, Award, CheckCircle } from "lucide-react";
+import { CheckCircle2, Award, ArrowRight, ShieldCheck, Layers, TrendingUp, Zap } from "lucide-react";
 
-const MyceliumBackground = () => (
-  <div className="absolute inset-0 overflow-hidden pointer-events-none">
-    <svg className="absolute w-full h-full opacity-[0.25] dark:opacity-40" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <pattern id="mycelium-net" x="0" y="0" width="150" height="150" patternUnits="userSpaceOnUse">
-          {/* Nodes */}
-          <circle cx="30" cy="30" r="2" className="fill-purple-500" />
-          <circle cx="120" cy="40" r="2" className="fill-emerald-500" />
-          <circle cx="50" cy="110" r="2" className="fill-purple-500" />
-          <circle cx="130" cy="120" r="2" className="fill-emerald-500" />
-          <circle cx="75" cy="75" r="1.5" className="fill-slate-500 dark:fill-slate-400" />
-          
-          {/* Connections */}
-          <path d="M30,30 L120,40 L130,120 L50,110 Z M30,30 L50,110 M120,40 L75,75 M75,75 L50,110 M75,75 L130,120 M30,30 L75,75" 
-                className="stroke-purple-500/30 dark:stroke-purple-500/40" strokeWidth="0.5" fill="none" />
-          
-          {/* Connecting to adjacent tiles */}
-          <path d="M120,40 L150,20 M130,120 L150,140 M0,60 L30,30 M0,100 L50,110" 
-                className="stroke-emerald-500/30 dark:stroke-emerald-500/40" strokeWidth="0.5" fill="none" />
-        </pattern>
-      </defs>
-      <rect x="0" y="0" width="100%" height="100%" fill="url(#mycelium-net)" />
-    </svg>
-  </div>
-);
+export const Hero = () => {
+  const features = [
+    { text: "Complete Turnkey Project Setup", link: "/articles/turnkey-mushroom-farm-setup-india" },
+    { text: "Mushroom Farming Training Program" },
+    { text: "Government Subsidy Documentation" },
+    { text: "Technical Support India & Worldwide" },
+  ];
 
-export function Hero() {
   return (
-    <section className="relative min-h-[100svh] flex flex-col items-center pt-24 pb-16 overflow-hidden dark:bg-[#05050A] bg-slate-50 transition-colors duration-300">
-      {/* Background Effects */}
-      <MyceliumBackground />
-      <div className="absolute inset-0 bg-[url('https://res.cloudinary.com/dtpktdkqw/image/upload/v1782269097/IMG_1329_optimized_30_c6qtnw.png')] bg-cover bg-center opacity-[0.03] dark:opacity-5 mix-blend-multiply dark:mix-blend-overlay pointer-events-none"></div>
-      <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-purple-600/10 dark:bg-purple-600/10 rounded-full blur-[120px] pointer-events-none"></div>
-      <div className="absolute top-2/3 right-0 w-[500px] h-[500px] bg-emerald-600/10 dark:bg-emerald-600/10 rounded-full blur-[120px] pointer-events-none"></div>
-
-      <div className="max-w-4xl mx-auto px-5 w-full relative z-10 flex flex-col items-center text-center">
-        
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }} 
-          animate={{ opacity: 1, y: 0 }} 
-          transition={{ duration: 0.8 }}
-          className="w-full flex flex-col items-center"
+    <section id="home" className="relative min-h-[90vh] md:min-h-screen flex items-center pt-32 pb-12 md:pt-40 md:pb-24 overflow-hidden px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-[1.2fr,0.8fr] gap-5 md:gap-8 items-center">
+        <motion.div
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center md:text-left"
         >
-          {/* Top Green Text */}
-          <div className="text-emerald-600 dark:text-emerald-500 font-bold tracking-[0.15em] uppercase text-[9px] md:text-[10px] mb-6 max-w-2xl leading-relaxed">
-            BUTTON, OYSTER, MILKY, SHIITAKE & MORE | SETUP, TRAINING & BUSINESS SUPPORT
+          <div className="text-[10px] md:text-sm font-bold text-green-700 dark:text-green-500 uppercase tracking-[0.2em] mb-4 md:mb-6">
+            Button, Oyster, Milky, Shiitake & More | Setup, Training & Business Support
           </div>
-
-          {/* Headlines */}
-          <h1 className="text-[26px] sm:text-3xl md:text-5xl font-black tracking-tight leading-[1.25] mb-5">
-            <span className="bg-gradient-to-r from-purple-600 to-indigo-600 dark:from-purple-400 dark:to-indigo-400 bg-clip-text text-transparent block drop-shadow-sm">
-              Expert Mushroom Farming
-            </span>
-            <span className="bg-gradient-to-r from-emerald-600 to-green-600 dark:from-emerald-400 dark:to-green-500 bg-clip-text text-transparent block drop-shadow-sm">
-              Training & Setup
-            </span>
-            <span className="text-slate-900 dark:text-white block mt-1 transition-colors">
-              – Complete Solutions for All<br className="hidden sm:block" /> Mushroom Types
-            </span>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold dark:text-white text-slate-900 leading-tight mb-4 md:mb-5 tracking-tighter">
+            <span className="bg-clip-text text-transparent bg-[var(--primary-gradient)]">
+              Expert Mushroom Farming Training & Setup
+            </span>{" "}
+            <br />– Complete Solutions for All Mushroom Types
           </h1>
-
-          {/* Paragraph */}
-          <p className="text-slate-600 dark:text-slate-400 text-[12px] md:text-[13px] max-w-xl leading-relaxed mb-8 font-medium px-2 transition-colors">
+          <p className="text-base md:text-lg dark:text-slate-400 text-slate-600 mb-5 md:mb-6 max-w-xl mx-auto md:mx-0 leading-relaxed">
             Complete commercial methodology, calculators, and turnkey solutions for profitable button, oyster, and milky mushroom farming across India and worldwide.
           </p>
 
-          {/* Features List */}
-          <div className="w-full max-w-md mx-auto mb-8 flex flex-col items-start space-y-3 px-2 border-y border-slate-200 dark:border-white/10 py-5 transition-colors">
-            {[
-              "Complete Turnkey Project Setup",
-              "Mushroom Farming Training Program",
-              "Government Subsidy Documentation",
-              "Technical Support India & Worldwide"
-            ].map((text, i) => (
-              <div key={i} className="flex items-center gap-3">
-                <div className="w-4 h-4 rounded-full border border-purple-500 flex items-center justify-center shrink-0">
-                  <div className="w-2 h-2 bg-purple-500 rounded-full" />
-                </div>
-                <span className="text-slate-800 dark:text-white text-[12px] md:text-[13px] font-semibold transition-colors">{text}</span>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-y-2 md:gap-y-3 gap-x-8 mb-6 dark:border-white/5 border-black/5 border-y py-3 md:py-4">
+            {features.map((f, i) => (
+              <div key={i} className="flex items-center gap-3 justify-center md:justify-start">
+                <CheckCircle2 size={16} className="text-green-500" />
+                {f.link ? (
+                  <Link href={f.link} className="text-[13px] md:text-sm font-bold text-slate-900 dark:text-white tracking-tight hover:text-green-500 transition-colors">
+                    {f.text}
+                  </Link>
+                ) : (
+                  <span className="text-[13px] md:text-sm font-bold text-slate-900 dark:text-white tracking-tight">
+                    {f.text}
+                  </span>
+                )}
               </div>
             ))}
           </div>
 
-          {/* Cards */}
-          <div className="w-full max-w-md mx-auto flex flex-col gap-3 mb-8">
-            <Link href="/training" className="flex items-center justify-between p-3.5 rounded-2xl bg-purple-500/5 dark:bg-[#130F1C] border border-purple-500/20 hover:border-purple-500/40 dark:hover:border-purple-500/50 transition-colors group">
-              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-2xl bg-purple-500/10 flex items-center justify-center text-purple-600 dark:text-purple-400 shrink-0 transition-colors">
-                  <Award size={20} />
+          <div className="flex flex-col gap-3 mb-6 max-w-md mx-auto md:mx-0">
+            <Link
+              href="/training"
+              className="group flex items-center justify-between p-3 rounded-2xl border border-purple-500/30 bg-purple-500/5 dark:bg-purple-900/10 hover:bg-purple-500/15 transition-all duration-300 shadow-sm"
+            >
+              <div className="flex items-center gap-3">
+                <div className="p-2 rounded-xl bg-purple-500/10 text-purple-600 dark:text-purple-300">
+                  <Award size={18} />
                 </div>
                 <div className="text-left">
-                  <h3 className="text-slate-900 dark:text-white font-bold text-[13px] md:text-[14px] transition-colors">Mushroom Cultivation Training</h3>
-                  <p className="text-slate-600 dark:text-slate-400 text-[9px] md:text-[10px] transition-colors">Comprehensive online & offline certification programs</p>
+                  <span className="block text-sm font-bold text-slate-800 dark:text-slate-100 group-hover:text-purple-600 dark:group-hover:text-purple-300 transition-colors">
+                    Mushroom Cultivation Training
+                  </span>
+                  <span className="block text-[10px] text-slate-500 dark:text-slate-400">
+                    Comprehensive online & offline certification programs
+                  </span>
                 </div>
               </div>
-              <ArrowRight size={16} className="text-emerald-600 dark:text-emerald-500 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight size={16} className="text-slate-400 group-hover:translate-x-1 group-hover:text-purple-500 transition-all" />
             </Link>
-
-            <Link href="/setup" className="flex items-center justify-between p-3.5 rounded-2xl bg-emerald-500/5 dark:bg-[#0F1615] border border-emerald-500/20 hover:border-emerald-500/40 dark:hover:border-emerald-500/50 transition-colors group">
-              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-emerald-600 dark:text-emerald-400 shrink-0 transition-colors">
-                  <CheckCircle size={20} />
+            
+            <Link
+              href="/turnkey-projects"
+              className="group flex items-center justify-between p-3 rounded-2xl border border-emerald-500/30 bg-emerald-500/5 dark:bg-emerald-900/10 hover:bg-emerald-500/15 transition-all duration-300 shadow-sm"
+            >
+              <div className="flex items-center gap-3">
+                <div className="p-2 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-300">
+                  <CheckCircle2 size={18} />
                 </div>
                 <div className="text-left">
-                  <h3 className="text-slate-900 dark:text-white font-bold text-[13px] md:text-[14px] transition-colors">Mushroom Farm Setup</h3>
-                  <p className="text-slate-600 dark:text-slate-400 text-[9px] md:text-[10px] transition-colors">Turnkey commercial farm setup & consultancy</p>
+                  <span className="block text-sm font-bold text-slate-800 dark:text-slate-100 group-hover:text-emerald-600 dark:group-hover:text-emerald-300 transition-colors">
+                    Mushroom Farm Setup
+                  </span>
+                  <span className="block text-[10px] text-slate-500 dark:text-slate-400">
+                    Turnkey commercial farm setup & consultancy
+                  </span>
                 </div>
               </div>
-              <ArrowRight size={16} className="text-emerald-600 dark:text-emerald-500 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight size={16} className="text-slate-400 group-hover:translate-x-1 group-hover:text-emerald-500 transition-all" />
             </Link>
           </div>
 
-          {/* Action Buttons */}
-          <div className="w-full max-w-md mx-auto flex flex-col gap-3 mb-10">
-            <Link href="/enquiry" className="w-full py-3.5 rounded-xl bg-gradient-to-r from-indigo-500 via-purple-500 to-emerald-500 text-white font-bold text-[13px] md:text-[14px] hover:shadow-lg hover:shadow-purple-500/20 transition-all">
+          <div className="flex flex-col sm:flex-row flex-wrap gap-4 mb-6 md:mb-5">
+            <Link href="/enquiry" className="w-full sm:w-auto px-6 min-h-[50px] rounded-xl text-sm shadow-xl flex items-center justify-center font-bold bg-[#7b51f8] hover:bg-[#6841d8] text-white transition-colors">
               Enquiry Now
             </Link>
-            <a href="https://wa.me/919203544140" target="_blank" rel="noopener noreferrer" className="w-full py-3.5 rounded-xl bg-white dark:bg-[#0F0F14] border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white font-bold text-[12px] md:text-[13px] hover:bg-slate-50 dark:hover:bg-white/5 transition-colors">
+            <a href="https://wa.me/919203544140" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto px-6 min-h-[50px] rounded-xl text-sm flex items-center justify-center font-medium border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
               WhatsApp Us
             </a>
-            <a href="tel:9203544140" className="w-full py-3.5 rounded-xl bg-white dark:bg-[#0F0F14] border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white font-bold text-[12px] md:text-[13px] hover:bg-slate-50 dark:hover:bg-white/5 transition-colors">
+            <a href="tel:9203544140" className="w-full sm:w-auto px-6 min-h-[50px] rounded-xl text-sm flex items-center justify-center font-medium border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
               Call Now: 9203544140
             </a>
           </div>
 
-          {/* Stats */}
-          <div className="w-full max-w-md mx-auto grid grid-cols-2 gap-4">
-            <div className="flex flex-col items-center">
-              <span className="text-slate-900 dark:text-white font-bold text-lg md:text-xl mb-1 transition-colors">1.5k+</span>
-              <span className="text-slate-500 text-[7px] md:text-[8px] font-black tracking-widest uppercase">Active Commercial Units</span>
+          <div className="flex justify-center md:justify-start gap-8 pt-4">
+            <div>
+              <div className="text-2xl font-bold dark:text-white text-slate-900">1.5k+</div>
+              <div className="text-[9px] text-slate-500 uppercase tracking-[0.2em] mt-1 font-black">Active Commercial Units</div>
             </div>
-            <div className="flex flex-col items-center">
-              <span className="text-slate-900 dark:text-white font-bold text-lg md:text-xl mb-1 transition-colors">98.93%</span>
-              <span className="text-slate-500 text-[7px] md:text-[8px] font-black tracking-widest uppercase">Success Rate Globally</span>
+            <div>
+              <div className="text-2xl font-bold dark:text-white text-slate-900">98.93%</div>
+              <div className="text-[9px] text-slate-500 uppercase tracking-[0.2em] mt-1 font-black">Success Rate Globally</div>
             </div>
           </div>
+        </motion.div>
 
+        {/* 3D Visual Mock (Glass Card) */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
+          className="relative lg:block hidden"
+        >
+          <div className="absolute inset-0 bg-purple-500/20 blur-[100px] rounded-full animate-pulse"></div>
+          <div className="relative bg-white/40 dark:bg-slate-900/40 rounded-[2.5rem] p-6 border border-white/20 dark:border-white/10 shadow-2xl backdrop-blur-2xl">
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-xl bg-green-500/20 flex items-center justify-center">
+                  <ShieldCheck className="text-green-500" size={24} />
+                </div>
+                <div>
+                  <div className="dark:text-white text-slate-900 font-bold">Turnkey Setup Project</div>
+                  <div className="text-xs text-slate-500">Quality Certified Infrastructure</div>
+                </div>
+              </div>
+              <div className="px-3 py-1 rounded-full bg-green-500/20 text-green-400 text-[10px] font-bold uppercase tracking-widest">
+                Active
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              {[
+                { label: "Commercial Room Size", value: "18 x 70 ft Standard", icon: Layers },
+                { label: "Annual High Yield", value: "35,000+ kg", icon: TrendingUp },
+                { label: "Cooling Sys (India)", value: "Daikin Industrial", icon: Zap },
+              ].map((stat, i) => (
+                <div key={i} className="flex items-center justify-between dark:bg-white/5 bg-black/5 p-4 rounded-2xl border dark:border-white/5 border-black/5">
+                  <div className="flex items-center gap-3">
+                    <stat.icon className="dark:text-slate-400 text-slate-600" size={18} />
+                    <span className="text-sm dark:text-slate-300 text-slate-700 font-medium">{stat.label}</span>
+                  </div>
+                  <span className="text-sm dark:text-white text-slate-900 font-bold">{stat.value}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-8 p-4 rounded-3xl bg-gradient-to-br from-white/10 to-transparent border dark:border-white/10 border-black/10">
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-sm font-semibold dark:text-slate-300 text-slate-700">Phase 1 Commercial Cycle</span>
+                <span className="text-[10px] text-green-500 font-bold">LIVE PROGRESS</span>
+              </div>
+              <div className="h-2 w-full dark:bg-white/5 bg-black/5 rounded-full overflow-hidden">
+                <motion.div initial={{ width: 0 }} animate={{ width: "65%" }} transition={{ duration: 2, delay: 1 }} className="h-full bg-[var(--primary-gradient)]"></motion.div>
+              </div>
+              <div className="flex justify-between mt-2 text-[10px] text-slate-500 font-bold uppercase">
+                <span>Composting</span>
+                <span>Pasteurization</span>
+                <span>Cropping</span>
+              </div>
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>
   );
-}
+};
