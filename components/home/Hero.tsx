@@ -125,47 +125,47 @@ export const Hero = () => {
           className="relative w-full max-w-lg mx-auto lg:max-w-none mt-10 lg:mt-0"
         >
           <div className="absolute inset-0 bg-purple-500/20 blur-[100px] rounded-full animate-pulse"></div>
-          <div className="relative bg-white/40 dark:bg-slate-900/40 rounded-[2.5rem] p-6 border border-white/20 dark:border-white/10 shadow-2xl backdrop-blur-2xl">
-            <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-green-500/20 flex items-center justify-center">
-                  <ShieldCheck className="text-green-500" size={20} />
+          <div className="relative bg-white/40 dark:bg-slate-900/40 rounded-[2rem] p-5 md:p-6 border border-white/20 dark:border-white/10 shadow-2xl backdrop-blur-2xl">
+            <div className="flex items-center justify-between mb-5">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-green-500/20 flex items-center justify-center">
+                  <ShieldCheck className="text-green-500" size={18} />
                 </div>
                 <div>
-                  <div className="dark:text-white text-slate-900 font-bold text-xs md:text-sm">Turnkey Setup Project</div>
-                  <div className="text-[10px] md:text-xs text-slate-500">Quality Certified Infrastructure</div>
+                  <div className="dark:text-white text-slate-900 font-bold text-[11px] md:text-xs">Turnkey Setup Project</div>
+                  <div className="text-[9px] md:text-[10px] text-slate-500">Quality Certified Infrastructure</div>
                 </div>
               </div>
-              <div className="px-3 py-1 rounded-full bg-green-500/20 text-green-400 text-[8px] md:text-[9px] font-bold uppercase tracking-widest">
+              <div className="px-2.5 py-1 rounded-full bg-green-500/20 text-green-400 text-[7px] md:text-[8px] font-bold uppercase tracking-widest">
                 Active
               </div>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-3">
               {[
                 { label: "Commercial Room Size", value: "18 x 70 ft Standard", icon: Layers },
                 { label: "Annual High Yield", value: "35,000+ kg", icon: TrendingUp },
                 { label: "Cooling Sys (India)", value: "Daikin Industrial", icon: Zap },
               ].map((stat, i) => (
-                <div key={i} className="flex items-center justify-between dark:bg-white/5 bg-black/5 p-4 rounded-2xl border dark:border-white/5 border-black/5">
-                  <div className="flex items-center gap-3">
-                    <stat.icon className="dark:text-slate-400 text-slate-600" size={16} />
-                    <span className="text-xs md:text-sm dark:text-slate-300 text-slate-700 font-medium">{stat.label}</span>
+                <div key={i} className="flex items-center justify-between dark:bg-white/5 bg-black/5 p-3 rounded-xl border dark:border-white/5 border-black/5">
+                  <div className="flex items-center gap-2.5">
+                    <stat.icon className="dark:text-slate-400 text-slate-600" size={14} />
+                    <span className="text-[10px] md:text-[11px] dark:text-slate-300 text-slate-700 font-medium">{stat.label}</span>
                   </div>
-                  <span className="text-xs md:text-sm dark:text-white text-slate-900 font-bold">{stat.value}</span>
+                  <span className="text-[10px] md:text-[11px] dark:text-white text-slate-900 font-bold">{stat.value}</span>
                 </div>
               ))}
             </div>
 
-            <div className="mt-8 p-4 rounded-3xl bg-gradient-to-br from-white/10 to-transparent border dark:border-white/10 border-black/10">
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-xs md:text-sm font-semibold dark:text-slate-300 text-slate-700">Phase 1 Commercial Cycle</span>
-                <span className="text-[8px] md:text-[9px] text-green-500 font-bold">LIVE PROGRESS</span>
+            <div className="mt-6 p-3 rounded-2xl bg-gradient-to-br from-white/10 to-transparent border dark:border-white/10 border-black/10">
+              <div className="flex items-center justify-between mb-3">
+                <span className="text-[10px] md:text-[11px] font-semibold dark:text-slate-300 text-slate-700">Phase 1 Commercial Cycle</span>
+                <span className="text-[7px] md:text-[8px] text-green-500 font-bold tracking-wider">LIVE PROGRESS</span>
               </div>
-              <div className="h-2 w-full dark:bg-white/5 bg-black/5 rounded-full overflow-hidden">
+              <div className="h-1.5 w-full dark:bg-white/5 bg-black/5 rounded-full overflow-hidden">
                 <motion.div initial={{ width: 0 }} whileInView={{ width: "92%" }} viewport={{ once: false }} transition={{ duration: 2.5, ease: "easeOut" }} className="h-full bg-gradient-to-r from-purple-500 to-green-500 dark:from-purple-400 dark:to-green-400"></motion.div>
               </div>
-              <div className="flex justify-between mt-2 text-[8px] md:text-[9px] text-slate-500 font-bold uppercase">
+              <div className="flex justify-between mt-2 text-[7px] md:text-[8px] text-slate-500 font-bold uppercase">
                 <span>Composting</span>
                 <span>Pasteurization</span>
                 <span>Cropping</span>
