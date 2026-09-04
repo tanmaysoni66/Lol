@@ -7,12 +7,13 @@ import { ArrowRight, BookOpen, Play, Quote } from "lucide-react";
 // Import your page components here:
 import { Hero } from "@/components/home/Hero";
 import { EcosystemFlow } from "@/components/home/EcosystemFlow";
+import { Timeline } from "@/components/home/Timeline";
 import { WhyChooseUs } from "@/components/home/WhyChooseUs";
-import FarmingModels from "@/components/home/FarmingModels";
-import MushroomComparison from "@/components/home/MushroomComparison";
+import { FarmingModels } from "@/components/home/FarmingModels";
+import { MushroomComparison } from "@/components/home/MushroomComparison";
 import { ROICalculator } from "@/components/home/ROICalculator";
 import CriticalParameters from "@/components/home/CriticalParameters";
-import ProductionSOP from "@/components/home/ProductionSOP";
+import { ProductionSOP } from "@/components/home/ProductionSOP";
 import MushroomSEOSections from "@/components/home/MushroomSEOSections";
 import ComparisonTable from "@/components/home/ComparisonTable";
 import StatesSection from "@/components/home/StatesSection";
@@ -38,6 +39,7 @@ export default function HomePage() {
     <>
       <JsonLd />
       <Hero />
+      <Timeline />
       <EcosystemFlow />
       <WhyChooseUs />
       <FarmingModels />

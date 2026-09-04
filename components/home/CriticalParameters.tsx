@@ -3,7 +3,6 @@ import React from "react";
 import Link from "next/link";
 import { motion } from "motion/react";
 import { Zap, Waves, Info, TrendingUp, ShoppingCart, Layers, Home, Sprout, ArrowRight } from "lucide-react";
-import { Counter } from "./ProductionSOP";
 
 export default function CriticalParameters() {
   const params = [
@@ -36,7 +35,7 @@ export default function CriticalParameters() {
                 </div>
                 <div className="text-[9px] font-black text-slate-500 uppercase tracking-widest mb-2">{p.label}</div>
                 <div className="flex items-baseline justify-center gap-1">
-                  <Counter value={p.value} />
+                  <span className="text-[28px] font-black dark:text-white text-slate-900">{p.value}</span>
                   <span className="text-[14px] font-black text-slate-500">{p.unit}</span>
                 </div>
                 <div className="mt-4 h-1 w-12 dark:bg-white/10 bg-black/10 rounded-full mx-auto overflow-hidden">

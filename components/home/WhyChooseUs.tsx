@@ -19,23 +19,6 @@ export const WhyChooseUs = () => {
       <div className="absolute top-1/4 left-0 w-96 h-96 bg-purple-500/10 blur-[120px] rounded-full pointer-events-none animate-pulse"></div>
       
       <div className="max-w-7xl mx-auto relative z-10">
-        {/* 360 View Video Section */}
-        <div className="max-w-4xl mx-auto text-center mb-16">
-          <div className="inline-block px-4 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-xs font-bold uppercase tracking-wider mb-4 border border-slate-200 dark:border-slate-700">Virtual Tour</div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 uppercase tracking-tight">
-            Commercial Mushroom Farm <span className="bg-clip-text text-transparent bg-[var(--primary-gradient)]">360° View</span>
-          </h2>
-          <p className="text-slate-500 text-sm md:text-base leading-relaxed mb-8">
-            Explore our state-of-the-art commercial mushroom farm setup. Watch this 360-degree view video to understand the infrastructure and scientific approach we implement for high-yield turnkey projects.
-          </p>
-          <div className="rounded-3xl overflow-hidden shadow-2xl border border-black/10 dark:border-white/10 bg-black aspect-video relative">
-            <video className="w-full h-full object-cover" controls preload="none" poster="/images/mushroom360viewimage.jpeg" title="Commercial Mushroom Farm 360 View">
-              <source src="/video/mushroom360viewfarmsetup.mp4" type="video/mp4" />
-              <track kind="captions" srcLang="en" label="English" />
-            </video>
-          </div>
-        </div>
-
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {chooseItems.map((item, i) => (
             <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="group relative">

@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "motion/react";
 import { CheckCircle2, Phone, MessageCircle, Mail, MapPin } from "lucide-react";
-import { CompanyProfile } from "./MushroomComparison";
 
 export default function CTASection() {
   const [state, setState] = useState({ submitting: false, succeeded: false, error: "" });
@@ -82,7 +81,6 @@ export default function CTASection() {
           </div>
         </div>
       </div>
-      <CompanyProfile />
       <AnimatePresence>
         {state.succeeded && (
           <div className="fixed inset-0 z-[200] flex items-center justify-center p-3">
