@@ -99,12 +99,15 @@ export default function EnquiryPage() {
   return (
     <div className="min-h-screen w-full relative overflow-x-hidden bg-gray-50 dark:bg-neutral-950 text-gray-900 dark:text-gray-100 flex items-center justify-center p-4 py-12">
       {/* Animated Background Theme */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-40 dark:opacity-20">
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-purple-300 dark:bg-purple-800 blur-[100px] animate-pulse" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-emerald-200 dark:bg-emerald-900 blur-[120px] animate-pulse delay-1000" />
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-50 dark:opacity-30">
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-purple-400 dark:bg-purple-800 blur-[120px] animate-pulse" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-emerald-400 dark:bg-emerald-900 blur-[120px] animate-pulse delay-[1000ms]" />
+        <div className="absolute top-[40%] left-[60%] w-[30%] h-[30%] rounded-full bg-blue-400 dark:bg-blue-900 blur-[100px] animate-pulse delay-[500ms]" />
+        <div className="absolute bottom-[40%] left-[10%] w-[25%] h-[25%] rounded-full bg-red-400 dark:bg-red-900 blur-[100px] animate-pulse delay-[1500ms]" />
       </div>
 
-      <div className="relative z-10 w-full max-w-2xl bg-white dark:bg-neutral-900 rounded-2xl shadow-xl border border-gray-100 dark:border-neutral-800 overflow-hidden">
+      {/* Transparent Liquid Glass Form Container */}
+      <div className="relative z-10 w-full max-w-2xl bg-gradient-to-br from-white/60 via-white/40 to-white/20 dark:from-neutral-900/60 dark:via-neutral-900/40 dark:to-neutral-900/20 backdrop-blur-xl rounded-3xl shadow-[0_8px_32px_rgba(31,38,135,0.15)] border border-white/50 dark:border-white/10 overflow-hidden">
         
         {/* Header */}
         <div className="p-6 pb-4 border-b border-gray-100 dark:border-neutral-800 text-center">
@@ -117,7 +120,7 @@ export default function EnquiryPage() {
         </div>
 
         {/* Tabs */}
-        <div className="flex overflow-x-auto scrollbar-hide border-b border-gray-100 dark:border-neutral-800 p-2">
+        <div className="flex overflow-x-auto scrollbar-hide border-b border-white/20 dark:border-white/5 p-2">
           {TABS.map((tab) => (
             <button
               key={tab.id}
@@ -144,7 +147,7 @@ export default function EnquiryPage() {
         </div>
 
         {/* Form Body */}
-        <div className="p-6">
+        <div className="p-6 bg-gradient-to-b from-transparent to-white/30 dark:to-black/20">
           {isSuccess ? (
             <motion.div 
               initial={{ opacity: 0, scale: 0.95 }}
@@ -190,7 +193,7 @@ export default function EnquiryPage() {
 
               {/* Dynamic Service Section */}
               <div className="pt-2">
-                <h3 className="text-sm font-bold text-purple-700 dark:text-purple-400 border-b border-gray-100 dark:border-neutral-800 pb-2 mb-4">
+                <h3 className="text-sm font-bold text-purple-700 dark:text-purple-300 border-b border-white/30 dark:border-white/10 pb-2 mb-4 drop-shadow-sm">
                   {serviceType === "Training" && "Training Preferences"}
                   {serviceType === "Spawn" && "Spawn (Seed) Requirements"}
                   {serviceType === "Setup" && "Turnkey Project Details"}

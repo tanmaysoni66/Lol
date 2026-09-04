@@ -104,23 +104,33 @@ export async function POST(req: NextRequest) {
 
     // --- Owner Email HTML ---
     const ownerHtml = `
-      <h2>New Enquiry Details</h2>
-      <table border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; width: 100%; max-width: 600px;">
-        <tr><td><strong>Name</strong></td><td>${fullName}</td></tr>
-        <tr><td><strong>Email</strong></td><td>${email}</td></tr>
-        <tr><td><strong>Phone</strong></td><td>${phone || "N/A"}</td></tr>
-        <tr><td><strong>Subject</strong></td><td>${getOwnerSubject()}</td></tr>
-        <tr><td><strong>Service/Product</strong></td><td>${serviceType}</td></tr>
-        ${trainingMode ? `<tr><td><strong>Training Mode</strong></td><td>${trainingMode}</td></tr>` : ""}
-        ${mushroomVariety ? `<tr><td><strong>Variety</strong></td><td>${mushroomVariety}</td></tr>` : ""}
-        ${quantity ? `<tr><td><strong>Quantity</strong></td><td>${quantity} kg</td></tr>` : ""}
-        ${deliveryLocation ? `<tr><td><strong>Delivery Location</strong></td><td>${deliveryLocation}</td></tr>` : ""}
-        ${setupType ? `<tr><td><strong>Setup Type</strong></td><td>${setupType}</td></tr>` : ""}
-        ${farmSize ? `<tr><td><strong>Farm Size</strong></td><td>${farmSize}</td></tr>` : ""}
-        ${farmLocation ? `<tr><td><strong>Farm Location</strong></td><td>${farmLocation}</td></tr>` : ""}
-        ${productForm ? `<tr><td><strong>Product Form</strong></td><td>${productForm}</td></tr>` : ""}
-        <tr><td><strong>Enquiry Details/Message</strong></td><td>${message || "N/A"}</td></tr>
-      </table>
+      <div style="background: linear-gradient(135deg, #e0c3fc 0%, #d5f7d4 33%, #c2e9fb 66%, #ffbaba 100%); padding: 40px 20px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+        <div style="max-width: 600px; margin: 0 auto; background: rgba(255, 255, 255, 0.85); border-radius: 16px; padding: 30px; box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15); border: 1px solid rgba(255, 255, 255, 0.6);">
+          <div style="text-align: center; margin-bottom: 25px;">
+            <h1 style="margin: 0; font-size: 24px; font-weight: 800; color: #6a11cb;">Organic Mushroom Farm</h1>
+            <p style="margin: 5px 0 0 0; color: #666; font-size: 14px;">New Enquiry Received</p>
+          </div>
+          <table style="width: 100%; border-collapse: collapse; background: rgba(255,255,255,0.7); border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+            <tr><td style="padding: 12px 15px; border-bottom: 1px solid rgba(0,0,0,0.05); font-weight: 600; color: #555; width: 35%;">Name</td><td style="padding: 12px 15px; border-bottom: 1px solid rgba(0,0,0,0.05); color: #333;">${fullName}</td></tr>
+            <tr><td style="padding: 12px 15px; border-bottom: 1px solid rgba(0,0,0,0.05); font-weight: 600; color: #555;">Email</td><td style="padding: 12px 15px; border-bottom: 1px solid rgba(0,0,0,0.05); color: #333;">${email}</td></tr>
+            <tr><td style="padding: 12px 15px; border-bottom: 1px solid rgba(0,0,0,0.05); font-weight: 600; color: #555;">Phone</td><td style="padding: 12px 15px; border-bottom: 1px solid rgba(0,0,0,0.05); color: #333;">${phone || "N/A"}</td></tr>
+            <tr><td style="padding: 12px 15px; border-bottom: 1px solid rgba(0,0,0,0.05); font-weight: 600; color: #555;">Subject</td><td style="padding: 12px 15px; border-bottom: 1px solid rgba(0,0,0,0.05); color: #333;">${getOwnerSubject()}</td></tr>
+            <tr><td style="padding: 12px 15px; border-bottom: 1px solid rgba(0,0,0,0.05); font-weight: 600; color: #555;">Service/Product</td><td style="padding: 12px 15px; border-bottom: 1px solid rgba(0,0,0,0.05); color: #333;">${serviceType}</td></tr>
+            ${trainingMode ? `<tr><td style="padding: 12px 15px; border-bottom: 1px solid rgba(0,0,0,0.05); font-weight: 600; color: #555;">Training Mode</td><td style="padding: 12px 15px; border-bottom: 1px solid rgba(0,0,0,0.05); color: #333;">${trainingMode}</td></tr>` : ""}
+            ${mushroomVariety ? `<tr><td style="padding: 12px 15px; border-bottom: 1px solid rgba(0,0,0,0.05); font-weight: 600; color: #555;">Variety</td><td style="padding: 12px 15px; border-bottom: 1px solid rgba(0,0,0,0.05); color: #333;">${mushroomVariety}</td></tr>` : ""}
+            ${quantity ? `<tr><td style="padding: 12px 15px; border-bottom: 1px solid rgba(0,0,0,0.05); font-weight: 600; color: #555;">Quantity</td><td style="padding: 12px 15px; border-bottom: 1px solid rgba(0,0,0,0.05); color: #333;">${quantity} kg</td></tr>` : ""}
+            ${deliveryLocation ? `<tr><td style="padding: 12px 15px; border-bottom: 1px solid rgba(0,0,0,0.05); font-weight: 600; color: #555;">Delivery Location</td><td style="padding: 12px 15px; border-bottom: 1px solid rgba(0,0,0,0.05); color: #333;">${deliveryLocation}</td></tr>` : ""}
+            ${setupType ? `<tr><td style="padding: 12px 15px; border-bottom: 1px solid rgba(0,0,0,0.05); font-weight: 600; color: #555;">Setup Type</td><td style="padding: 12px 15px; border-bottom: 1px solid rgba(0,0,0,0.05); color: #333;">${setupType}</td></tr>` : ""}
+            ${farmSize ? `<tr><td style="padding: 12px 15px; border-bottom: 1px solid rgba(0,0,0,0.05); font-weight: 600; color: #555;">Farm Size</td><td style="padding: 12px 15px; border-bottom: 1px solid rgba(0,0,0,0.05); color: #333;">${farmSize}</td></tr>` : ""}
+            ${farmLocation ? `<tr><td style="padding: 12px 15px; border-bottom: 1px solid rgba(0,0,0,0.05); font-weight: 600; color: #555;">Farm Location</td><td style="padding: 12px 15px; border-bottom: 1px solid rgba(0,0,0,0.05); color: #333;">${farmLocation}</td></tr>` : ""}
+            ${productForm ? `<tr><td style="padding: 12px 15px; border-bottom: 1px solid rgba(0,0,0,0.05); font-weight: 600; color: #555;">Product Form</td><td style="padding: 12px 15px; border-bottom: 1px solid rgba(0,0,0,0.05); color: #333;">${productForm}</td></tr>` : ""}
+            <tr><td style="padding: 12px 15px; font-weight: 600; color: #555;">Enquiry Details</td><td style="padding: 12px 15px; color: #333;">${message || "N/A"}</td></tr>
+          </table>
+          <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(0,0,0,0.1); text-align: center; color: #777; font-size: 12px;">
+            &copy; ${new Date().getFullYear()} Organic Mushroom Farm System.
+          </div>
+        </div>
+      </div>
     `;
 
     // --- Customer Smart Reply Logic ---
@@ -188,14 +198,22 @@ export async function POST(req: NextRequest) {
     }
 
     const customerHtml = `
-      <p style="font-family: sans-serif; color: #333; line-height: 1.6;">
-        Hi ${fullName},
-        <br/><br/>
-        Thank you for reaching out to us! ${smartReplyParagraph}
-        <br/><br/>
-        Warm regards,<br/>
-        <strong>The Organic Mushroom Farm Team</strong>
-      </p>
+      <div style="background: linear-gradient(135deg, #e0c3fc 0%, #d5f7d4 33%, #c2e9fb 66%, #ffbaba 100%); padding: 40px 20px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+        <div style="max-width: 600px; margin: 0 auto; background: rgba(255, 255, 255, 0.85); border-radius: 16px; padding: 30px; box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15); border: 1px solid rgba(255, 255, 255, 0.6);">
+          <div style="text-align: center; margin-bottom: 25px;">
+            <h1 style="margin: 0; font-size: 24px; font-weight: 800; color: #6a11cb;">Organic Mushroom Farm</h1>
+            <p style="margin: 5px 0 0 0; color: #666; font-size: 14px;">Thank you for contacting us!</p>
+          </div>
+          <div style="background: rgba(255, 255, 255, 0.7); padding: 25px; border-radius: 8px; color: #444; line-height: 1.6; font-size: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+            <p style="margin-top: 0;">Hi <strong>${fullName}</strong>,</p>
+            <p>Thank you for reaching out to us! ${smartReplyParagraph}</p>
+            <p style="margin-bottom: 0;">Warm regards,<br/><strong style="color: #6a11cb;">The Organic Mushroom Farm Team</strong></p>
+          </div>
+          <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(0,0,0,0.1); text-align: center; color: #777; font-size: 12px;">
+            &copy; ${new Date().getFullYear()} Organic Mushroom Farm. All rights reserved.
+          </div>
+        </div>
+      </div>
     `;
 
     if (!process.env.SMTP_EMAIL || !process.env.SMTP_PASSWORD) {
