@@ -44,14 +44,14 @@ export default function HomePage() {
     <>
       <JsonLd />
       <Hero />
-      <WhyChooseUs />
-      <WhyChooseProgram />
-      <JourneyCTA />
-      <BenefitsCultivation />
+      <ComparisonTable />
       <FAQSection />
-      <Timeline />
-      <EcosystemFlow />
+      <BenefitsCultivation />
+      <MushroomSEOSections />
+      
       <VirtualTour />
+      <WhyChooseUs />
+      <EcosystemFlow />
       <FarmingModels />
       <MushroomComparison />
       <ROICalculator />
@@ -62,8 +62,9 @@ export default function HomePage() {
       <Marketplace />
       <ResourcesSection />
       
-      <MushroomSEOSections />
-      <ComparisonTable />
+      <WhyChooseProgram />
+      <JourneyCTA />
+      
       <GlobalHubs />
       <DirectInquiry />
     </>

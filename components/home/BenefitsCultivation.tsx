@@ -38,19 +38,19 @@ export const BenefitsCultivation = () => {
   ];
 
   return (
-    <section className="py-20 md:py-24 px-4 lg:px-8 relative z-10 w-full overflow-hidden">
-      <div className="max-w-6xl mx-auto relative z-10">
+    <section className="py-12 md:py-16 px-4 lg:px-8 relative z-10 w-full overflow-hidden bg-white/5 dark:bg-slate-900/10">
+      <div className="max-w-4xl mx-auto relative z-10">
         
         {/* Ambient Background Glows */}
         <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-purple-500/10 dark:bg-purple-900/20 blur-[100px] rounded-full pointer-events-none -z-10 animate-pulse"></div>
 
         {/* Header */}
-        <div className="text-center mb-10 md:mb-14">
+        <div className="text-center mb-8">
           <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-yellow-600/30 bg-yellow-600/10 text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-yellow-700 dark:text-[#EAB308] mb-5 shadow-sm backdrop-blur-md">
             Socio-Economic Value
           </div>
           
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black dark:text-white text-slate-900 leading-[1.15] mb-5 tracking-tight uppercase">
+          <h2 className="text-xl md:text-2xl lg:text-3xl font-black dark:text-white text-slate-900 leading-[1.15] mb-4 tracking-tight uppercase">
             Benefits of <span className="text-purple-600 dark:text-[#8B5CF6]">Mushroom</span> <span className="text-emerald-600 dark:text-[#10B981]">Cultivation</span>
           </h2>
           
@@ -60,20 +60,20 @@ export const BenefitsCultivation = () => {
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {benefits.map((benefit, i) => (
             <div 
               key={i} 
-              className="flex gap-4 p-4 md:p-5 rounded-2xl border border-slate-200 dark:border-purple-900/40 bg-white/40 dark:bg-[#0B0C16]/80 backdrop-blur-md hover:border-purple-500/40 transition-colors shadow-sm group"
+              className="flex gap-3 p-3 md:p-4 rounded-xl border border-slate-200 dark:border-white/10 bg-white/40 dark:bg-slate-900/40 backdrop-blur-md hover:border-purple-500/40 transition-colors shadow-sm group"
             >
-              <div className="w-10 h-10 md:w-11 md:h-11 shrink-0 rounded-xl bg-purple-100 dark:bg-[#151226] border border-purple-200 dark:border-purple-900/50 flex items-center justify-center group-hover:scale-105 transition-transform">
-                <benefit.icon className="text-purple-600 dark:text-[#8B5CF6]" size={16} />
+              <div className="w-8 h-8 md:w-10 md:h-10 shrink-0 rounded-lg bg-purple-100 dark:bg-purple-900/30 border border-purple-200 dark:border-purple-900/50 flex items-center justify-center group-hover:scale-105 transition-transform">
+                <benefit.icon className="text-purple-600 dark:text-purple-400" size={14} />
               </div>
               <div>
-                <h3 className="text-[11px] md:text-[12px] font-bold dark:text-white text-slate-900 mb-1.5 tracking-tight group-hover:text-purple-600 dark:group-hover:text-[#8B5CF6] transition-colors">
+                <h3 className="text-[11px] md:text-xs font-bold dark:text-white text-slate-900 mb-1 tracking-tight group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
                   {benefit.title}
                 </h3>
-                <p className="text-[10px] md:text-[11px] dark:text-slate-400 text-slate-600 leading-relaxed font-medium">
+                <p className="text-[9px] md:text-[10px] dark:text-slate-400 text-slate-600 leading-relaxed font-medium">
                   {benefit.desc}
                 </p>
               </div>
