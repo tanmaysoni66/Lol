@@ -71,8 +71,7 @@ export const Navbar = () => {
   return (
     <>
       <nav
-        className={`fixed top-3 md:top-6 left-1/2 -translate-x-1/2 w-[calc(100%-16px)] sm:w-[calc(100%-32px)] md:w-[calc(100%-48px)] max-w-7xl z-50 backdrop-blur-xl border py-2.5 md:py-2 px-3 sm:px-5 md:px-6 lg:px-4 xl:px-5 transition-all duration-300 rounded-[2rem] ${isScrolled ? "translate-y-[-2px]" : ""}`}
-        style={{ background: 'var(--glass-bg)', borderColor: 'var(--glass-border)', boxShadow: 'var(--glass-shadow)' }}
+        className={`fixed top-3 md:top-6 left-1/2 -translate-x-1/2 w-[calc(100%-16px)] sm:w-[calc(100%-32px)] md:w-[calc(100%-48px)] max-w-7xl z-50 backdrop-blur-2xl bg-white/70 dark:bg-[#1C1936]/80 border py-2.5 md:py-2 px-3 sm:px-5 md:px-6 lg:px-4 xl:px-5 transition-all duration-300 rounded-[2rem] shadow-[0_8px_32px_rgba(0,0,0,0.12)] border-white/20 dark:border-white/10 ${isScrolled ? "translate-y-[-2px] shadow-[0_16px_40px_-10px_rgba(0,0,0,0.2)]" : ""}`}
       >
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center gap-1.5 sm:gap-3 group shrink-0">
@@ -187,7 +186,7 @@ export const Navbar = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.15 }}
-              className="absolute inset-0 bg-black/70"
+              className="absolute inset-0 bg-black/60 backdrop-blur-sm"
               onClick={() => setMobileMenuOpen(false)}
             />
             
@@ -196,7 +195,7 @@ export const Navbar = () => {
               animate={{ y: 0 }}
               exit={{ y: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="relative w-full max-h-[85vh] bg-white dark:bg-slate-900 rounded-t-3xl overflow-hidden shadow-2xl flex flex-col"
+              className="relative w-full max-h-[85vh] bg-white/90 dark:bg-[#1C1936]/95 backdrop-blur-xl rounded-t-3xl overflow-hidden shadow-[0_-10px_40px_rgba(0,0,0,0.2)] border-t border-white/20 dark:border-white/10 flex flex-col"
             >
               <div className="flex items-center justify-between p-4 border-b border-slate-100 dark:border-slate-800 shrink-0">
                 <span className="font-bold text-lg dark:text-white text-slate-900">Menu</span>
@@ -217,7 +216,7 @@ export const Navbar = () => {
                     const hasSubMenu = item.subMenu && item.subMenu.length > 0;
                     const isExpanded = expandedMobileMenu === item.name;
                     
-                    const baseCardClass = `relative w-full overflow-hidden rounded-2xl border transition-colors duration-150 ${isActive ? "border-emerald-500/50 bg-emerald-50 dark:bg-emerald-500/10" : "border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800"}`;
+                    const baseCardClass = `relative w-full overflow-hidden rounded-2xl border transition-colors duration-150 ${isActive ? "border-emerald-500/50 bg-emerald-500/10 dark:bg-emerald-500/20" : "border-slate-200/50 dark:border-white/10 bg-white/50 dark:bg-black/20 backdrop-blur-md"}`;
                     
                     return (
                       <motion.div
@@ -231,13 +230,13 @@ export const Navbar = () => {
                           <div className={baseCardClass}>
                             <button
                               onClick={() => setExpandedMobileMenu((prev) => prev === item.name ? null : item.name)}
-                              className="w-full flex items-center justify-between p-2.5"
+                              className="w-full flex items-center justify-between p-2"
                             >
                               <div className="flex items-center gap-2">
-                                <div className={`w-6 h-6 rounded-full flex items-center justify-center ${isActive ? "bg-emerald-100 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400" : "bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400"}`}>
-                                  {item.icon && <item.icon size={12} />}
+                                <div className={`w-5 h-5 rounded-full flex items-center justify-center ${isActive ? "bg-emerald-100 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400" : "bg-slate-100 dark:bg-white/10 text-slate-600 dark:text-slate-300"}`}>
+                                  {item.icon && <item.icon size={10} />}
                                 </div>
-                                <span className={`text-[11px] font-bold ${isActive ? "text-emerald-600 dark:text-emerald-400" : "text-slate-800 dark:text-slate-200"}`}>
+                                <span className={`text-[10px] font-bold ${isActive ? "text-emerald-600 dark:text-emerald-400" : "text-slate-800 dark:text-slate-200"}`}>
                                   {item.name}
                                 </span>
                               </div>
@@ -290,12 +289,12 @@ export const Navbar = () => {
                                 setMobileMenuOpen(false);
                               }
                             }}
-                            className={`${baseCardClass} flex flex-col items-start justify-center p-2.5 min-h-[60px]`}
+                            className={`${baseCardClass} flex flex-col items-start justify-center p-2 min-h-[50px]`}
                           >
-                            <div className={`w-6 h-6 rounded-full flex items-center justify-center mb-1.5 ${isActive ? "bg-emerald-100 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400" : "bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400"}`}>
-                              {item.icon && <item.icon size={12} />}
+                            <div className={`w-5 h-5 rounded-full flex items-center justify-center mb-1 ${isActive ? "bg-emerald-100 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400" : "bg-slate-100 dark:bg-white/10 text-slate-600 dark:text-slate-300"}`}>
+                              {item.icon && <item.icon size={10} />}
                             </div>
-                            <span className={`text-[11px] font-bold ${isActive ? "text-emerald-600 dark:text-emerald-400" : "text-slate-800 dark:text-slate-200"}`}>
+                            <span className={`text-[10px] font-bold ${isActive ? "text-emerald-600 dark:text-emerald-400" : "text-slate-800 dark:text-slate-200"}`}>
                               {item.name}
                             </span>
                           </Link>
