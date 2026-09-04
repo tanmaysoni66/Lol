@@ -52,10 +52,7 @@ export const Hero = () => {
           </div>
 
           <div className="flex flex-col gap-3 mb-6 max-w-md mx-auto md:mx-0">
-            <Link
-              href="/training"
-              className="group flex items-center justify-between p-3 rounded-2xl border border-purple-500/30 bg-purple-500/5 dark:bg-purple-900/10 hover:bg-purple-500/15 transition-all duration-300 shadow-sm"
-            >
+            <Link href="/training" className="group flex items-center justify-between p-3 rounded-2xl border border-purple-500/30 bg-purple-500/5 dark:bg-purple-900/10 hover:bg-purple-500/15 transition-all duration-300 shadow-sm">
               <div className="flex items-center gap-3">
                 <div className="p-2 rounded-xl bg-purple-500/10 text-purple-600 dark:text-purple-300">
                   <Award size={16} />
@@ -71,11 +68,7 @@ export const Hero = () => {
               </div>
               <ArrowRight size={14} className="text-slate-400 group-hover:translate-x-1 group-hover:text-purple-500 transition-all" />
             </Link>
-            
-            <Link
-              href="/turnkey-projects"
-              className="group flex items-center justify-between p-3 rounded-2xl border border-emerald-500/30 bg-emerald-500/5 dark:bg-emerald-900/10 hover:bg-emerald-500/15 transition-all duration-300 shadow-sm"
-            >
+            <Link href="/turnkey-projects" className="group flex items-center justify-between p-3 rounded-2xl border border-emerald-500/30 bg-emerald-500/5 dark:bg-emerald-900/10 hover:bg-emerald-500/15 transition-all duration-300 shadow-sm">
               <div className="flex items-center gap-3">
                 <div className="p-2 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-300">
                   <CheckCircle2 size={16} />
@@ -93,14 +86,14 @@ export const Hero = () => {
             </Link>
           </div>
 
-          <div className="flex flex-col sm:flex-row flex-wrap gap-4 mb-6 md:mb-5">
-            <Link href="/enquiry" className="w-full sm:w-auto px-6 min-h-[44px] md:min-h-[40px] rounded-xl text-[11px] md:text-xs shadow-xl flex items-center justify-center font-bold bg-[#7b51f8] hover:bg-[#6841d8] text-white transition-colors">
+          <div className="flex flex-col sm:flex-row flex-wrap gap-3 md:gap-4 mb-8">
+            <Link href="/enquiry" className="w-full sm:w-auto px-6 py-3.5 rounded-xl text-[11px] md:text-xs shadow-xl flex items-center justify-center font-bold bg-gradient-to-r from-[#7b51f8] to-[#2fd17b] hover:opacity-90 text-white transition-all hover:scale-105">
               Enquiry Now
             </Link>
-            <a href="https://wa.me/919203544140" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto px-6 min-h-[44px] md:min-h-[40px] rounded-xl text-[11px] md:text-xs flex items-center justify-center font-medium border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+            <a href="https://wa.me/919203544140" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto px-6 py-3.5 rounded-xl text-[11px] md:text-xs flex items-center justify-center font-bold border border-slate-300 dark:border-slate-700 bg-white/50 dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-900 dark:text-white transition-all backdrop-blur-md hover:scale-105">
               WhatsApp Us
             </a>
-            <a href="tel:9203544140" className="w-full sm:w-auto px-6 min-h-[44px] md:min-h-[40px] rounded-xl text-[11px] md:text-xs flex items-center justify-center font-medium border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+            <a href="tel:9203544140" className="w-full sm:w-auto px-6 py-3.5 rounded-xl text-[11px] md:text-xs flex items-center justify-center font-bold border border-slate-300 dark:border-slate-700 bg-white/50 dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-900 dark:text-white transition-all backdrop-blur-md hover:scale-105">
               Call Now: 9203544140
             </a>
           </div>
@@ -156,7 +149,6 @@ export const Hero = () => {
               {[
                 { label: "Commercial Room Size", value: "18 x 70 ft Standard", icon: Layers },
                 { label: "Annual High Yield", value: "35,000+ kg", icon: TrendingUp },
-                { label: "Cooling Sys (India)", value: "Daikin Industrial", icon: Zap },
               ].map((stat, i) => (
                 <div key={i} className="flex items-center justify-between dark:bg-white/5 bg-black/5 p-3 rounded-xl border dark:border-white/5 border-black/5">
                   <div className="flex items-center gap-2.5">

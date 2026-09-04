@@ -91,16 +91,16 @@ export const FAQSection = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="py-20 md:py-24 px-4 lg:px-8 relative z-10 w-full overflow-hidden">
+    <section className="py-12 md:py-16 px-4 lg:px-8 relative z-10 w-full overflow-hidden bg-white/5 dark:bg-slate-900/10">
       <div className="max-w-4xl mx-auto relative z-10">
         
         {/* Header */}
-        <div className="text-center mb-12 md:mb-16">
+        <div className="text-center mb-10 md:mb-12">
           <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-slate-300 dark:border-purple-500/30 bg-white/50 dark:bg-purple-900/10 text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-slate-800 dark:text-purple-400 mb-5 backdrop-blur-md shadow-sm">
             Frequently Asked Questions
           </div>
           
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black dark:text-white text-slate-900 leading-[1.15] mb-5 tracking-tight uppercase">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black dark:text-white text-slate-900 leading-[1.15] mb-4 tracking-tight uppercase">
             CULTIVATION <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-green-500 dark:from-purple-400 dark:to-green-400">KNOWLEDGE</span>
           </h2>
           
@@ -110,32 +110,32 @@ export const FAQSection = () => {
         </div>
 
         {/* FAQ Accordion */}
-        <div className="flex flex-col gap-3 md:gap-4">
+        <div className="flex flex-col gap-2 md:gap-3">
           {faqs.map((faq, index) => {
             const isOpen = openIndex === index;
             
             return (
               <div 
                 key={index} 
-                className="border border-slate-200 dark:border-white/10 dark:hover:border-purple-500/30 bg-white/40 dark:bg-[#0B0C16]/80 rounded-2xl backdrop-blur-md overflow-hidden transition-colors"
+                className="border border-slate-200 dark:border-white/10 dark:hover:border-purple-500/30 bg-white/40 dark:bg-slate-900/40 rounded-xl backdrop-blur-md overflow-hidden transition-colors shadow-sm"
               >
                 <button
                   onClick={() => setOpenIndex(isOpen ? null : index)}
-                  className="w-full flex items-center justify-between p-4 md:p-5 text-left focus:outline-none group"
+                  className="w-full flex items-center justify-between p-3 md:p-4 text-left focus:outline-none group"
                 >
                   <div className="flex items-start gap-3 md:gap-4 pr-6">
-                    <span className="text-purple-600 dark:text-[#8B5CF6] font-black text-xs md:text-sm tracking-tight mt-0.5">
+                    <span className="text-purple-600 dark:text-purple-400 font-black text-[10px] md:text-xs tracking-tight mt-0.5">
                       {index + 1}.
                     </span>
-                    <span className="font-bold text-slate-800 dark:text-white text-[11px] md:text-[13px] leading-snug group-hover:text-purple-600 dark:group-hover:text-[#8B5CF6] transition-colors">
+                    <span className="font-bold text-slate-800 dark:text-white text-[10px] md:text-xs leading-snug group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
                       {faq.q}
                     </span>
                   </div>
                   <div className="shrink-0 text-slate-400 dark:text-slate-500 group-hover:text-purple-500 transition-colors">
                     <ChevronDown 
-                      size={16} 
+                      size={14} 
                       strokeWidth={2.5}
-                      className={`transition-transform duration-300 ${isOpen ? "rotate-180 text-purple-600 dark:text-[#8B5CF6]" : ""}`} 
+                      className={`transition-transform duration-300 ${isOpen ? "rotate-180 text-purple-600 dark:text-purple-400" : ""}`} 
                     />
                   </div>
                 </button>
@@ -148,7 +148,7 @@ export const FAQSection = () => {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.3, ease: "easeInOut" }}
                     >
-                      <div className="px-4 md:px-5 pb-5 pt-1 ml-6 md:ml-8 text-[11px] md:text-xs text-slate-600 dark:text-slate-400 font-medium leading-relaxed">
+                      <div className="px-3 md:px-4 pb-4 pt-1 ml-6 md:ml-8 text-[9px] md:text-[10px] text-slate-600 dark:text-slate-400 font-medium leading-relaxed">
                         {faq.a}
                       </div>
                     </motion.div>
