@@ -145,7 +145,6 @@ export const Hero = () => {
               {[
                 { label: "Commercial Room Size", value: "18 x 70 ft Standard", icon: Layers },
                 { label: "Annual High Yield", value: "35,000+ kg", icon: TrendingUp },
-                { label: "Cooling Sys (India)", value: "Daikin Industrial", icon: Zap },
               ].map((stat, i) => (
                 <div key={i} className="flex items-center justify-between dark:bg-white/5 bg-black/5 p-3 rounded-xl border dark:border-white/5 border-black/5">
                   <div className="flex items-center gap-2.5">

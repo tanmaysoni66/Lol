@@ -8,16 +8,17 @@ import { ArrowRight, BookOpen, Play, Quote } from "lucide-react";
 import { Hero } from "@/components/home/Hero";
 import { EcosystemFlow } from "@/components/home/EcosystemFlow";
 import { Timeline } from "@/components/home/Timeline";
-import { WhyChooseUs } from "@/components/home/WhyChooseUs";
+import { WhyChooseProgram } from "@/components/home/WhyChooseProgram";
 import { FarmingModels } from "@/components/home/FarmingModels";
 import { MushroomComparison } from "@/components/home/MushroomComparison";
 import { ROICalculator } from "@/components/home/ROICalculator";
 import CriticalParameters from "@/components/home/CriticalParameters";
 import { ProductionSOP } from "@/components/home/ProductionSOP";
 import MushroomSEOSections from "@/components/home/MushroomSEOSections";
+import { JourneyCTA } from "@/components/home/JourneyCTA";
+import { FAQSection } from "@/components/home/FAQSection";
 import ComparisonTable from "@/components/home/ComparisonTable";
 import { GlobalHubs } from "@/components/home/GlobalHubs";
-import CTASection from "@/components/home/CTASection";
 import CompostUnits from "@/components/home/CompostUnits";
 import Testimonials from "@/components/home/Testimonials";
 import Marketplace from "@/components/home/Marketplace";
@@ -40,9 +41,11 @@ export default function HomePage() {
     <>
       <JsonLd />
       <Hero />
+      <JourneyCTA />
+      <FAQSection />
       <Timeline />
       <EcosystemFlow />
-      <WhyChooseUs />
+      <WhyChooseProgram />
       <FarmingModels />
       <MushroomComparison />
       <ROICalculator />
@@ -55,7 +58,6 @@ export default function HomePage() {
       
       <MushroomSEOSections />
       <ComparisonTable />
-      <CTASection />
       <GlobalHubs />
       <DirectInquiry />
     </>
