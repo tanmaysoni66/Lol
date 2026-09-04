@@ -10,9 +10,9 @@ import {
   Instagram, 
   Twitter, 
   Linkedin,
-  Map,
-  CheckCircle2
+  Send
 } from "lucide-react";
+import Image from "next/image";
 
 const PinterestIcon = ({ size = 24, color = "currentColor", strokeWidth = 2, ...props }: any) => (
   <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -39,72 +39,81 @@ const Footer = () => {
   if (pathname === "/workshop") return null;
 
   return (
-    <footer className="pt-20 pb-24 md:pb-12 bg-black/50 border-t dark:border-white/5 border-black/5">
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Global E-E-A-T Profile for SEO Signals */}
-        <div className="mb-6 p-3 rounded-2xl dark:bg-white/5 bg-black/5 border dark:border-white/10 border-black/10">
-          <div className="flex flex-col md:flex-row gap-6 items-start md:items-center">
-            <div className="flex-shrink-0 w-16 h-16 rounded-full bg-primary-start/20 flex items-center justify-center text-primary-start">
+    <footer className="pt-20 pb-24 md:pb-12 bg-[#0B0C15] text-slate-300 relative border-t border-white/5 overflow-hidden">
+      {/* Background ambient light */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-900/10 via-transparent to-transparent pointer-events-none"></div>
+
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        
+        {/* Global E-E-A-T Profile Box */}
+        <div className="mb-16 p-6 md:p-8 rounded-[2rem] bg-[#11121E]/80 backdrop-blur-md border border-purple-500/20 shadow-2xl">
+          <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-start md:items-center">
+            <div className="flex-shrink-0 w-16 h-16 rounded-full bg-purple-600/20 flex items-center justify-center text-purple-500 border border-purple-500/30">
               <ShieldCheck size={32} />
             </div>
             <div>
-              <h3 className="text-xl font-bold dark:text-white text-slate-900 mb-2">
+              <h3 className="text-xl md:text-2xl font-bold text-white mb-3">
                 Certified E-E-A-T Excellence
               </h3>
-              <p className="text-sm dark:text-slate-400 text-slate-600 mb-4 max-w-2xl leading-relaxed">
-                We are a globally recognized commercial mushroom research and training center. Featured across leading agricultural media and trusted by thousands of successful farm entrepreneurs worldwide.
+              <p className="text-[13px] md:text-sm text-slate-400 mb-2 leading-relaxed">
+                <strong className="text-slate-200">Experience & Expertise:</strong> With years of hands-on cultivation of over 10 mushroom varieties (Button, Oyster, Milky, Cordyceps) and world-class commercial infrastructure setups pan-India.
               </p>
-              <div className="flex flex-wrap gap-2">
-                {["Experience (10+ Yrs)", "Expertise (Agronomy)", "Authoritativeness", "Trustworthiness"].map((trust) => (
-                  <span key={trust} className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg dark:bg-white/10 bg-black/10 text-[10px] font-bold uppercase tracking-widest dark:text-slate-300 text-slate-700">
-                    <CheckCircle2 size={12} className="text-primary-start" />
-                    {trust}
-                  </span>
-                ))}
-              </div>
+              <p className="text-[13px] md:text-sm text-slate-400 leading-relaxed">
+                <strong className="text-slate-200">Authoritativeness & Trust:</strong> Certified by leading agricultural bodies, led by agri-tech expert Tanish Soni, and highly rated by thousands of trained farmers globally. Verified operations in Jabalpur, MP.
+              </p>
             </div>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-8 lg:gap-12 pb-12">
-          <div className="md:col-span-2">
-            <h3 className="text-xl font-bold dark:text-white text-slate-900 tracking-tight mb-4">
-              Organic Mushrooms Farm
-            </h3>
-            <p className="dark:text-slate-400 text-slate-600 text-sm mb-6 leading-relaxed max-w-sm">
-              Empowering global agribusiness through scientific commercial mushroom cultivation, robust training, and turnkey infrastructure solutions.
-            </p>
-            <div className="flex flex-col gap-3">
-              {[
-                { icon: Map, text: "Jabalpur, Madhya Pradesh, India" },
-                { icon: CheckCircle2, text: "ISO 9001:2015 Certified" }
-              ].map((item, i) => (
-                <span key={i} className="flex items-center gap-3 text-sm dark:text-slate-300 text-slate-700">
-                  <div className="w-8 h-8 rounded-full dark:bg-white/5 bg-black/5 flex items-center justify-center border dark:border-white/5 border-black/5">
-                    <item.icon size={14} className="text-primary-start" />
-                  </div>
-                  {item.text}
-                </span>
-              ))}
+        {/* Main Footer Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8 lg:gap-16 pb-16 border-b border-white/5">
+          
+          {/* Col 1: Brand & Details */}
+          <div className="md:col-span-5 lg:col-span-4">
+            <div className="flex items-center gap-3 mb-6">
+              {/* Optional mushroom image logo if it exists, otherwise a text-based styled logo */}
+              <div className="text-2xl font-black tracking-tight">
+                <span className="text-white">Organic </span>
+                <span className="text-purple-500">Mushroom </span>
+                <span className="text-green-500">Farm</span>
+              </div>
             </div>
-            <div className="flex flex-wrap gap-3 mt-8">
-              <a href="https://www.youtube.com/@organicmushroomfarm" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 dark:bg-white/5 bg-black/5 hover:bg-red-500/10 border dark:border-white/5 border-black/5 hover:border-red-500/30 rounded-lg text-sm dark:text-slate-300 text-slate-700 hover:text-slate-900 dark:hover:text-white transition-all group">
+            
+            <p className="text-slate-400 text-[13px] mb-8 leading-relaxed pr-4">
+              Empowering high-yield organic button & oyster mushroom cultivation across India and the globe through standardized SOPs, expert commercial training, and industrial-grade turnkey projects.
+            </p>
+            
+            {/* Cities Line */}
+            <div className="text-[9px] font-bold text-slate-500 tracking-[0.2em] leading-loose uppercase mb-8 flex flex-wrap gap-2">
+              JABALPUR <span className="text-purple-500">•</span> SAGAR <span className="text-purple-500">•</span> DAMOH <span className="text-purple-500">•</span> INDORE <span className="text-purple-500">•</span> MUMBAI <span className="text-purple-500">•</span> DELHI <span className="text-purple-500">•</span> GLOBAL
+            </div>
+
+            {/* Platform Buttons */}
+            <div className="flex flex-wrap gap-3">
+              <a href="https://www.youtube.com/@organicmushroomfarm" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2.5 bg-[#141523] border border-purple-500/20 hover:border-purple-500/50 rounded-xl text-sm text-white transition-all group shadow-lg">
                 <Youtube size={16} className="text-red-500 group-hover:scale-110 transition-transform" />
                 <span className="font-medium">YouTube</span>
               </a>
-              <a href="https://maps.app.goo.gl/z7oQHSoLbCL9H4ov8?g_st=ic" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 dark:bg-white/5 bg-black/5 hover:bg-blue-500/10 border dark:border-white/5 border-black/5 hover:border-blue-500/30 rounded-lg text-sm dark:text-slate-300 text-slate-700 hover:text-slate-900 dark:hover:text-white transition-all group">
+              <a href="https://maps.app.goo.gl/z7oQHSoLbCL9H4ov8?g_st=ic" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2.5 bg-[#141523] border border-purple-500/20 hover:border-purple-500/50 rounded-xl text-sm text-white transition-all group shadow-lg">
                 <MapPin size={16} className="text-blue-500 group-hover:scale-110 transition-transform" />
                 <span className="font-medium">Google Profile</span>
+              </a>
+              <a href="https://www.pinterest.com/organicmushroomfarm" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2.5 bg-[#141523] border border-purple-500/20 hover:border-purple-500/50 rounded-xl text-sm text-white transition-all group shadow-lg">
+                <PinterestIcon size={16} className="text-pink-500 group-hover:scale-110 transition-transform" />
+                <span className="font-medium">Pinterest</span>
               </a>
             </div>
           </div>
           
-          <div className="md:col-span-3 grid grid-cols-2 sm:grid-cols-3 gap-6">
+          {/* Cols 2-4: Links */}
+          <div className="md:col-span-7 lg:col-span-8 grid grid-cols-2 md:grid-cols-3 gap-8">
+            
+            {/* Explore */}
             <div>
-              <h4 className="dark:text-white text-slate-900 font-bold mb-4 uppercase tracking-widest text-[9px] border-l-2 border-primary-start pl-2">
+              <h4 className="text-white font-bold mb-6 uppercase tracking-widest text-[10px] border-l-2 border-purple-500 pl-3">
                 Explore
               </h4>
-              <ul className="space-y-3">
+              <ul className="space-y-4">
                 {[
                   { name: "About Us", href: "/about" },
                   { name: "Services", href: "/services" },
@@ -116,7 +125,7 @@ const Footer = () => {
                   { name: "Mushroom Farming USA Guide", href: "/mushroom-farming-usa-guide" },
                 ].map((item) => (
                   <li key={item.name}>
-                    <Link href={item.href} className="text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors text-xs md:text-sm font-medium">
+                    <Link href={item.href} className="text-[#8B8D98] hover:text-white transition-colors text-[13px] font-medium">
                       {item.name}
                     </Link>
                   </li>
@@ -124,11 +133,12 @@ const Footer = () => {
               </ul>
             </div>
             
+            {/* Resources */}
             <div>
-              <h4 className="dark:text-white text-slate-900 font-bold mb-4 uppercase tracking-widest text-[9px] border-l-2 border-primary-start pl-2">
+              <h4 className="text-white font-bold mb-6 uppercase tracking-widest text-[10px] border-l-2 border-purple-500 pl-3">
                 Resources
               </h4>
-              <ul className="space-y-3">
+              <ul className="space-y-4">
                 {[
                   { name: "Gallery", href: "/gallery" },
                   { name: "Business Plan", href: "/business-plan" },
@@ -138,10 +148,11 @@ const Footer = () => {
                   { name: "Blog", href: "/blog" },
                   { name: "FAQ", href: "/faq" },
                   { name: "Cities Pages", href: "/states" },
+                  { name: "Contact Us", href: "/contact" },
                   { name: "USA Training", href: "/usatraining" },
                 ].map((item) => (
                   <li key={item.name}>
-                    <Link href={item.href} className="text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors text-xs md:text-sm font-medium">
+                    <Link href={item.href} className="text-[#8B8D98] hover:text-white transition-colors text-[13px] font-medium">
                       {item.name}
                     </Link>
                   </li>
@@ -149,11 +160,12 @@ const Footer = () => {
               </ul>
             </div>
             
+            {/* Support & Legal */}
             <div>
-              <h4 className="dark:text-white text-slate-900 font-bold mb-4 uppercase tracking-widest text-[9px] border-l-2 border-primary-start pl-2">
+              <h4 className="text-white font-bold mb-6 uppercase tracking-widest text-[10px] border-l-2 border-purple-500 pl-3">
                 Support & Legal
               </h4>
-              <ul className="space-y-3">
+              <ul className="space-y-4">
                 {[
                   { name: "Contact", href: "/contact" },
                   { name: "Customer Support", href: "/support" },
@@ -164,21 +176,23 @@ const Footer = () => {
                   { name: "Shipping Policy", href: "/shipping-policy" },
                 ].map((item) => (
                   <li key={item.name}>
-                    <Link href={item.href} className="text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors text-xs md:text-sm font-medium">
+                    <Link href={item.href} className="text-[#8B8D98] hover:text-white transition-colors text-[13px] font-medium">
                       {item.name}
                     </Link>
                   </li>
                 ))}
               </ul>
             </div>
+
           </div>
         </div>
         
-        <div className="flex flex-col md:flex-row items-center justify-between border-t dark:border-white/5 border-black/5 pt-10 text-[10px] font-bold uppercase tracking-widest text-slate-600">
-          <div className="mb-6 md:mb-0">
-            © 2026 Organic Mushrooms Farm. All Rights Reserved.
+        {/* Copyright and Socials */}
+        <div className="flex flex-col-reverse md:flex-row items-center justify-between pt-8 text-[10px] font-bold uppercase tracking-[0.15em] text-[#56596A] gap-6">
+          <div className="text-center md:text-left">
+            © 2026 ORGANIC MUSHROOMS FARM. ALL RIGHTS RESERVED.
           </div>
-          <div className="flex gap-4 flex-wrap justify-center items-center">
+          <div className="flex gap-3 flex-wrap justify-center items-center">
             {[
               { label: "Facebook", href: "https://www.facebook.com/organic.mushroom.farm0", icon: Facebook },
               { label: "Instagram", href: "https://www.instagram.com/organic_mushroom_farm_jabalpur", icon: Instagram },
@@ -194,10 +208,10 @@ const Footer = () => {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full border border-slate-300 dark:border-slate-600 flex items-center justify-center text-slate-500 dark:text-slate-400 hover:bg-emerald-500 hover:text-white hover:border-emerald-500 dark:hover:bg-slate-700 transition-all hover:scale-110"
+                className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-[#8B8D98] hover:bg-white/10 hover:text-white transition-all hover:scale-110"
                 aria-label={social.label}
               >
-                <social.icon size={18} strokeWidth={2} />
+                <social.icon size={16} strokeWidth={1.5} />
               </a>
             ))}
           </div>

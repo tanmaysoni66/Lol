@@ -8,7 +8,7 @@ export const WhatsAppWidget = () => {
   const whatsappNumber = "919203544140"; 
 
   return (
-    <div className="fixed right-3 md:right-[30px] z-[99999] flex flex-col gap-2 md:gap-4 items-end pointer-events-none bottom-[20px]">
+    <div className="fixed right-3 md:right-[30px] z-[99999] flex flex-col gap-2 md:gap-4 items-end pointer-events-none bottom-[85px] md:bottom-[20px]">
       <div className="flex flex-col items-center gap-1.5 pointer-events-auto">
         <motion.a
           href={`https://wa.me/${whatsappNumber}`}

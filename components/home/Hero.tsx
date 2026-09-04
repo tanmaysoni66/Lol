@@ -21,29 +21,29 @@ export const Hero = () => {
           transition={{ duration: 0.6 }}
           className="text-center md:text-left"
         >
-          <div className="text-[10px] md:text-sm font-bold text-green-700 dark:text-green-500 uppercase tracking-[0.2em] mb-4 md:mb-6">
+          <div className="text-[9px] md:text-[10px] font-bold text-green-700 dark:text-green-500 uppercase tracking-[0.2em] mb-4 md:mb-6">
             Button, Oyster, Milky, Shiitake & More | Setup, Training & Business Support
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold dark:text-white text-slate-900 leading-tight mb-4 md:mb-5 tracking-tighter">
-            <span className="bg-clip-text text-transparent bg-[var(--primary-gradient)]">
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold dark:text-white text-slate-900 leading-tight mb-4 md:mb-5 tracking-tighter">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-green-500 dark:from-purple-400 dark:to-green-400 drop-shadow-sm">
               Expert Mushroom Farming Training & Setup
             </span>{" "}
             <br />– Complete Solutions for All Mushroom Types
           </h1>
-          <p className="text-base md:text-lg dark:text-slate-400 text-slate-600 mb-5 md:mb-6 max-w-xl mx-auto md:mx-0 leading-relaxed">
+          <p className="text-xs md:text-sm dark:text-slate-400 text-slate-600 mb-5 md:mb-6 max-w-xl mx-auto md:mx-0 leading-relaxed">
             Complete commercial methodology, calculators, and turnkey solutions for profitable button, oyster, and milky mushroom farming across India and worldwide.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-y-2 md:gap-y-3 gap-x-8 mb-6 dark:border-white/5 border-black/5 border-y py-3 md:py-4">
             {features.map((f, i) => (
               <div key={i} className="flex items-center gap-3 justify-center md:justify-start">
-                <CheckCircle2 size={16} className="text-green-500" />
+                <CheckCircle2 size={14} className="text-green-500" />
                 {f.link ? (
-                  <Link href={f.link} className="text-[13px] md:text-sm font-bold text-slate-900 dark:text-white tracking-tight hover:text-green-500 transition-colors">
+                  <Link href={f.link} className="text-[11px] md:text-xs font-bold text-slate-900 dark:text-white tracking-tight hover:text-green-500 transition-colors">
                     {f.text}
                   </Link>
                 ) : (
-                  <span className="text-[13px] md:text-sm font-bold text-slate-900 dark:text-white tracking-tight">
+                  <span className="text-[11px] md:text-xs font-bold text-slate-900 dark:text-white tracking-tight">
                     {f.text}
                   </span>
                 )}
@@ -58,18 +58,18 @@ export const Hero = () => {
             >
               <div className="flex items-center gap-3">
                 <div className="p-2 rounded-xl bg-purple-500/10 text-purple-600 dark:text-purple-300">
-                  <Award size={18} />
+                  <Award size={16} />
                 </div>
                 <div className="text-left">
-                  <span className="block text-sm font-bold text-slate-800 dark:text-slate-100 group-hover:text-purple-600 dark:group-hover:text-purple-300 transition-colors">
+                  <span className="block text-xs md:text-sm font-bold text-slate-800 dark:text-slate-100 group-hover:text-purple-600 dark:group-hover:text-purple-300 transition-colors">
                     Mushroom Cultivation Training
                   </span>
-                  <span className="block text-[10px] text-slate-500 dark:text-slate-400">
+                  <span className="block text-[9px] md:text-[10px] text-slate-500 dark:text-slate-400">
                     Comprehensive online & offline certification programs
                   </span>
                 </div>
               </div>
-              <ArrowRight size={16} className="text-slate-400 group-hover:translate-x-1 group-hover:text-purple-500 transition-all" />
+              <ArrowRight size={14} className="text-slate-400 group-hover:translate-x-1 group-hover:text-purple-500 transition-all" />
             </Link>
             
             <Link
@@ -78,41 +78,41 @@ export const Hero = () => {
             >
               <div className="flex items-center gap-3">
                 <div className="p-2 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-300">
-                  <CheckCircle2 size={18} />
+                  <CheckCircle2 size={16} />
                 </div>
                 <div className="text-left">
-                  <span className="block text-sm font-bold text-slate-800 dark:text-slate-100 group-hover:text-emerald-600 dark:group-hover:text-emerald-300 transition-colors">
+                  <span className="block text-xs md:text-sm font-bold text-slate-800 dark:text-slate-100 group-hover:text-emerald-600 dark:group-hover:text-emerald-300 transition-colors">
                     Mushroom Farm Setup
                   </span>
-                  <span className="block text-[10px] text-slate-500 dark:text-slate-400">
+                  <span className="block text-[9px] md:text-[10px] text-slate-500 dark:text-slate-400">
                     Turnkey commercial farm setup & consultancy
                   </span>
                 </div>
               </div>
-              <ArrowRight size={16} className="text-slate-400 group-hover:translate-x-1 group-hover:text-emerald-500 transition-all" />
+              <ArrowRight size={14} className="text-slate-400 group-hover:translate-x-1 group-hover:text-emerald-500 transition-all" />
             </Link>
           </div>
 
           <div className="flex flex-col sm:flex-row flex-wrap gap-4 mb-6 md:mb-5">
-            <Link href="/enquiry" className="w-full sm:w-auto px-6 min-h-[50px] rounded-xl text-sm shadow-xl flex items-center justify-center font-bold bg-[#7b51f8] hover:bg-[#6841d8] text-white transition-colors">
+            <Link href="/enquiry" className="w-full sm:w-auto px-6 min-h-[44px] md:min-h-[40px] rounded-xl text-[11px] md:text-xs shadow-xl flex items-center justify-center font-bold bg-[#7b51f8] hover:bg-[#6841d8] text-white transition-colors">
               Enquiry Now
             </Link>
-            <a href="https://wa.me/919203544140" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto px-6 min-h-[50px] rounded-xl text-sm flex items-center justify-center font-medium border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+            <a href="https://wa.me/919203544140" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto px-6 min-h-[44px] md:min-h-[40px] rounded-xl text-[11px] md:text-xs flex items-center justify-center font-medium border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
               WhatsApp Us
             </a>
-            <a href="tel:9203544140" className="w-full sm:w-auto px-6 min-h-[50px] rounded-xl text-sm flex items-center justify-center font-medium border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+            <a href="tel:9203544140" className="w-full sm:w-auto px-6 min-h-[44px] md:min-h-[40px] rounded-xl text-[11px] md:text-xs flex items-center justify-center font-medium border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
               Call Now: 9203544140
             </a>
           </div>
 
           <div className="flex justify-center md:justify-start gap-8 pt-4">
             <div>
-              <div className="text-2xl font-bold dark:text-white text-slate-900">1.5k+</div>
-              <div className="text-[9px] text-slate-500 uppercase tracking-[0.2em] mt-1 font-black">Active Commercial Units</div>
+              <div className="text-xl md:text-2xl font-bold dark:text-white text-slate-900">1.5k+</div>
+              <div className="text-[8px] md:text-[9px] text-slate-500 uppercase tracking-[0.2em] mt-1 font-black">Active Commercial Units</div>
             </div>
             <div>
-              <div className="text-2xl font-bold dark:text-white text-slate-900">98.93%</div>
-              <div className="text-[9px] text-slate-500 uppercase tracking-[0.2em] mt-1 font-black">Success Rate Globally</div>
+              <div className="text-xl md:text-2xl font-bold dark:text-white text-slate-900">98.93%</div>
+              <div className="text-[8px] md:text-[9px] text-slate-500 uppercase tracking-[0.2em] mt-1 font-black">Success Rate Globally</div>
             </div>
           </div>
         </motion.div>
@@ -122,21 +122,21 @@ export const Hero = () => {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
-          className="relative lg:block hidden"
+          className="relative w-full max-w-lg mx-auto lg:max-w-none mt-10 lg:mt-0"
         >
           <div className="absolute inset-0 bg-purple-500/20 blur-[100px] rounded-full animate-pulse"></div>
           <div className="relative bg-white/40 dark:bg-slate-900/40 rounded-[2.5rem] p-6 border border-white/20 dark:border-white/10 shadow-2xl backdrop-blur-2xl">
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-xl bg-green-500/20 flex items-center justify-center">
-                  <ShieldCheck className="text-green-500" size={24} />
+                  <ShieldCheck className="text-green-500" size={20} />
                 </div>
                 <div>
-                  <div className="dark:text-white text-slate-900 font-bold">Turnkey Setup Project</div>
-                  <div className="text-xs text-slate-500">Quality Certified Infrastructure</div>
+                  <div className="dark:text-white text-slate-900 font-bold text-xs md:text-sm">Turnkey Setup Project</div>
+                  <div className="text-[10px] md:text-xs text-slate-500">Quality Certified Infrastructure</div>
                 </div>
               </div>
-              <div className="px-3 py-1 rounded-full bg-green-500/20 text-green-400 text-[10px] font-bold uppercase tracking-widest">
+              <div className="px-3 py-1 rounded-full bg-green-500/20 text-green-400 text-[8px] md:text-[9px] font-bold uppercase tracking-widest">
                 Active
               </div>
             </div>
@@ -149,23 +149,23 @@ export const Hero = () => {
               ].map((stat, i) => (
                 <div key={i} className="flex items-center justify-between dark:bg-white/5 bg-black/5 p-4 rounded-2xl border dark:border-white/5 border-black/5">
                   <div className="flex items-center gap-3">
-                    <stat.icon className="dark:text-slate-400 text-slate-600" size={18} />
-                    <span className="text-sm dark:text-slate-300 text-slate-700 font-medium">{stat.label}</span>
+                    <stat.icon className="dark:text-slate-400 text-slate-600" size={16} />
+                    <span className="text-xs md:text-sm dark:text-slate-300 text-slate-700 font-medium">{stat.label}</span>
                   </div>
-                  <span className="text-sm dark:text-white text-slate-900 font-bold">{stat.value}</span>
+                  <span className="text-xs md:text-sm dark:text-white text-slate-900 font-bold">{stat.value}</span>
                 </div>
               ))}
             </div>
 
             <div className="mt-8 p-4 rounded-3xl bg-gradient-to-br from-white/10 to-transparent border dark:border-white/10 border-black/10">
               <div className="flex items-center justify-between mb-4">
-                <span className="text-sm font-semibold dark:text-slate-300 text-slate-700">Phase 1 Commercial Cycle</span>
-                <span className="text-[10px] text-green-500 font-bold">LIVE PROGRESS</span>
+                <span className="text-xs md:text-sm font-semibold dark:text-slate-300 text-slate-700">Phase 1 Commercial Cycle</span>
+                <span className="text-[8px] md:text-[9px] text-green-500 font-bold">LIVE PROGRESS</span>
               </div>
               <div className="h-2 w-full dark:bg-white/5 bg-black/5 rounded-full overflow-hidden">
-                <motion.div initial={{ width: 0 }} animate={{ width: "65%" }} transition={{ duration: 2, delay: 1 }} className="h-full bg-[var(--primary-gradient)]"></motion.div>
+                <motion.div initial={{ width: 0 }} whileInView={{ width: "92%" }} viewport={{ once: false }} transition={{ duration: 2.5, ease: "easeOut" }} className="h-full bg-gradient-to-r from-purple-500 to-green-500 dark:from-purple-400 dark:to-green-400"></motion.div>
               </div>
-              <div className="flex justify-between mt-2 text-[10px] text-slate-500 font-bold uppercase">
+              <div className="flex justify-between mt-2 text-[8px] md:text-[9px] text-slate-500 font-bold uppercase">
                 <span>Composting</span>
                 <span>Pasteurization</span>
                 <span>Cropping</span>

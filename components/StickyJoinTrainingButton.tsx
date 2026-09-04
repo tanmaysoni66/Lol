@@ -28,10 +28,10 @@ export const StickyJoinTrainingButton = ({
           setShowModal(true);
         }}
         type="button"
-        className={`relative overflow-hidden flex items-center justify-center rounded-full group transition-all backdrop-blur-md shadow-[0_8px_32px_rgba(167,139,250,0.15)] hover:shadow-[0_8px_32px_rgba(167,139,250,0.3)] border border-purple-400/40 dark:border-purple-300/30 bg-gradient-to-r from-purple-500/10 via-fuchsia-400/10 to-indigo-500/10 dark:from-purple-900/30 dark:via-fuchsia-900/20 dark:to-indigo-900/30 hover:from-purple-500/20 hover:via-fuchsia-400/20 hover:to-indigo-500/20 dark:hover:from-purple-900/40 dark:hover:via-fuchsia-900/30 dark:hover:to-indigo-900/40 text-purple-950 dark:text-purple-100 ${size === "small" ? "h-full w-full p-1.5" : "h-9 w-full md:w-auto md:min-w-[140px] md:px-4"}`}
+        className={`relative overflow-hidden flex items-center justify-center rounded-full group transition-all backdrop-blur-md shadow-[0_8px_32px_rgba(167,139,250,0.15)] hover:shadow-[0_8px_32px_rgba(167,139,250,0.3)] border border-purple-400/40 dark:border-purple-300/30 bg-gradient-to-r from-purple-500/10 via-fuchsia-400/10 to-indigo-500/10 dark:from-purple-900/30 dark:via-fuchsia-900/20 dark:to-indigo-900/30 hover:from-purple-500/20 hover:via-fuchsia-400/20 hover:to-indigo-500/20 dark:hover:from-purple-900/40 dark:hover:via-fuchsia-900/30 dark:hover:to-indigo-900/40 text-purple-950 dark:text-purple-100 ${size === "small" ? "h-10 px-4 min-w-[130px]" : "h-9 w-full md:w-auto md:min-w-[140px] md:px-4"}`}
       >
-        <div className={`font-bold z-10 flex items-center justify-center gap-1 leading-tight ${size === "small" ? "text-[11px] absolute inset-0 w-full" : "text-[11px] md:text-[12px]"}`}>
-          <BookOpen size={size === "small" ? 12 : 14} className="shrink-0 text-purple-700 dark:text-purple-300" />
+        <div className={`font-bold z-10 flex items-center justify-center gap-1.5 leading-tight ${size === "small" ? "text-[12px]" : "text-[11px] md:text-[12px]"}`}>
+          <BookOpen size={size === "small" ? 14 : 14} className="shrink-0 text-purple-700 dark:text-purple-300" />
           <span>Join Training</span>
         </div>
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
