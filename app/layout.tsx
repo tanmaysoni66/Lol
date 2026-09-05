@@ -68,11 +68,11 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Organic Mushrooms Farm | Commercial Setup & Training",
     description: "Commercial mushroom training and turnkey setup with 120% average verified annual ROI.",
-    images: ["https://res.cloudinary.com/dtpktdkqw/image/upload/v1777378071/IMG_6265_svucsm.jpg"],
+    images: ["https://res.cloudinary.com/dtpktdkqw/image/upload/q_auto,f_auto,w_1200/v1777378071/IMG_6265_svucsm.jpg"],
   },
   alternates: {
     canonical: "https://organicmushroomsfarm.com",
-  },
+  }
 };
 
 export default function RootLayout({

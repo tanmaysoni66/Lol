@@ -71,7 +71,7 @@ export default function GlobalError({
 
             <div className="global-logo relative mx-auto mb-7 h-24 w-48">
               <Image
-                src="https://res.cloudinary.com/dnw4fpk2y/image/upload/v1785226016/IMG-20260728-WA0000-removebg-preview_bztf7y.png"
+                src="https://res.cloudinary.com/dnw4fpk2y/image/upload/q_auto,f_auto/v1785226016/IMG-20260728-WA0000-removebg-preview_bztf7y.png"
                 alt="Organic Mushroom Farm"
                 fill
                 sizes="192px"

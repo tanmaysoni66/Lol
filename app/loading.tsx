@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Loading() {
   return (
     <main
@@ -14,9 +16,13 @@ export default function Loading() {
 
       <div className="relative flex w-full max-w-md flex-col items-center px-6 text-center">
 
-        {/* Mushroom + Mycelium */}
+        {/* =====================================================
+            Logo + Mycelium Animation
+        ====================================================== */}
+
         <div className="relative h-48 w-72">
 
+          {/* Mycelium network */}
           <svg
             viewBox="0 0 280 180"
             className="absolute inset-0 h-full w-full"
@@ -37,7 +43,6 @@ export default function Loading() {
               </linearGradient>
             </defs>
 
-            {/* Mycelium network */}
             <path
               className="mycelium-line mycelium-1"
               d="M140 65 C120 90 92 105 45 140"
@@ -63,6 +68,7 @@ export default function Loading() {
             />
 
             {/* Mycelium nodes */}
+
             <circle
               className="mycelium-node node-1"
               cx="45"
@@ -92,26 +98,34 @@ export default function Loading() {
             />
           </svg>
 
-          {/* Mushroom */}
-          <div className="mushroom absolute left-1/2 top-5 -translate-x-1/2">
+          {/* =================================================
+              YOUR CLOUDINARY LOGO
+          ================================================== */}
 
-            {/* Mushroom cap */}
-            <div className="relative h-16 w-24 rounded-t-full rounded-b-[45%] bg-gradient-to-br from-violet-500 to-green-500 shadow-[0_12px_35px_rgba(124,58,237,0.22)]">
+          <div className="mushroom absolute left-1/2 top-5 flex h-28 w-64 -translate-x-1/2 items-center justify-center">
 
-              {/* Natural spots */}
-              <span className="absolute left-6 top-4 h-2.5 w-2.5 rounded-full bg-white/60" />
+            {/* Logo glow */}
+            <div
+              aria-hidden="true"
+              className="logo-glow absolute h-28 w-52 rounded-full bg-purple-500/10 blur-3xl"
+            />
 
-              <span className="absolute right-7 top-7 h-2 w-2 rounded-full bg-white/50" />
-
-              <span className="absolute left-1/2 top-2 h-2 w-2 -translate-x-1/2 rounded-full bg-white/40" />
-            </div>
-
-            {/* Mushroom stem */}
-            <div className="mx-auto h-12 w-10 rounded-b-2xl rounded-t-lg bg-white/80 shadow-md dark:bg-slate-200/80" />
+            <Image
+              src="https://res.cloudinary.com/dnw4fpk2y/image/upload/f_auto,q_auto,w_512/IMG-20260728-WA0000-removebg-preview_bztf7y.png"
+              alt="Organic Mushroom Farm"
+              width={320}
+              height={192}
+              priority
+              sizes="256px"
+              className="loading-logo relative z-10 h-auto max-h-28 w-64 object-contain"
+            />
           </div>
         </div>
 
-        {/* Brand */}
+        {/* =====================================================
+            Brand
+        ====================================================== */}
+
         <h1
           className="text-xl font-semibold tracking-tight"
           style={{ color: "var(--text-heading)" }}
@@ -126,7 +140,10 @@ export default function Loading() {
           Cultivating nature. Growing possibilities.
         </p>
 
-        {/* Loading progress */}
+        {/* =====================================================
+            Loading Progress
+        ====================================================== */}
+
         <div
           className="mt-7 h-1.5 w-44 overflow-hidden rounded-full bg-black/10 dark:bg-white/10"
           aria-hidden="true"
@@ -139,8 +156,15 @@ export default function Loading() {
         </span>
       </div>
 
+      {/* =====================================================
+          Animations
+      ====================================================== */}
+
       <style>{`
-        /* Mushroom breathing */
+        /* =====================================================
+           Logo breathing
+        ====================================================== */
+
         .mushroom {
           animation: mushroom-breathe 2.4s ease-in-out infinite;
           transform-origin: center bottom;
@@ -157,7 +181,31 @@ export default function Loading() {
           }
         }
 
-        /* Mycelium growth */
+        /* =====================================================
+           Logo soft glow
+        ====================================================== */
+
+        .logo-glow {
+          animation: logo-glow 3s ease-in-out infinite;
+        }
+
+        @keyframes logo-glow {
+          0%,
+          100% {
+            opacity: 0.25;
+            transform: scale(0.9);
+          }
+
+          50% {
+            opacity: 0.65;
+            transform: scale(1.08);
+          }
+        }
+
+        /* =====================================================
+           Mycelium growth
+        ====================================================== */
+
         .mycelium-line {
           stroke-width: 2;
           stroke-linecap: round;
@@ -195,7 +243,10 @@ export default function Loading() {
           }
         }
 
-        /* Mycelium nodes */
+        /* =====================================================
+           Mycelium nodes
+        ====================================================== */
+
         .mycelium-node {
           fill: #22C55E;
           opacity: 0;
@@ -234,7 +285,10 @@ export default function Loading() {
           }
         }
 
-        /* Loading bar */
+        /* =====================================================
+           Loading bar
+        ====================================================== */
+
         .organic-progress {
           animation: organic-progress 1.6s ease-in-out infinite;
         }
@@ -253,13 +307,18 @@ export default function Loading() {
           }
         }
 
-        /* Reduced motion accessibility */
+        /* =====================================================
+           Reduced motion accessibility
+        ====================================================== */
+
         @media (prefers-reduced-motion: reduce) {
           .mushroom,
+          .loading-logo,
+          .logo-glow,
           .mycelium-line,
           .mycelium-node,
           .organic-progress {
-            animation: none;
+            animation: none !important;
           }
 
           .mycelium-line {
@@ -273,6 +332,10 @@ export default function Loading() {
 
           .organic-progress {
             transform: translateX(0);
+          }
+
+          .mushroom {
+            transform: translateX(-50%);
           }
         }
       `}</style>
