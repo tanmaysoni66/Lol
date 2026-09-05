@@ -2,7 +2,7 @@
 import React from "react";
 import Link from "next/link";
 import { motion } from "motion/react";
-import { CheckCircle2, Award, ArrowRight, ShieldCheck, Layers, TrendingUp, Zap } from "lucide-react";
+import { CheckCircle2, Award, ArrowRight, ShieldCheck, Layers, TrendingUp, Zap, Calculator } from "lucide-react";
 
 export const Hero = () => {
   const features = [
@@ -52,6 +52,23 @@ export const Hero = () => {
           </div>
 
           <div className="flex flex-col gap-3 mb-6 max-w-md mx-auto md:mx-0">
+            <Link href="/mushroomfarmingcalculators" className="group flex items-center justify-between py-1.5 px-3 rounded-xl border border-amber-500/30 bg-amber-500/5 dark:bg-amber-900/10 hover:bg-amber-500/15 transition-all duration-300 shadow-sm w-full md:w-[75%] mx-auto md:mx-0">
+              <div className="flex items-center gap-2">
+                <div className="p-1 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400">
+                  <Calculator size={12} />
+                </div>
+                <div className="text-left">
+                  <span className="block text-[10px] font-bold text-slate-800 dark:text-slate-100 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors leading-tight">
+                    Mushroom Farming Calculators
+                  </span>
+                  <span className="block text-[7px] text-slate-500 dark:text-slate-400">
+                    ROI, Cost, Yield & Profit
+                  </span>
+                </div>
+              </div>
+              <ArrowRight size={10} className="text-slate-400 group-hover:translate-x-1 group-hover:text-amber-500 transition-all" />
+            </Link>
+
             <Link href="/training" className="group flex items-center justify-between p-3 rounded-2xl border border-purple-500/30 bg-purple-500/5 dark:bg-purple-900/10 hover:bg-purple-500/15 transition-all duration-300 shadow-sm">
               <div className="flex items-center gap-3">
                 <div className="p-2 rounded-xl bg-purple-500/10 text-purple-600 dark:text-purple-300">

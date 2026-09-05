@@ -12,6 +12,8 @@ import { WhyChooseProgram } from "@/components/home/WhyChooseProgram";
 import { FarmingModels } from "@/components/home/FarmingModels";
 import { MushroomComparison } from "@/components/home/MushroomComparison";
 import { MushroomROICalculator } from "@/components/home/MushroomROICalculator";
+import { MushroomFarmSetupCostCalculator } from "@/components/home/MushroomFarmSetupCostCalculator";
+import { ROICalculator } from "@/components/home/ROICalculator";
 import CriticalParameters from "@/components/home/CriticalParameters";
 import { ProductionSOP } from "@/components/home/ProductionSOP";
 import MushroomSEOSections from "@/components/home/MushroomSEOSections";
@@ -55,7 +57,7 @@ export default function HomePage() {
       />
       <Hero />
       <EcosystemFlow />
-      <MushroomROICalculator />
+      <ROICalculator />
       <WhyChooseUs />
       <FarmingModels />
       <MushroomComparison />
