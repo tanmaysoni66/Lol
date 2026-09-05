@@ -348,7 +348,7 @@ export const AIChatWidget = () => {
         <motion.button
           onClick={handleOpenClick}
           aria-label="Toggle AI Assistant"
-          className="relative w-14 h-14 flex items-center justify-center hover:scale-110 active:scale-95 transition-all outline-none"
+          className="relative w-12 h-12 flex items-center justify-center hover:scale-110 active:scale-95 transition-all outline-none"
           animate={{ 
             filter: ["drop-shadow(0px 0px 8px rgba(16, 185, 129, 0.4))", "drop-shadow(0px 0px 16px rgba(59, 130, 246, 0.6))", "drop-shadow(0px 0px 8px rgba(16, 185, 129, 0.4))"],
             y: [0, -8, 0]

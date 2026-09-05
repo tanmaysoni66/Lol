@@ -117,23 +117,23 @@ export const FAQSection = () => {
             return (
               <div 
                 key={index} 
-                className="border border-slate-200 dark:border-white/10 dark:hover:border-purple-500/30 bg-white/40 dark:bg-slate-900/40 rounded-xl backdrop-blur-md overflow-hidden transition-colors shadow-sm"
+                className="border border-white/20 dark:border-white/10 dark:hover:border-purple-500/30 bg-white/5 dark:bg-black/10 rounded-xl backdrop-blur-md overflow-hidden transition-colors shadow-sm"
               >
                 <button
                   onClick={() => setOpenIndex(isOpen ? null : index)}
-                  className="w-full flex items-center justify-between p-3 md:p-4 text-left focus:outline-none group"
+                  className="w-full flex items-center justify-between p-2 md:p-3 text-left focus:outline-none group"
                 >
-                  <div className="flex items-start gap-3 md:gap-4 pr-6">
-                    <span className="text-purple-600 dark:text-purple-400 font-black text-[10px] md:text-xs tracking-tight mt-0.5">
+                  <div className="flex items-start gap-2 md:gap-3 pr-4">
+                    <span className="text-purple-600 dark:text-purple-400 font-black text-[9px] md:text-[10px] tracking-tight mt-0.5">
                       {index + 1}.
                     </span>
-                    <span className="font-bold text-slate-800 dark:text-white text-[10px] md:text-xs leading-snug group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+                    <span className="font-bold text-slate-800 dark:text-white text-[9px] md:text-[10px] leading-snug group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
                       {faq.q}
                     </span>
                   </div>
                   <div className="shrink-0 text-slate-400 dark:text-slate-500 group-hover:text-purple-500 transition-colors">
                     <ChevronDown 
-                      size={14} 
+                      size={12} 
                       strokeWidth={2.5}
                       className={`transition-transform duration-300 ${isOpen ? "rotate-180 text-purple-600 dark:text-purple-400" : ""}`} 
                     />
@@ -148,7 +148,7 @@ export const FAQSection = () => {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.3, ease: "easeInOut" }}
                     >
-                      <div className="px-3 md:px-4 pb-4 pt-1 ml-6 md:ml-8 text-[9px] md:text-[10px] text-slate-600 dark:text-slate-400 font-medium leading-relaxed">
+                      <div className="px-2 md:px-3 pb-3 pt-0.5 ml-4 md:ml-6 text-[8px] md:text-[9px] text-slate-600 dark:text-slate-400 font-medium leading-relaxed">
                         {faq.a}
                       </div>
                     </motion.div>

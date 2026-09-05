@@ -7,6 +7,7 @@ import { usaTrainingWebPageSchema } from "@/lib/schema/usa-training-webpage-sche
 import { usaTrainingItemListSchema } from "@/lib/schema/usa-training-item-list-schema";
 import { organizationSchema } from "@/lib/schema/organization-schema";
 import { usaTrainingImageSchema } from "@/lib/schema/usa-training-image-schema";
+import EeatUsaTrainingTrust from "@/components/EeatUsaTrainingTrust";
 
 export const metadata: Metadata = {
   title: "Mushroom Farming Training in USA | Online & Commercial Course",
@@ -92,6 +93,7 @@ export default function USATrainingPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(usaTrainingItemListSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(usaTrainingImageSchema) }} />
       <TrainingLanding region="us" />
+      <EeatUsaTrainingTrust />
     </>
   );
 }

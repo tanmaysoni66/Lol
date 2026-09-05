@@ -16,23 +16,17 @@ export const JourneyCTA = () => {
 
           <div className="relative z-10 flex flex-col items-center">
             
-            <h2 className="text-2xl md:text-4xl lg:text-5xl font-black dark:text-white text-slate-900 leading-[1.15] mb-6 tracking-tight uppercase max-w-4xl">
-              <span className="bg-white/40 dark:bg-white/5 px-2 py-1 leading-relaxed rounded-md decoration-clone inline-block mb-1">
-                Ready to Start Your High-Yield
-              </span>
+            <h2 className="text-xl md:text-2xl lg:text-3xl font-black dark:text-white text-slate-900 leading-[1.15] mb-5 tracking-tight uppercase max-w-4xl">
+              Ready to Start Your High-Yield
               <br className="hidden md:block" />
-              <span className="bg-white/40 dark:bg-white/5 px-2 py-1 leading-relaxed rounded-md decoration-clone inline-block mt-2">
-                Mushroom Farming Journey?
-              </span>
+              Mushroom Farming Journey?
             </h2>
 
-            <p className="text-[11px] md:text-sm dark:text-white text-slate-800 font-medium leading-relaxed max-w-3xl mb-8">
-              <span className="bg-white/40 dark:bg-white/5 px-2 py-1 leading-loose rounded-sm decoration-clone">
-                Stop waiting and start your journey with India's best practical education system. Learn correct composting techniques, buy contaminated-free pure grains, get certified status, and secure maximum local state marketing setup linkages!
-              </span>
+            <p className="text-[10px] md:text-xs dark:text-slate-300 text-slate-700 font-medium leading-relaxed max-w-3xl mb-6">
+              Stop waiting and start your journey with India's best practical education system. Learn correct composting techniques, buy contaminated-free pure grains, get certified status, and secure maximum local state marketing setup linkages!
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 mb-8 w-full sm:w-auto">
+            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 mb-6 w-full sm:w-auto">
               <Link 
                 href="/training" 
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-[10px] md:text-[11px] font-black uppercase tracking-widest text-purple-700 dark:text-purple-300 bg-white/10 dark:bg-black/20 border-t border-l border-white/40 dark:border-white/10 border-r border-b border-black/10 dark:border-black/50 shadow-[4px_4px_10px_rgba(0,0,0,0.1),-4px_-4px_10px_rgba(255,255,255,0.1)] dark:shadow-[4px_4px_10px_rgba(0,0,0,0.4),-2px_-2px_10px_rgba(255,255,255,0.05)] transition-all backdrop-blur-xl hover:scale-105 hover:bg-white/20 dark:hover:bg-white/5 w-full sm:w-auto"
@@ -50,10 +44,8 @@ export const JourneyCTA = () => {
               </Link>
             </div>
 
-            <div className="text-[9px] md:text-[10px] dark:text-slate-300 text-slate-700 font-bold max-w-2xl">
-              <span className="bg-white/40 dark:bg-white/5 px-2 py-1 rounded-sm decoration-clone">
-                Looking for mushroom training near me? We ship lab-grade F1 hybrid spawn safely to every pin code in MP, UP, Bihar, Delhi & all Indian states.
-              </span>
+            <div className="text-[8px] md:text-[9px] dark:text-slate-400 text-slate-600 font-bold max-w-2xl">
+              Looking for mushroom training near me? We ship lab-grade F1 hybrid spawn safely to every pin code in MP, UP, Bihar, Delhi & all Indian states.
             </div>
 
           </div>

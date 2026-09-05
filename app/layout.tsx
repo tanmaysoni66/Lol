@@ -114,7 +114,7 @@ export default function RootLayout({
 
         {/* ================= FLOATING STACK LAYER ================= */}
         {/* Left Side: AI Chat & Join Training Modal */}
-        <div className="fixed left-3 md:left-[30px] flex flex-col gap-2 md:gap-4 items-start pointer-events-none transition-all duration-300 ease-out bottom-[65px] md:bottom-[20px] z-[99999]">
+        <div className="fixed left-3 md:left-[30px] flex flex-col gap-2 md:gap-4 items-start pointer-events-none transition-all duration-300 ease-out bottom-[85px] md:bottom-[20px] z-[99999]">
           <div className="pointer-events-auto">
             <AIChatWidget />
           </div>

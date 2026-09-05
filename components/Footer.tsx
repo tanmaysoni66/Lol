@@ -46,26 +46,6 @@ const Footer = () => {
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         
-        {/* Global E-E-A-T Profile Box - 3D Glass */}
-        <div className="mb-12 p-5 md:p-6 rounded-[2rem] bg-white/20 dark:bg-slate-900/20 backdrop-blur-md border border-white/20 dark:border-white/10 shadow-lg">
-          <div className="flex flex-col md:flex-row gap-5 md:gap-6 items-start md:items-center">
-            <div className="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-purple-500/20 to-indigo-500/20 flex items-center justify-center text-purple-600 dark:text-purple-400 border border-purple-500/30 shadow-inner">
-              <ShieldCheck size={24} />
-            </div>
-            <div>
-              <h3 className="text-lg md:text-xl font-bold dark:text-white text-slate-900 mb-2">
-                Certified E-E-A-T Excellence
-              </h3>
-              <p className="text-[11px] md:text-xs dark:text-slate-400 text-slate-600 mb-1.5 leading-relaxed">
-                <strong className="dark:text-slate-200 text-slate-800">Experience & Expertise:</strong> With years of hands-on cultivation of over 10 mushroom varieties (Button, Oyster, Milky, Cordyceps) and world-class commercial infrastructure setups pan-India.
-              </p>
-              <p className="text-[11px] md:text-xs dark:text-slate-400 text-slate-600 leading-relaxed">
-                <strong className="dark:text-slate-200 text-slate-800">Authoritativeness & Trust:</strong> Certified by leading agricultural bodies, led by agri-tech expert Tanish Soni, and highly rated by thousands of trained farmers globally. Verified operations in Jabalpur, MP.
-              </p>
-            </div>
-          </div>
-        </div>
-
         {/* Main Footer Grid */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8 lg:gap-16 pb-16 border-b dark:border-white/5 border-black/5">
           
@@ -107,14 +87,14 @@ const Footer = () => {
           </div>
           
           {/* Cols 2-4: Links */}
-          <div className="md:col-span-7 lg:col-span-8 grid grid-cols-2 md:grid-cols-3 gap-8">
+          <div className="md:col-span-7 lg:col-span-8 grid grid-cols-3 gap-3 md:gap-8">
             
             {/* Explore */}
             <div>
-              <h4 className="text-white font-bold mb-4 uppercase tracking-widest text-[9px] border-l-2 border-purple-500 pl-3">
+              <h4 className="dark:text-white text-slate-900 font-bold mb-4 md:mb-6 uppercase tracking-wider text-[9px] md:text-[11px] border-l-2 border-purple-600 pl-2">
                 Explore
               </h4>
-              <ul className="space-y-3">
+              <ul className="space-y-4 md:space-y-3">
                 {[
                   { name: "About Us", href: "/about" },
                   { name: "Services", href: "/services" },
@@ -126,7 +106,7 @@ const Footer = () => {
                   { name: "Mushroom Farming USA Guide", href: "/mushroom-farming-usa-guide" },
                 ].map((item) => (
                   <li key={item.name}>
-                    <Link href={item.href} className="dark:text-slate-400 text-slate-600 hover:text-green-500 dark:hover:text-green-400 transition-colors text-[11px] md:text-xs font-medium">
+                    <Link href={item.href} className="dark:text-slate-400 text-slate-600 hover:text-purple-600 dark:hover:text-purple-400 transition-colors text-[10px] sm:text-[11px] md:text-xs font-medium block">
                       {item.name}
                     </Link>
                   </li>
@@ -136,10 +116,10 @@ const Footer = () => {
             
             {/* Resources */}
             <div>
-              <h4 className="text-white font-bold mb-4 uppercase tracking-widest text-[9px] border-l-2 border-purple-500 pl-3">
+              <h4 className="dark:text-white text-slate-900 font-bold mb-4 md:mb-6 uppercase tracking-wider text-[9px] md:text-[11px] border-l-2 border-purple-600 pl-2">
                 Resources
               </h4>
-              <ul className="space-y-3">
+              <ul className="space-y-4 md:space-y-3">
                 {[
                   { name: "Gallery", href: "/gallery" },
                   { name: "Business Plan", href: "/business-plan" },
@@ -153,7 +133,7 @@ const Footer = () => {
                   { name: "USA Training", href: "/usatraining" },
                 ].map((item) => (
                   <li key={item.name}>
-                    <Link href={item.href} className="dark:text-slate-400 text-slate-600 hover:text-green-500 dark:hover:text-green-400 transition-colors text-[11px] md:text-xs font-medium">
+                    <Link href={item.href} className="dark:text-slate-400 text-slate-600 hover:text-purple-600 dark:hover:text-purple-400 transition-colors text-[10px] sm:text-[11px] md:text-xs font-medium block">
                       {item.name}
                     </Link>
                   </li>
@@ -163,10 +143,10 @@ const Footer = () => {
             
             {/* Support & Legal */}
             <div>
-              <h4 className="text-white font-bold mb-4 uppercase tracking-widest text-[9px] border-l-2 border-purple-500 pl-3">
+              <h4 className="dark:text-white text-slate-900 font-bold mb-4 md:mb-6 uppercase tracking-wider text-[9px] md:text-[11px] border-l-2 border-purple-600 pl-2">
                 Support & Legal
               </h4>
-              <ul className="space-y-3">
+              <ul className="space-y-4 md:space-y-3">
                 {[
                   { name: "Contact", href: "/contact" },
                   { name: "Customer Support", href: "/support" },
@@ -177,7 +157,7 @@ const Footer = () => {
                   { name: "Shipping Policy", href: "/shipping-policy" },
                 ].map((item) => (
                   <li key={item.name}>
-                    <Link href={item.href} className="dark:text-slate-400 text-slate-600 hover:text-green-500 dark:hover:text-green-400 transition-colors text-[11px] md:text-xs font-medium">
+                    <Link href={item.href} className="dark:text-slate-400 text-slate-600 hover:text-purple-600 dark:hover:text-purple-400 transition-colors text-[10px] sm:text-[11px] md:text-xs font-medium block">
                       {item.name}
                     </Link>
                   </li>

@@ -5,6 +5,7 @@ import { GraduationCap, Sprout, Factory, ShoppingBag, Grid, CheckCircle2, Loader
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { motion, AnimatePresence } from "motion/react";
+import EeatEnquiryTrust from "@/components/EeatEnquiryTrust";
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -97,7 +98,7 @@ export default function EnquiryPage() {
   }, [serviceType]);
 
   return (
-    <div className="min-h-screen w-full relative overflow-x-hidden bg-transparent text-gray-900 dark:text-gray-100 flex items-center justify-center p-3 py-10">
+    <div className="min-h-screen w-full relative overflow-x-hidden bg-transparent text-gray-900 dark:text-gray-100 flex flex-col items-center p-3 py-10">
       {/* Animated Background Theme removed to use global MyceliumBackground */}
 
       {/* Transparent Liquid Glass Form Container */}
@@ -357,6 +358,11 @@ export default function EnquiryPage() {
             </form>
           )}
         </div>
+      </div>
+      
+      {/* E-E-A-T Block */}
+      <div className="relative z-10 w-full max-w-2xl mt-12 bg-white/5 dark:bg-black/10 backdrop-blur-md rounded-2xl border border-white/10 dark:border-white/5 overflow-hidden">
+        <EeatEnquiryTrust />
       </div>
     </div>
   );

@@ -15,36 +15,36 @@ export const WhyChooseUs = () => {
   ];
 
   return (
-    <section id="why-us" className="py-20 px-6 lg:px-8 relative overflow-hidden">
+    <section id="why-us" className="py-12 md:py-16 px-6 lg:px-8 relative overflow-hidden">
       <div className="absolute top-1/4 left-0 w-96 h-96 bg-purple-500/10 blur-[120px] rounded-full pointer-events-none animate-pulse"></div>
       
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="text-center mb-14">
-          <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-slate-300 mb-5 shadow-sm">
+      <div className="max-w-6xl mx-auto relative z-10">
+        <div className="text-center mb-10">
+          <div className="inline-flex items-center px-3 py-1 rounded-full border border-purple-500/30 bg-purple-500/10 text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-purple-700 dark:text-purple-300 mb-3 shadow-sm">
             Mushroom Infrastructure Leaders
           </div>
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black dark:text-white text-slate-900 leading-[1.15] mb-5 tracking-tight">
+          <h2 className="text-xl md:text-2xl font-black dark:text-white text-slate-900 leading-tight mb-3 tracking-tight">
             Why Choose <span className="text-purple-600 dark:text-[#8B5CF6]">Organic Mushrooms</span> Farm for Your Project?
           </h2>
-          <p className="text-[11px] md:text-[13px] dark:text-slate-400 text-slate-600 mb-6 leading-relaxed max-w-2xl mx-auto font-medium">
+          <p className="text-[10px] md:text-[11px] dark:text-slate-400 text-slate-600 mb-6 leading-relaxed max-w-2xl mx-auto font-medium">
             India's most trusted commercial mushroom farming infrastructure partner delivering unmatched value, transparency, and high-yield performance globally.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
           {chooseItems.map((item, i) => (
             <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="group relative">
-              <div className="bg-white/60 dark:bg-slate-900/60 backdrop-blur-md h-full p-8 rounded-3xl border border-black/5 dark:border-white/5 flex flex-col shadow-xl relative overflow-hidden transition-all hover:-translate-y-1">
-                <div className={`absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-br ${item.color} blur-[50px] pointer-events-none opacity-40`}></div>
-                <div className="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-800 border border-black/10 dark:border-white/10 flex items-center justify-center mb-6">
-                  <item.icon className="text-purple-600" size={24} />
+              <div className="bg-white/60 dark:bg-slate-900/60 backdrop-blur-md h-full p-5 rounded-2xl border border-black/5 dark:border-white/5 flex flex-col shadow-md relative overflow-hidden transition-all hover:-translate-y-1">
+                <div className={`absolute -top-16 -right-16 w-32 h-32 bg-gradient-to-br ${item.color} blur-[40px] pointer-events-none opacity-40`}></div>
+                <div className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 border border-black/10 dark:border-white/10 flex items-center justify-center mb-4">
+                  <item.icon className="text-purple-600" size={18} />
                 </div>
-                <h3 className="text-lg font-bold dark:text-white text-slate-900 mb-3">{item.title}</h3>
-                <p className="mb-6 flex-1 text-sm text-slate-500">{item.subtitle}</p>
-                <ul className="space-y-3">
+                <h3 className="text-[13px] md:text-sm font-bold dark:text-white text-slate-900 mb-2">{item.title}</h3>
+                <p className="mb-4 flex-1 text-[11px] text-slate-500">{item.subtitle}</p>
+                <ul className="space-y-2">
                   {item.points.map((pt, j) => (
-                    <li key={j} className="flex items-center gap-3 text-sm font-medium dark:text-slate-400 text-slate-600">
-                      <div className="w-1.5 h-1.5 rounded-full bg-purple-500"></div>
+                    <li key={j} className="flex items-center gap-2 text-[10px] md:text-[11px] font-medium dark:text-slate-400 text-slate-600">
+                      <div className="w-1 h-1 rounded-full bg-purple-500"></div>
                       {pt}
                     </li>
                   ))}

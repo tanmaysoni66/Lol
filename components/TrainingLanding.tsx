@@ -277,7 +277,7 @@ export default function TrainingLanding({ region }: { region: "in" | "us" }) {
       {/* FAQs */}
       <div className="w-full max-w-4xl mx-auto px-4 py-10">
         <h3 className="text-center text-lg font-black uppercase tracking-wider mb-6 dark:text-white">Common Commercial Farming Queries</h3>
-        <div className="bg-white/40 dark:bg-gray-800/30 backdrop-blur-sm rounded-xl p-4">
+        <div className="bg-transparent">
           <FAQAccordion faqs={trainingContent.faqs} />
         </div>
       </div>

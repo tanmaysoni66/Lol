@@ -12,43 +12,43 @@ export const ProductionSOP = () => {
   ];
 
   return (
-    <section className="py-20 px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-slate-300 mb-5 shadow-sm">
+    <section className="py-12 md:py-16 px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-10">
+          <div className="inline-flex items-center px-3 py-1 rounded-full border border-purple-500/30 bg-purple-500/10 text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-purple-700 dark:text-purple-300 mb-3 shadow-sm">
             SCIENTIFIC WORKFLOW
           </div>
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black mb-4 uppercase tracking-tight dark:text-white text-slate-900 leading-[1.15]">
+          <h2 className="text-xl md:text-2xl font-black mb-3 uppercase tracking-tight dark:text-white text-slate-900 leading-tight">
             COMMERCIAL <span className="text-purple-600 dark:text-[#8B5CF6]">PRODUCTION</span> <span className="text-emerald-500 dark:text-[#10B981]">CYCLE SOPS</span>
           </h2>
-          <p className="max-w-xl mx-auto dark:text-slate-400 text-slate-600 text-[11px] md:text-[13px] font-medium leading-relaxed">
+          <p className="max-w-xl mx-auto dark:text-slate-400 text-slate-600 text-[10px] md:text-[11px] font-medium leading-relaxed">
             Standard operating procedures followed in our commercial setups.
           </p>
         </div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
           {steps.map((s, i) => (
-            <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="bg-white/60 dark:bg-slate-900/60 backdrop-blur-md p-6 rounded-3xl border border-black/5 dark:border-white/5 shadow-xl relative overflow-hidden group hover:-translate-y-1 transition-transform">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--primary-gradient)] opacity-5 blur-[50px] group-hover:opacity-10 transition-opacity"></div>
+            <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="bg-white/60 dark:bg-slate-900/60 backdrop-blur-md p-4 rounded-2xl border border-black/5 dark:border-white/5 shadow-md relative overflow-hidden group hover:-translate-y-1 transition-transform">
+              <div className="absolute top-0 right-0 w-24 h-24 bg-[var(--primary-gradient)] opacity-5 blur-[40px] group-hover:opacity-10 transition-opacity"></div>
               
-              <div className="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-800 border border-black/10 dark:border-white/10 flex items-center justify-center mb-6">
-                <s.icon className="text-purple-600" size={24} />
+              <div className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 border border-black/10 dark:border-white/10 flex items-center justify-center mb-4">
+                <s.icon className="text-purple-600" size={18} />
               </div>
               
-              <h3 className="text-lg font-bold mb-4 dark:text-white text-slate-900">{s.title}</h3>
+              <h3 className="text-sm font-bold mb-3 dark:text-white text-slate-900">{s.title}</h3>
               
-              <div className="space-y-3">
-                <div className="flex items-center justify-between p-2 rounded-xl bg-slate-50 dark:bg-slate-800/50">
-                  <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">Duration</span>
-                  <span className="text-sm font-bold dark:text-slate-300 text-slate-700">{s.days}</span>
+              <div className="space-y-2">
+                <div className="flex items-center justify-between p-1.5 rounded-lg bg-slate-50 dark:bg-slate-800/50">
+                  <span className="text-[9px] font-bold text-slate-500 uppercase tracking-wider">Duration</span>
+                  <span className="text-[10px] font-bold dark:text-slate-300 text-slate-700">{s.days}</span>
                 </div>
-                <div className="flex items-center justify-between p-2 rounded-xl bg-slate-50 dark:bg-slate-800/50">
-                  <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">Temperature</span>
-                  <span className="text-sm font-bold dark:text-slate-300 text-slate-700">{s.temp}</span>
+                <div className="flex items-center justify-between p-1.5 rounded-lg bg-slate-50 dark:bg-slate-800/50">
+                  <span className="text-[9px] font-bold text-slate-500 uppercase tracking-wider">Temperature</span>
+                  <span className="text-[10px] font-bold dark:text-slate-300 text-slate-700">{s.temp}</span>
                 </div>
-                <div className="flex items-center justify-between p-2 rounded-xl bg-slate-50 dark:bg-slate-800/50">
-                  <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">Critical Param</span>
-                  <span className="text-sm font-bold text-purple-600 dark:text-purple-400">{s.param}</span>
+                <div className="flex items-center justify-between p-1.5 rounded-lg bg-slate-50 dark:bg-slate-800/50">
+                  <span className="text-[9px] font-bold text-slate-500 uppercase tracking-wider">Critical Param</span>
+                  <span className="text-[10px] font-bold text-purple-600 dark:text-purple-400">{s.param}</span>
                 </div>
               </div>
             </motion.div>

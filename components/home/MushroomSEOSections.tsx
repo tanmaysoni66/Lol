@@ -36,40 +36,6 @@ export default function MushroomSEOSections() {
           </p>
         </div>
 
-        {/* Location-Based Learning Verticals */}
-        <div className="max-w-4xl mx-auto mb-16">
-          <h3 className="text-lg md:text-xl font-bold mb-4 dark:text-white text-slate-900 tracking-tight text-center md:text-left">
-            Location-Based Learning Verticals
-          </h3>
-          <p className="text-[11px] md:text-[12px] dark:text-slate-400 text-slate-600 leading-relaxed font-medium mb-8 text-center md:text-left">
-            Our modules are calibrated to address climatic conditions, local raw material constraints, and logistics in each key region:
-          </p>
-          <div className="space-y-4 relative">
-            <div className="absolute left-6 top-6 bottom-6 w-0.5 bg-slate-200 dark:bg-slate-800 hidden md:block"></div>
-            {[
-              { title: "Madhya Pradesh", desc: "Premium hubs around Jabalpur, Indore, Bhopal & Gwalior." },
-              { title: "Uttar Pradesh", desc: "Extensive setups near Lucknow, Varanasi, Kanpur & Meerut." },
-              { title: "Delhi NCR", desc: "Urban farming centers and commercial distribution networks." },
-              { title: "Maharashtra", desc: "High-yield climate controlled units in Pune, Nashik & Mumbai." }
-            ].map((loc, i) => (
-              <div key={i} className="flex gap-4 md:gap-6 items-start relative z-10">
-                <div className="w-12 h-12 shrink-0 rounded-full bg-white dark:bg-[#11121E] border-2 border-purple-500/30 flex items-center justify-center text-purple-600 shadow-md">
-                  <MapPin size={20} />
-                </div>
-                <div className="bg-white/50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl p-4 flex-1 backdrop-blur-sm">
-                  <h4 className="font-bold text-sm dark:text-white text-slate-900 mb-1">{loc.title}</h4>
-                  <p className="text-[11px] md:text-xs text-slate-500 dark:text-slate-400">{loc.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="mt-6 p-4 rounded-xl bg-purple-500/10 border border-purple-500/20 text-center">
-            <span className="text-[11px] md:text-xs font-bold text-purple-600 dark:text-purple-400">
-              Comprehensive coverage in over 15+ Indian states with direct delivery of seed culture.
-            </span>
-          </div>
-        </div>
-
         {/* MUSHROOM FARMING BUSINESS OPPORTUNITY */}
         <div className="max-w-4xl mx-auto mb-16 text-center">
           <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-blue-500/30 bg-blue-500/10 text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 mb-5 shadow-sm">

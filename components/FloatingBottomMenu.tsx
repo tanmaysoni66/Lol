@@ -55,22 +55,22 @@ export const FloatingBottomMenu = () => {
                   href={item.href}
                   target={item.href.startsWith("http") ? "_blank" : undefined}
                   rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                  className="flex items-center gap-1.5 px-3.5 py-2 rounded-full whitespace-nowrap transition-all border bg-white/40 dark:bg-black/40 border-black/5 dark:border-white/5 text-slate-700 dark:text-slate-300 shadow-sm active:scale-95"
+                  className="flex items-center gap-1 px-3 py-1.5 rounded-full whitespace-nowrap transition-all border bg-white/40 dark:bg-black/40 border-black/5 dark:border-white/5 text-slate-700 dark:text-slate-300 shadow-sm active:scale-95"
                 >
-                  <item.icon size={15} className="text-purple-600 dark:text-purple-400" />
-                  <span className="text-[12px] font-bold">{item.name}</span>
+                  <item.icon size={12} className="text-purple-600 dark:text-purple-400" />
+                  <span className="text-[10px] font-bold">{item.name}</span>
                 </a>
               ) : (
                 <Link
                   href={item.href}
-                  className={`flex items-center gap-1.5 px-3.5 py-2 rounded-full whitespace-nowrap transition-all border active:scale-95 ${
+                  className={`flex items-center gap-1 px-3 py-1.5 rounded-full whitespace-nowrap transition-all border active:scale-95 ${
                     isActive 
                       ? "bg-purple-600/15 border-purple-600/30 text-purple-800 dark:text-purple-300 shadow-sm" 
                       : "bg-white/40 dark:bg-black/40 border-black/5 dark:border-white/5 text-slate-700 dark:text-slate-300 shadow-sm hover:bg-white/60 dark:hover:bg-white/10"
                   }`}
                 >
-                  <item.icon size={15} className={isActive ? "text-purple-700 dark:text-purple-400" : "text-purple-600/80 dark:text-purple-400/80"} />
-                  <span className="text-[12px] font-bold">{item.name}</span>
+                  <item.icon size={12} className={isActive ? "text-purple-700 dark:text-purple-400" : "text-purple-600/80 dark:text-purple-400/80"} />
+                  <span className="text-[10px] font-bold">{item.name}</span>
                 </Link>
               )}
             </React.Fragment>

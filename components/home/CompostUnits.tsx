@@ -8,20 +8,20 @@ export default function CompostUnits() {
   return (
     <section id="compost-units" className="section-padding relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-slate-300 mb-5 shadow-sm">
+        <div className="text-center mb-10">
+          <div className="inline-flex items-center px-3 py-1 rounded-full border border-purple-500/30 bg-purple-500/10 text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-purple-700 dark:text-purple-300 mb-3 shadow-sm">
             RAW MATERIAL INFRASTRUCTURE
           </div>
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black mb-4 uppercase tracking-tight dark:text-white text-slate-900 leading-[1.15]">
+          <h2 className="text-xl md:text-2xl font-black mb-3 uppercase tracking-tight dark:text-white text-slate-900 leading-tight">
             <Link href="/equipment" className="hover:text-current transition-colors">
               STANDARD COMMERCIAL <span className="text-purple-600 dark:text-[#8B5CF6]">COMPOST</span> <span className="text-emerald-500 dark:text-[#10B981]">UNITS</span>
             </Link>
           </h2>
-          <p className="max-w-xl mx-auto dark:text-slate-400 text-slate-600 text-[11px] md:text-[13px] font-medium leading-relaxed">
+          <p className="max-w-xl mx-auto dark:text-slate-400 text-slate-600 text-[10px] md:text-[11px] font-medium leading-relaxed">
             Complete Phase-I + Phase-II commercial infrastructure with 15-day cycles.
           </p>
         </div>
-        <div className="grid md:grid-cols-2 gap-6 md:gap-6">
+        <div className="grid md:grid-cols-2 gap-4 md:gap-6 max-w-4xl mx-auto">
           {[
             {
               name: "2000-Bag Commercial Unit (20T)",
@@ -41,40 +41,40 @@ export default function CompostUnits() {
               key={i}
               initial={{ opacity: 1, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              className={`glass card-padding rounded-3xl border dark:border-white/5 border-black/5 relative ${comp.recommended ? "shadow-2xl shadow-brand-blue/10 border-primary-mid/30" : ""}`}
+              className={`glass p-4 rounded-2xl border dark:border-white/5 border-black/5 relative ${comp.recommended ? "shadow-xl shadow-brand-blue/10 border-primary-mid/30" : ""}`}
             >
               {comp.recommended && (
-                <div className="absolute top-4 right-5 badge text-[8px]">
+                <div className="absolute top-3 right-4 badge text-[7px] py-0.5 px-2">
                   Best Value
                 </div>
               )}
-              <h3 className="dark:text-white text-slate-900 mb-2">
+              <h3 className="text-sm font-bold dark:text-white text-slate-900 mb-1">
                 {comp.name}
               </h3>
-              <div className="text-slate-500 mb-6 font-medium text-[13px]">
+              <div className="text-slate-500 mb-4 font-medium text-[10px]">
                 {comp.desc}
               </div>
-              <div className="grid grid-cols-3 gap-3 mb-6">
+              <div className="grid grid-cols-3 gap-2 mb-4">
                 {Object.entries(comp.stats).map(([k, v]) => (
-                  <div key={k} className="p-2 md:p-3 rounded-xl dark:bg-white/5 bg-black/5 border dark:border-white/5 border-black/5 text-center">
-                    <div className="text-[8px] text-slate-500 font-bold uppercase mb-1">
+                  <div key={k} className="p-1.5 md:p-2 rounded-lg dark:bg-white/5 bg-black/5 border dark:border-white/5 border-black/5 text-center">
+                    <div className="text-[7px] text-slate-500 font-bold uppercase mb-0.5">
                       {k}
                     </div>
-                    <div className="text-sm md:text-sm font-bold dark:text-white text-slate-900">
+                    <div className="text-xs md:text-sm font-bold dark:text-white text-slate-900">
                       {v}
                     </div>
                   </div>
                 ))}
               </div>
-              <div className="flex items-center justify-between p-3 rounded-xl dark:bg-white/5 bg-black/5 border dark:border-white/10 border-black/10 shadow shadow-brand-blue/10 ring-1 ring-white/10 ring-inset mb-6">
-                <span className="text-[11px] font-semibold dark:text-slate-400 text-slate-600">
+              <div className="flex items-center justify-between p-2 rounded-lg dark:bg-white/5 bg-black/5 border dark:border-white/10 border-black/10 shadow shadow-brand-blue/10 ring-1 ring-white/10 ring-inset mb-4">
+                <span className="text-[9px] font-semibold dark:text-slate-400 text-slate-600">
                   Est. CapEx
                 </span>
-                <span className="text-sm font-bold dark:text-white text-slate-900">
+                <span className="text-xs font-bold dark:text-white text-slate-900">
                   {comp.investment}
                 </span>
               </div>
-              <Link href="/compost-unit-specs" className="btn-primary w-full py-2 rounded-xl text-[12px] font-bold min-h-[44px] flex items-center justify-center">
+              <Link href="/compost-unit-specs" className="w-full min-h-[36px] rounded-lg text-[9px] font-black uppercase tracking-widest text-purple-700 dark:text-purple-300 bg-white/10 dark:bg-black/20 border-t border-l border-white/40 dark:border-white/10 border-r border-b border-black/10 dark:border-black/50 shadow-[4px_4px_10px_rgba(0,0,0,0.1),-4px_-4px_10px_rgba(255,255,255,0.1)] dark:shadow-[4px_4px_10px_rgba(0,0,0,0.4),-2px_-2px_10px_rgba(255,255,255,0.05)] transition-all backdrop-blur-xl hover:scale-105 hover:bg-white/20 dark:hover:bg-white/5 flex justify-center items-center">
                 Get Details
               </Link>
             </motion.div>

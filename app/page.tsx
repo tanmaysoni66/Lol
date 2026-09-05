@@ -26,10 +26,10 @@ import Testimonials from "@/components/home/Testimonials";
 import Marketplace from "@/components/home/Marketplace";
 import ResourcesSection from "@/components/home/ResourcesSection";
 import { DirectInquiry } from "@/components/home/DirectInquiry";
-import { VirtualTour } from "@/components/home/VirtualTour";
 import { JsonLd } from "@/components/JsonLd";
 import { homepageWebPageSchema } from "@/lib/schema/homepage-webpage-schema";
 import { homepageImageSchema } from "@/lib/schema/homepage-image-schema";
+import EeatCompanyTrust from "@/components/EeatCompanyTrust";
 
 export default function HomePage() {
   useEffect(() => {
@@ -55,7 +55,6 @@ export default function HomePage() {
       />
       <Hero />
       <EcosystemFlow />
-      <VirtualTour />
       <WhyChooseUs />
       <FarmingModels />
       <MushroomComparison />
@@ -63,7 +62,6 @@ export default function HomePage() {
       <CriticalParameters />
       <ProductionSOP />
       <CompostUnits />
-      <Testimonials />
       <Marketplace />
       <ResourcesSection />
       
@@ -77,6 +75,7 @@ export default function HomePage() {
       <ComparisonTable />
       <GlobalHubs />
       <DirectInquiry />
+      <EeatCompanyTrust />
     </>
   );
 }
