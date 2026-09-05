@@ -32,6 +32,7 @@ import {
   Thermometer,
   Droplets,
 } from "lucide-react";
+import DynamicGreeting from "./DynamicGreeting";
 
 const NAV_ITEMS = [
   { name: "Home", href: "/", icon: Home },
@@ -164,17 +165,15 @@ export const Navbar = () => {
       ? "🇮🇳"
       : "🌍";
 
-  // Optimized passive scroll listener to avoid layout thrashing
+  // Ultra-optimized passive scroll listener with hysteresis to eliminate re-renders and scroll lag
   useEffect(() => {
-    let ticking = false;
+    let lastScrolled = false;
 
     const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          setIsScrolled(window.scrollY > 20);
-          ticking = false;
-        });
-        ticking = true;
+      const scrolled = window.scrollY > 15;
+      if (scrolled !== lastScrolled) {
+        lastScrolled = scrolled;
+        setIsScrolled(scrolled);
       }
     };
 
@@ -219,20 +218,20 @@ export const Navbar = () => {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 flex flex-col items-center pointer-events-none transition-all duration-200">
-        {/* Floating Main Navigation Bar */}
+      <header className="fixed top-0 left-0 right-0 z-50 flex flex-col items-center pointer-events-none">
+        {/* Floating Main Navigation Bar - Zero Lag, Composited Layer */}
         <nav
-          className={`pointer-events-auto transition-all duration-200 border ${
+          className={`pointer-events-auto w-[calc(100%-16px)] sm:w-[calc(100%-24px)] md:w-[calc(100%-32px)] max-w-7xl rounded-2xl md:rounded-3xl border will-change-transform transition-[background-color,border-color,box-shadow] duration-150 ease-out py-2 px-3 sm:px-5 ${
             isScrolled
-              ? "w-full max-w-full rounded-none border-t-0 border-l-0 border-r-0 bg-white/95 dark:bg-slate-950/95 backdrop-blur-md border-slate-200/90 dark:border-white/10 shadow-md py-1.5 px-3 sm:px-6"
-              : "mt-2 w-[calc(100%-16px)] sm:w-[calc(100%-24px)] md:w-[calc(100%-32px)] max-w-7xl rounded-2xl md:rounded-3xl bg-white/90 dark:bg-slate-950/85 backdrop-blur-md border-slate-200/80 dark:border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.06)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.35)] py-2 px-3 sm:px-5"
+              ? "mt-1.5 bg-white/95 dark:bg-slate-950/95 backdrop-blur-md border-slate-300 dark:border-slate-800 shadow-md"
+              : "mt-2.5 bg-white/90 dark:bg-slate-950/85 backdrop-blur-md border-slate-200/80 dark:border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.06)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.35)]"
           }`}
         >
           <div className="flex items-center justify-between w-full max-w-7xl mx-auto gap-2">
-            {/* Stable Branding & Logo (Clean original navbar style) */}
+            {/* Branding & Dynamic Greeting */}
             <Link
               href="/"
-              className="flex items-center gap-2 sm:gap-2.5 group shrink-0"
+              className="flex items-center gap-1.5 sm:gap-2.5 group shrink-0"
               aria-label="Organic Mushroom Farm Home"
             >
               <img
@@ -243,19 +242,17 @@ export const Navbar = () => {
                 height="40"
               />
               <div className="flex flex-col">
-                <span className="text-[13px] xs:text-[15px] sm:text-base md:text-lg lg:text-base xl:text-lg font-black tracking-tight text-slate-900 dark:text-white leading-tight">
+                <span className="text-[13px] xs:text-[15px] sm:text-base md:text-lg font-black tracking-tight text-slate-900 dark:text-white leading-tight">
                   Organic{" "}
                   <span className="text-emerald-600 dark:text-emerald-400">
                     Mushroom Farm
                   </span>
                 </span>
-                <span className="text-[9px] sm:text-[10px] text-slate-500 dark:text-slate-400 font-semibold tracking-normal hidden xs:inline-block leading-none mt-0.5">
-                  Commercial &amp; Hi-Tech Cultivation
-                </span>
+                <DynamicGreeting />
               </div>
             </Link>
 
-            {/* Desktop Navigation Links */}
+            {/* Desktop Navigation Links (Original Text Colors) */}
             <div className="hidden lg:flex items-center gap-0.5 xl:gap-1 ml-auto">
               {NAV_ITEMS.map((item) => {
                 const isActive = pathname === item.href;
@@ -265,17 +262,17 @@ export const Navbar = () => {
                   <div key={item.name} className="relative group">
                     <Link
                       href={item.href}
-                      className={`text-[11px] xl:text-[13px] font-bold transition-all flex items-center gap-1 px-2.5 py-1.5 rounded-lg leading-tight ${
+                      className={`text-[10px] xl:text-[12px] font-bold transition-colors flex items-center gap-1 xl:gap-1.5 px-2 py-1.5 rounded-lg leading-tight ${
                         isActive
-                          ? "text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-500/10"
-                          : "text-slate-700 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-white hover:bg-slate-100/80 dark:hover:bg-white/5"
+                          ? "dark:text-white text-slate-900 dark:bg-white/10 bg-slate-900/5 font-extrabold"
+                          : "dark:text-slate-400 text-slate-600 hover:dark:text-white hover:text-slate-900 hover:bg-slate-100/60 dark:hover:bg-white/5"
                       }`}
                     >
                       <span>{item.name}</span>
                       {hasSubMenu && (
                         <ChevronDown
                           size={12}
-                          className="group-hover:rotate-180 transition-transform text-slate-400"
+                          className="group-hover:rotate-180 transition-transform dark:text-slate-400 text-slate-500"
                         />
                       )}
                     </Link>
@@ -288,7 +285,7 @@ export const Navbar = () => {
                             <Link
                               key={sub.name}
                               href={sub.href}
-                              className="block px-3 py-2 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-emerald-50/70 dark:hover:bg-slate-800/80 rounded-lg transition-all"
+                              className="block px-3 py-2 text-xs font-semibold dark:text-slate-400 text-slate-600 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100/70 dark:hover:bg-slate-800/80 rounded-lg transition-colors"
                             >
                               {sub.name}
                             </Link>
@@ -301,12 +298,12 @@ export const Navbar = () => {
               })}
             </div>
 
-            {/* Mobile Hamburger Toggle */}
+            {/* Mobile Hamburger Toggle (Original Text Colors) */}
             <div className="flex items-center gap-2 lg:hidden ml-auto">
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(true)}
-                className="p-2 rounded-xl text-slate-800 dark:text-slate-100 hover:bg-slate-100 dark:hover:bg-white/10 transition-colors focus:outline-none"
+                className="p-2 rounded-xl dark:text-white text-slate-900 hover:bg-slate-100 dark:hover:bg-white/10 transition-colors focus:outline-none"
                 aria-label="Open Mobile Menu"
               >
                 <Menu size={22} />
