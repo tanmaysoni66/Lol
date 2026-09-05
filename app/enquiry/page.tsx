@@ -28,6 +28,7 @@ export default function EnquiryPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+  const [farm3DConfig, setFarm3DConfig] = useState<any>(null);
 
   const [formData, setFormData] = useState({
     fullName: "",
@@ -51,6 +52,24 @@ export default function EnquiryPage() {
 
   useEffect(() => {
     setLoadTime(Date.now());
+
+    // Check for 3D Mushroom Farm Configurator payload in sessionStorage
+    try {
+      const savedConfiguration = sessionStorage.getItem("mushroomFarm3DEnquiry");
+      if (savedConfiguration) {
+        const parsed = JSON.parse(savedConfiguration);
+        setFarm3DConfig(parsed);
+        setServiceType("Setup");
+        setFormData((prev) => ({
+          ...prev,
+          setupType: "AC Commercial Farm (Button/Oyster)",
+          farmSize: `${parsed.farm.length} × ${parsed.farm.width} m (${parsed.cultivation.growingRooms} Rooms, ${parsed.cultivation.racksPerRoom} Racks/Room, ${parsed.cultivation.rackLevels} Levels)`,
+          message: prev.message || `Commercial project quote requested from 3D Farm Configurator:\n• Farm Dimensions: ${parsed.farm.length} × ${parsed.farm.width} m\n• Growing Rooms: ${parsed.cultivation.growingRooms}\n• Racks Per Room: ${parsed.cultivation.racksPerRoom} (${parsed.cultivation.rackLevels} Levels)\n• Cold Storage: ${parsed.coldStorage ? "Included" : "Not Included"}\n\nPlease share detailed commercial project estimate & layout plan.`,
+        }));
+      }
+    } catch (e) {
+      console.error("Could not parse 3D farm enquiry payload", e);
+    }
   }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -93,9 +112,11 @@ export default function EnquiryPage() {
     setFormData(prev => ({
         ...prev,
         trainingMode: "", mushroomVariety: "", quantity: "", deliveryLocation: "",
-        setupType: "", farmSize: "", farmLocation: "", productForm: "", subjectOfEnquiry: ""
+        setupType: (serviceType === "Setup" && farm3DConfig) ? "AC Commercial Farm (Button/Oyster)" : "",
+        farmSize: (serviceType === "Setup" && farm3DConfig) ? `${farm3DConfig.farm.length} × ${farm3DConfig.farm.width} m (${farm3DConfig.cultivation.growingRooms} Rooms, ${farm3DConfig.cultivation.racksPerRoom} Racks/Room, ${farm3DConfig.cultivation.rackLevels} Levels)` : "",
+        farmLocation: "", productForm: "", subjectOfEnquiry: ""
     }));
-  }, [serviceType]);
+  }, [serviceType, farm3DConfig]);
 
   return (
     <div className="min-h-screen w-full relative overflow-x-hidden bg-transparent text-gray-900 dark:text-gray-100 flex flex-col items-center p-3 py-10">
@@ -143,6 +164,45 @@ export default function EnquiryPage() {
 
         {/* Form Body */}
         <div className="p-6 bg-gradient-to-b from-transparent to-white/30 dark:to-black/20">
+          {/* 3D Farm Configurator Attachment Banner */}
+          {farm3DConfig && !isSuccess && (
+            <div className="mb-5 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-xs shadow-inner">
+              <div className="flex items-center justify-between font-bold text-emerald-700 dark:text-emerald-400 mb-2">
+                <span className="flex items-center gap-1.5 uppercase tracking-wide text-[11px]">
+                  <Factory className="w-4 h-4" /> 3D Farm Configuration Attached
+                </span>
+                <button
+                  type="button"
+                  onClick={() => {
+                    sessionStorage.removeItem("mushroomFarm3DEnquiry");
+                    setFarm3DConfig(null);
+                  }}
+                  className="text-[10px] text-gray-400 hover:text-red-500 transition-colors underline cursor-pointer"
+                >
+                  Clear Config
+                </button>
+              </div>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[11px] text-gray-700 dark:text-gray-300">
+                <div className="p-2 rounded-lg bg-white/40 dark:bg-black/20 border border-white/20">
+                  <div className="text-[10px] text-gray-500">Farm Dimensions</div>
+                  <strong className="text-slate-900 dark:text-slate-100">{farm3DConfig.farm?.length || 20} × {farm3DConfig.farm?.width || 14} m</strong>
+                </div>
+                <div className="p-2 rounded-lg bg-white/40 dark:bg-black/20 border border-white/20">
+                  <div className="text-[10px] text-gray-500">Growing Rooms</div>
+                  <strong className="text-slate-900 dark:text-slate-100">{farm3DConfig.cultivation?.growingRooms || 2} Rooms</strong>
+                </div>
+                <div className="p-2 rounded-lg bg-white/40 dark:bg-black/20 border border-white/20">
+                  <div className="text-[10px] text-gray-500">Racks &amp; Levels</div>
+                  <strong className="text-slate-900 dark:text-slate-100">{farm3DConfig.cultivation?.racksPerRoom || 4} Racks &bull; {farm3DConfig.cultivation?.rackLevels || 4} Lvl</strong>
+                </div>
+                <div className="p-2 rounded-lg bg-white/40 dark:bg-black/20 border border-white/20">
+                  <div className="text-[10px] text-gray-500">Cold Storage</div>
+                  <strong className="text-emerald-600 dark:text-emerald-400">{farm3DConfig.coldStorage ? "Included" : "Not Included"}</strong>
+                </div>
+              </div>
+            </div>
+          )}
+
           {isSuccess ? (
             <motion.div 
               initial={{ opacity: 0, scale: 0.95 }}

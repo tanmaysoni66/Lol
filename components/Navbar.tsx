@@ -1,10 +1,36 @@
 "use client";
-import React, { useState, useEffect } from "react";
+
+import React, { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "motion/react";
-import { Home, Info, Award, Settings, MessageSquare, ChevronDown, Menu, X, Facebook, Instagram, Twitter, Youtube, Linkedin, Send, User, BookOpen, Layers, Briefcase, Calendar, Image as ImageIcon, Cloud, FileText, HelpCircle, PhoneCall, Zap } from "lucide-react";
-import DynamicGreeting from "./DynamicGreeting";
+import {
+  Box,
+  Home,
+  Info,
+  Award,
+  ChevronDown,
+  Menu,
+  X,
+  Facebook,
+  Instagram,
+  Twitter,
+  Youtube,
+  Linkedin,
+  Send,
+  User,
+  BookOpen,
+  Layers,
+  Briefcase,
+  Calendar,
+  Image as ImageIcon,
+  Cloud,
+  FileText,
+  HelpCircle,
+  PhoneCall,
+  Zap,
+} from "lucide-react";
+import NavbarTopTicker from "./NavbarTopTicker";
 
 const NAV_ITEMS = [
   { name: "Home", href: "/", icon: Home },
@@ -46,6 +72,7 @@ const NAV_ITEMS = [
     ],
   },
   { name: "Turnkey Projects", href: "/turnkey-projects", icon: Briefcase },
+  { name: "3D Farm", href: "/3d-mushroom-farm", icon: Box },
   { name: "Workshop", href: "/workshop", icon: Calendar },
   { name: "Gallery", href: "/gallery", icon: ImageIcon },
   { name: "Live Weather", href: "/live-weather", icon: Cloud },
@@ -66,28 +93,31 @@ const NAV_ITEMS = [
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState<string | null>(null);
   const [expandedMobileMenu, setExpandedMobileMenu] = useState<string | null>(null);
-  
+
   const pathname = usePathname();
 
+  // Optimized passive scroll listener to avoid layout thrashing
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 10);
-    window.addEventListener("scroll", handleScroll);
+    let ticking = false;
 
-    const handleScrollSpy = () => {
-      setActiveSection(null);
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setIsScrolled(window.scrollY > 20);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
-    window.addEventListener("scroll", handleScrollSpy);
-    handleScrollSpy();
-
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("scroll", handleScrollSpy);
     };
-  }, [pathname]);
+  }, []);
 
+  // Manage body scroll locking when mobile menu opens
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = "hidden";
@@ -96,283 +126,312 @@ export const Navbar = () => {
       document.body.style.overflow = "unset";
       document.body.classList.remove("mobile-menu-open");
     }
-    
+
     if (typeof window !== "undefined") {
-      window.dispatchEvent(new CustomEvent('mobileMenuToggle', { detail: mobileMenuOpen }));
+      window.dispatchEvent(
+        new CustomEvent("mobileMenuToggle", { detail: mobileMenuOpen })
+      );
     }
-    
+
     return () => {
       document.body.style.overflow = "unset";
       document.body.classList.remove("mobile-menu-open");
     };
   }, [mobileMenuOpen]);
 
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [pathname]);
+
+  const closeMobileMenu = useCallback(() => {
+    setMobileMenuOpen(false);
+  }, []);
+
   if (pathname === "/workshop") return null;
 
   return (
     <>
-      <nav
-        className={`fixed left-1/2 -translate-x-1/2 z-50 backdrop-blur-2xl bg-transparent border py-2.5 md:py-2 px-3 sm:px-5 md:px-6 lg:px-4 xl:px-5 transition-all duration-300 shadow-[0_8px_32px_rgba(0,0,0,0.12)] border-white/20 dark:border-white/10 ${isScrolled ? "top-0 w-full max-w-full rounded-none border-t-0 border-l-0 border-r-0 shadow-[0_16px_40px_-10px_rgba(0,0,0,0.2)]" : "top-3 md:top-6 w-[calc(100%-16px)] sm:w-[calc(100%-32px)] md:w-[calc(100%-48px)] max-w-7xl rounded-[2rem]"}`}
-      >
-        <div className="flex items-center justify-between w-full max-w-7xl mx-auto">
-          <Link href="/" className="flex items-center gap-1.5 sm:gap-3 group shrink-0">
-            <img
-              src="https://res.cloudinary.com/dtpktdkqw/image/upload/v1782269097/IMG_1329_optimized_30_c6qtnw.png"
-              alt="Organic Mushrooms Farm"
-              className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-10 lg:h-10 xl:w-12 xl:h-12 shrink-0 object-contain group-hover:scale-110 transition-transform" 
-              width="120" height="120" 
-            />
-            <div className="flex flex-col">
-              <span className="text-[14px] xs:text-[16px] sm:text-sm md:text-xl lg:text-[12px] xl:text-[15px] 2xl:text-sm font-bold tracking-tight dark:text-white text-slate-900 leading-tight">
-                Organic <span className="text-transparent bg-clip-text" style={{ backgroundImage: 'var(--primary-gradient)' }}>Mushroom Farm</span>
-              </span>
-              <DynamicGreeting />
-            </div>
-          </Link>
-          
-          <div className="flex items-center gap-2 xl:gap-4 ml-auto">
-            {/* Desktop Nav */}
-            <div className="hidden lg:flex items-center gap-0.5 xl:gap-1.5 overflow-x-auto no-scrollbar">
-            {NAV_ITEMS.map((item) => {
-              const isHashLink = item.href.includes("#");
-              const hash = isHashLink ? item.href.split("#")[1] : null;
-              
-              const isActive = isHashLink
-                ? pathname === "/" && activeSection === hash
-                : pathname === item.href && activeSection === null;
+      <header className="fixed top-0 left-0 right-0 z-50 flex flex-col items-center pointer-events-none transition-all duration-200">
+        {/* Live Weather & Batch Announcement Bar at Top of Navbar */}
+        <div className="w-full pointer-events-auto">
+          <NavbarTopTicker />
+        </div>
 
-              const handleHashClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-                if (pathname === "/") {
-                  e.preventDefault();
-                  const element = document.getElementById(hash!);
-                  if (element) {
-                    const offset = 100;
-                    const bodyRect = document.body.getBoundingClientRect().top;
-                    const elementRect = element.getBoundingClientRect().top;
-                    const offsetPosition = (elementRect - bodyRect) - offset;
-                    window.scrollTo({ top: offsetPosition, behavior: "smooth" });
-                    window.history.pushState(null, "", `/#${hash}`);
-                  }
-                }
-              };
+        {/* Floating Main Navigation Bar */}
+        <nav
+          className={`pointer-events-auto transition-all duration-200 border ${
+            isScrolled
+              ? "w-full max-w-full rounded-none border-t-0 border-l-0 border-r-0 bg-white/95 dark:bg-slate-950/95 backdrop-blur-md border-slate-200/90 dark:border-white/10 shadow-md py-1.5 px-3 sm:px-6"
+              : "mt-1.5 w-[calc(100%-16px)] sm:w-[calc(100%-24px)] md:w-[calc(100%-32px)] max-w-7xl rounded-2xl md:rounded-3xl bg-white/90 dark:bg-slate-950/85 backdrop-blur-md border-slate-200/80 dark:border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.06)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.35)] py-2 px-3 sm:px-5"
+          }`}
+        >
+          <div className="flex items-center justify-between w-full max-w-7xl mx-auto">
+            {/* Stable Branding & Logo (No layout shift next to logo) */}
+            <Link
+              href="/"
+              className="flex items-center gap-2 sm:gap-2.5 group shrink-0"
+              aria-label="Organic Mushroom Farm Home"
+            >
+              <img
+                src="https://res.cloudinary.com/dtpktdkqw/image/upload/v1782269097/IMG_1329_optimized_30_c6qtnw.png"
+                alt="Organic Mushrooms Farm"
+                className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 shrink-0 object-contain group-hover:scale-105 transition-transform"
+                width="40"
+                height="40"
+              />
+              <div className="flex flex-col">
+                <span className="text-[13px] xs:text-[15px] sm:text-base md:text-lg lg:text-[12px] xl:text-[15px] font-black tracking-tight text-slate-900 dark:text-white leading-tight">
+                  Organic{" "}
+                  <span className="text-emerald-600 dark:text-emerald-400">
+                    Mushroom Farm
+                  </span>
+                </span>
+                <span className="text-[9px] sm:text-[10px] text-slate-500 dark:text-slate-400 font-semibold tracking-normal hidden xs:inline-block leading-none mt-0.5">
+                  Commercial &amp; Hi-Tech Cultivation
+                </span>
+              </div>
+            </Link>
 
-              if (isHashLink) {
+            {/* Desktop Navigation Links */}
+            <div className="hidden lg:flex items-center gap-0.5 xl:gap-1 ml-auto">
+              {NAV_ITEMS.map((item) => {
+                const isActive = pathname === item.href;
+                const hasSubMenu = item.subMenu && item.subMenu.length > 0;
+
                 return (
-                  <div key={item.name} className="relative">
+                  <div key={item.name} className="relative group">
                     <Link
                       href={item.href}
-                      onClick={isHashLink ? handleHashClick : undefined}
-                      className={`text-[9px] lg:text-[10px] xl:text-[12px] font-bold transition-all flex items-center gap-1 xl:gap-1.5 px-1.5 xl:px-2 py-1.5 rounded-lg leading-tight ${isActive ? "dark:text-white text-slate-900 dark:bg-white/5 bg-black/5" : "dark:text-slate-400 text-slate-600 hover:dark:text-white hover:text-slate-900"}`}
+                      className={`text-[10px] xl:text-[12px] font-bold transition-all flex items-center gap-1 px-2 py-1.5 rounded-lg leading-tight ${
+                        isActive
+                          ? "text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-500/10"
+                          : "text-slate-700 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-white hover:bg-slate-100/80 dark:hover:bg-white/5"
+                      }`}
                     >
-                      {item.name}
+                      <span>{item.name}</span>
+                      {hasSubMenu && (
+                        <ChevronDown
+                          size={12}
+                          className="group-hover:rotate-180 transition-transform text-slate-400"
+                        />
+                      )}
                     </Link>
-                    {isActive && (
-                      <motion.div layoutId="nav-active" className="absolute -bottom-1 left-2 right-2 xl:left-3 xl:right-3 h-0.5 rounded-full" style={{ background: 'var(--primary-gradient)' }} />
+
+                    {/* Desktop Submenu Dropdown */}
+                    {hasSubMenu && (
+                      <div className="absolute top-full left-0 pt-2 opacity-0 translate-y-1.5 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all z-[100]">
+                        <div className="bg-white dark:bg-slate-900 p-2 min-w-[210px] rounded-xl border border-slate-200 dark:border-slate-800 shadow-xl dark:shadow-2xl">
+                          {item.subMenu!.map((sub) => (
+                            <Link
+                              key={sub.name}
+                              href={sub.href}
+                              className="block px-3 py-2 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-emerald-50/70 dark:hover:bg-slate-800/80 rounded-lg transition-all"
+                            >
+                              {sub.name}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
                     )}
                   </div>
                 );
-              }
+              })}
+            </div>
 
-              const hasSubMenu = item.subMenu && item.subMenu.length > 0;
-              return (
-                <div key={item.name} className="relative group">
-                  <Link
-                    href={item.href}
-                    className={`text-[9px] lg:text-[10px] xl:text-[12px] font-bold transition-all flex items-center gap-1 xl:gap-1.5 px-1.5 xl:px-2 py-1.5 rounded-lg leading-tight ${isActive ? "dark:text-white text-slate-900 dark:bg-white/5 bg-black/5" : "dark:text-slate-400 text-slate-600 hover:dark:text-white hover:text-slate-900"}`}
-                  >
-                    {item.name}
-                    {hasSubMenu && <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />}
-                  </Link>
-                  {hasSubMenu && (
-                    <div className="absolute top-full left-0 pt-2 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all z-[100]">
-                      <div className="backdrop-blur-md bg-transparent p-2 min-w-[200px] rounded-xl border dark:border-white/10 border-black/10 shadow-[0_10px_40px_-10px_rgba(124,58,237,0.15)]">
-                        {item.subMenu!.map((sub: any) => (
-                          <Link
-                            key={sub.name}
-                            href={sub.href}
-                            className="block px-4 py-2.5 text-[12px] font-bold dark:text-slate-400 text-slate-600 hover:text-slate-900 dark:hover:text-white hover:dark:bg-white/10 hover:bg-black/10 rounded-lg transition-all"
-                          >
-                            {sub.name}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                  {isActive && (
-                    <motion.div layoutId="nav-active" className="absolute -bottom-1 left-3 right-3 h-0.5 rounded-full" style={{ background: 'var(--primary-gradient)' }} />
-                  )}
-                </div>
-              );
-            })}
+            {/* Mobile Hamburger Toggle */}
+            <div className="flex items-center gap-2 lg:hidden ml-auto">
+              <button
+                type="button"
+                onClick={() => setMobileMenuOpen(true)}
+                className="p-2 rounded-xl text-slate-800 dark:text-slate-100 hover:bg-slate-100 dark:hover:bg-white/10 transition-colors focus:outline-none"
+                aria-label="Open Mobile Menu"
+              >
+                <Menu size={22} />
+              </button>
+            </div>
           </div>
+        </nav>
+      </header>
 
-          {/* Mobile Toggle */}
-          <button
-            onClick={() => setMobileMenuOpen(true)}
-            className="lg:hidden dark:text-white text-slate-900 p-2 focus:outline-none"
-            aria-label="Open Menu"
-          >
-            <Menu size={24} />
-          </button>
-          </div>
-        </div>
-      </nav>
-
-      {/* Mobile Menu Overlay */}
+      {/* Lag-Free Mobile Menu Overlay */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <div className="fixed inset-0 z-[9998] lg:hidden flex flex-col justify-end">
+            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.15 }}
-              className="absolute inset-0 bg-black/60 backdrop-blur-sm"
-              onClick={() => setMobileMenuOpen(false)}
+              className="absolute inset-0 bg-black/60"
+              onClick={closeMobileMenu}
             />
-            
+
+            {/* Bottom Sheet with instant hardware acceleration & no multi-card blur */}
             <motion.div
               initial={{ y: "100%" }}
               animate={{ y: 0 }}
               exit={{ y: "100%" }}
-              transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="relative w-full max-h-[85vh] bg-transparent backdrop-blur-md rounded-t-3xl overflow-hidden shadow-[0_-10px_40px_rgba(0,0,0,0.2)] border-t border-white/20 dark:border-white/10 flex flex-col"
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              className="relative w-full max-h-[85vh] bg-white dark:bg-slate-950 text-slate-900 dark:text-white rounded-t-3xl overflow-hidden shadow-2xl border-t border-slate-200 dark:border-slate-800 flex flex-col will-change-transform"
             >
-              <div className="flex items-center gap-2 p-3 border-b border-white/20 dark:border-white/10 shrink-0 bg-transparent">
-                <div className="shrink-0">
-                  <img src="https://res.cloudinary.com/dtpktdkqw/image/upload/v1782269097/IMG_1329_optimized_30_c6qtnw.png" alt="Logo" className="w-8 h-8 object-contain" />
-                </div>
-                <div className="flex-1 overflow-hidden relative h-8 bg-black/20 dark:bg-white/10 rounded-full border border-white/10 flex items-center shadow-inner">
-                  <div className="animate-marquee whitespace-nowrap inline-block text-[10px] font-bold text-slate-800 dark:text-slate-200">
-                    <span className="mx-4">NEW BATCH OPENS SOON 🍄</span> • 
-                    <span className="mx-4">TURNKEY SETUP CONSULTATION 📞</span> • 
-                    <span className="mx-4">INDIA 24.4°C 🌡️</span>
+              {/* Top Header of Mobile Menu */}
+              <div className="flex items-center justify-between p-3.5 border-b border-slate-200 dark:border-slate-800 shrink-0 bg-slate-50 dark:bg-slate-900/50">
+                <div className="flex items-center gap-2">
+                  <img
+                    src="https://res.cloudinary.com/dtpktdkqw/image/upload/v1782269097/IMG_1329_optimized_30_c6qtnw.png"
+                    alt="Logo"
+                    className="w-7 h-7 object-contain"
+                  />
+                  <div className="flex flex-col">
+                    <span className="text-xs font-bold text-slate-900 dark:text-white leading-tight">
+                      Organic Mushroom Farm
+                    </span>
+                    <span className="text-[9px] text-emerald-600 dark:text-emerald-400 font-semibold">
+                      New Batch: In 2 Days 🍄
+                    </span>
                   </div>
                 </div>
+
                 <button
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="shrink-0 p-1.5 bg-black/10 dark:bg-white/10 backdrop-blur-md rounded-full text-slate-800 dark:text-slate-200 hover:bg-black/20 dark:hover:bg-white/20 transition-colors border border-white/10"
+                  type="button"
+                  onClick={closeMobileMenu}
+                  className="p-1.5 rounded-full bg-slate-200/80 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors"
+                  aria-label="Close Menu"
                 >
                   <X size={18} />
                 </button>
               </div>
-              <div className="flex-1 overflow-y-auto p-4 custom-scrollbar">
+
+              {/* Scrollable Items without GPU-thrashing blurs */}
+              <div className="flex-1 overflow-y-auto p-3.5 space-y-2">
                 <div className="grid grid-cols-2 gap-2">
-                  {NAV_ITEMS.map((item, i) => {
-                    const isHashLink = item.href.includes("#");
-                    const hash = isHashLink ? item.href.split("#")[1] : null;
-                    const isActive = isHashLink ? pathname === "/" && activeSection === hash : pathname === item.href && activeSection === null;
+                  {NAV_ITEMS.map((item) => {
+                    const isActive = pathname === item.href;
                     const hasSubMenu = item.subMenu && item.subMenu.length > 0;
                     const isExpanded = expandedMobileMenu === item.name;
-                    
-                    const baseCardClass = `relative w-full overflow-hidden rounded-2xl border transition-colors duration-150 ${isActive ? "border-emerald-500/50 bg-emerald-500/10 dark:bg-emerald-500/20" : "border-slate-200/20 dark:border-white/10 bg-transparent backdrop-blur-md"}`;
-                    
-                    return (
-                      <motion.div
-                        key={item.name}
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: i * 0.02, duration: 0.15, ease: "easeOut" }}
-                        className={hasSubMenu ? "col-span-2 sm:col-span-1" : "col-span-1"}
-                      >
-                        {hasSubMenu ? (
-                          <div className={baseCardClass}>
-                            <button
-                              onClick={() => setExpandedMobileMenu((prev) => prev === item.name ? null : item.name)}
-                              className="w-full flex items-center justify-between p-2"
-                            >
-                              <div className="flex items-center gap-2">
-                                <div className={`w-5 h-5 rounded-full flex items-center justify-center ${isActive ? "bg-emerald-100 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400" : "bg-slate-100 dark:bg-white/10 text-slate-600 dark:text-slate-300"}`}>
-                                  {item.icon && <item.icon size={10} />}
-                                </div>
-                                <span className={`text-[10px] font-bold ${isActive ? "text-emerald-600 dark:text-emerald-400" : "text-slate-800 dark:text-slate-200"}`}>
-                                  {item.name}
-                                </span>
-                              </div>
-                              <ChevronDown size={12} className={`transition-transform duration-200 ${isExpanded ? "rotate-180" : ""} ${isActive ? "text-emerald-600 dark:text-emerald-400" : "text-slate-400"}`} />
-                            </button>
-                            
-                            <AnimatePresence>
-                              {isExpanded && (
-                                <motion.div
-                                  initial={{ height: 0, opacity: 0 }}
-                                  animate={{ height: "auto", opacity: 1 }}
-                                  exit={{ height: 0, opacity: 0 }}
-                                  transition={{ duration: 0.15 }}
-                                  className="overflow-hidden bg-transparent"
-                                >
-                                  <div className="px-3 py-1 flex flex-col gap-0.5 border-t border-slate-100 dark:border-slate-700">
-                                    {item.subMenu!.map((sub: any) => (
-                                      <Link
-                                        key={sub.name}
-                                        href={sub.href}
-                                        onClick={() => setMobileMenuOpen(false)}
-                                        className="block py-1.5 text-[10px] font-semibold text-slate-600 dark:text-slate-400 pl-6 relative"
-                                      >
-                                        <div className="absolute left-2.5 top-1/2 -translate-y-1/2 w-1 h-1 rounded-full bg-slate-300 dark:bg-slate-600" />
-                                        {sub.name}
-                                      </Link>
-                                    ))}
-                                  </div>
-                                </motion.div>
-                              )}
-                            </AnimatePresence>
-                          </div>
-                        ) : (
-                          <Link
-                            href={item.href}
-                            onClick={(e) => {
-                              if (isHashLink && pathname === "/") {
-                                e.preventDefault();
-                                setMobileMenuOpen(false);
-                                const element = document.getElementById(hash!);
-                                if (element) {
-                                  const offset = 80;
-                                  const bodyRect = document.body.getBoundingClientRect().top;
-                                  const elementRect = element.getBoundingClientRect().top;
-                                  const offsetPosition = (elementRect - bodyRect) - offset;
-                                  window.scrollTo({ top: offsetPosition, behavior: "smooth" });
-                                  window.history.pushState(null, "", `/#${hash}`);
-                                }
-                              } else {
-                                setMobileMenuOpen(false);
-                              }
-                            }}
-                            className={`${baseCardClass} flex flex-col items-start justify-center p-2 min-h-[50px]`}
+
+                    if (hasSubMenu) {
+                      return (
+                        <div
+                          key={item.name}
+                          className="col-span-2 rounded-xl bg-slate-100/90 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 overflow-hidden"
+                        >
+                          <button
+                            type="button"
+                            onClick={() =>
+                              setExpandedMobileMenu((prev) =>
+                                prev === item.name ? null : item.name
+                              )
+                            }
+                            className="w-full flex items-center justify-between p-2.5 text-left"
                           >
-                            <div className={`w-5 h-5 rounded-full flex items-center justify-center mb-1 ${isActive ? "bg-emerald-100 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400" : "bg-slate-100 dark:bg-white/10 text-slate-600 dark:text-slate-300"}`}>
-                              {item.icon && <item.icon size={10} />}
+                            <div className="flex items-center gap-2">
+                              <div className="w-6 h-6 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
+                                <item.icon size={13} />
+                              </div>
+                              <span className="text-xs font-bold text-slate-900 dark:text-slate-100">
+                                {item.name}
+                              </span>
                             </div>
-                            <span className={`text-[10px] font-bold ${isActive ? "text-emerald-600 dark:text-emerald-400" : "text-slate-800 dark:text-slate-200"}`}>
-                              {item.name}
-                            </span>
-                          </Link>
-                        )}
-                      </motion.div>
+                            <ChevronDown
+                              size={14}
+                              className={`transition-transform duration-150 text-slate-400 ${
+                                isExpanded ? "rotate-180" : ""
+                              }`}
+                            />
+                          </button>
+
+                          {isExpanded && (
+                            <div className="px-3 pb-2 pt-1 border-t border-slate-200 dark:border-slate-800 flex flex-col gap-1 bg-white/60 dark:bg-slate-950/40">
+                              {item.subMenu!.map((sub) => (
+                                <Link
+                                  key={sub.name}
+                                  href={sub.href}
+                                  onClick={closeMobileMenu}
+                                  className="py-1.5 pl-6 text-[11px] font-semibold text-slate-600 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-300 flex items-center gap-1.5"
+                                >
+                                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
+                                  <span>{sub.name}</span>
+                                </Link>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      );
+                    }
+
+                    return (
+                      <Link
+                        key={item.name}
+                        href={item.href}
+                        onClick={closeMobileMenu}
+                        className={`flex items-center gap-2 p-2.5 rounded-xl border transition-colors ${
+                          isActive
+                            ? "bg-emerald-50 dark:bg-emerald-500/20 border-emerald-500/50 text-emerald-700 dark:text-emerald-300 font-bold"
+                            : "bg-slate-100/90 dark:bg-slate-900/80 border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200 hover:bg-emerald-50/50 dark:hover:bg-slate-800 font-semibold"
+                        }`}
+                      >
+                        <div
+                          className={`w-6 h-6 rounded-lg flex items-center justify-center shrink-0 ${
+                            isActive
+                              ? "bg-emerald-600 text-white"
+                              : "bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300"
+                          }`}
+                        >
+                          <item.icon size={13} />
+                        </div>
+                        <span className="text-xs truncate">{item.name}</span>
+                      </Link>
                     );
                   })}
                 </div>
 
-                {/* Mobile Social Links */}
-                <div className="mt-6 mb-2 flex flex-wrap justify-center gap-3 border-t border-slate-200 dark:border-slate-800 pt-6">
+                {/* Social & Contact Bar in Mobile Menu */}
+                <div className="pt-4 mt-2 border-t border-slate-200 dark:border-slate-800 flex flex-wrap justify-center gap-2.5 pb-2">
                   {[
-                    { label: "Facebook", href: "https://www.facebook.com/organic.mushroom.farm0", icon: Facebook },
-                    { label: "Instagram", href: "https://www.instagram.com/organic_mushroom_farm_jabalpur", icon: Instagram },
-                    { label: "Twitter", href: "https://x.com/mushroomfarmjbp", icon: Twitter },
-                    { label: "YouTube", href: "https://www.youtube.com/@organicmushroomfarm", icon: Youtube },
-                    { label: "LinkedIn", href: "https://www.linkedin.com/in/organic-mushroom-farm-29b970282?utm_source=share_via&utm_content=profile&utm_medium=member_android", icon: Linkedin },
-                    { label: "Telegram", href: "https://t.me/organicmushroomfarm", icon: Send },
-                    { label: "Profile", href: "/profile", icon: User }
+                    {
+                      label: "Facebook",
+                      href: "https://www.facebook.com/organic.mushroom.farm0",
+                      icon: Facebook,
+                    },
+                    {
+                      label: "Instagram",
+                      href: "https://www.instagram.com/organic_mushroom_farm_jabalpur",
+                      icon: Instagram,
+                    },
+                    {
+                      label: "Twitter",
+                      href: "https://x.com/mushroomfarmjbp",
+                      icon: Twitter,
+                    },
+                    {
+                      label: "YouTube",
+                      href: "https://www.youtube.com/@organicmushroomfarm",
+                      icon: Youtube,
+                    },
+                    {
+                      label: "LinkedIn",
+                      href: "https://www.linkedin.com/in/organic-mushroom-farm-29b970282",
+                      icon: Linkedin,
+                    },
+                    {
+                      label: "Telegram",
+                      href: "https://t.me/organicmushroomfarm",
+                      icon: Send,
+                    },
+                    { label: "Profile", href: "/profile", icon: User },
                   ].map((social) => (
                     <a
                       key={social.label}
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-10 h-10 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center text-slate-500 dark:text-slate-400 hover:bg-emerald-500 hover:text-white hover:border-emerald-500 transition-all active:scale-95"
+                      className="w-8 h-8 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:bg-emerald-500 hover:text-white hover:border-emerald-500 transition-all active:scale-95"
                       aria-label={social.label}
                     >
-                      <social.icon size={18} strokeWidth={2} />
+                      <social.icon size={14} />
                     </a>
                   ))}
                 </div>
@@ -384,3 +443,4 @@ export const Navbar = () => {
     </>
   );
 };
+export default Navbar;
