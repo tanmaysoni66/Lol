@@ -156,3 +156,18 @@ html {
   animation-play-state: paused;
 }
 
+/* Hide floating widgets when mobile menu is open to prevent overlap and lag */
+body.mobile-menu-open .floating-widgets-container {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transform: translateY(10px);
+}
+
+body:not(.mobile-menu-open) .floating-widgets-container {
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+  transform: translateY(0);
+}
+

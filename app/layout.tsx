@@ -113,26 +113,29 @@ export default function RootLayout({
         <Footer />
 
         {/* ================= FLOATING STACK LAYER ================= */}
-        {/* Left Side: AI Chat & Join Training Modal */}
-        <div className="fixed left-3 md:left-[30px] flex flex-col gap-2 md:gap-4 items-start pointer-events-none transition-all duration-300 ease-out bottom-[85px] md:bottom-[20px] z-[99999]">
-          <div className="pointer-events-auto">
-            <AIChatWidget />
-          </div>
-          <div className="pointer-events-auto">
-            <div className="hidden md:block">
-              <StickyJoinTrainingButton size="normal" />
+        {/* We use a wrapper class 'floating-widgets-container' to instantly hide all sticky buttons when mobile menu opens (via CSS) */}
+        <div className="floating-widgets-container transition-all duration-200 ease-in-out">
+          {/* Left Side: AI Chat & Join Training Modal */}
+          <div className="fixed left-3 md:left-[30px] flex flex-col gap-2 md:gap-4 items-start pointer-events-none transition-all duration-300 ease-out bottom-[85px] md:bottom-[20px] z-[99999]">
+            <div className="pointer-events-auto">
+              <AIChatWidget />
             </div>
-            <div className="md:hidden">
-              <StickyJoinTrainingButton size="small" />
+            <div className="pointer-events-auto">
+              <div className="hidden md:block">
+                <StickyJoinTrainingButton size="normal" />
+              </div>
+              <div className="md:hidden">
+                <StickyJoinTrainingButton size="small" />
+              </div>
             </div>
           </div>
+
+          {/* Right Side: WhatsApp Floating Action */}
+          <WhatsAppWidget />
+
+          {/* Bottom Mobile Scrollable Dock (Zero overlap with floating widgets) */}
+          <FloatingBottomMenu />
         </div>
-
-        {/* Right Side: WhatsApp Floating Action */}
-        <WhatsAppWidget />
-
-        {/* Bottom Mobile Scrollable Dock (Zero overlap with floating widgets) */}
-        <FloatingBottomMenu />
       </body>
     </html>
   );

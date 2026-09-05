@@ -52,11 +52,16 @@ const Footer = () => {
           {/* Col 1: Brand & Details */}
           <div className="md:col-span-5 lg:col-span-4">
             <div className="flex items-center gap-2 mb-5">
-              <div className="w-8 h-8 rounded-full bg-white/80 dark:bg-white/10 flex items-center justify-center text-xl shadow-inner border border-black/10 dark:border-white/20 backdrop-blur-md">🍄</div>
-              <div className="text-xl md:text-2xl font-black tracking-tight">
+              <img
+                src="https://res.cloudinary.com/dtpktdkqw/image/upload/v1782269097/IMG_1329_optimized_30_c6qtnw.png"
+                alt="Organic Mushrooms Farm"
+                className="w-8 h-8 sm:w-10 sm:h-10 shrink-0 object-contain"
+                width="40"
+                height="40"
+              />
+              <div className="text-xl md:text-2xl font-bold tracking-tight leading-none">
                 <span className="dark:text-white text-slate-900">Organic </span>
-                <span className="text-purple-500">Mushroom </span>
-                <span className="text-green-500">Farm</span>
+                <span className="bg-clip-text text-transparent bg-[var(--primary-gradient)]">Mushroom Farm</span>
               </div>
             </div>
             

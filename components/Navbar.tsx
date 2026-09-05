@@ -32,7 +32,6 @@ import {
   Thermometer,
   Droplets,
 } from "lucide-react";
-import DynamicGreeting from "./DynamicGreeting";
 
 const NAV_ITEMS = [
   { name: "Home", href: "/", icon: Home },
@@ -242,13 +241,12 @@ export const Navbar = () => {
                 height="40"
               />
               <div className="flex flex-col">
-                <span className="text-[13px] xs:text-[15px] sm:text-base md:text-lg font-black tracking-tight text-slate-900 dark:text-white leading-tight">
-                  Organic{" "}
-                  <span className="text-emerald-600 dark:text-emerald-400">
-                    Mushroom Farm
-                  </span>
+                <span className="text-[14px] xs:text-[16px] sm:text-lg md:text-xl font-bold tracking-tight text-slate-900 dark:text-white leading-tight">
+                  Organic <span className="bg-clip-text text-transparent bg-[var(--primary-gradient)]">Mushroom Farm</span>
                 </span>
-                <DynamicGreeting />
+                <span className="text-[9px] sm:text-[10px] text-slate-500 dark:text-slate-400 font-semibold tracking-normal hidden xs:inline-block leading-none mt-0.5">
+                  Welcome To Organic Mushroom Farm
+                </span>
               </div>
             </Link>
 
