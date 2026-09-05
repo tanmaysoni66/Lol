@@ -35,18 +35,18 @@ export const JourneyCTA = () => {
             <div className="flex flex-col sm:flex-row gap-3 md:gap-4 mb-8 w-full sm:w-auto">
               <Link 
                 href="/training" 
-                className="inline-flex items-center justify-center gap-2 px-6 md:px-8 py-3.5 md:py-4 rounded-xl text-[10px] md:text-xs font-black text-white uppercase tracking-widest bg-gradient-to-r from-[#7b51f8] to-[#2fd17b] hover:opacity-90 shadow-[0_0_20px_rgba(47,209,123,0.25)] transition-all hover:scale-105 w-full sm:w-auto"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-[10px] md:text-[11px] font-black uppercase tracking-widest text-purple-700 dark:text-purple-300 bg-white/10 dark:bg-black/20 border-t border-l border-white/40 dark:border-white/10 border-r border-b border-black/10 dark:border-black/50 shadow-[4px_4px_10px_rgba(0,0,0,0.1),-4px_-4px_10px_rgba(255,255,255,0.1)] dark:shadow-[4px_4px_10px_rgba(0,0,0,0.4),-2px_-2px_10px_rgba(255,255,255,0.05)] transition-all backdrop-blur-xl hover:scale-105 hover:bg-white/20 dark:hover:bg-white/5 w-full sm:w-auto"
               >
                 Enroll In Training Online
-                <ArrowRight size={16} />
+                <ArrowRight size={14} />
               </Link>
               
               <Link 
                 href="/enquiry" 
-                className="inline-flex items-center justify-center gap-2 px-6 md:px-8 py-3.5 md:py-4 rounded-xl text-[10px] md:text-xs font-black dark:text-white text-slate-900 uppercase tracking-widest bg-white/50 dark:bg-[#1A1C29]/80 border border-slate-300 dark:border-white/10 hover:bg-slate-100 dark:hover:bg-white/10 shadow-sm transition-all hover:scale-105 w-full sm:w-auto backdrop-blur-md"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-[10px] md:text-[11px] font-black uppercase tracking-widest text-emerald-700 dark:text-emerald-400 bg-white/10 dark:bg-black/20 border-t border-l border-white/40 dark:border-white/10 border-r border-b border-black/10 dark:border-black/50 shadow-[4px_4px_10px_rgba(0,0,0,0.1),-4px_-4px_10px_rgba(255,255,255,0.1)] dark:shadow-[4px_4px_10px_rgba(0,0,0,0.4),-2px_-2px_10px_rgba(255,255,255,0.05)] transition-all backdrop-blur-xl hover:scale-105 hover:bg-white/20 dark:hover:bg-white/5 w-full sm:w-auto"
               >
                 Book 1-on-1 Consultation
-                <Zap size={16} />
+                <Zap size={14} />
               </Link>
             </div>
 

@@ -11,35 +11,35 @@ export default function TrainingLanding({ region }: { region: "in" | "us" }) {
   const data = trainingContent[region];
 
   return (
-    <div className="w-full bg-transparent min-h-screen pb-12 text-gray-800 dark:text-gray-200 font-sans selection:bg-purple-200 dark:selection:bg-purple-900">
+    <div className="w-full bg-transparent min-h-screen pb-8 text-gray-800 dark:text-gray-200 font-sans selection:bg-purple-200 dark:selection:bg-purple-900">
       
       {/* HEADER SECTION */}
-      <div className="w-full max-w-4xl mx-auto px-4 pt-4 pb-2">
-        <h1 className="text-center text-lg sm:text-xl font-black tracking-tight text-purple-700 dark:text-purple-400 uppercase mb-4">
+      <div className="w-full max-w-4xl mx-auto px-3 pt-3 pb-2">
+        <h1 className="text-center text-base sm:text-lg font-black tracking-tight text-purple-700 dark:text-purple-400 uppercase mb-3">
           Mushroom Cultivation Training
         </h1>
 
         {/* Region Toggle */}
-        <div className="flex justify-center mb-8">
-          <div className="bg-white dark:bg-gray-800 p-1 rounded-full inline-flex shadow-sm border border-gray-200 dark:border-gray-700">
+        <div className="flex justify-center mb-6">
+          <div className="bg-white/10 dark:bg-black/20 backdrop-blur-md p-1 rounded-full inline-flex shadow-xl border border-white/20 dark:border-white/10">
             <Link 
               href="/training"
-              className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all ${pathname === '/training' ? 'bg-purple-600 text-white shadow-md' : 'text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400'}`}
+              className={`px-3 py-1.5 rounded-full text-[10px] font-semibold transition-all ${pathname === '/training' ? 'bg-purple-600 text-white shadow-md' : 'text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400'}`}
             >
               🇮🇳 India (INR)
             </Link>
             <Link 
               href="/usatraining"
-              className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all ${pathname === '/usatraining' ? 'bg-blue-600 text-white shadow-md' : 'text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400'}`}
+              className={`px-3 py-1.5 rounded-full text-[10px] font-semibold transition-all ${pathname === '/usatraining' ? 'bg-blue-600 text-white shadow-md' : 'text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'}`}
             >
               🌎 USA & Global (USD)
             </Link>
           </div>
         </div>
 
-        <div className="text-center max-w-2xl mx-auto mb-6">
-          <h2 className="text-base font-bold mb-1 dark:text-white">Choose Your Training Program</h2>
-          <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+        <div className="text-center max-w-2xl mx-auto mb-5">
+          <h2 className="text-sm font-bold mb-1 dark:text-white">Choose Your Training Program</h2>
+          <p className="text-xs text-gray-600 dark:text-gray-300 leading-relaxed">
             {region === 'in' 
               ? "Start with self-paced online courses or gain hands-on commercial experience at our practical farm workshops."
               : "Mushroom farming is a highly profitable business worldwide. From dry heat to freezing winters, our training teaches you to master indoor climate control and grow high-demand mushrooms year-round, anywhere."}
@@ -47,48 +47,48 @@ export default function TrainingLanding({ region }: { region: "in" | "us" }) {
         </div>
 
         {/* 1. ONLINE CULTIVATION PROGRAMS */}
-        <h3 className="text-base font-bold mb-4 flex items-center uppercase tracking-wide dark:text-white">
-          <span className="w-5 h-5 rounded-full bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-400 flex items-center justify-center mr-2 text-xs">1</span>
+        <h3 className="text-sm font-bold mb-3 flex items-center uppercase tracking-wide dark:text-white">
+          <span className="w-4 h-4 rounded-full bg-purple-500/20 text-purple-700 dark:text-purple-400 flex items-center justify-center mr-2 text-[10px]">1</span>
           Online Cultivation Programs {region === 'in' && "(Self-Paced)"}
         </h3>
 
-        <div className="grid md:grid-cols-2 gap-4 mb-8">
+        <div className="grid md:grid-cols-2 gap-3 mb-6">
           {data.online.map((plan, i) => (
-            <div key={plan.id} className={`relative bg-white/40 dark:bg-gray-800/40 backdrop-blur-md rounded-xl p-4 shadow-sm border ${i === 1 ? 'border-purple-300 dark:border-purple-700 shadow-purple-100/50 dark:shadow-purple-900/20 shadow-xl' : 'border-gray-200 dark:border-gray-700'}`}>
+            <div key={plan.id} className={`relative bg-white/10 dark:bg-black/20 backdrop-blur-xl rounded-xl p-3 shadow-xl border ${i === 1 ? 'border-purple-400/50 dark:border-purple-500/30 shadow-purple-500/10' : 'border-white/20 dark:border-white/10'}`}>
               {/* Badges */}
-              <div className="flex gap-2 absolute -top-3 left-6">
+              <div className="flex gap-2 absolute -top-2.5 left-4">
                 {plan.badge && (
-                  <span className={`px-3 py-1 text-[10px] font-bold tracking-wider uppercase rounded-full text-white shadow-sm ${i === 1 ? 'bg-purple-600' : 'bg-blue-500'}`}>
+                  <span className={`px-2 py-0.5 text-[9px] font-bold tracking-wider uppercase rounded-full text-white shadow-sm ${i === 1 ? 'bg-purple-600' : 'bg-blue-500'}`}>
                     {plan.badge}
                   </span>
                 )}
                 {plan.badge2 && (
-                  <span className="px-3 py-1 text-[10px] font-bold tracking-wider uppercase rounded-full bg-green-500 text-white shadow-sm flex items-center gap-1">
-                    <Zap className="w-3 h-3" /> {plan.badge2}
+                  <span className="px-2 py-0.5 text-[9px] font-bold tracking-wider uppercase rounded-full bg-green-500 text-white shadow-sm flex items-center gap-1">
+                    <Zap className="w-2.5 h-2.5" /> {plan.badge2}
                   </span>
                 )}
               </div>
 
-              <div className="mt-4 border-b border-gray-100 dark:border-gray-700 pb-4 mb-4">
-                <h4 className="text-base font-bold text-gray-900 dark:text-white mb-1">{plan.title}</h4>
-                {plan.target && <p className="text-[10px] text-blue-600 dark:text-blue-400 font-medium mb-2">{plan.target}</p>}
-                <div className="flex items-baseline gap-2">
-                  <span className={`text-2xl font-black ${i === 1 ? 'text-purple-700 dark:text-purple-400' : 'text-gray-900 dark:text-white'}`}>
+              <div className="mt-3 border-b border-gray-200/20 dark:border-gray-700/50 pb-3 mb-3">
+                <h4 className="text-sm font-bold text-gray-900 dark:text-white mb-0.5">{plan.title}</h4>
+                {plan.target && <p className="text-[9px] text-blue-600 dark:text-blue-400 font-medium mb-1.5">{plan.target}</p>}
+                <div className="flex items-baseline gap-1.5">
+                  <span className={`text-xl font-black ${i === 1 ? 'text-purple-700 dark:text-purple-400' : 'text-gray-900 dark:text-white'}`}>
                     {data.currencySymbol}{plan.price}
                   </span>
-                  <span className="text-xs text-gray-500 font-bold tracking-wide uppercase">{plan.feeType}</span>
+                  <span className="text-[10px] text-gray-500 font-bold tracking-wide uppercase">{plan.feeType}</span>
                 </div>
               </div>
 
-              <div className="mb-6">
-                <p className="text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-3">
+              <div className="mb-4">
+                <p className="text-[9px] font-bold text-gray-500 uppercase tracking-wider mb-2">
                   {region === 'in' ? 'What you will learn:' : 'Key Learnings:'}
                 </p>
-                <ul className="space-y-2">
+                <ul className="space-y-1.5">
                   {plan.features.map((feat, idx) => (
-                    <li key={idx} className="flex items-start gap-2 text-xs">
-                      <CheckCircle2 className={`w-4 h-4 shrink-0 mt-0.5 ${i === 1 ? 'text-purple-500' : 'text-gray-400 dark:text-gray-500'}`} />
-                      <span className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                    <li key={idx} className="flex items-start gap-1.5 text-[11px]">
+                      <CheckCircle2 className={`w-3 h-3 shrink-0 mt-0.5 ${i === 1 ? 'text-purple-500' : 'text-gray-400 dark:text-gray-500'}`} />
+                      <span className="text-gray-700 dark:text-gray-300 leading-tight">
                         {feat.bold && <strong className="text-gray-900 dark:text-gray-100 font-semibold">{feat.bold} </strong>}
                         {feat.text}
                       </span>
@@ -99,7 +99,7 @@ export default function TrainingLanding({ region }: { region: "in" | "us" }) {
 
               <Link 
                 href={`${pathname}/enroll?plan=${plan.id}`}
-                className={`block w-full py-2.5 px-3 rounded-lg text-center text-xs font-bold transition-all shadow-md ${i === 1 ? 'bg-purple-600 hover:bg-purple-700 text-white' : 'bg-gray-900 hover:bg-gray-800 dark:bg-gray-100 dark:hover:bg-white dark:text-gray-900 text-white'}`}
+                className={`block w-full py-2 px-3 rounded-lg text-center text-[11px] font-bold transition-all shadow-md ${i === 1 ? 'bg-purple-600 hover:bg-purple-700 text-white' : 'bg-gray-900 hover:bg-gray-800 dark:bg-gray-100 dark:hover:bg-white dark:text-gray-900 text-white'}`}
               >
                 {region === 'in' ? 'Join Mushroom Training →' : 'Enroll Now'}
               </Link>
@@ -110,34 +110,34 @@ export default function TrainingLanding({ region }: { region: "in" | "us" }) {
         {/* 2. OFFLINE WORKSHOPS (India Only) */}
         {region === 'in' && data.offline.length > 0 && (
           <>
-            <h3 className="text-base font-bold mb-4 flex items-center uppercase tracking-wide dark:text-white mt-10">
-              <span className="w-5 h-5 rounded-full bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-400 flex items-center justify-center mr-2 text-xs">2</span>
+            <h3 className="text-sm font-bold mb-3 flex items-center uppercase tracking-wide dark:text-white mt-8">
+              <span className="w-4 h-4 rounded-full bg-purple-500/20 text-purple-700 dark:text-purple-400 flex items-center justify-center mr-2 text-[10px]">2</span>
               Offline Practical Workshops (Hands-On At Farm)
             </h3>
 
-            <div className="grid md:grid-cols-2 gap-4 mb-8">
+            <div className="grid md:grid-cols-2 gap-3 mb-6">
               {data.offline.map((plan, i) => (
-                <div key={plan.id} className="bg-white/40 dark:bg-gray-800/40 backdrop-blur-md rounded-xl p-4 shadow-sm border border-gray-200 dark:border-gray-700 flex flex-col">
-                  <div className="mb-3">
-                    <span className="text-[9px] font-bold text-blue-600 dark:text-blue-400 tracking-widest uppercase bg-blue-50/50 dark:bg-blue-900/20 px-2 py-1 rounded inline-block mb-2">
+                <div key={plan.id} className="bg-white/10 dark:bg-black/20 backdrop-blur-xl rounded-xl p-3 shadow-xl border border-white/20 dark:border-white/10 flex flex-col">
+                  <div className="mb-2.5">
+                    <span className="text-[8px] font-bold text-blue-600 dark:text-blue-400 tracking-widest uppercase bg-blue-500/10 px-2 py-0.5 rounded inline-block mb-1.5">
                       Focus: {plan.focus}
                     </span>
-                    <h4 className="text-base font-bold text-gray-900 dark:text-white mb-2">{plan.title}</h4>
-                    <div className="flex items-baseline gap-2">
-                      <span className="text-xl font-black text-green-600 dark:text-green-500">
+                    <h4 className="text-sm font-bold text-gray-900 dark:text-white mb-1">{plan.title}</h4>
+                    <div className="flex items-baseline gap-1.5">
+                      <span className="text-lg font-black text-green-600 dark:text-green-500">
                         {data.currencySymbol}{plan.price}
                       </span>
-                      <span className="text-xs text-gray-500 font-bold tracking-wide uppercase">{plan.feeType}</span>
+                      <span className="text-[10px] text-gray-500 font-bold tracking-wide uppercase">{plan.feeType}</span>
                     </div>
                   </div>
 
-                  <div className="flex-grow mb-6 border-t border-gray-100 dark:border-gray-700 pt-4">
-                    <p className="text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-3">What you will get:</p>
-                    <ul className="space-y-2">
+                  <div className="flex-grow mb-4 border-t border-gray-200/20 dark:border-gray-700/50 pt-3">
+                    <p className="text-[9px] font-bold text-gray-500 uppercase tracking-wider mb-2">What you will get:</p>
+                    <ul className="space-y-1.5">
                       {plan.features.map((feat, idx) => (
-                         <li key={idx} className="flex items-start gap-2 text-xs">
+                         <li key={idx} className="flex items-start gap-1.5 text-[11px]">
                          <div className="w-1 h-1 rounded-full bg-green-500 mt-1.5 shrink-0"></div>
-                         <span className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                         <span className="text-gray-700 dark:text-gray-300 leading-tight">
                            <strong className="text-gray-900 dark:text-gray-100 font-semibold">{feat.bold} </strong>
                            {feat.text}
                          </span>
@@ -147,11 +147,11 @@ export default function TrainingLanding({ region }: { region: "in" | "us" }) {
                   </div>
 
                   <div className="grid grid-cols-2 gap-2 mt-auto">
-                    <a href="tel:+919876543210" className="flex items-center justify-center gap-2 py-2 px-3 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 font-bold text-gray-700 dark:text-gray-300 text-xs transition-colors">
-                      <Phone className="w-3.5 h-3.5" /> Call
+                    <a href="tel:+919203544140" className="flex items-center justify-center gap-1.5 py-1.5 px-2 rounded-lg border border-gray-300/30 dark:border-gray-600/30 hover:bg-white/5 font-bold text-gray-800 dark:text-gray-200 text-[10px] transition-colors">
+                      <Phone className="w-3 h-3" /> Call
                     </a>
-                    <a href="https://wa.me/919876543210" target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 py-2 px-3 rounded-lg bg-green-500 hover:bg-green-600 text-white font-bold text-xs transition-colors shadow-md shadow-green-500/20">
-                      <MessageCircle className="w-3.5 h-3.5" /> WhatsApp
+                    <a href="https://wa.me/919203544140" target="_blank" rel="noreferrer" className="flex items-center justify-center gap-1.5 py-1.5 px-2 rounded-lg bg-green-500/90 hover:bg-green-500 text-white font-bold text-[10px] transition-colors shadow-md">
+                      <MessageCircle className="w-3 h-3" /> WhatsApp
                     </a>
                   </div>
                 </div>
@@ -163,12 +163,12 @@ export default function TrainingLanding({ region }: { region: "in" | "us" }) {
       </div>
       
       {/* WHAT YOU WILL GET (Shared styling) */}
-      <div className="w-full bg-white/20 dark:bg-gray-800/10 backdrop-blur-sm py-10 border-y border-gray-200/50 dark:border-gray-700/30">
+      <div className="w-full bg-white/5 dark:bg-black/10 backdrop-blur-md py-6 border-y border-white/10 dark:border-gray-800/50">
         <div className="max-w-4xl mx-auto px-4">
-          <h3 className="text-center text-lg font-black uppercase tracking-wider mb-1 dark:text-white">What You Will Get</h3>
-          <p className="text-center text-xs text-gray-500 mb-8">Everything you need to succeed in commercial mushroom farming.</p>
+          <h3 className="text-center text-base font-black uppercase tracking-wider mb-0.5 dark:text-white">What You Will Get</h3>
+          <p className="text-center text-[10px] text-gray-500 mb-6">Everything you need to succeed in commercial mushroom farming.</p>
           
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-x-3 gap-y-5">
             {[
               { icon: ShieldCheck, title: "Lifetime Support", desc: "Dedicated Q&A panels and expert assistance to scale your ongoing farming venture." },
               { icon: Users, title: "Live Training", access: true, desc: "Participate in bi-weekly live Q&A. Gain exclusive access to session recordings." },
@@ -178,11 +178,11 @@ export default function TrainingLanding({ region }: { region: "in" | "us" }) {
               { icon: Award, title: "Certification", desc: "Receive a professional completion certificate to build trust with buyers." }
             ].map((item, i) => (
               <div key={i} className="flex flex-col items-center text-center">
-                <div className="w-10 h-10 rounded-xl bg-purple-50/50 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400 flex items-center justify-center mb-2 shadow-sm border border-purple-100 dark:border-purple-800/30">
-                  <item.icon className="w-5 h-5" />
+                <div className="w-8 h-8 rounded-lg bg-purple-500/10 text-purple-600 dark:text-purple-400 flex items-center justify-center mb-1.5 shadow-sm border border-purple-500/20">
+                  <item.icon className="w-4 h-4" />
                 </div>
-                <h4 className="font-bold text-gray-900 dark:text-white mb-1 text-xs">{item.title}</h4>
-                <p className="text-[10px] text-gray-500 dark:text-gray-400 leading-relaxed max-w-[160px]">{item.desc}</p>
+                <h4 className="font-bold text-gray-900 dark:text-white mb-0.5 text-[11px]">{item.title}</h4>
+                <p className="text-[9px] text-gray-600 dark:text-gray-400 leading-tight max-w-[140px]">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -190,11 +190,11 @@ export default function TrainingLanding({ region }: { region: "in" | "us" }) {
       </div>
 
       {/* TRAINING CURRICULUM */}
-      <div className="w-full max-w-4xl mx-auto px-4 py-10">
-        <h3 className="text-center text-lg font-black uppercase tracking-wider mb-1 dark:text-white">Training Curriculum</h3>
-        <p className="text-center text-xs text-gray-500 mb-8">Master every aspect of the commercial cultivation ecosystem.</p>
+      <div className="w-full max-w-4xl mx-auto px-4 py-8">
+        <h3 className="text-center text-base font-black uppercase tracking-wider mb-0.5 dark:text-white">Training Curriculum</h3>
+        <p className="text-center text-[10px] text-gray-500 mb-6">Master every aspect of the commercial cultivation ecosystem.</p>
         
-        <div className="grid grid-cols-2 gap-x-4 gap-y-6">
+        <div className="grid grid-cols-2 gap-x-3 gap-y-4">
           {[
             { num: "1", title: "Oyster Mushroom", desc: "Complete grower's guide to substrate pasteurization, pinning, and harvesting for high-yield cluster cultivation." },
             { num: "2", title: "Button Mushroom", desc: "Step-by-step advanced method covering composting, casing, pinning, and temperature-controlled harvesting." },
@@ -207,13 +207,13 @@ export default function TrainingLanding({ region }: { region: "in" | "us" }) {
             { num: "9", title: "Mushroom Powder", desc: "Processing value-added products, grinding standards, packaging, and entering health supplement sectors." },
             { num: "10", title: "Farm Setup", desc: "Commercial layout planning, ventilation design, rack clearance, and hygiene protocols for sterile environments." }
           ].map((item, i) => (
-             <div key={i} className="flex gap-3">
-                <div className="w-6 h-6 shrink-0 rounded-full bg-gray-100/50 dark:bg-gray-800/50 text-gray-400 flex items-center justify-center font-bold text-xs border border-gray-200 dark:border-gray-700/50">
+             <div key={i} className="flex gap-2">
+                <div className="w-5 h-5 shrink-0 rounded-full bg-white/10 dark:bg-black/20 text-gray-700 dark:text-gray-300 flex items-center justify-center font-bold text-[9px] border border-white/20 dark:border-white/10 backdrop-blur-sm">
                   {item.num}
                 </div>
                 <div>
-                  <h4 className="font-bold text-gray-900 dark:text-white mb-0.5 text-xs">{item.title}</h4>
-                  <p className="text-[10px] text-gray-500 dark:text-gray-400 leading-relaxed">{item.desc}</p>
+                  <h4 className="font-bold text-gray-900 dark:text-white mb-0.5 text-[11px]">{item.title}</h4>
+                  <p className="text-[9px] text-gray-600 dark:text-gray-400 leading-tight">{item.desc}</p>
                 </div>
              </div>
           ))}
@@ -221,19 +221,19 @@ export default function TrainingLanding({ region }: { region: "in" | "us" }) {
       </div>
 
       {/* CALL TO ACTION BANNER */}
-      <div className="w-full max-w-4xl mx-auto my-6 rounded-2xl bg-gradient-to-r from-gray-900/80 to-indigo-900/80 backdrop-blur-md dark:from-black/60 dark:to-indigo-950/60 py-8 px-4 text-center border border-white/10">
-        <h3 className="text-[10px] font-bold text-blue-400 tracking-widest uppercase mb-1.5">Commercial Farming Essentials</h3>
-        <h2 className="text-lg sm:text-xl font-black text-white mb-3">Need High-Yield Commercial Mushroom Seed?</h2>
-        <p className="text-xs text-gray-300 max-w-xl mx-auto mb-5">High-quality, lab-grown F1 hybrid spawns for Button, Oyster, and Milky Mushrooms. Bulk delivery across India & global export.</p>
-        <button className="bg-white text-indigo-900 font-bold py-2 px-6 rounded-full shadow-lg hover:bg-gray-100 transition-colors text-xs">
+      <div className="w-full max-w-4xl mx-auto my-4 rounded-xl bg-gradient-to-r from-gray-900/60 to-indigo-900/60 backdrop-blur-xl dark:from-black/40 dark:to-indigo-950/40 py-6 px-4 text-center border border-white/20 shadow-xl">
+        <h3 className="text-[9px] font-bold text-blue-300 tracking-widest uppercase mb-1">Commercial Farming Essentials</h3>
+        <h2 className="text-base sm:text-lg font-black text-white mb-2">Need High-Yield Commercial Mushroom Seed?</h2>
+        <p className="text-[10px] text-gray-300 max-w-xl mx-auto mb-4">High-quality, lab-grown F1 hybrid spawns for Button, Oyster, and Milky Mushrooms. Bulk delivery across India & global export.</p>
+        <button className="bg-white text-indigo-900 font-bold py-1.5 px-5 rounded-full shadow-lg hover:bg-gray-100 transition-colors text-[11px]">
           Explore Organic Spawn & Seeds ↗
         </button>
       </div>
 
       {/* WHY CHOOSE OUR TRAINING */}
-      <div className="w-full max-w-4xl mx-auto px-4 py-10">
-        <h3 className="text-center text-lg font-black uppercase tracking-wider mb-8 dark:text-white">Why Choose Our Training?</h3>
-        <div className="grid grid-cols-2 gap-6 text-center">
+      <div className="w-full max-w-4xl mx-auto px-4 py-8">
+        <h3 className="text-center text-base font-black uppercase tracking-wider mb-6 dark:text-white">Why Choose Our Training?</h3>
+        <div className="grid grid-cols-2 gap-4 text-center">
            {[
               { title: "Expert Trainers", desc: "Learn from industry stalwarts with years of hands-on experience in India and abroad." },
               { title: "Practical Knowledge", desc: "We focus only on actionable, tried-and-tested procedures that work globally." },
@@ -241,11 +241,11 @@ export default function TrainingLanding({ region }: { region: "in" | "us" }) {
               { title: "Training Support", desc: "Lifetime technical guidance for button and oyster mushroom setup." }
            ].map((item, i) => (
              <div key={i}>
-                <div className="w-8 h-8 mx-auto rounded-lg bg-blue-50/50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 flex items-center justify-center mb-2">
-                  <CheckCircle2 className="w-4 h-4" />
+                <div className="w-7 h-7 mx-auto rounded-lg bg-blue-500/10 text-blue-600 dark:text-blue-400 flex items-center justify-center mb-1.5 border border-blue-500/20">
+                  <CheckCircle2 className="w-3.5 h-3.5" />
                 </div>
-                <h4 className="font-bold text-gray-900 dark:text-white mb-1 text-xs">{item.title}</h4>
-                <p className="text-[10px] text-gray-500 dark:text-gray-400 leading-relaxed">{item.desc}</p>
+                <h4 className="font-bold text-gray-900 dark:text-white mb-0.5 text-[11px]">{item.title}</h4>
+                <p className="text-[9px] text-gray-600 dark:text-gray-400 leading-tight">{item.desc}</p>
              </div>
            ))}
         </div>

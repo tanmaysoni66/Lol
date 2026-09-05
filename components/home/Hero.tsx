@@ -87,14 +87,14 @@ export const Hero = () => {
           </div>
 
           <div className="flex flex-col sm:flex-row flex-wrap gap-3 md:gap-4 mb-8">
-            <Link href="/enquiry" className="w-full sm:w-auto px-6 py-3.5 rounded-xl text-[11px] md:text-xs shadow-xl flex items-center justify-center font-bold bg-gradient-to-r from-[#7b51f8] to-[#2fd17b] hover:opacity-90 text-white transition-all hover:scale-105">
+            <Link href="/enquiry" className="w-full sm:w-auto px-5 py-3 rounded-xl text-[11px] md:text-xs shadow-[4px_4px_10px_rgba(0,0,0,0.1),-4px_-4px_10px_rgba(255,255,255,0.1)] dark:shadow-[4px_4px_10px_rgba(0,0,0,0.4),-2px_-2px_10px_rgba(255,255,255,0.05)] flex items-center justify-center font-bold bg-white/10 dark:bg-black/20 text-purple-700 dark:text-purple-300 border-t border-l border-white/40 dark:border-white/10 border-r border-b border-black/10 dark:border-black/50 transition-all backdrop-blur-xl hover:scale-105 hover:bg-white/20 dark:hover:bg-white/5">
               Enquiry Now
             </Link>
-            <a href="https://wa.me/919203544140" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto px-6 py-3.5 rounded-xl text-[11px] md:text-xs flex items-center justify-center font-bold border border-slate-300 dark:border-slate-700 bg-white/50 dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-900 dark:text-white transition-all backdrop-blur-md hover:scale-105">
+            <a href="https://wa.me/919203544140" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto px-5 py-3 rounded-xl text-[11px] md:text-xs flex items-center justify-center font-bold bg-white/10 dark:bg-black/20 text-green-700 dark:text-green-400 border-t border-l border-white/40 dark:border-white/10 border-r border-b border-black/10 dark:border-black/50 shadow-[4px_4px_10px_rgba(0,0,0,0.1),-4px_-4px_10px_rgba(255,255,255,0.1)] dark:shadow-[4px_4px_10px_rgba(0,0,0,0.4),-2px_-2px_10px_rgba(255,255,255,0.05)] transition-all backdrop-blur-xl hover:scale-105 hover:bg-white/20 dark:hover:bg-white/5">
               WhatsApp Us
             </a>
-            <a href="tel:9203544140" className="w-full sm:w-auto px-6 py-3.5 rounded-xl text-[11px] md:text-xs flex items-center justify-center font-bold border border-slate-300 dark:border-slate-700 bg-white/50 dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-900 dark:text-white transition-all backdrop-blur-md hover:scale-105">
-              Call Now: 9203544140
+            <a href="tel:9203544140" className="w-full sm:w-auto px-5 py-3 rounded-xl text-[11px] md:text-xs flex items-center justify-center font-bold bg-white/10 dark:bg-black/20 text-blue-700 dark:text-blue-400 border-t border-l border-white/40 dark:border-white/10 border-r border-b border-black/10 dark:border-black/50 shadow-[4px_4px_10px_rgba(0,0,0,0.1),-4px_-4px_10px_rgba(255,255,255,0.1)] dark:shadow-[4px_4px_10px_rgba(0,0,0,0.4),-2px_-2px_10px_rgba(255,255,255,0.05)] transition-all backdrop-blur-xl hover:scale-105 hover:bg-white/20 dark:hover:bg-white/5">
+              Call: 9203544140
             </a>
           </div>
 

@@ -36,7 +36,7 @@ export default function CTASection() {
           <div className="space-y-6 order-2 lg:order-1">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
               {[
-                { icon: Phone, label: "Call Operations", values: ["+91 9203544140", "+91 7440806690"], href: "tel:+919203544140" },
+                { icon: Phone, label: "Call Operations", values: ["+91 9203544140"], href: "tel:+919203544140" },
                 { icon: MessageCircle, label: "WhatsApp Support", values: ["Chat with Expert"], isWhatsApp: true, href: "https://wa.me/919203544140" },
                 { icon: Mail, label: "Email Support", values: ["support@organicmushroomsfarm.com"], href: "mailto:support@organicmushroomsfarm.com" },
               ].map((item, i) => (

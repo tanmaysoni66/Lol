@@ -51,13 +51,13 @@ export const DirectInquiry = () => {
                   href="https://wa.me/919203544140" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="px-5 py-3 rounded-xl text-[10px] font-black text-white text-center uppercase tracking-widest bg-gradient-to-r from-[#7b51f8] to-[#2fd17b] hover:opacity-90 shadow-lg hover:-translate-y-0.5 transition-all w-full sm:w-auto"
+                  className="px-5 py-3 rounded-xl text-[10px] font-black text-emerald-700 dark:text-emerald-400 text-center uppercase tracking-widest bg-white/10 dark:bg-black/20 border-t border-l border-white/40 dark:border-white/10 border-r border-b border-black/10 dark:border-black/50 shadow-[4px_4px_10px_rgba(0,0,0,0.1),-4px_-4px_10px_rgba(255,255,255,0.1)] dark:shadow-[4px_4px_10px_rgba(0,0,0,0.4),-2px_-2px_10px_rgba(255,255,255,0.05)] transition-all backdrop-blur-xl hover:scale-105 hover:bg-white/20 dark:hover:bg-white/5 w-full sm:w-auto"
                 >
                   Chat on<br/>WhatsApp
                 </a>
                 <a 
                   href="tel:9203544140" 
-                  className="px-5 py-3 rounded-xl text-[10px] font-black dark:text-white text-slate-900 text-center uppercase tracking-widest bg-white/50 dark:bg-[#1A1C29]/80 border border-slate-200 dark:border-white/10 hover:bg-slate-100 dark:hover:bg-white/10 shadow-sm transition-all w-full sm:w-auto backdrop-blur-md"
+                  className="px-5 py-3 rounded-xl text-[10px] font-black text-purple-700 dark:text-purple-400 text-center uppercase tracking-widest bg-white/10 dark:bg-black/20 border-t border-l border-white/40 dark:border-white/10 border-r border-b border-black/10 dark:border-black/50 shadow-[4px_4px_10px_rgba(0,0,0,0.1),-4px_-4px_10px_rgba(255,255,255,0.1)] dark:shadow-[4px_4px_10px_rgba(0,0,0,0.4),-2px_-2px_10px_rgba(255,255,255,0.05)] transition-all backdrop-blur-xl hover:scale-105 hover:bg-white/20 dark:hover:bg-white/5 w-full sm:w-auto"
                 >
                   Call +91<br/>9203544140
                 </a>
@@ -66,16 +66,16 @@ export const DirectInquiry = () => {
 
             {/* Right Card (Send Instant Inquiry) */}
             <div className="relative lg:ml-8 mt-4 lg:mt-0">
-              <div className="rounded-[2rem] bg-white/80 dark:bg-[#161726]/90 backdrop-blur-2xl border border-slate-200 dark:border-white/5 shadow-2xl p-6 md:p-8 text-center relative z-10 flex flex-col items-center justify-center min-h-[250px]">
+              <div className="rounded-[2rem] bg-white/10 dark:bg-black/20 backdrop-blur-3xl border border-white/20 dark:border-white/10 shadow-[4px_4px_20px_rgba(0,0,0,0.1),-4px_-4px_20px_rgba(255,255,255,0.1)] dark:shadow-[4px_4px_20px_rgba(0,0,0,0.4),-2px_-2px_20px_rgba(255,255,255,0.05)] p-6 md:p-8 text-center relative z-10 flex flex-col items-center justify-center min-h-[250px]">
                 <h3 className="text-base md:text-lg font-bold dark:text-white text-slate-900 mb-3">
                   Send Instant Inquiry
                 </h3>
-                <p className="text-[11px] md:text-xs dark:text-slate-400 text-slate-600 mb-6 leading-relaxed max-w-sm">
+                <p className="text-[11px] md:text-[10px] dark:text-slate-300 text-slate-700 mb-6 leading-relaxed max-w-sm">
                   Have questions about Mushroom Farming, Spawn, or Turnkey Projects? Submit your detailed requirements via our dedicated enquiry form and our experts will get back to you!
                 </p>
                 <Link 
                   href="/enquiry" 
-                  className="inline-block px-8 py-3 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-[#7b51f8] to-[#2fd17b] hover:opacity-90 shadow-[0_0_20px_rgba(47,209,123,0.3)] transition-all hover:scale-105"
+                  className="inline-block px-8 py-3 rounded-xl text-[11px] font-black uppercase tracking-widest text-purple-700 dark:text-purple-300 bg-white/10 dark:bg-black/20 border-t border-l border-white/40 dark:border-white/10 border-r border-b border-black/10 dark:border-black/50 shadow-[4px_4px_10px_rgba(0,0,0,0.1),-4px_-4px_10px_rgba(255,255,255,0.1)] dark:shadow-[4px_4px_10px_rgba(0,0,0,0.4),-2px_-2px_10px_rgba(255,255,255,0.05)] transition-all backdrop-blur-xl hover:scale-105 hover:bg-white/20 dark:hover:bg-white/5"
                 >
                   Enquiry Now
                 </Link>
