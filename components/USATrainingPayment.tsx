@@ -4,12 +4,11 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
-export default function USATrainingPayment() {
+export default function USATrainingPayment({ title, amount }: { title: string; amount: number }) {
   const router = useRouter();
   const [formData, setFormData] = useState({ name: "", email: "", phone: "" });
   const [errorMsg, setErrorMsg] = useState("");
 
-  const TRAINING_AMOUNT = 100; // 100 USD
   const CURRENCY = "USD";
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,8 +29,8 @@ export default function USATrainingPayment() {
       <h2 className="text-xl font-bold text-center mb-1 text-gray-900 dark:text-gray-100">
         USA Professional Training
       </h2>
-      <p className="text-xs text-center text-gray-600 dark:text-gray-300 mb-4">
-        Enroll in our Mushroom Cultivation Masterclass
+      <p className="text-xs text-center text-blue-600 dark:text-blue-400 mb-4 font-semibold">
+        • {title}
       </p>
 
       <div className="space-y-4 mb-4">
@@ -84,7 +83,7 @@ export default function USATrainingPayment() {
 
         <div className="flex justify-between items-center text-sm font-semibold text-gray-900 dark:text-white pb-2">
           <span>Total Fees</span>
-          <span>${TRAINING_AMOUNT}</span>
+          <span>${amount}</span>
         </div>
       </div>
 
@@ -108,7 +107,7 @@ export default function USATrainingPayment() {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({
-                amount: TRAINING_AMOUNT,
+                amount: amount,
                 currency: CURRENCY,
                 name: formData.name,
                 email: formData.email,
@@ -123,7 +122,7 @@ export default function USATrainingPayment() {
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({
                 orderID: data.orderID,
-                amount: TRAINING_AMOUNT,
+                amount: amount,
                 currency: CURRENCY,
                 name: formData.name,
                 email: formData.email,
@@ -142,7 +141,7 @@ export default function USATrainingPayment() {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({
-                amount: TRAINING_AMOUNT,
+                amount: amount,
                 currency: CURRENCY,
                 name: formData.name,
                 email: formData.email,

@@ -1,63 +1,90 @@
-import TrainingPayment from "@/components/TrainingPayment";
-import Image from "next/image";
-import Link from "next/link";
+import TrainingLanding from "@/components/TrainingLanding";
 import { Metadata } from "next";
+import { trainingCourseSchema } from "@/lib/schema/training-course-schema";
+import { trainingBreadcrumbSchema } from "@/lib/schema/training-breadcrumb-schema";
+import { trainingFaqSchema } from "@/lib/schema/training-faq-schema";
+import { organizationSchema } from "@/lib/schema/organization-schema";
+import { trainingWebPageSchema } from "@/lib/schema/training-webpage-schema";
+import { websiteSchema } from "@/lib/schema/website-schema";
+import { trainingItemListSchema } from "@/lib/schema/training-item-list-schema";
+import { trainingLocalBusinessSchema } from "@/lib/schema/training-local-business-schema";
+import { trainingCourseInstanceSchema } from "@/lib/schema/training-course-instance-schema";
+import { trainingHowToSchema } from "@/lib/schema/training-howto-schema";
+import { trainingImageSchema } from "@/lib/schema/training-image-schema";
 
 export const metadata: Metadata = {
-  title: "Professional Mushroom Cultivation Training | Organic Mushroom Farm",
-  description: "Enroll in our comprehensive mushroom cultivation masterclass. Learn professional techniques, setup strategies, and maximize your ROI with our training program in India.",
+  title: "Mushroom Farming Training in India | Online & Offline Courses",
+  description:
+    "Learn mushroom farming with basic and advanced online courses and practical offline training covering Button, Oyster and Milky mushroom cultivation, farm setup and commercial farming.",
+  keywords: [
+    "mushroom farming training",
+    "mushroom farming training in India",
+    "mushroom cultivation training",
+    "mushroom farming course",
+    "mushroom cultivation course",
+    "button mushroom training",
+    "oyster mushroom training",
+    "milky mushroom training",
+    "commercial mushroom farming training",
+    "online mushroom farming training",
+    "offline mushroom farming training",
+  ],
   alternates: {
     canonical: "https://organicmushroomsfarm.com/training",
+  },
+  openGraph: {
+    title: "Mushroom Farming Training in India | Online & Offline Courses",
+    description:
+      "Learn Button, Oyster and Milky mushroom cultivation through online and practical commercial mushroom farming training.",
+    url: "https://organicmushroomsfarm.com/training",
+    siteName: "Organic Mushroom Farm",
+    type: "website",
+    locale: "en_IN",
+    images: [
+      {
+        url: "https://res.cloudinary.com/dnw4fpk2y/image/upload/v1788594243/mushroomtraining_yftrft.png",
+        width: 1200,
+        height: 630,
+        alt: "Mushroom Farming Training - Organic Mushroom Farm",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Mushroom Farming Training | Online & Offline Courses",
+    description:
+      "Learn commercial Button, Oyster and Milky mushroom cultivation with Organic Mushroom Farm training.",
+    images: ["https://res.cloudinary.com/dnw4fpk2y/image/upload/v1788594243/mushroomtraining_yftrft.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
 };
 
 export default function TrainingPage() {
   return (
-    <main className="relative flex flex-col items-center justify-center min-h-[100dvh] overflow-hidden bg-gray-50 dark:bg-gray-900">
-      {/* Background Blurs and Shapes */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-purple-300 dark:bg-purple-900/30 rounded-full mix-blend-multiply filter blur-[100px] opacity-70 animate-pulse"></div>
-        <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-indigo-300 dark:bg-indigo-900/30 rounded-full mix-blend-multiply filter blur-[120px] opacity-60 animate-pulse" style={{ animationDelay: "2s" }}></div>
-      </div>
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(trainingCourseSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(trainingBreadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(trainingFaqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(trainingWebPageSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(trainingItemListSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(trainingLocalBusinessSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(trainingCourseInstanceSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(trainingHowToSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(trainingImageSchema) }} />
 
-      {/* Main Content Area */}
-      <div className="z-10 w-full px-4 pt-4 pb-8 flex flex-col items-center max-h-[100dvh] justify-center space-y-4">
-        
-        {/* Logo and Back Button Container */}
-        <div className="w-full max-w-sm flex justify-between items-center px-2">
-          <Link href="/" className="text-gray-500 hover:text-purple-600 dark:text-gray-400 dark:hover:text-purple-400 transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-            </svg>
-          </Link>
-          
-          <div className="relative w-12 h-12 rounded-full bg-white dark:bg-gray-800 shadow-md p-1 border border-purple-100 dark:border-purple-900/50">
-            <Image
-              src="https://res.cloudinary.com/dnw4fpk2y/image/upload/q_auto,f_auto/v1785226016/IMG-20260728-WA0000-removebg-preview_bztf7y.png"
-              alt="Brand Logo"
-              fill
-              className="object-contain p-1"
-              referrerPolicy="no-referrer"
-            />
-          </div>
-          
-          <div className="w-5" /> {/* Empty div for centering logo */}
-        </div>
-
-        {/* Payment Component */}
-        <TrainingPayment />
-
-        {/* Trust Badges */}
-        <div className="text-center">
-          <p className="text-[10px] text-gray-500 dark:text-gray-400 flex items-center justify-center gap-1">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 text-green-500" viewBox="0 0 20 20" fill="currentColor">
-              <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
-            </svg>
-            Secured by Razorpay. 100% Safe Payments.
-          </p>
-        </div>
-
-      </div>
-    </main>
+      <TrainingLanding region="in" />
+    </>
   );
 }

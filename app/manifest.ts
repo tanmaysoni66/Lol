@@ -1,25 +1,26 @@
-import { MetadataRoute } from 'next';
+import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Organic Mushrooms Farm - Commercial Cultivation & Setup',
-    short_name: 'OrganicMushroom',
-    description: 'Commercial Mushroom Training, Turnkey Farm Setup, and F1 Hybrid Spawn Pan-India & Globally.',
-    start_url: '/',
-    display: 'standalone',
-    background_color: '#faf5ff',
-    theme_color: '#7C3AED',
+    name: "Organic Mushroom Farm",
+    short_name: "Organic Mushroom Farm",
+    description:
+      "Mushroom farming training, cultivation guidance and commercial mushroom farming resources.",
+    start_url: "/",
+    display: "standalone",
+    background_color: "#ffffff",
+    theme_color: "#ffffff",
     icons: [
       {
-        src: '/icon-192x192.png',
-        sizes: '192x192',
-        type: 'image/png',
+        src: "/icon.png",
+        sizes: "any",
+        type: "image/png"
       },
       {
-        src: '/icon-512x512.png',
-        sizes: '512x512',
-        type: 'image/png',
-      },
-    ],
+        src: "/apple-icon.png",
+        sizes: "180x180",
+        type: "image/png"
+      }
+    ]
   };
 }

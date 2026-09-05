@@ -4,7 +4,7 @@ import { useState } from "react";
 import Script from "next/script";
 import { useRouter } from "next/navigation";
 
-export default function TrainingPayment() {
+export default function TrainingPayment({ title, amount }: { title: string; amount: number }) {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
@@ -14,7 +14,6 @@ export default function TrainingPayment() {
     phone: "",
   });
 
-  const TRAINING_AMOUNT = 5000; // Fixed amount for Indian Training
   const CURRENCY = "INR";
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,7 +30,7 @@ export default function TrainingPayment() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          amount: TRAINING_AMOUNT,
+          amount: amount,
           currency: CURRENCY,
           name: formData.name,
           email: formData.email,
@@ -78,7 +77,7 @@ export default function TrainingPayment() {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({
-                amount: TRAINING_AMOUNT,
+                amount: amount,
                 currency: CURRENCY,
                 name: formData.name,
                 email: formData.email,
@@ -109,8 +108,8 @@ export default function TrainingPayment() {
         <h2 className="text-xl font-bold text-center mb-1 text-gray-900 dark:text-gray-100">
           Professional Training
         </h2>
-        <p className="text-xs text-center text-gray-600 dark:text-gray-300 mb-6">
-          Enroll in our Mushroom Cultivation Masterclass
+        <p className="text-xs text-center text-purple-600 dark:text-purple-400 mb-6 font-semibold">
+          • {title}
         </p>
 
         <form onSubmit={handlePayment} className="space-y-4">
@@ -162,7 +161,7 @@ export default function TrainingPayment() {
           <div className="pt-2">
             <div className="flex justify-between items-center mb-4 text-sm font-semibold text-gray-900 dark:text-white">
               <span>Total Fees</span>
-              <span>₹{TRAINING_AMOUNT}</span>
+              <span>₹{amount}</span>
             </div>
 
             <button
