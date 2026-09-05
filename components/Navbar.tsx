@@ -29,8 +29,9 @@ import {
   HelpCircle,
   PhoneCall,
   Zap,
+  Thermometer,
+  Droplets,
 } from "lucide-react";
-import NavbarTopTicker from "./NavbarTopTicker";
 
 const NAV_ITEMS = [
   { name: "Home", href: "/", icon: Home },
@@ -94,8 +95,74 @@ export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [expandedMobileMenu, setExpandedMobileMenu] = useState<string | null>(null);
+  const [weather, setWeather] = useState({
+    temp: 24,
+    humidity: 96,
+    country: "India",
+  });
 
   const pathname = usePathname();
+
+  // Cached lightweight weather fetch
+  useEffect(() => {
+    const cached =
+      typeof window !== "undefined"
+        ? sessionStorage.getItem("omf_nav_country_weather")
+        : null;
+    if (cached) {
+      try {
+        setWeather(JSON.parse(cached));
+        return;
+      } catch {}
+    }
+
+    let isMounted = true;
+    async function fetchWeather() {
+      try {
+        let lat = 23.1815;
+        let lon = 79.9864;
+        let country = "India";
+        try {
+          const res = await fetch("https://get.geojs.io/v1/ip/geo.json", { cache: "force-cache" });
+          if (res.ok) {
+            const data = await res.json();
+            if (data.latitude && data.longitude) {
+              lat = parseFloat(data.latitude);
+              lon = parseFloat(data.longitude);
+            }
+            if (data.country) country = data.country;
+          }
+        } catch {}
+
+        const wRes = await fetch(
+          `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m`
+        );
+        if (wRes.ok) {
+          const wData = await wRes.json();
+          const wState = {
+            temp: Math.round(wData.current?.temperature_2m ?? 24),
+            humidity: Math.round(wData.current?.relative_humidity_2m ?? 96),
+            country,
+          };
+          if (isMounted) {
+            setWeather(wState);
+            try {
+              sessionStorage.setItem("omf_nav_country_weather", JSON.stringify(wState));
+            } catch {}
+          }
+        }
+      } catch {}
+    }
+    fetchWeather();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const flag =
+    weather.country.toLowerCase().includes("india") || weather.country === "IN"
+      ? "🇮🇳"
+      : "🌍";
 
   // Optimized passive scroll listener to avoid layout thrashing
   useEffect(() => {
@@ -162,7 +229,7 @@ export const Navbar = () => {
           }`}
         >
           <div className="flex items-center justify-between w-full max-w-7xl mx-auto gap-2">
-            {/* Stable Branding & Logo (No layout shift next to logo) */}
+            {/* Stable Branding & Logo (Clean original navbar style) */}
             <Link
               href="/"
               className="flex items-center gap-2 sm:gap-2.5 group shrink-0"
@@ -176,7 +243,7 @@ export const Navbar = () => {
                 height="40"
               />
               <div className="flex flex-col">
-                <span className="text-[13px] xs:text-[15px] sm:text-base md:text-lg lg:text-[12px] xl:text-[14px] font-black tracking-tight text-slate-900 dark:text-white leading-tight">
+                <span className="text-[13px] xs:text-[15px] sm:text-base md:text-lg lg:text-base xl:text-lg font-black tracking-tight text-slate-900 dark:text-white leading-tight">
                   Organic{" "}
                   <span className="text-emerald-600 dark:text-emerald-400">
                     Mushroom Farm
@@ -188,11 +255,6 @@ export const Navbar = () => {
               </div>
             </Link>
 
-            {/* Desktop / Large Screen Live Weather & Batch Ticker inside Navbar */}
-            <div className="hidden lg:flex items-center mx-2 shrink-0">
-              <NavbarTopTicker />
-            </div>
-
             {/* Desktop Navigation Links */}
             <div className="hidden lg:flex items-center gap-0.5 xl:gap-1 ml-auto">
               {NAV_ITEMS.map((item) => {
@@ -203,7 +265,7 @@ export const Navbar = () => {
                   <div key={item.name} className="relative group">
                     <Link
                       href={item.href}
-                      className={`text-[10px] xl:text-[12px] font-bold transition-all flex items-center gap-1 px-2 py-1.5 rounded-lg leading-tight ${
+                      className={`text-[11px] xl:text-[13px] font-bold transition-all flex items-center gap-1 px-2.5 py-1.5 rounded-lg leading-tight ${
                         isActive
                           ? "text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-500/10"
                           : "text-slate-700 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-white hover:bg-slate-100/80 dark:hover:bg-white/5"
@@ -251,11 +313,6 @@ export const Navbar = () => {
               </button>
             </div>
           </div>
-
-          {/* Mobile Live Weather & Batch Ticker (Inside Navbar, Lag-Free) */}
-          <div className="lg:hidden w-full mt-1 pt-1 border-t border-slate-200/60 dark:border-white/10 overflow-hidden">
-            <NavbarTopTicker />
-          </div>
         </nav>
       </header>
 
@@ -281,28 +338,51 @@ export const Navbar = () => {
               transition={{ duration: 0.2, ease: "easeOut" }}
               className="relative w-full max-h-[85vh] bg-white dark:bg-slate-950 text-slate-900 dark:text-white rounded-t-3xl overflow-hidden shadow-2xl border-t border-slate-200 dark:border-slate-800 flex flex-col will-change-transform"
             >
-              {/* Top Header of Mobile Menu */}
-              <div className="flex items-center justify-between p-3.5 border-b border-slate-200 dark:border-slate-800 shrink-0 bg-slate-50 dark:bg-slate-900/50">
-                <div className="flex items-center gap-2">
+              {/* Top Header of Mobile Menu with Logo & Live Weather / Batch Info */}
+              <div className="flex items-center justify-between p-3.5 border-b border-slate-200 dark:border-slate-800 shrink-0 bg-slate-50 dark:bg-slate-900/60">
+                <div className="flex items-center gap-2.5 min-w-0">
                   <img
                     src="https://res.cloudinary.com/dtpktdkqw/image/upload/v1782269097/IMG_1329_optimized_30_c6qtnw.png"
                     alt="Logo"
-                    className="w-7 h-7 object-contain"
+                    className="w-8 h-8 object-contain shrink-0"
                   />
-                  <div className="flex flex-col">
-                    <span className="text-xs font-bold text-slate-900 dark:text-white leading-tight">
-                      Organic Mushroom Farm
-                    </span>
-                    <span className="text-[9px] text-emerald-600 dark:text-emerald-400 font-semibold">
-                      New Batch: In 2 Days 🍄
-                    </span>
+                  <div className="flex flex-col min-w-0">
+                    <div className="flex items-center gap-1.5 flex-wrap">
+                      <span className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white leading-tight truncate">
+                        Organic Mushroom Farm
+                      </span>
+                      <span className="text-[10px] text-slate-400">•</span>
+                      <span className="text-[10px] font-semibold text-slate-700 dark:text-slate-200">
+                        {flag} {weather.country}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-1.5 text-[10px] text-slate-500 dark:text-slate-400 font-medium flex-wrap mt-0.5">
+                      <span className="text-amber-600 dark:text-amber-400 font-semibold flex items-center gap-0.5">
+                        <Thermometer className="w-3 h-3" />
+                        {weather.temp}°C
+                      </span>
+                      <span>•</span>
+                      <span className="text-cyan-600 dark:text-cyan-400 font-semibold flex items-center gap-0.5">
+                        <Droplets className="w-3 h-3" />
+                        {weather.humidity}% RH
+                      </span>
+                      <span>•</span>
+                      <Link
+                        href="/workshop"
+                        onClick={closeMobileMenu}
+                        className="text-emerald-600 dark:text-emerald-400 font-bold flex items-center gap-1 hover:underline"
+                      >
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block animate-ping" />
+                        <span>New Batch: In 2 Days 🍄</span>
+                      </Link>
+                    </div>
                   </div>
                 </div>
 
                 <button
                   type="button"
                   onClick={closeMobileMenu}
-                  className="p-1.5 rounded-full bg-slate-200/80 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors"
+                  className="p-1.5 rounded-full bg-slate-200/80 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors shrink-0 ml-2"
                   aria-label="Close Menu"
                 >
                   <X size={18} />
