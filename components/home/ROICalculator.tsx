@@ -32,7 +32,7 @@ export const ROICalculator = () => {
           </p>
         </div>
 
-        <div className="bg-white/60 dark:bg-slate-900/60 backdrop-blur-2xl border-t border-l border-white/80 dark:border-white/20 border-r border-b border-black/5 dark:border-black/50 shadow-[8px_8px_20px_rgba(0,0,0,0.08),-4px_-4px_16px_rgba(255,255,255,0.7)] dark:shadow-[8px_8px_20px_rgba(0,0,0,0.4),-4px_-4px_16px_rgba(255,255,255,0.05)] rounded-2xl p-4 flex flex-col md:flex-row gap-5">
+        <div className="bg-transparent p-2 md:p-4 rounded-2xl flex flex-col md:flex-row gap-5">
           <div className="flex-1 space-y-4">
             <div>
               <label className="block text-[9px] font-bold text-slate-900 dark:text-white mb-1.5">Number of Bags/Beds</label>

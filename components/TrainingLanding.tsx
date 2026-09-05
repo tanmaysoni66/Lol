@@ -21,7 +21,7 @@ export default function TrainingLanding({ region }: { region: "in" | "us" }) {
 
         {/* Region Toggle */}
         <div className="flex justify-center mb-6">
-          <div className="bg-white/10 dark:bg-black/20 backdrop-blur-md p-1 rounded-full inline-flex shadow-xl border border-white/20 dark:border-white/10">
+          <div className="bg-transparent backdrop-blur-md p-1 rounded-full inline-flex shadow-xl border border-white/20 dark:border-white/10">
             <Link 
               href="/training"
               className={`px-3 py-1.5 rounded-full text-[10px] font-semibold transition-all ${pathname === '/training' ? 'bg-purple-600 text-white shadow-md' : 'text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400'}`}
@@ -54,7 +54,7 @@ export default function TrainingLanding({ region }: { region: "in" | "us" }) {
 
         <div className="grid md:grid-cols-2 gap-3 mb-6">
           {data.online.map((plan, i) => (
-            <div key={plan.id} className={`relative bg-white/10 dark:bg-black/20 backdrop-blur-xl rounded-xl p-3 shadow-xl border ${i === 1 ? 'border-purple-400/50 dark:border-purple-500/30 shadow-purple-500/10' : 'border-white/20 dark:border-white/10'}`}>
+            <div key={plan.id} className={`relative bg-transparent backdrop-blur-xl rounded-xl p-3 shadow-xl border ${i === 1 ? 'border-purple-400/50 dark:border-purple-500/30 shadow-purple-500/10' : 'border-white/20 dark:border-white/10'}`}>
               {/* Badges */}
               <div className="flex gap-2 absolute -top-2.5 left-4">
                 {plan.badge && (
@@ -117,7 +117,7 @@ export default function TrainingLanding({ region }: { region: "in" | "us" }) {
 
             <div className="grid md:grid-cols-2 gap-3 mb-6">
               {data.offline.map((plan, i) => (
-                <div key={plan.id} className="bg-white/10 dark:bg-black/20 backdrop-blur-xl rounded-xl p-3 shadow-xl border border-white/20 dark:border-white/10 flex flex-col">
+                <div key={plan.id} className="bg-transparent backdrop-blur-xl rounded-xl p-3 shadow-xl border border-white/20 dark:border-white/10 flex flex-col">
                   <div className="mb-2.5">
                     <span className="text-[8px] font-bold text-blue-600 dark:text-blue-400 tracking-widest uppercase bg-blue-500/10 px-2 py-0.5 rounded inline-block mb-1.5">
                       Focus: {plan.focus}
@@ -163,7 +163,7 @@ export default function TrainingLanding({ region }: { region: "in" | "us" }) {
       </div>
       
       {/* WHAT YOU WILL GET (Shared styling) */}
-      <div className="w-full bg-white/5 dark:bg-black/10 backdrop-blur-md py-6 border-y border-white/10 dark:border-gray-800/50">
+      <div className="w-full bg-transparent backdrop-blur-sm py-6 border-y border-white/10 dark:border-gray-800/50">
         <div className="max-w-4xl mx-auto px-4">
           <h3 className="text-center text-base font-black uppercase tracking-wider mb-0.5 dark:text-white">What You Will Get</h3>
           <p className="text-center text-[10px] text-gray-500 mb-6">Everything you need to succeed in commercial mushroom farming.</p>
@@ -208,7 +208,7 @@ export default function TrainingLanding({ region }: { region: "in" | "us" }) {
             { num: "10", title: "Farm Setup", desc: "Commercial layout planning, ventilation design, rack clearance, and hygiene protocols for sterile environments." }
           ].map((item, i) => (
              <div key={i} className="flex gap-2">
-                <div className="w-5 h-5 shrink-0 rounded-full bg-white/10 dark:bg-black/20 text-gray-700 dark:text-gray-300 flex items-center justify-center font-bold text-[9px] border border-white/20 dark:border-white/10 backdrop-blur-sm">
+                <div className="w-5 h-5 shrink-0 rounded-full bg-transparent text-gray-700 dark:text-gray-300 flex items-center justify-center font-bold text-[9px] border border-white/20 dark:border-white/10 backdrop-blur-sm">
                   {item.num}
                 </div>
                 <div>
@@ -252,27 +252,29 @@ export default function TrainingLanding({ region }: { region: "in" | "us" }) {
       </div>
 
       {/* ECOSYSTEM / ABOUT */}
-      <div className="w-full bg-white/20 dark:bg-gray-800/10 backdrop-blur-sm py-10 border-y border-gray-200/50 dark:border-gray-700/30">
-        <div className="max-w-4xl mx-auto px-4">
-          <h3 className="text-center text-lg font-black uppercase tracking-wider mb-6 dark:text-white">Experience Our Commercial Ecosystem</h3>
-          
-          <div className="bg-white/40 dark:bg-gray-900/40 backdrop-blur-md rounded-2xl p-5 md:p-6 border border-gray-200/50 dark:border-gray-700/50">
-             <h4 className="text-sm font-bold text-gray-900 dark:text-white mb-3 uppercase tracking-wide">Start Your Commercial Mushroom Farming Journey {region === 'in' ? 'in India' : 'Globally'}</h4>
-             
-             <div className="space-y-3 text-xs text-gray-600 dark:text-gray-300 leading-relaxed">
-               <p>
-                 Looking for the best <strong>mushroom farming training</strong>? At Organic Mushrooms Farm, we provide the most comprehensive button and oyster mushroom training courses designed specifically for international global market standards. Our modules cover everything from raw substrate preparation to precision climate control.
-               </p>
-               <p>
-                 Our <strong>online mushroom farming training</strong> is perfect for those who want to learn at their own pace. We comprehensively cover technical aspects of high-yield milky mushroom and oyster mushroom growing in detailed multi-page formats as well, ensuring you have a diverse commercial portfolio.
-               </p>
-               <p>
-                 If you're wondering <strong>how to start mushroom farming business</strong> in USA, Australia, or India, our training is the ultimate first step. We provide the blueprint for building an indoor commercial mushroom plant that yields high-quality produce consistently. From students learning farming basics to established entrepreneurs scaling their units, our curriculum caters to all.
-               </p>
-             </div>
+      {region === "in" && (
+        <div className="w-full bg-transparent py-10 border-y border-gray-200/20 dark:border-gray-700/20">
+          <div className="max-w-4xl mx-auto px-4">
+            <h3 className="text-center text-lg font-black uppercase tracking-wider mb-6 dark:text-white">Experience Our Commercial Ecosystem</h3>
+            
+            <div className="bg-transparent rounded-2xl p-5 md:p-6 border border-gray-200/20 dark:border-gray-700/20">
+              <h4 className="text-sm font-bold text-gray-900 dark:text-white mb-3 uppercase tracking-wide">Start Your Commercial Mushroom Farming Journey {region === 'in' ? 'in India' : 'Globally'}</h4>
+              
+              <div className="space-y-3 text-xs text-gray-600 dark:text-gray-300 leading-relaxed">
+                <p>
+                  Looking for the best <strong>mushroom farming training</strong>? At Organic Mushrooms Farm, we provide the most comprehensive button and oyster mushroom training courses designed specifically for international global market standards. Our modules cover everything from raw substrate preparation to precision climate control.
+                </p>
+                <p>
+                  Our <strong>online mushroom farming training</strong> is perfect for those who want to learn at their own pace. We comprehensively cover technical aspects of high-yield milky mushroom and oyster mushroom growing in detailed multi-page formats as well, ensuring you have a diverse commercial portfolio.
+                </p>
+                <p>
+                  If you're wondering <strong>how to start mushroom farming business</strong> in USA, Australia, or India, our training is the ultimate first step. We provide the blueprint for building an indoor commercial mushroom plant that yields high-quality produce consistently. From students learning farming basics to established entrepreneurs scaling their units, our curriculum caters to all.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       {/* FAQs */}
       <div className="w-full max-w-4xl mx-auto px-4 py-10">
@@ -296,11 +298,118 @@ export default function TrainingLanding({ region }: { region: "in" | "us" }) {
           <ShieldCheck className="w-5 h-5" />
         </div>
         <h3 className="text-base font-bold text-gray-900 dark:text-white mb-3">Certified E-E-A-T Excellence</h3>
-        <div className="text-[10px] text-gray-500 dark:text-gray-400 leading-relaxed text-left space-y-2 bg-white/30 dark:bg-gray-800/30 backdrop-blur-sm p-4 rounded-xl border border-gray-200/50 dark:border-gray-700/50">
+        <div className="text-[10px] text-gray-500 dark:text-gray-400 leading-relaxed text-left space-y-2 bg-transparent p-4 rounded-xl border border-gray-200/20 dark:border-gray-700/20">
           <p><strong className="text-gray-700 dark:text-gray-300">Experience & Expertise:</strong> With years of hands-on cultivation of over 10 mushroom varieties (Button, Oyster, Milky, Cordyceps) and world-class commercial infrastructure setups pan-India.</p>
           <p><strong className="text-gray-700 dark:text-gray-300">Authoritativeness & Trust:</strong> Certified by leading agricultural bodies, led by agri-tech expert Tanish Soni, and highly rated by thousands of trained farmers globally. Verified operations.</p>
         </div>
       </div>
+
+      {region === "us" && (
+        <div className="w-full bg-transparent py-10 border-t border-gray-200/20 dark:border-gray-700/20 mt-10">
+          <div className="max-w-4xl mx-auto px-4">
+            <h3 className="text-center text-lg font-black uppercase tracking-wider mb-6 dark:text-white">
+              Build a Highly Profitable Organic Mushroom Farm: A Global Blueprint
+            </h3>
+
+            <div className="bg-transparent rounded-2xl p-5 md:p-6 border border-gray-200/20 dark:border-gray-700/20 mb-8">
+              <div className="space-y-4 text-[11px] md:text-xs text-gray-700 dark:text-gray-300 leading-relaxed">
+                <p>
+                  The demand for fresh, locally grown organic mushrooms is skyrocketing worldwide. From bustling local farmer&apos;s markets to high-end restaurants and organic grocery chains, buyers are constantly looking for premium-quality Oyster, Button, and specialty mushrooms.
+                </p>
+                <p>
+                  Our comprehensive online mushroom cultivation training program is specifically designed to help you tap into this lucrative agricultural market, no matter where you live. Whether you want to start a small homestead project in your basement or launch a full-scale commercial indoor mushroom farm, we provide the exact blueprints, climate control strategies, and scalable business models you need to succeed globally.
+                </p>
+              </div>
+            </div>
+
+            <h4 className="text-center text-base font-bold uppercase tracking-wider mb-6 dark:text-white">
+              Why Choose Indoor Mushroom Cultivation?
+            </h4>
+            <div className="grid md:grid-cols-3 gap-4 mb-10">
+              <div className="bg-transparent p-4 rounded-xl border border-gray-200/20 dark:border-gray-700/20 text-center">
+                <h5 className="font-bold text-gray-900 dark:text-white mb-2 text-xs">Year-Round Harvest</h5>
+                <p className="text-[10px] md:text-[11px] text-gray-600 dark:text-gray-400">
+                  With the right indoor setup, you become completely independent of outside weather conditions. This allows for continuous, predictable income, whether you face freezing winters or scorching summers.
+                </p>
+              </div>
+              <div className="bg-transparent p-4 rounded-xl border border-gray-200/20 dark:border-gray-700/20 text-center">
+                <h5 className="font-bold text-gray-900 dark:text-white mb-2 text-xs">High Yield, Small Space</h5>
+                <p className="text-[10px] md:text-[11px] text-gray-600 dark:text-gray-400">
+                  You don&apos;t need acres of expensive agricultural land. Our training teaches you how to grow hundreds of pounds of mushrooms in a standard spare room, garage, or custom grow tent using vertical farming techniques.
+                </p>
+              </div>
+              <div className="bg-transparent p-4 rounded-xl border border-gray-200/20 dark:border-gray-700/20 text-center">
+                <h5 className="font-bold text-gray-900 dark:text-white mb-2 text-xs">Fast Return on Investment (ROI)</h5>
+                <p className="text-[10px] md:text-[11px] text-gray-600 dark:text-gray-400">
+                  Unlike traditional farming, mushrooms have a rapid growth cycle. With our step-by-step mushroom farming business plan, you can start seeing returns on your investment in just a matter of weeks.
+                </p>
+              </div>
+            </div>
+
+            <h4 className="text-center text-base font-bold uppercase tracking-wider mb-6 dark:text-white">
+              Frequently Asked Questions (FAQs)
+            </h4>
+            
+            <div className="space-y-3">
+              {[
+                {
+                  q: "Do I need a large farm to take this online mushroom cultivation course?",
+                  a: "No! Our Basic Cultivation module teaches you how to start a profitable mushroom business in small spaces like a spare room, garage, or basement using strictly controlled indoor environments."
+                },
+                {
+                  q: "Are the climate control methods suitable for my local weather?",
+                  a: "Absolutely. The Advanced Commercial Training covers automated HVAC, humidifiers, and fogger systems that help you maintain the perfect fruiting temperatures indoors, regardless of how hot, cold, dry, or humid your outside weather conditions are."
+                },
+                {
+                  q: "How can I sell my mushrooms locally?",
+                  a: "The advanced program includes a dedicated module on B2B sales and marketing strategies. You will learn exactly how to approach local farmer's markets, organic grocery stores, and local restaurants for highly profitable wholesale tie-ups."
+                },
+                {
+                  q: "What payment methods are accepted for international students?",
+                  a: "We accept all major global credit and debit cards through our secure payment gateways. For your convenience and global accessibility, our course pricing is clearly listed in USD ($)."
+                },
+                {
+                  q: "Is mushroom farming a profitable business model?",
+                  a: "Yes, specialty organic mushrooms like Oyster and Button carry a premium price tag at farmer's markets and organic stores worldwide. Our Advanced Commercial Training covers specific marketing and sales strategies to help you connect with high-paying local buyers, restaurants, and wholesalers to maximize your profit margins."
+                },
+                {
+                  q: "Do I need a large agricultural property to get started?",
+                  a: "Not at all. Our step-by-step guides focus heavily on controlled indoor environments. The Basic Cultivation plan is perfect for utilizing small spaces like a spare bedroom, while the Advanced Plan teaches you how to scale up using vertical racking systems in commercial warehouses, basements, or large sheds."
+                },
+                {
+                  q: "Where will I get the equipment and mushroom spawn in my country?",
+                  a: "Our training teaches you the fundamental universal principles of substrate preparation, sterilization, and climate control. The equipment required (like humidifiers, HEPA filters, and HVAC units) can be easily sourced from local hardware stores or global online retailers like Amazon. We also guide you on how to identify and select high-quality spawn from reliable regional suppliers near you."
+                },
+                {
+                  q: "How much time does it take to maintain a mushroom grow room daily?",
+                  a: "Once your automated climate systems (covered in our Advanced Plan) are set up, daily maintenance is minimal. For a basic home setup, it takes less than 30 minutes a day to monitor humidity, temperature, and fresh air exchange."
+                },
+                {
+                  q: "Which mushroom varieties are best to grow in my specific climate?",
+                  a: "We cover cultivation techniques for multiple varieties to ensure global success. For colder regions, traditional Button and Oyster mushrooms are excellent choices. If you live in a hotter, tropical, or arid climate, our Advanced program includes training on high-temperature varieties like Milky Mushrooms, ensuring you can grow successfully no matter where you are located on the map."
+                },
+                {
+                  q: "Will I receive ongoing support after purchasing the course?",
+                  a: "Absolutely. We understand that hands-on farming comes with unique challenges. Enrolling in our Advanced Commercial Training gives you exclusive access to our private community and ongoing technical support to help you troubleshoot any contamination issues or climate control problems as you scale your farm."
+                },
+                {
+                  q: "Are the climate control metrics easy to understand for international growers?",
+                  a: "Yes, the training is designed to be universally applicable. We explain the exact science behind perfect humidity, airflow, and temperature control, making it easy to adapt the settings on your local thermostats and hygrometers, whether you measure in Celsius or Fahrenheit."
+                }
+              ].map((faq, i) => (
+                <div key={i} className="bg-transparent rounded-xl p-4 md:p-5 border border-gray-200/20 dark:border-gray-700/20">
+                  <h5 className="text-[12px] md:text-[13px] font-bold text-gray-900 dark:text-white mb-2 flex items-start gap-2">
+                    <span className="text-blue-600 dark:text-blue-400">Q:</span> {faq.q}
+                  </h5>
+                  <p className="text-[10px] md:text-[11px] text-gray-700 dark:text-gray-300 leading-relaxed pl-5">
+                    {faq.a}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
 
     </div>
   );

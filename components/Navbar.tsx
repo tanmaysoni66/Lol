@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "motion/react";
-import { Home, Info, Award, Settings, MessageSquare, ChevronDown, Menu, X, Facebook, Instagram, Twitter, Youtube, Linkedin } from "lucide-react";
+import { Home, Info, Award, Settings, MessageSquare, ChevronDown, Menu, X, Facebook, Instagram, Twitter, Youtube, Linkedin, Send, User, BookOpen, Layers, Briefcase, Calendar, Image as ImageIcon, Cloud, FileText, HelpCircle, PhoneCall, Zap } from "lucide-react";
 import DynamicGreeting from "./DynamicGreeting";
 
 const NAV_ITEMS = [
@@ -18,8 +18,49 @@ const NAV_ITEMS = [
     ],
   },
   { name: "Training", href: "/training", icon: Award },
-  { name: "Equipment", href: "/equipment", icon: Settings },
-  { name: "Contact", href: "/contact", icon: MessageSquare },
+  { name: "Equipment", href: "/equipment", icon: Zap },
+  {
+    name: "Learning",
+    href: "/learning",
+    icon: BookOpen,
+    subMenu: [
+      { name: "Mushroom Types", href: "/mushroom-types" },
+      { name: "Business Plan", href: "/business-plan" },
+      { name: "ROI Calculator", href: "/roi-calculator" },
+      { name: "Daily Prices", href: "/daily-prices" },
+      { name: "Careers", href: "/careers" },
+    ],
+  },
+  {
+    name: "Services",
+    href: "/services",
+    icon: Layers,
+    subMenu: [
+      { name: "Spawn Supply", href: "/spawn-supply" },
+      { name: "Compost Production", href: "/compost-production" },
+      { name: "Consultancy", href: "/consultancy" },
+      { name: "Marketing Support", href: "/marketing-support" },
+      { name: "Cold Chain", href: "/cold-chain" },
+      { name: "Government Subsidy", href: "/government-subsidy" },
+      { name: "Franchise", href: "/franchise" },
+    ],
+  },
+  { name: "Turnkey Projects", href: "/turnkey-projects", icon: Briefcase },
+  { name: "Workshop", href: "/workshop", icon: Calendar },
+  { name: "Gallery", href: "/gallery", icon: ImageIcon },
+  { name: "Live Weather", href: "/live-weather", icon: Cloud },
+  { name: "Blog", href: "/blog", icon: FileText },
+  { name: "FAQ", href: "/faq", icon: HelpCircle },
+  {
+    name: "Contact",
+    href: "/contact",
+    icon: PhoneCall,
+    subMenu: [
+      { name: "Contact Us", href: "/contact-us" },
+      { name: "On Site Visit", href: "/on-site-visit" },
+      { name: "Call Now", href: "tel:+919203544140" },
+    ],
+  },
 ];
 
 export const Navbar = () => {
@@ -71,7 +112,7 @@ export const Navbar = () => {
   return (
     <>
       <nav
-        className={`fixed left-1/2 -translate-x-1/2 z-50 backdrop-blur-2xl bg-white/70 dark:bg-[#1C1936]/80 border py-2.5 md:py-2 px-3 sm:px-5 md:px-6 lg:px-4 xl:px-5 transition-all duration-300 shadow-[0_8px_32px_rgba(0,0,0,0.12)] border-white/20 dark:border-white/10 ${isScrolled ? "top-0 w-full max-w-full rounded-none border-t-0 border-l-0 border-r-0 shadow-[0_16px_40px_-10px_rgba(0,0,0,0.2)]" : "top-3 md:top-6 w-[calc(100%-16px)] sm:w-[calc(100%-32px)] md:w-[calc(100%-48px)] max-w-7xl rounded-[2rem]"}`}
+        className={`fixed left-1/2 -translate-x-1/2 z-50 backdrop-blur-2xl bg-transparent border py-2.5 md:py-2 px-3 sm:px-5 md:px-6 lg:px-4 xl:px-5 transition-all duration-300 shadow-[0_8px_32px_rgba(0,0,0,0.12)] border-white/20 dark:border-white/10 ${isScrolled ? "top-0 w-full max-w-full rounded-none border-t-0 border-l-0 border-r-0 shadow-[0_16px_40px_-10px_rgba(0,0,0,0.2)]" : "top-3 md:top-6 w-[calc(100%-16px)] sm:w-[calc(100%-32px)] md:w-[calc(100%-48px)] max-w-7xl rounded-[2rem]"}`}
       >
         <div className="flex items-center justify-between w-full max-w-7xl mx-auto">
           <Link href="/" className="flex items-center gap-1.5 sm:gap-3 group shrink-0">
@@ -144,12 +185,12 @@ export const Navbar = () => {
                   </Link>
                   {hasSubMenu && (
                     <div className="absolute top-full left-0 pt-2 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all z-[100]">
-                      <div className="backdrop-blur-md bg-white/80 dark:bg-slate-900/80 p-2 min-w-[200px] rounded-xl border dark:border-white/10 border-black/10 shadow-[0_10px_40px_-10px_rgba(124,58,237,0.15)]">
+                      <div className="backdrop-blur-md bg-transparent p-2 min-w-[200px] rounded-xl border dark:border-white/10 border-black/10 shadow-[0_10px_40px_-10px_rgba(124,58,237,0.15)]">
                         {item.subMenu!.map((sub: any) => (
                           <Link
                             key={sub.name}
                             href={sub.href}
-                            className="block px-4 py-2.5 text-[12px] font-bold dark:text-slate-400 text-slate-600 hover:text-slate-900 dark:hover:text-white hover:dark:bg-white/10 bg-black/10 rounded-lg transition-all"
+                            className="block px-4 py-2.5 text-[12px] font-bold dark:text-slate-400 text-slate-600 hover:text-slate-900 dark:hover:text-white hover:dark:bg-white/10 hover:bg-black/10 rounded-lg transition-all"
                           >
                             {sub.name}
                           </Link>
@@ -195,18 +236,26 @@ export const Navbar = () => {
               animate={{ y: 0 }}
               exit={{ y: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="relative w-full max-h-[85vh] bg-white/90 dark:bg-[#1C1936]/95 backdrop-blur-xl rounded-t-3xl overflow-hidden shadow-[0_-10px_40px_rgba(0,0,0,0.2)] border-t border-white/20 dark:border-white/10 flex flex-col"
+              className="relative w-full max-h-[85vh] bg-transparent backdrop-blur-md rounded-t-3xl overflow-hidden shadow-[0_-10px_40px_rgba(0,0,0,0.2)] border-t border-white/20 dark:border-white/10 flex flex-col"
             >
-              <div className="flex items-center justify-between p-4 border-b border-slate-100 dark:border-slate-800 shrink-0">
-                <span className="font-bold text-lg dark:text-white text-slate-900">Menu</span>
+              <div className="flex items-center gap-2 p-3 border-b border-white/20 dark:border-white/10 shrink-0 bg-transparent">
+                <div className="shrink-0">
+                  <img src="https://res.cloudinary.com/dtpktdkqw/image/upload/v1782269097/IMG_1329_optimized_30_c6qtnw.png" alt="Logo" className="w-8 h-8 object-contain" />
+                </div>
+                <div className="flex-1 overflow-hidden relative h-8 bg-black/20 dark:bg-white/10 rounded-full border border-white/10 flex items-center shadow-inner">
+                  <div className="animate-marquee whitespace-nowrap inline-block text-[10px] font-bold text-slate-800 dark:text-slate-200">
+                    <span className="mx-4">NEW BATCH OPENS SOON 🍄</span> • 
+                    <span className="mx-4">TURNKEY SETUP CONSULTATION 📞</span> • 
+                    <span className="mx-4">INDIA 24.4°C 🌡️</span>
+                  </div>
+                </div>
                 <button
                   onClick={() => setMobileMenuOpen(false)}
-                  className="p-2 bg-slate-100 dark:bg-slate-800 rounded-full text-slate-600 dark:text-slate-300"
+                  className="shrink-0 p-1.5 bg-black/10 dark:bg-white/10 backdrop-blur-md rounded-full text-slate-800 dark:text-slate-200 hover:bg-black/20 dark:hover:bg-white/20 transition-colors border border-white/10"
                 >
-                  <X size={20} />
+                  <X size={18} />
                 </button>
               </div>
-
               <div className="flex-1 overflow-y-auto p-4 custom-scrollbar">
                 <div className="grid grid-cols-2 gap-2">
                   {NAV_ITEMS.map((item, i) => {
@@ -216,7 +265,7 @@ export const Navbar = () => {
                     const hasSubMenu = item.subMenu && item.subMenu.length > 0;
                     const isExpanded = expandedMobileMenu === item.name;
                     
-                    const baseCardClass = `relative w-full overflow-hidden rounded-2xl border transition-colors duration-150 ${isActive ? "border-emerald-500/50 bg-emerald-500/10 dark:bg-emerald-500/20" : "border-slate-200/50 dark:border-white/10 bg-white/50 dark:bg-black/20 backdrop-blur-md"}`;
+                    const baseCardClass = `relative w-full overflow-hidden rounded-2xl border transition-colors duration-150 ${isActive ? "border-emerald-500/50 bg-emerald-500/10 dark:bg-emerald-500/20" : "border-slate-200/20 dark:border-white/10 bg-transparent backdrop-blur-md"}`;
                     
                     return (
                       <motion.div
@@ -250,7 +299,7 @@ export const Navbar = () => {
                                   animate={{ height: "auto", opacity: 1 }}
                                   exit={{ height: 0, opacity: 0 }}
                                   transition={{ duration: 0.15 }}
-                                  className="overflow-hidden dark:bg-slate-900/50"
+                                  className="overflow-hidden bg-transparent"
                                 >
                                   <div className="px-3 py-1 flex flex-col gap-0.5 border-t border-slate-100 dark:border-slate-700">
                                     {item.subMenu!.map((sub: any) => (
@@ -305,13 +354,15 @@ export const Navbar = () => {
                 </div>
 
                 {/* Mobile Social Links */}
-                <div className="mt-6 mb-2 flex justify-center gap-4 border-t border-slate-200 dark:border-slate-800 pt-6">
+                <div className="mt-6 mb-2 flex flex-wrap justify-center gap-3 border-t border-slate-200 dark:border-slate-800 pt-6">
                   {[
                     { label: "Facebook", href: "https://www.facebook.com/organic.mushroom.farm0", icon: Facebook },
                     { label: "Instagram", href: "https://www.instagram.com/organic_mushroom_farm_jabalpur", icon: Instagram },
                     { label: "Twitter", href: "https://x.com/mushroomfarmjbp", icon: Twitter },
                     { label: "YouTube", href: "https://www.youtube.com/@organicmushroomfarm", icon: Youtube },
-                    { label: "LinkedIn", href: "https://www.linkedin.com/in/organic-mushroom-farm-29b970282?utm_source=share_via&utm_content=profile&utm_medium=member_android", icon: Linkedin }
+                    { label: "LinkedIn", href: "https://www.linkedin.com/in/organic-mushroom-farm-29b970282?utm_source=share_via&utm_content=profile&utm_medium=member_android", icon: Linkedin },
+                    { label: "Telegram", href: "https://t.me/organicmushroomfarm", icon: Send },
+                    { label: "Profile", href: "/profile", icon: User }
                   ].map((social) => (
                     <a
                       key={social.label}

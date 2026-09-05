@@ -102,10 +102,10 @@ export default function EnquiryPage() {
       {/* Animated Background Theme removed to use global MyceliumBackground */}
 
       {/* Transparent Liquid Glass Form Container */}
-      <div className="relative z-10 w-full max-w-2xl bg-white/10 dark:bg-black/20 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/20 dark:border-white/10 overflow-hidden">
+      <div className="relative z-10 w-full max-w-2xl bg-transparent backdrop-blur-sm rounded-2xl shadow-2xl border border-white/20 dark:border-white/10 overflow-hidden">
         
         {/* Header */}
-        <div className="p-4 pb-3 border-b border-white/10 dark:border-white/5 text-center bg-white/5 dark:bg-white/5">
+        <div className="p-4 pb-3 border-b border-white/10 dark:border-white/5 text-center bg-transparent">
            <h1 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-emerald-500">
              How Can We Help You?
            </h1>
@@ -115,7 +115,7 @@ export default function EnquiryPage() {
         </div>
 
         {/* Tabs */}
-        <div className="flex overflow-x-auto scrollbar-hide border-b border-white/10 dark:border-white/5 p-2 bg-white/5 dark:bg-white/5">
+        <div className="flex overflow-x-auto scrollbar-hide border-b border-white/10 dark:border-white/5 p-2 bg-transparent">
           {TABS.map((tab) => (
             <button
               key={tab.id}
@@ -173,17 +173,17 @@ export default function EnquiryPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="space-y-1">
                   <label className="text-[10px] font-semibold text-gray-700 dark:text-gray-300">Full Name *</label>
-                  <input required name="fullName" value={formData.fullName} onChange={handleChange} placeholder="John Doe" className="w-full px-3 py-1.5 text-xs bg-white/50 dark:bg-black/20 border border-white/20 dark:border-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 backdrop-blur-sm shadow-inner" />
+                  <input required name="fullName" value={formData.fullName} onChange={handleChange} placeholder="John Doe" className="w-full px-3 py-1.5 text-xs bg-transparent border border-white/20 dark:border-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 backdrop-blur-sm shadow-inner" />
                 </div>
                 <div className="space-y-1">
                   <label className="text-[10px] font-semibold text-gray-700 dark:text-gray-300">Phone Number *</label>
-                  <input required name="phone" type="tel" value={formData.phone} onChange={handleChange} placeholder="Enter phone number" className="w-full px-3 py-1.5 text-xs bg-white/50 dark:bg-black/20 border border-white/20 dark:border-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 backdrop-blur-sm shadow-inner" />
+                  <input required name="phone" type="tel" value={formData.phone} onChange={handleChange} placeholder="Enter phone number" className="w-full px-3 py-1.5 text-xs bg-transparent border border-white/20 dark:border-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 backdrop-blur-sm shadow-inner" />
                 </div>
               </div>
 
               <div className="space-y-1">
                 <label className="text-[10px] font-semibold text-gray-700 dark:text-gray-300">Email Address *</label>
-                <input required name="email" type="email" value={formData.email} onChange={handleChange} placeholder="john@example.com" className="w-full px-3 py-1.5 text-xs bg-white/50 dark:bg-black/20 border border-white/20 dark:border-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 backdrop-blur-sm shadow-inner" />
+                <input required name="email" type="email" value={formData.email} onChange={handleChange} placeholder="john@example.com" className="w-full px-3 py-1.5 text-xs bg-transparent border border-white/20 dark:border-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 backdrop-blur-sm shadow-inner" />
               </div>
 
               {/* Dynamic Service Section */}
@@ -210,7 +210,7 @@ export default function EnquiryPage() {
                       <>
                         <div className="space-y-1 sm:col-span-2">
                           <label className="text-[10px] font-semibold text-gray-700 dark:text-gray-300">Training Mode *</label>
-                          <select required name="trainingMode" value={formData.trainingMode} onChange={handleChange} className="w-full px-3 py-1.5 text-xs bg-white/50 dark:bg-black/20 border border-white/20 dark:border-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 backdrop-blur-sm shadow-inner">
+                          <select required name="trainingMode" value={formData.trainingMode} onChange={handleChange} className="w-full px-3 py-1.5 text-xs bg-transparent border border-white/20 dark:border-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 backdrop-blur-sm shadow-inner">
                             <option value="">Select Mode</option>
                             <option value="Offline (At Farm)">Offline (At Farm)</option>
                             <option value="Online (Live Classes)">Online (Live Classes)</option>
@@ -218,7 +218,7 @@ export default function EnquiryPage() {
                         </div>
                         <div className="space-y-1 sm:col-span-2">
                           <label className="text-[10px] font-semibold text-gray-700 dark:text-gray-300">Mushroom Variety *</label>
-                          <select required name="mushroomVariety" value={formData.mushroomVariety} onChange={handleChange} className="w-full px-3 py-1.5 text-xs bg-white/50 dark:bg-black/20 border border-white/20 dark:border-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 backdrop-blur-sm shadow-inner">
+                          <select required name="mushroomVariety" value={formData.mushroomVariety} onChange={handleChange} className="w-full px-3 py-1.5 text-xs bg-transparent border border-white/20 dark:border-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 backdrop-blur-sm shadow-inner">
                             <option value="">Select Variety</option>
                             {TRAINING_VARIETIES.map(v => <option key={v} value={v}>{v}</option>)}
                           </select>
@@ -231,18 +231,18 @@ export default function EnquiryPage() {
                       <>
                          <div className="space-y-1 sm:col-span-2">
                           <label className="text-[10px] font-semibold text-gray-700 dark:text-gray-300">Mushroom Variety *</label>
-                          <select required name="mushroomVariety" value={formData.mushroomVariety} onChange={handleChange} className="w-full px-3 py-1.5 text-xs bg-white/50 dark:bg-black/20 border border-white/20 dark:border-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 backdrop-blur-sm shadow-inner">
+                          <select required name="mushroomVariety" value={formData.mushroomVariety} onChange={handleChange} className="w-full px-3 py-1.5 text-xs bg-transparent border border-white/20 dark:border-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 backdrop-blur-sm shadow-inner">
                             <option value="">Select Variety</option>
                             {TRAINING_VARIETIES.map(v => <option key={v} value={v}>{v}</option>)}
                           </select>
                         </div>
                         <div className="space-y-1">
                           <label className="text-[10px] font-semibold text-gray-700 dark:text-gray-300">Quantity Required (kg) *</label>
-                          <input required name="quantity" value={formData.quantity} onChange={handleChange} placeholder="e.g., 50 kg" className="w-full px-3 py-1.5 text-xs bg-white/50 dark:bg-black/20 border border-white/20 dark:border-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 backdrop-blur-sm shadow-inner" />
+                          <input required name="quantity" value={formData.quantity} onChange={handleChange} placeholder="e.g., 50 kg" className="w-full px-3 py-1.5 text-xs bg-transparent border border-white/20 dark:border-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 backdrop-blur-sm shadow-inner" />
                         </div>
                         <div className="space-y-1">
                           <label className="text-[10px] font-semibold text-gray-700 dark:text-gray-300">Delivery State/City *</label>
-                          <input required name="deliveryLocation" value={formData.deliveryLocation} onChange={handleChange} placeholder="Your delivery location" className="w-full px-3 py-1.5 text-xs bg-white/50 dark:bg-black/20 border border-white/20 dark:border-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 backdrop-blur-sm shadow-inner" />
+                          <input required name="deliveryLocation" value={formData.deliveryLocation} onChange={handleChange} placeholder="Your delivery location" className="w-full px-3 py-1.5 text-xs bg-transparent border border-white/20 dark:border-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 backdrop-blur-sm shadow-inner" />
                         </div>
                       </>
                     )}
@@ -252,7 +252,7 @@ export default function EnquiryPage() {
                       <>
                         <div className="space-y-1 sm:col-span-2">
                           <label className="text-[10px] font-semibold text-gray-700 dark:text-gray-300">Setup Type *</label>
-                          <select required name="setupType" value={formData.setupType} onChange={handleChange} className="w-full px-3 py-1.5 text-xs bg-white/50 dark:bg-black/20 border border-white/20 dark:border-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 backdrop-blur-sm shadow-inner">
+                          <select required name="setupType" value={formData.setupType} onChange={handleChange} className="w-full px-3 py-1.5 text-xs bg-transparent border border-white/20 dark:border-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 backdrop-blur-sm shadow-inner">
                             <option value="">Select Farm Type</option>
                             <option value="AC Commercial Farm (Button/Oyster)">AC Commercial Farm (Button/Oyster)</option>
                             <option value="Non-AC Seasonal Hut Structure">Non-AC Seasonal Hut Structure</option>
@@ -262,11 +262,11 @@ export default function EnquiryPage() {
                         </div>
                         <div className="space-y-1">
                           <label className="text-[10px] font-semibold text-gray-700 dark:text-gray-300">Estimated Farm Size/Area</label>
-                          <input name="farmSize" value={formData.farmSize} onChange={handleChange} placeholder="e.g., 2000 sq ft" className="w-full px-3 py-1.5 text-xs bg-white/50 dark:bg-black/20 border border-white/20 dark:border-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 backdrop-blur-sm shadow-inner" />
+                          <input name="farmSize" value={formData.farmSize} onChange={handleChange} placeholder="e.g., 2000 sq ft" className="w-full px-3 py-1.5 text-xs bg-transparent border border-white/20 dark:border-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 backdrop-blur-sm shadow-inner" />
                         </div>
                         <div className="space-y-1">
                           <label className="text-[10px] font-semibold text-gray-700 dark:text-gray-300">Farm Location *</label>
-                          <input required name="farmLocation" value={formData.farmLocation} onChange={handleChange} placeholder="City, State" className="w-full px-3 py-1.5 text-xs bg-white/50 dark:bg-black/20 border border-white/20 dark:border-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 backdrop-blur-sm shadow-inner" />
+                          <input required name="farmLocation" value={formData.farmLocation} onChange={handleChange} placeholder="City, State" className="w-full px-3 py-1.5 text-xs bg-transparent border border-white/20 dark:border-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 backdrop-blur-sm shadow-inner" />
                         </div>
                       </>
                     )}
@@ -276,7 +276,7 @@ export default function EnquiryPage() {
                       <>
                          <div className="space-y-1">
                           <label className="text-[10px] font-semibold text-gray-700 dark:text-gray-300">Product Form *</label>
-                          <select required name="productForm" value={formData.productForm} onChange={handleChange} className="w-full px-3 py-1.5 text-xs bg-white/50 dark:bg-black/20 border border-white/20 dark:border-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 backdrop-blur-sm shadow-inner">
+                          <select required name="productForm" value={formData.productForm} onChange={handleChange} className="w-full px-3 py-1.5 text-xs bg-transparent border border-white/20 dark:border-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 backdrop-blur-sm shadow-inner">
                             <option value="">Select Form</option>
                             <option value="Fresh Mushroom">Fresh Mushroom</option>
                             <option value="Dry Mushroom">Dry Mushroom</option>
@@ -285,18 +285,18 @@ export default function EnquiryPage() {
                         </div>
                          <div className="space-y-1">
                           <label className="text-[10px] font-semibold text-gray-700 dark:text-gray-300">Mushroom Variety *</label>
-                          <select required name="mushroomVariety" value={formData.mushroomVariety} onChange={handleChange} className="w-full px-3 py-1.5 text-xs bg-white/50 dark:bg-black/20 border border-white/20 dark:border-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 backdrop-blur-sm shadow-inner">
+                          <select required name="mushroomVariety" value={formData.mushroomVariety} onChange={handleChange} className="w-full px-3 py-1.5 text-xs bg-transparent border border-white/20 dark:border-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 backdrop-blur-sm shadow-inner">
                             <option value="">Select Variety</option>
                             {VARIETIES.map(v => <option key={v} value={v}>{v}</option>)}
                           </select>
                         </div>
                         <div className="space-y-1">
                           <label className="text-[10px] font-semibold text-gray-700 dark:text-gray-300">Order Quantity (kg) *</label>
-                          <input required name="quantity" value={formData.quantity} onChange={handleChange} placeholder="e.g., 100 kg" className="w-full px-3 py-1.5 text-xs bg-white/50 dark:bg-black/20 border border-white/20 dark:border-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 backdrop-blur-sm shadow-inner" />
+                          <input required name="quantity" value={formData.quantity} onChange={handleChange} placeholder="e.g., 100 kg" className="w-full px-3 py-1.5 text-xs bg-transparent border border-white/20 dark:border-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 backdrop-blur-sm shadow-inner" />
                         </div>
                         <div className="space-y-1">
                           <label className="text-[10px] font-semibold text-gray-700 dark:text-gray-300">Delivery City/State *</label>
-                          <input required name="deliveryLocation" value={formData.deliveryLocation} onChange={handleChange} placeholder="Your delivery location" className="w-full px-3 py-1.5 text-xs bg-white/50 dark:bg-black/20 border border-white/20 dark:border-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 backdrop-blur-sm shadow-inner" />
+                          <input required name="deliveryLocation" value={formData.deliveryLocation} onChange={handleChange} placeholder="Your delivery location" className="w-full px-3 py-1.5 text-xs bg-transparent border border-white/20 dark:border-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 backdrop-blur-sm shadow-inner" />
                         </div>
                       </>
                     )}
@@ -305,7 +305,7 @@ export default function EnquiryPage() {
                     {serviceType === "Other" && (
                       <div className="space-y-1 sm:col-span-2">
                           <label className="text-xs font-semibold text-gray-700 dark:text-gray-300">Subject of Enquiry *</label>
-                          <select required name="subjectOfEnquiry" value={formData.subjectOfEnquiry} onChange={handleChange} className="w-full px-3 py-2 text-sm bg-gray-50 dark:bg-neutral-900/50 border border-gray-200 dark:border-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                          <select required name="subjectOfEnquiry" value={formData.subjectOfEnquiry} onChange={handleChange} className="w-full px-3 py-2 text-sm bg-transparent backdrop-blur-sm border border-gray-200 dark:border-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
                             <option value="">Select Service</option>
                             <option value="Machinery & Equipment">Machinery & Equipment</option>
                             <option value="Site Visit Consultation">Site Visit Consultation</option>
@@ -322,7 +322,7 @@ export default function EnquiryPage() {
               {/* Message */}
               <div className="space-y-1">
                 <label className="text-xs font-semibold text-gray-700 dark:text-gray-300">Any additional details or questions?</label>
-                <textarea name="message" value={formData.message} onChange={handleChange} placeholder="Write your specific requirements here..." rows={3} className="w-full px-3 py-2 text-sm bg-gray-50 dark:bg-neutral-900/50 border border-gray-200 dark:border-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 resize-none" />
+                <textarea name="message" value={formData.message} onChange={handleChange} placeholder="Write your specific requirements here..." rows={3} className="w-full px-3 py-2 text-sm bg-transparent backdrop-blur-sm border border-gray-200 dark:border-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 resize-none" />
               </div>
 
               {/* Security Question */}
@@ -330,7 +330,7 @@ export default function EnquiryPage() {
                 <label className="text-xs font-semibold text-gray-700 dark:text-gray-300 flex items-center gap-2">
                    Security Question: What is 3 + 2? *
                 </label>
-                <input required type="text" name="securityAnswer" value={formData.securityAnswer} onChange={handleChange} placeholder="Your answer" className="w-full px-3 py-2 text-sm bg-gray-50 dark:bg-neutral-900/50 border border-gray-200 dark:border-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" />
+                <input required type="text" name="securityAnswer" value={formData.securityAnswer} onChange={handleChange} placeholder="Your answer" className="w-full px-3 py-2 text-sm bg-transparent backdrop-blur-sm border border-gray-200 dark:border-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" />
               </div>
 
               {/* Error Message */}
@@ -361,7 +361,7 @@ export default function EnquiryPage() {
       </div>
       
       {/* E-E-A-T Block */}
-      <div className="relative z-10 w-full max-w-2xl mt-12 bg-white/5 dark:bg-black/10 backdrop-blur-md rounded-2xl border border-white/10 dark:border-white/5 overflow-hidden">
+      <div className="relative z-10 w-full max-w-2xl mt-12 bg-transparent backdrop-blur-sm rounded-2xl border border-white/10 dark:border-white/5 overflow-hidden">
         <EeatEnquiryTrust />
       </div>
     </div>

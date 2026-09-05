@@ -31,7 +31,7 @@ export function MushroomProductionCalculator() {
       <div className="absolute top-1/2 right-1/4 w-96 h-96 bg-amber-500/10 blur-[120px] rounded-full pointer-events-none animate-pulse"></div>
 
       <div className="max-w-6xl mx-auto relative z-10">
-        <div className="bg-white/60 dark:bg-slate-900/60 backdrop-blur-2xl p-6 lg:p-10 rounded-[2rem] border border-black/10 dark:border-white/10 shadow-xl">
+        <div className="bg-transparent p-2 md:p-4 rounded-[2rem]">
           {/* Header */}
           <div className="text-center mb-8">
             <div className="inline-flex items-center px-3 py-1 rounded-full border border-amber-500/30 bg-amber-500/10 text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-amber-700 dark:text-amber-400 mb-3 shadow-sm">
