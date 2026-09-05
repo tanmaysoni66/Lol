@@ -1,6 +1,15 @@
 import TrainingPayment from "@/components/TrainingPayment";
 import Image from "next/image";
 import Link from "next/link";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Professional Mushroom Cultivation Training | Organic Mushroom Farm",
+  description: "Enroll in our comprehensive mushroom cultivation masterclass. Learn professional techniques, setup strategies, and maximize your ROI with our training program in India.",
+  alternates: {
+    canonical: "https://organicmushroomsfarm.com/training",
+  },
+};
 
 export default function TrainingPage() {
   return (

@@ -1,12 +1,12 @@
-import { MetadataRoute } from 'next';
+import type { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/api/', '/admin/'],
+      disallow: ['/api/'], // API routes ko bots se hide karna best practice hai
     },
-    sitemap: 'https://organicmushroomsfarm.com/sitemap.xml',
+    sitemap: 'https://organicmushroomsfarm.com/sitemap-main.xml',
   };
 }
