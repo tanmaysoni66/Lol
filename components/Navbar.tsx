@@ -71,9 +71,9 @@ export const Navbar = () => {
   return (
     <>
       <nav
-        className={`fixed top-3 md:top-6 left-1/2 -translate-x-1/2 w-[calc(100%-16px)] sm:w-[calc(100%-32px)] md:w-[calc(100%-48px)] max-w-7xl z-50 backdrop-blur-2xl bg-white/70 dark:bg-[#1C1936]/80 border py-2.5 md:py-2 px-3 sm:px-5 md:px-6 lg:px-4 xl:px-5 transition-all duration-300 rounded-[2rem] shadow-[0_8px_32px_rgba(0,0,0,0.12)] border-white/20 dark:border-white/10 ${isScrolled ? "translate-y-[-2px] shadow-[0_16px_40px_-10px_rgba(0,0,0,0.2)]" : ""}`}
+        className={`fixed left-1/2 -translate-x-1/2 z-50 backdrop-blur-2xl bg-white/70 dark:bg-[#1C1936]/80 border py-2.5 md:py-2 px-3 sm:px-5 md:px-6 lg:px-4 xl:px-5 transition-all duration-300 shadow-[0_8px_32px_rgba(0,0,0,0.12)] border-white/20 dark:border-white/10 ${isScrolled ? "top-0 w-full max-w-full rounded-none border-t-0 border-l-0 border-r-0 shadow-[0_16px_40px_-10px_rgba(0,0,0,0.2)]" : "top-3 md:top-6 w-[calc(100%-16px)] sm:w-[calc(100%-32px)] md:w-[calc(100%-48px)] max-w-7xl rounded-[2rem]"}`}
       >
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between w-full max-w-7xl mx-auto">
           <Link href="/" className="flex items-center gap-1.5 sm:gap-3 group shrink-0">
             <img
               src="https://res.cloudinary.com/dtpktdkqw/image/upload/v1782269097/IMG_1329_optimized_30_c6qtnw.png"

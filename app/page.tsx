@@ -11,7 +11,7 @@ import { Timeline } from "@/components/home/Timeline";
 import { WhyChooseProgram } from "@/components/home/WhyChooseProgram";
 import { FarmingModels } from "@/components/home/FarmingModels";
 import { MushroomComparison } from "@/components/home/MushroomComparison";
-import { ROICalculator } from "@/components/home/ROICalculator";
+import { MushroomROICalculator } from "@/components/home/MushroomROICalculator";
 import CriticalParameters from "@/components/home/CriticalParameters";
 import { ProductionSOP } from "@/components/home/ProductionSOP";
 import MushroomSEOSections from "@/components/home/MushroomSEOSections";
@@ -55,10 +55,10 @@ export default function HomePage() {
       />
       <Hero />
       <EcosystemFlow />
+      <MushroomROICalculator />
       <WhyChooseUs />
       <FarmingModels />
       <MushroomComparison />
-      <ROICalculator />
       <CriticalParameters />
       <ProductionSOP />
       <CompostUnits />

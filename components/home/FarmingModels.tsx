@@ -115,7 +115,7 @@ export const FarmingModels = () => {
                 <div className="text-[9px] uppercase font-black text-slate-500 tracking-widest mb-2">Recommended Commercial Setup</div>
                 <h3 className="text-sm font-bold dark:text-white text-slate-900 mb-2 leading-tight">{getRecommendedSetup().title}</h3>
                 <p className="dark:text-slate-400 text-slate-600 text-[11px] leading-relaxed mb-6 max-w-sm">{getRecommendedSetup().desc}</p>
-                <Link href="/model-details" className="bg-[var(--primary-gradient)] text-white px-6 py-2 rounded-lg text-[11px] font-bold shadow-md hover:opacity-90 transition-opacity">
+                <Link href="/model-details" className="bg-purple-600 hover:bg-purple-700 dark:bg-purple-500 dark:hover:bg-purple-600 text-white px-6 py-2 rounded-lg text-[11px] font-bold shadow-md transition-colors">
                   View Detailed Specs
                 </Link>
               </div>

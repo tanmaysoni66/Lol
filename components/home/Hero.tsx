@@ -129,18 +129,18 @@ export const Hero = () => {
                   <div className="text-[9px] md:text-[10px] text-slate-500">Quality Certified Infrastructure</div>
                 </div>
               </div>
-              <div className="absolute -top-4 -right-4 md:-top-6 md:-right-6 bg-[#161726] border border-white/10 rounded-xl p-3 shadow-xl backdrop-blur-md">
+              <div className="absolute -top-4 -right-4 md:-top-6 md:-right-6 bg-white/60 dark:bg-slate-900/60 border-t border-l border-white/80 dark:border-white/20 border-r border-b border-black/5 dark:border-black/50 rounded-xl p-3 shadow-[8px_8px_20px_rgba(0,0,0,0.08),-4px_-4px_16px_rgba(255,255,255,0.7)] dark:shadow-[8px_8px_20px_rgba(0,0,0,0.4),-4px_-4px_16px_rgba(255,255,255,0.05)] backdrop-blur-xl">
                 <div className="flex items-center gap-2 mb-1">
                   <div className="w-6 h-6 rounded-md bg-green-500/20 flex items-center justify-center">
-                    <CheckCircle2 className="text-green-500" size={12} />
+                    <CheckCircle2 className="text-green-600 dark:text-green-400" size={12} />
                   </div>
                   <div>
-                    <div className="text-[7px] md:text-[8px] text-slate-400 font-bold uppercase tracking-wider">GLOBAL ROI VERIFIED</div>
-                    <div className="text-[10px] md:text-xs text-white font-bold">120% Yearly Avg</div>
+                    <div className="text-[7px] md:text-[8px] text-slate-500 dark:text-slate-400 font-bold uppercase tracking-wider">GLOBAL ROI VERIFIED</div>
+                    <div className="text-[10px] md:text-xs text-slate-900 dark:text-white font-bold tracking-tight">120% Yearly Avg</div>
                   </div>
                 </div>
                 <div className="text-right mt-1">
-                  <span className="text-[7px] md:text-[8px] text-green-500 font-bold tracking-widest uppercase">ACTIVE</span>
+                  <div className="inline-block px-2 py-0.5 rounded-md bg-green-500/10 border border-green-500/20 text-[7px] md:text-[8px] text-green-700 dark:text-green-400 font-bold tracking-widest uppercase">ACTIVE</div>
                 </div>
               </div>
             </div>
