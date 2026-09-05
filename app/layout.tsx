@@ -35,10 +35,10 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://organicmushroomsfarm.com"),
   title: {
-    default: "Organic Mushrooms Farm | Setup, Spawn & Commercial Training",
-    template: "%s | Organic Mushrooms Farm",
+    default: "Organic Mushroom Farm | Mushroom Farming, Training & Spawn",
+    template: "%s | Organic Mushroom Farm",
   },
-  description: "Buy premium organic mushroom spawn, join commercial mushroom farming training online/offline, get fresh & dry mushrooms. Complete turnkey mushroom setup available Pan India, USA, Australia.",
+  description: "Organic Mushroom Farm provides mushroom farming training, commercial farm setup guidance and quality mushroom spawn for Button, Oyster and Milky mushroom cultivation.",
   keywords: [
     "mushroom farming training",
     "turnkey mushroom setup",
@@ -51,27 +51,38 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://organicmushroomsfarm.com",
-    title: "Organic Mushrooms Farm | Turnkey Projects & Training",
-    description: "Commercial mushroom cultivation methodology, Phase-II compost units, and certified agri-training.",
-    siteName: "Organic Mushrooms Farm",
+    url: "https://organicmushroomsfarm.com/",
+    title: "Organic Mushroom Farm | Mushroom Farming, Training & Spawn",
+    description: "Organic Mushroom Farm provides mushroom farming training, commercial farm setup guidance and quality mushroom spawn for Button, Oyster and Milky mushroom cultivation.",
+    siteName: "Organic Mushroom Farm",
     images: [
       {
-        url: "https://res.cloudinary.com/dtpktdkqw/image/upload/v1777378071/IMG_6265_svucsm.jpg",
+        url: "https://res.cloudinary.com/dnw4fpk2y/image/upload/c_fill,g_auto,w_1200,h_630,f_auto,q_auto/v1788255569/organic-button-mushroom-farm-setup_kwlyo0.png",
         width: 1200,
         height: 630,
-        alt: "Organic Mushrooms Farm Commercial Facility",
+        alt: "Organic Button Mushroom Farm Setup - Organic Mushroom Farm",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Organic Mushrooms Farm | Commercial Setup & Training",
-    description: "Commercial mushroom training and turnkey setup with 120% average verified annual ROI.",
-    images: ["https://res.cloudinary.com/dtpktdkqw/image/upload/q_auto,f_auto,w_1200/v1777378071/IMG_6265_svucsm.jpg"],
+    title: "Organic Mushroom Farm | Mushroom Farming, Training & Spawn",
+    description: "Organic Mushroom Farm provides mushroom farming training, commercial farm setup guidance and quality mushroom spawn for Button, Oyster and Milky mushroom cultivation.",
+    images: ["https://res.cloudinary.com/dnw4fpk2y/image/upload/c_fill,g_auto,w_1200,h_630,f_auto,q_auto/v1788255569/organic-button-mushroom-farm-setup_kwlyo0.png"],
   },
   alternates: {
-    canonical: "https://organicmushroomsfarm.com",
+    canonical: "https://organicmushroomsfarm.com/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1
+    }
   }
 };
 

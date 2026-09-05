@@ -28,6 +28,8 @@ import ResourcesSection from "@/components/home/ResourcesSection";
 import { DirectInquiry } from "@/components/home/DirectInquiry";
 import { VirtualTour } from "@/components/home/VirtualTour";
 import { JsonLd } from "@/components/JsonLd";
+import { homepageWebPageSchema } from "@/lib/schema/homepage-webpage-schema";
+import { homepageImageSchema } from "@/lib/schema/homepage-image-schema";
 
 export default function HomePage() {
   useEffect(() => {
@@ -43,6 +45,14 @@ export default function HomePage() {
   return (
     <>
       <JsonLd />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homepageWebPageSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homepageImageSchema) }}
+      />
       <Hero />
       <EcosystemFlow />
       <VirtualTour />

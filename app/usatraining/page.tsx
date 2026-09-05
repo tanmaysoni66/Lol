@@ -6,6 +6,7 @@ import { usaTrainingFaqSchema } from "@/lib/schema/usa-training-faq-schema";
 import { usaTrainingWebPageSchema } from "@/lib/schema/usa-training-webpage-schema";
 import { usaTrainingItemListSchema } from "@/lib/schema/usa-training-item-list-schema";
 import { organizationSchema } from "@/lib/schema/organization-schema";
+import { usaTrainingImageSchema } from "@/lib/schema/usa-training-image-schema";
 
 export const metadata: Metadata = {
   title: "Mushroom Farming Training in USA | Online & Commercial Course",
@@ -34,7 +35,12 @@ export const metadata: Metadata = {
     "mushroom farm setup training"
   ],
   alternates: {
-    canonical: "https://organicmushroomsfarm.com/usatraining"
+    canonical: "https://organicmushroomsfarm.com/usatraining",
+    languages: {
+      "en-IN": "https://organicmushroomsfarm.com/training",
+      "en-US": "https://organicmushroomsfarm.com/usatraining",
+      "x-default": "https://organicmushroomsfarm.com/usatraining"
+    }
   },
   robots: {
     index: true,
@@ -46,6 +52,32 @@ export const metadata: Metadata = {
       "max-snippet": -1,
       "max-video-preview": -1
     }
+  },
+  openGraph: {
+    title: "Mushroom Farming Training in USA | Online & Commercial Course",
+    description:
+      "Learn Button, Oyster and Milky mushroom cultivation with online commercial mushroom farming training, farm setup guidance and practical cultivation knowledge.",
+    url: "https://organicmushroomsfarm.com/usatraining",
+    siteName: "Organic Mushroom Farm",
+    type: "website",
+    locale: "en_US",
+    images: [
+      {
+        url: "https://res.cloudinary.com/dnw4fpk2y/image/upload/c_fill,g_auto,w_1200,h_630,f_auto,q_auto/v1788596194/usamushroomtraining_nghkh1.png",
+        width: 1200,
+        height: 630,
+        alt: "Mushroom Farming Training in USA - Organic Mushroom Farm"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Mushroom Farming Training in USA | Online & Commercial Course",
+    description:
+      "Learn Button, Oyster and Milky mushroom cultivation with online commercial mushroom farming training, farm setup guidance and practical cultivation knowledge.",
+    images: [
+      "https://res.cloudinary.com/dnw4fpk2y/image/upload/c_fill,g_auto,w_1200,h_630,f_auto,q_auto/v1788596194/usamushroomtraining_nghkh1.png"
+    ]
   }
 };
 
@@ -58,6 +90,7 @@ export default function USATrainingPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(usaTrainingFaqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(usaTrainingWebPageSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(usaTrainingItemListSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(usaTrainingImageSchema) }} />
       <TrainingLanding region="us" />
     </>
   );
