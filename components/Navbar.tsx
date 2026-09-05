@@ -153,20 +153,15 @@ export const Navbar = () => {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-50 flex flex-col items-center pointer-events-none transition-all duration-200">
-        {/* Live Weather & Batch Announcement Bar at Top of Navbar */}
-        <div className="w-full pointer-events-auto">
-          <NavbarTopTicker />
-        </div>
-
         {/* Floating Main Navigation Bar */}
         <nav
           className={`pointer-events-auto transition-all duration-200 border ${
             isScrolled
               ? "w-full max-w-full rounded-none border-t-0 border-l-0 border-r-0 bg-white/95 dark:bg-slate-950/95 backdrop-blur-md border-slate-200/90 dark:border-white/10 shadow-md py-1.5 px-3 sm:px-6"
-              : "mt-1.5 w-[calc(100%-16px)] sm:w-[calc(100%-24px)] md:w-[calc(100%-32px)] max-w-7xl rounded-2xl md:rounded-3xl bg-white/90 dark:bg-slate-950/85 backdrop-blur-md border-slate-200/80 dark:border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.06)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.35)] py-2 px-3 sm:px-5"
+              : "mt-2 w-[calc(100%-16px)] sm:w-[calc(100%-24px)] md:w-[calc(100%-32px)] max-w-7xl rounded-2xl md:rounded-3xl bg-white/90 dark:bg-slate-950/85 backdrop-blur-md border-slate-200/80 dark:border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.06)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.35)] py-2 px-3 sm:px-5"
           }`}
         >
-          <div className="flex items-center justify-between w-full max-w-7xl mx-auto">
+          <div className="flex items-center justify-between w-full max-w-7xl mx-auto gap-2">
             {/* Stable Branding & Logo (No layout shift next to logo) */}
             <Link
               href="/"
@@ -181,7 +176,7 @@ export const Navbar = () => {
                 height="40"
               />
               <div className="flex flex-col">
-                <span className="text-[13px] xs:text-[15px] sm:text-base md:text-lg lg:text-[12px] xl:text-[15px] font-black tracking-tight text-slate-900 dark:text-white leading-tight">
+                <span className="text-[13px] xs:text-[15px] sm:text-base md:text-lg lg:text-[12px] xl:text-[14px] font-black tracking-tight text-slate-900 dark:text-white leading-tight">
                   Organic{" "}
                   <span className="text-emerald-600 dark:text-emerald-400">
                     Mushroom Farm
@@ -192,6 +187,11 @@ export const Navbar = () => {
                 </span>
               </div>
             </Link>
+
+            {/* Desktop / Large Screen Live Weather & Batch Ticker inside Navbar */}
+            <div className="hidden lg:flex items-center mx-2 shrink-0">
+              <NavbarTopTicker />
+            </div>
 
             {/* Desktop Navigation Links */}
             <div className="hidden lg:flex items-center gap-0.5 xl:gap-1 ml-auto">
@@ -250,6 +250,11 @@ export const Navbar = () => {
                 <Menu size={22} />
               </button>
             </div>
+          </div>
+
+          {/* Mobile Live Weather & Batch Ticker (Inside Navbar, Lag-Free) */}
+          <div className="lg:hidden w-full mt-1 pt-1 border-t border-slate-200/60 dark:border-white/10 overflow-hidden">
+            <NavbarTopTicker />
           </div>
         </nav>
       </header>

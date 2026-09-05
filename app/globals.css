@@ -134,3 +134,25 @@ html {
   scrollbar-width: thin;
   scrollbar-color: rgba(192, 132, 252, 0.7) transparent;
 }
+
+/* Zero-lag hardware-accelerated ticker for Navbar */
+@keyframes nav-ticker {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-nav-ticker {
+  display: flex;
+  width: max-content;
+  animation: nav-ticker 22s linear infinite;
+  will-change: transform;
+}
+
+.animate-nav-ticker:hover {
+  animation-play-state: paused;
+}
+

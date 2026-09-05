@@ -224,8 +224,8 @@ export function RoomBox({
         />
       </mesh>
 
-      {/* Room label marker */}
-      {!isCutawayHidden && (
+      {/* Room label marker - only rendered when room is clicked to keep canvas clean & lag-free */}
+      {!isCutawayHidden && isSelected && (
         <group position={labelPosition}>
           <mesh>
             <boxGeometry args={[0.25, 0.25, 0.25]} />

@@ -9,6 +9,7 @@ type Props = {
   setEnabled: (value: boolean) => void;
   setSpeed: (value: number) => void;
   onClose?: () => void;
+  embedded?: boolean;
 };
 
 export default function AirflowControls({
@@ -17,11 +18,18 @@ export default function AirflowControls({
   setEnabled,
   setSpeed,
   onClose,
+  embedded = true,
 }: Props) {
   const [collapsed, setCollapsed] = useState(false);
 
   return (
-    <div className="absolute left-5 top-44 z-30 w-72 rounded-2xl bg-white/95 backdrop-blur-md shadow-2xl border border-slate-200/90 text-slate-800 font-sans overflow-hidden transition-all duration-200">
+    <div
+      className={`rounded-2xl transition-all duration-200 overflow-hidden ${
+        embedded
+          ? "w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl text-slate-800 dark:text-white"
+          : "absolute left-5 top-44 z-30 w-72 bg-white/95 backdrop-blur-md shadow-2xl border border-slate-200/90 text-slate-800"
+      }`}
+    >
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-3 bg-gradient-to-r from-sky-50 to-indigo-50 border-b border-slate-200/80">
         <div className="flex items-center gap-2">

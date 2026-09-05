@@ -1,13 +1,15 @@
 "use client";
 
 import React, { useState } from "react";
-import { Layers, ChevronDown, ChevronUp, Sparkles, Sliders } from "lucide-react";
+import { Layers, ChevronDown, ChevronUp, Sparkles, X } from "lucide-react";
 
 type Props = {
   enabled: boolean;
   amount: number;
   setEnabled: (value: boolean) => void;
   setAmount: (value: number) => void;
+  embedded?: boolean;
+  onClose?: () => void;
 };
 
 export default function ExplodedViewControls({
@@ -15,93 +17,92 @@ export default function ExplodedViewControls({
   amount,
   setEnabled,
   setAmount,
+  embedded = true,
+  onClose,
 }: Props) {
   const [collapsed, setCollapsed] = useState(false);
 
   const presets = [
-    { label: "Subtle", value: 1.5 },
-    { label: "Standard", value: 3.0 },
-    { label: "Wide", value: 6.0 },
-    { label: "Max", value: 10.0 },
+    { label: "Subtle (1.5x)", value: 1.5 },
+    { label: "Standard (3.0x)", value: 3.0 },
+    { label: "Wide (6.0x)", value: 6.0 },
+    { label: "Max (10.0x)", value: 10.0 },
   ];
 
   return (
     <div
-      style={{
-        position: "absolute",
-        right: 20,
-        top: 190,
-        zIndex: 55,
-        width: 280,
-        padding: 16,
-        borderRadius: 14,
-        background: "rgba(255,255,255,0.97)",
-        boxShadow: "0 10px 35px rgba(0,0,0,0.18)",
-        fontFamily: "Arial, sans-serif",
-        color: "#0f172a",
-      }}
-      className="backdrop-blur-md border border-slate-200 select-none transition-all duration-300"
+      className={`text-slate-900 dark:text-white rounded-2xl border transition-all duration-200 select-none ${
+        embedded
+          ? "w-full p-4 sm:p-6 bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 shadow-xl"
+          : "absolute right-4 top-4 z-40 w-80 max-w-[calc(100vw-32px)] p-4 bg-white/95 dark:bg-slate-900/95 border-slate-200 dark:border-slate-800 shadow-2xl backdrop-blur-xl"
+      }`}
     >
-      <div className="flex items-center justify-between mb-3">
+      <div className="flex items-center justify-between pb-3 mb-4 border-b border-slate-100 dark:border-slate-800">
         <div className="flex items-center gap-2">
-          <Layers className="w-4 h-4 text-emerald-600" />
-          <h3
-            style={{
-              margin: 0,
-              fontSize: 17,
-              fontWeight: 700,
-              color: "#0f172a",
-            }}
-          >
-            Exploded View
-          </h3>
+          <div className="w-8 h-8 rounded-xl bg-purple-500/10 dark:bg-purple-500/20 text-purple-600 dark:text-purple-400 flex items-center justify-center">
+            <Layers className="w-4 h-4" />
+          </div>
+          <div>
+            <h3 className="text-sm font-bold text-slate-900 dark:text-white">
+              Exploded View Simulation
+            </h3>
+            <p className="text-[11px] text-slate-500 dark:text-slate-400">
+              Deconstruct building envelope, racks, HVAC &amp; systems
+            </p>
+          </div>
         </div>
 
-        <button
-          type="button"
-          onClick={() => setCollapsed(!collapsed)}
-          className="p-1 rounded-md text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-colors"
-          title={collapsed ? "Expand" : "Collapse"}
-        >
-          {collapsed ? <ChevronDown className="w-4 h-4" /> : <ChevronUp className="w-4 h-4" />}
-        </button>
+        <div className="flex items-center gap-1">
+          {onClose && (
+            <button
+              type="button"
+              onClick={onClose}
+              className="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+              aria-label="Close Exploded View"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          )}
+          {!onClose && (
+            <button
+              type="button"
+              onClick={() => setCollapsed(!collapsed)}
+              className="p-1.5 rounded-lg text-slate-500 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+              title={collapsed ? "Expand" : "Collapse"}
+            >
+              {collapsed ? <ChevronDown className="w-4 h-4" /> : <ChevronUp className="w-4 h-4" />}
+            </button>
+          )}
+        </div>
       </div>
 
-      <label
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: 8,
-          fontSize: 14,
-          fontWeight: 600,
-          cursor: "pointer",
-          color: enabled ? "#047857" : "#334155",
-        }}
-      >
-        <input
-          type="checkbox"
-          checked={enabled}
-          onChange={(e) => setEnabled(e.target.checked)}
-          className="w-4 h-4 rounded text-emerald-600 focus:ring-emerald-500 cursor-pointer"
-        />
-        Explode Components
-      </label>
+      <div className="flex flex-wrap items-center justify-between gap-3 p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-800">
+        <label className="flex items-center gap-2.5 cursor-pointer">
+          <input
+            type="checkbox"
+            checked={enabled}
+            onChange={(e) => setEnabled(e.target.checked)}
+            className="w-4 h-4 rounded text-purple-600 focus:ring-purple-500 cursor-pointer accent-purple-600"
+          />
+          <span className="text-xs font-bold text-slate-900 dark:text-white">
+            Explode Architectural Components
+          </span>
+        </label>
+
+        <span className={`text-xs font-semibold px-2.5 py-0.5 rounded-full ${
+          enabled ? "bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300" : "bg-slate-200 dark:bg-slate-700 text-slate-500"
+        }`}>
+          {enabled ? "Separated" : "Assembled"}
+        </span>
+      </div>
 
       {!collapsed && (
-        <div style={{ marginTop: 14 }} className="space-y-3">
-          <div>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                fontSize: 12,
-                color: "#475569",
-                marginBottom: 6,
-              }}
-            >
-              <span>Explosion Amount</span>
-              <strong style={{ color: "#0f172a", fontFamily: "monospace" }}>
-                {amount.toFixed(1)}
+        <div className="mt-4 space-y-4">
+          <div className="p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-800/40">
+            <div className="flex justify-between items-center text-xs font-semibold text-slate-700 dark:text-slate-300 mb-2">
+              <span>Explosion Separation Distance</span>
+              <strong className="px-2 py-0.5 rounded-md bg-purple-100 dark:bg-purple-900/50 text-purple-800 dark:text-purple-300 font-bold font-mono">
+                {amount.toFixed(1)}x
               </strong>
             </div>
 
@@ -113,49 +114,49 @@ export default function ExplodedViewControls({
               value={amount}
               disabled={!enabled}
               onChange={(e) => setAmount(Number(e.target.value))}
-              style={{
-                width: "100%",
-                accentColor: "#059669",
-                cursor: enabled ? "pointer" : "not-allowed",
-                opacity: enabled ? 1 : 0.45,
-              }}
+              className="w-full accent-purple-600 cursor-pointer h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg disabled:opacity-40"
             />
           </div>
 
-          {/* Preset Quick Buttons */}
-          <div className="grid grid-cols-4 gap-1 pt-1">
-            {presets.map((preset) => (
-              <button
-                key={preset.label}
-                type="button"
-                disabled={!enabled}
-                onClick={() => setAmount(preset.value)}
-                className={`py-1 text-[11px] font-semibold rounded-md border transition-all ${
-                  enabled && Math.abs(amount - preset.value) < 0.2
-                    ? "bg-emerald-600 text-white border-emerald-600 shadow-sm"
-                    : "bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200"
-                } ${!enabled ? "opacity-40 cursor-not-allowed" : ""}`}
-              >
-                {preset.label}
-              </button>
-            ))}
+          {/* Presets */}
+          <div>
+            <span className="text-[11px] font-semibold text-slate-500 dark:text-slate-400 block mb-1.5">
+              Quick Separation Presets:
+            </span>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+              {presets.map((preset) => (
+                <button
+                  key={preset.label}
+                  type="button"
+                  disabled={!enabled}
+                  onClick={() => setAmount(preset.value)}
+                  className={`py-2 px-3 text-xs font-semibold rounded-xl border transition-all ${
+                    enabled && Math.abs(amount - preset.value) < 0.2
+                      ? "bg-purple-600 text-white border-purple-600 shadow-md shadow-purple-600/20"
+                      : "bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700"
+                  } ${!enabled ? "opacity-40 cursor-not-allowed" : ""}`}
+                >
+                  {preset.label}
+                </button>
+              ))}
+            </div>
           </div>
 
-          {/* Separated Layer Indicators */}
           {enabled && (
-            <div className="mt-2.5 p-2 rounded-lg bg-emerald-50/70 border border-emerald-200/60 text-[10px] text-emerald-900 space-y-1">
-              <div className="font-semibold flex items-center gap-1 text-emerald-800">
-                <Sparkles className="w-3 h-3 text-emerald-600" />
-                Active Component Offsets:
+            <div className="p-3 rounded-xl bg-purple-50/70 dark:bg-purple-950/30 border border-purple-200/60 dark:border-purple-800/40 text-xs text-purple-900 dark:text-purple-300">
+              <div className="font-bold flex items-center gap-1.5 mb-1 text-purple-800 dark:text-purple-200">
+                <Sparkles className="w-3.5 h-3.5 text-purple-600" />
+                Active Component Offsets
               </div>
-              <div className="grid grid-cols-2 gap-x-2 gap-y-0.5 text-[9.5px] text-slate-600 font-mono">
-                <span>&bull; Building: -0.15 Z</span>
-                <span>&bull; Racks: +0.35 Y</span>
-                <span>&bull; HVAC: +0.8X / +0.2Y</span>
-                <span>&bull; Air: -0.8X / +0.2Y</span>
-                <span>&bull; Water: +0.15Y / +0.8Z</span>
-                <span>&bull; Control: +1.2 X</span>
-                <span>&bull; Cold: +0.4Y / -0.8Z</span>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[11px] font-mono text-slate-600 dark:text-slate-400">
+                <span>Building: -0.15 Z</span>
+                <span>Racks: +0.35 Y</span>
+                <span>HVAC: +0.8X</span>
+                <span>Air: -0.8X</span>
+                <span>Water: +0.8Z</span>
+                <span>Control: +1.2X</span>
+                <span>Cold: +0.4Y</span>
+                <span>Lights: +0.2Z</span>
               </div>
             </div>
           )}

@@ -17,6 +17,7 @@ import {
   SplitSquareVertical,
   MinusCircle,
   HelpCircle,
+  X,
 } from "lucide-react";
 import type { EquipmentType } from "./Equipment";
 
@@ -69,6 +70,10 @@ export type XRayControlsProps = {
   // PUF Panel Inspector
   showPUFDetails: boolean;
   setShowPUFDetails: (val: boolean) => void;
+
+  // Embedded flow
+  embedded?: boolean;
+  onClose?: () => void;
 };
 
 const layerConfig: {
@@ -179,6 +184,8 @@ export default function XRayControls({
   toggleHideEquipment,
   showPUFDetails,
   setShowPUFDetails,
+  embedded = true,
+  onClose,
 }: XRayControlsProps) {
   const [minimized, setMinimized] = useState<boolean>(false);
   const [activeTab, setActiveTab] = useState<"view" | "layers" | "systems">("view");
@@ -207,22 +214,31 @@ export default function XRayControls({
 
   return (
     <div
-      className="absolute top-20 right-4 z-20 w-80 p-3.5 rounded-2xl bg-slate-900/95 text-white border border-white/15 shadow-2xl backdrop-blur-xl select-none max-h-[85vh] flex flex-col transition-all duration-300"
+      className={`text-white rounded-2xl select-none flex flex-col transition-all duration-300 ${
+        embedded
+          ? "w-full p-4 sm:p-6 bg-slate-900 border border-slate-800 shadow-xl"
+          : "absolute top-4 right-4 z-20 w-80 max-w-[calc(100vw-32px)] p-3.5 bg-slate-900/95 border border-white/15 shadow-2xl backdrop-blur-xl max-h-[85vh]"
+      }`}
       style={{
         fontFamily: "var(--font-inter), sans-serif",
       }}
     >
       {/* Header */}
-      <div className="flex items-center justify-between gap-2 border-b border-white/10 pb-2 mb-2 flex-shrink-0">
+      <div className="flex items-center justify-between gap-2 border-b border-white/10 pb-3 mb-3 flex-shrink-0">
         <div className="flex items-center gap-2">
           <Layers className="w-4 h-4 text-emerald-400" />
-          <h2 className="text-xs font-bold text-white tracking-wider uppercase">
-            Engineering X-Ray
-          </h2>
+          <div>
+            <h2 className="text-sm font-bold text-white tracking-wider uppercase">
+              Engineering X-Ray
+            </h2>
+            <p className="text-[11px] text-slate-400">
+              Cutaways, layer isolation &amp; internal conduits
+            </p>
+          </div>
         </div>
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-2">
           <span
-            className={`px-2 py-0.5 rounded-full text-[10px] font-bold border uppercase tracking-wider ${
+            className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold border uppercase tracking-wider ${
               viewMode === "normal"
                 ? "bg-slate-800 text-slate-400 border-slate-700"
                 : viewMode === "xray"
@@ -246,6 +262,16 @@ export default function XRayControls({
               <ChevronUp className="w-4 h-4" />
             )}
           </button>
+          {onClose && (
+            <button
+              type="button"
+              onClick={onClose}
+              className="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-colors"
+              aria-label="Close X-Ray Panel"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          )}
         </div>
       </div>
 

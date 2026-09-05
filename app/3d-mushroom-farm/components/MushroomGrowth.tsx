@@ -17,19 +17,16 @@ export default function MushroomGrowth({
 }: MushroomGrowthProps) {
   const mushroomCount = useMemo(() => {
     switch (stage) {
-      case "spawn":
+      case "spawning":
         return 0;
 
       case "incubation":
         return 0;
 
       case "pinning":
-        return mobile ? 10 : 18;
+        return mobile ? 12 : 22;
 
-      case "fruiting":
-        return mobile ? 24 : 45;
-
-      case "harvest":
+      case "harvesting":
         return mobile ? 35 : 65;
 
       default:
@@ -40,13 +37,10 @@ export default function MushroomGrowth({
   const mushroomScale = useMemo(() => {
     switch (stage) {
       case "pinning":
-        return 0.15;
+        return 0.25;
 
-      case "fruiting":
-        return 0.55;
-
-      case "harvest":
-        return 1;
+      case "harvesting":
+        return 1.0;
 
       default:
         return 0;

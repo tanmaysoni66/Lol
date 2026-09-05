@@ -7,6 +7,7 @@ export type EquipmentPanelProps = {
   equipment: EquipmentType | null;
   onClose: () => void;
   onShowInside?: () => void;
+  embedded?: boolean;
 };
 
 const equipmentData: Record<
@@ -180,6 +181,7 @@ export default function EquipmentPanel({
   equipment,
   onClose,
   onShowInside,
+  embedded = true,
 }: EquipmentPanelProps) {
   const [showTechnical, setShowTechnical] = useState<boolean>(false);
 
@@ -189,34 +191,17 @@ export default function EquipmentPanel({
 
   return (
     <aside
-      style={{
-        position: "absolute",
-        top: 20,
-        left: 20,
-        zIndex: 30,
-        width: 310,
-        maxWidth: "calc(100vw - 40px)",
-        padding: 20,
-        borderRadius: 16,
-        background: "rgba(255,255,255,0.97)",
-        boxShadow: "0 12px 40px rgba(0,0,0,0.2)",
-        fontFamily: "var(--font-inter), Arial, sans-serif",
-      }}
-      className="text-slate-900 border border-slate-200/80 backdrop-blur-xl animate-in fade-in zoom-in-95 duration-200"
+      className={`text-slate-900 dark:text-white rounded-2xl border transition-all duration-200 select-none ${
+        embedded
+          ? "w-full p-4 sm:p-6 bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 shadow-xl"
+          : "absolute top-4 left-4 z-30 w-80 max-w-[calc(100vw-32px)] p-4 bg-white/95 dark:bg-slate-900/95 border-slate-200 dark:border-slate-800 shadow-2xl backdrop-blur-xl"
+      }`}
     >
       <button
         type="button"
         onClick={onClose}
         aria-label="Close equipment information"
-        style={{
-          float: "right",
-          border: 0,
-          background: "transparent",
-          fontSize: 22,
-          cursor: "pointer",
-          lineHeight: 1,
-        }}
-        className="text-slate-400 hover:text-slate-700 transition-colors"
+        className="float-right p-1 rounded-lg text-slate-400 hover:text-slate-700 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-lg"
       >
         &times;
       </button>

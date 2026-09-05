@@ -829,7 +829,26 @@ export default function MushroomFarm3D({
   });
 
   // Mushroom Cultivation Lifecycle Stage
-  const [growthStage, setGrowthStage] = useState<GrowthStage>("spawn");
+  const [growthStage, setGrowthStage] = useState<GrowthStage>("spawning");
+
+  // Bottom Interactive Options Panel State (Grid buttons open corresponding panel below 3D model)
+  type ActivePanel =
+    | "config"
+    | "exploded"
+    | "xray"
+    | "climate"
+    | "capacity"
+    | "estimate"
+    | "growth"
+    | "airflow"
+    | "equipment"
+    | null;
+
+  const [activePanel, setActivePanel] = useState<ActivePanel>(null);
+
+  const togglePanel = (panel: ActivePanel) => {
+    setActivePanel((curr) => (curr === panel ? null : panel));
+  };
 
   // Climate Simulation states
   const [hvac, setHVAC] = useState<boolean>(true);
@@ -883,6 +902,7 @@ export default function MushroomFarm3D({
     setShowFloorPlan(false);
     setShowAirflowControls(false);
     setCameraPreset("overview");
+    setActivePanel(null);
   };
 
   const handleToggleHideEquipment = (type: EquipmentType) => {
@@ -956,10 +976,10 @@ export default function MushroomFarm3D({
         style={{
           position: "relative",
           width: "100%",
-          height: isFullscreen ? "100vh" : "80vh",
-          minHeight: "540px",
+          height: isFullscreen ? "100vh" : isMobile ? "52vh" : "72vh",
+          minHeight: isMobile ? "360px" : "500px",
         }}
-        className="bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950"
+        className="bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 select-none overflow-hidden"
       >
         <Canvas
           shadows={!isMobile}
@@ -990,7 +1010,10 @@ export default function MushroomFarm3D({
             onSelectRoom={handleRoomSelect}
             cameraPreset={cameraPreset}
             selectedEquipment={selectedEquipment}
-            onSelectEquipment={(type) => setSelectedEquipment(type)}
+            onSelectEquipment={(type) => {
+              setSelectedEquipment(type);
+              if (type) setActivePanel("equipment");
+            }}
             isolatedEquipment={isolatedEquipment}
             hiddenEquipment={hiddenEquipment}
             equipmentXRay={equipmentXRay}
@@ -1011,282 +1034,385 @@ export default function MushroomFarm3D({
           />
         </Canvas>
 
-        {/* Step 19: Airflow Controls Overlay */}
-        {showAirflowControls && (
-          <AirflowControls
-            enabled={airflowEnabled}
-            speed={airflowSpeed}
-            setEnabled={setAirflowEnabled}
-            setSpeed={setAirflowSpeed}
-            onClose={() => setShowAirflowControls(false)}
+        {/* Floating Top-Right View Controls on Canvas */}
+        <div className="absolute top-3 right-3 z-20 flex items-center gap-2">
+          <button
+            type="button"
+            onClick={handleResetCamera}
+            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-xs font-medium bg-slate-900/85 hover:bg-slate-800 text-slate-200 border border-white/10 backdrop-blur-md shadow-lg transition-all"
+            title="Reset 3D camera"
+          >
+            <RotateCcw className="w-3.5 h-3.5" />
+            <span className="hidden sm:inline">Reset</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={toggleFullscreen}
+            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-900/85 hover:bg-slate-800 text-slate-200 border border-white/15 backdrop-blur-md shadow-lg transition-all"
+            title={isFullscreen ? "Exit Fullscreen" : "Enter Fullscreen"}
+          >
+            {isFullscreen ? <Minimize2 className="w-3.5 h-3.5" /> : <Maximize2 className="w-3.5 h-3.5" />}
+            <span className="hidden sm:inline">{isFullscreen ? "Exit" : "Fullscreen"}</span>
+          </button>
+        </div>
+
+        {/* Floating Measurement Mode HUD Instruction Banner */}
+        {measurementMode && (
+          <div className="absolute top-3 left-1/2 -translate-x-1/2 z-30 px-3.5 py-1.5 rounded-xl bg-amber-500/95 text-slate-950 font-medium text-xs shadow-xl backdrop-blur-md flex items-center gap-2.5 border border-amber-300">
+            <span className="font-bold flex items-center gap-1">
+              <span>📏</span>
+              <span>Measure Mode</span>
+            </span>
+            <span className="hidden sm:inline text-amber-950 text-[11px]">
+              Click 2 points in 3D to measure meters.
+            </span>
+            <button
+              type="button"
+              onClick={() => setMeasurementMode(false)}
+              className="px-2 py-0.5 rounded-md bg-slate-900 text-white text-[10px] font-semibold hover:bg-slate-800"
+            >
+              Exit
+            </button>
+          </div>
+        )}
+
+        {/* Floating Interaction Tips */}
+        <div className="absolute bottom-3 left-3 pointer-events-none text-[10px] sm:text-xs text-slate-400 bg-slate-900/85 px-3 py-1.5 rounded-xl border border-white/10 backdrop-blur-md flex items-center gap-2">
+          <span>🖱️ Drag to rotate</span>
+          <span>&bull;</span>
+          <span>🔍 Pinch / scroll to zoom</span>
+        </div>
+
+        {/* 2D Floor Plan Modal/Overlay */}
+        {showFloorPlan && (
+          <FloorPlan2D
+            layout={layout}
+            setLayout={setLayout}
+            farmLength={config.farmLength}
+            farmWidth={config.farmWidth}
+            onClose={() => setShowFloorPlan(false)}
           />
         )}
 
-        {/* Step 15: Exploded View Controls */}
-        <ExplodedViewControls
-          enabled={exploded}
-          amount={explosionAmount}
-          setEnabled={(val) => {
-            setExploded(val);
-            if (val && viewMode !== "exploded") {
-              setViewMode("exploded");
-            } else if (!val && viewMode === "exploded") {
-              setViewMode("normal");
-            }
-          }}
-          setAmount={(val) => {
-            setExplosionAmount(val);
-            setExplodedProgress(val / 10);
-          }}
-        />
+        {/* BOQ Modal */}
+        {showBOQ && (
+          <BOQ config={config} onClose={() => setShowBOQ(false)} />
+        )}
 
-        {/* Commercial Farm Configurator Overlay */}
-        <FarmConfigurator
-          config={config}
-          setConfig={setConfig}
-        />
+        {/* Compare Designs Modal */}
+        {showCompare && (
+          <CompareDesigns
+            currentConfig={config}
+            onApplyDesign={(newCfg) => setConfig(newCfg)}
+            onClose={() => setShowCompare(false)}
+          />
+        )}
+      </div>
 
-        {/* Mushroom Cultivation Growth Lifecycle Simulation Overlay */}
-        <GrowthSimulation
-          stage={growthStage}
-          setStage={setGrowthStage}
-        />
+      {/* ============================================================ */}
+      {/* CONTROLS BELOW 3D MODEL (TWO-COLUMN GRID AS REQUESTED BY USER) */}
+      {/* ============================================================ */}
 
-        {/* Commercial Project Estimate & Quote Request */}
-        <ProjectEstimate
-          config={config}
-          onEnquiry={() => {
-            const payload = createEnquiryPayload(config);
-            sessionStorage.setItem(
-              "mushroomFarm3DEnquiry",
-              JSON.stringify(payload)
-            );
-            window.location.href = "/enquiry";
-          }}
-        />
+      {/* 1. Camera Angle Presets Toolbar */}
+      <div className="flex items-center justify-between flex-wrap gap-2 px-4 sm:px-6 py-2.5 bg-slate-900/90 border-t border-slate-800">
+        <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider hidden sm:inline">
+          Camera Angles:
+        </span>
+        <div className="flex items-center flex-wrap gap-1.5 w-full sm:w-auto">
+          {[
+            { id: "overview", label: "🏠 Overview" },
+            { id: "growing", label: "🍄 Growing Room" },
+            { id: "processing", label: "🧪 Processing" },
+            { id: "coldStorage", label: "❄️ Cold Storage" },
+          ].map((preset) => (
+            <button
+              key={preset.id}
+              type="button"
+              onClick={() => setCameraPreset(preset.id as CameraPreset)}
+              className={`flex-1 sm:flex-none px-3 py-1.5 rounded-xl text-xs font-semibold border transition-all ${
+                cameraPreset === preset.id
+                  ? "bg-emerald-600 text-white border-emerald-400 shadow-md shadow-emerald-600/30"
+                  : "bg-slate-800/80 text-slate-300 border-slate-700 hover:bg-slate-700 hover:text-white"
+              }`}
+            >
+              {preset.label}
+            </button>
+          ))}
+        </div>
+      </div>
 
-        {/* Farm Capacity Planning Panel Overlay */}
-        <FarmCapacity
-          rooms={config.growingRooms}
-          racksPerRoom={config.racksPerRoom}
-          rackLevels={config.rackLevels}
-        />
+      {/* 2. Options Grid - Small Buttons in Two Columns on Mobile */}
+      <div className="p-3 sm:p-5 bg-slate-900/95 border-t border-slate-800">
+        <div className="flex items-center justify-between mb-2.5">
+          <span className="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
+            <span>⚙️</span>
+            <span>Options &amp; Controls</span>
+          </span>
+          <span className="text-[11px] text-slate-400">
+            {activePanel ? "Tap active button to close" : "Tap any button to open"}
+          </span>
+        </div>
 
-        {/* Climate Simulation IoT Dashboard */}
-        <ClimateDashboard
-          values={climate}
-          hvac={hvac}
-          fogger={fogger}
-          exhaust={exhaust}
-          freshAir={freshAir}
-          setHVAC={setHVAC}
-          setFogger={setFogger}
-          setExhaust={setExhaust}
-          setFreshAir={setFreshAir}
-        />
-
-        {/* Dedicated Equipment Information Panel with Show Inside (X-Ray) */}
-        <EquipmentPanel
-          equipment={selectedEquipment}
-          onClose={() => {
-            setSelectedEquipment(null);
-            setEquipmentXRay(false);
-          }}
-          onShowInside={() => {
-            setEquipmentXRay(true);
-          }}
-        />
-
-        {/* Step 13: Advanced Engineering X-Ray, Cutaway, Exploded & Layers Control Panel */}
-        <XRayControls
-          viewMode={viewMode}
-          setViewMode={setViewMode}
-          cutawayProgress={cutawayProgress}
-          setCutawayProgress={setCutawayProgress}
-          cutawayAxis={cutawayAxis}
-          setCutawayAxis={setCutawayAxis}
-          explodedProgress={explodedProgress}
-          setExplodedProgress={setExplodedProgress}
-          layers={layers}
-          setLayers={setLayers}
-          visibleSystems={visibleSystems}
-          setVisibleSystems={setVisibleSystems}
-          selectedEquipment={selectedEquipment}
-          isolatedEquipment={isolatedEquipment}
-          setIsolatedEquipment={setIsolatedEquipment}
-          hiddenEquipment={hiddenEquipment}
-          toggleHideEquipment={handleToggleHideEquipment}
-          showPUFDetails={showPUFDetails}
-          setShowPUFDetails={setShowPUFDetails}
-        />
-
-        {/* Bottom Centered Camera Preset & View Navigation Toolbar */}
-        <div
-          style={{
-            position: "absolute",
-            left: "50%",
-            transform: "translateX(-50%)",
-            bottom: 20,
-            zIndex: 20,
-            display: "flex",
-            flexWrap: "wrap",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: 8,
-          }}
-        >
+        {/* Two columns on mobile, scaling up cleanly on tablet/desktop */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2">
+          {/* Button 1: Farm Configurator */}
           <button
             type="button"
-            onClick={() => setCameraPreset("overview")}
-            className={`px-3 py-2 rounded-xl text-xs font-semibold backdrop-blur-md border shadow-lg transition-all ${
-              cameraPreset === "overview"
-                ? "bg-emerald-600 text-white border-emerald-400 shadow-emerald-500/30 scale-105"
-                : "bg-slate-900/80 text-slate-300 border-white/10 hover:bg-slate-800 hover:text-white"
+            onClick={() => togglePanel("config")}
+            className={`p-2.5 sm:p-3 rounded-xl border text-left flex items-center justify-between gap-2 transition-all cursor-pointer ${
+              activePanel === "config"
+                ? "bg-emerald-600 text-white border-emerald-400 shadow-lg shadow-emerald-600/25 scale-[1.02]"
+                : "bg-slate-800/90 hover:bg-slate-800 text-slate-200 border-slate-700/80 hover:border-slate-600"
             }`}
           >
-            🏠 Overview
+            <div className="flex items-center gap-2 min-w-0">
+              <span className="text-base sm:text-lg shrink-0">🎛️</span>
+              <div className="min-w-0">
+                <span className="text-xs font-bold block truncate">Configurator</span>
+                <span className={`text-[10px] block truncate ${activePanel === "config" ? "text-emerald-100" : "text-slate-400"}`}>
+                  Size &amp; Rooms
+                </span>
+              </div>
+            </div>
+            <span className={`w-2 h-2 rounded-full shrink-0 ${activePanel === "config" ? "bg-white" : "bg-transparent"}`} />
           </button>
 
-          <button
-            type="button"
-            onClick={() => setCameraPreset("growing")}
-            className={`px-3 py-2 rounded-xl text-xs font-semibold backdrop-blur-md border shadow-lg transition-all ${
-              cameraPreset === "growing"
-                ? "bg-emerald-600 text-white border-emerald-400 shadow-emerald-500/30 scale-105"
-                : "bg-slate-900/80 text-slate-300 border-white/10 hover:bg-slate-800 hover:text-white"
-            }`}
-          >
-            🍄 Growing Room
-          </button>
-
-          <button
-            type="button"
-            onClick={() => setCameraPreset("processing")}
-            className={`px-3 py-2 rounded-xl text-xs font-semibold backdrop-blur-md border shadow-lg transition-all ${
-              cameraPreset === "processing"
-                ? "bg-emerald-600 text-white border-emerald-400 shadow-emerald-500/30 scale-105"
-                : "bg-slate-900/80 text-slate-300 border-white/10 hover:bg-slate-800 hover:text-white"
-            }`}
-          >
-            🧪 Processing
-          </button>
-
-          <button
-            type="button"
-            onClick={() => setCameraPreset("coldStorage")}
-            className={`px-3 py-2 rounded-xl text-xs font-semibold backdrop-blur-md border shadow-lg transition-all ${
-              cameraPreset === "coldStorage"
-                ? "bg-emerald-600 text-white border-emerald-400 shadow-emerald-500/30 scale-105"
-                : "bg-slate-900/80 text-slate-300 border-white/10 hover:bg-slate-800 hover:text-white"
-            }`}
-          >
-            ❄️ Cold Storage
-          </button>
-
-          {/* Step 16: Measure Button */}
-          <button
-            type="button"
-            onClick={() => setMeasurementMode(!measurementMode)}
-            className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold backdrop-blur-md border shadow-lg transition-all ${
-              measurementMode
-                ? "bg-amber-600 text-white border-amber-400 shadow-amber-500/30 scale-105"
-                : "bg-slate-900/80 text-slate-300 border-white/10 hover:bg-slate-800 hover:text-white"
-            }`}
-            title={measurementMode ? "Exit 3D Measurement Mode" : "Measure distances in 3D Farm"}
-          >
-            <span>📏</span>
-            <span>{measurementMode ? "Exit Measure" : "Measure"}</span>
-          </button>
-
-          {/* Step 17: 2D Floor Plan Toggle Button */}
-          <button
-            type="button"
-            onClick={() => setShowFloorPlan(!showFloorPlan)}
-            className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold backdrop-blur-md border shadow-lg transition-all ${
-              showFloorPlan
-                ? "bg-indigo-600 text-white border-indigo-400 shadow-indigo-500/30 scale-105"
-                : "bg-slate-900/80 text-slate-300 border-white/10 hover:bg-slate-800 hover:text-white"
-            }`}
-            title={showFloorPlan ? "Switch to 3D View" : "Open 2D Floor Plan"}
-          >
-            <span>🗺️</span>
-            <span>{showFloorPlan ? "3D View" : "2D Floor Plan"}</span>
-          </button>
-
-          {/* Step 19: Airflow Controls Toggle Button */}
+          {/* Button 2: Exploded View */}
           <button
             type="button"
             onClick={() => {
-              const next = !showAirflowControls;
-              setShowAirflowControls(next);
-              if (next && !airflowEnabled) {
+              togglePanel("exploded");
+              if (activePanel !== "exploded" && !exploded) {
+                setExploded(true);
+                setViewMode("exploded");
+              }
+            }}
+            className={`p-2.5 sm:p-3 rounded-xl border text-left flex items-center justify-between gap-2 transition-all cursor-pointer ${
+              activePanel === "exploded" || exploded
+                ? "bg-purple-600 text-white border-purple-400 shadow-lg shadow-purple-600/25 scale-[1.02]"
+                : "bg-slate-800/90 hover:bg-slate-800 text-slate-200 border-slate-700/80 hover:border-slate-600"
+            }`}
+          >
+            <div className="flex items-center gap-2 min-w-0">
+              <span className="text-base sm:text-lg shrink-0">🧩</span>
+              <div className="min-w-0">
+                <span className="text-xs font-bold block truncate">Exploded View</span>
+                <span className={`text-[10px] block truncate ${activePanel === "exploded" || exploded ? "text-purple-100" : "text-slate-400"}`}>
+                  {exploded ? `${explosionAmount.toFixed(1)}x Separation` : "Deconstruct"}
+                </span>
+              </div>
+            </div>
+            <span className={`w-2 h-2 rounded-full shrink-0 ${activePanel === "exploded" || exploded ? "bg-white" : "bg-transparent"}`} />
+          </button>
+
+          {/* Button 3: Engineering X-Ray & Layers */}
+          <button
+            type="button"
+            onClick={() => togglePanel("xray")}
+            className={`p-2.5 sm:p-3 rounded-xl border text-left flex items-center justify-between gap-2 transition-all cursor-pointer ${
+              activePanel === "xray" || viewMode !== "normal"
+                ? "bg-cyan-600 text-white border-cyan-400 shadow-lg shadow-cyan-600/25 scale-[1.02]"
+                : "bg-slate-800/90 hover:bg-slate-800 text-slate-200 border-slate-700/80 hover:border-slate-600"
+            }`}
+          >
+            <div className="flex items-center gap-2 min-w-0">
+              <span className="text-base sm:text-lg shrink-0">🔬</span>
+              <div className="min-w-0">
+                <span className="text-xs font-bold block truncate">X-Ray / Layers</span>
+                <span className={`text-[10px] block truncate ${activePanel === "xray" || viewMode !== "normal" ? "text-cyan-100" : "text-slate-400"}`}>
+                  Cutaways &amp; PUF
+                </span>
+              </div>
+            </div>
+            <span className={`w-2 h-2 rounded-full shrink-0 ${activePanel === "xray" || viewMode !== "normal" ? "bg-white" : "bg-transparent"}`} />
+          </button>
+
+          {/* Button 4: Climate & IoT */}
+          <button
+            type="button"
+            onClick={() => togglePanel("climate")}
+            className={`p-2.5 sm:p-3 rounded-xl border text-left flex items-center justify-between gap-2 transition-all cursor-pointer ${
+              activePanel === "climate"
+                ? "bg-teal-600 text-white border-teal-400 shadow-lg shadow-teal-600/25 scale-[1.02]"
+                : "bg-slate-800/90 hover:bg-slate-800 text-slate-200 border-slate-700/80 hover:border-slate-600"
+            }`}
+          >
+            <div className="flex items-center gap-2 min-w-0">
+              <span className="text-base sm:text-lg shrink-0">🌦️</span>
+              <div className="min-w-0">
+                <span className="text-xs font-bold block truncate">Climate &amp; IoT</span>
+                <span className={`text-[10px] block truncate ${activePanel === "climate" ? "text-teal-100" : "text-slate-400"}`}>
+                  {climate.temperature.toFixed(0)}°C • {climate.humidity.toFixed(0)}% RH
+                </span>
+              </div>
+            </div>
+            <span className={`w-2 h-2 rounded-full shrink-0 ${activePanel === "climate" ? "bg-white" : "bg-transparent"}`} />
+          </button>
+
+          {/* Button 5: Farm Capacity */}
+          <button
+            type="button"
+            onClick={() => togglePanel("capacity")}
+            className={`p-2.5 sm:p-3 rounded-xl border text-left flex items-center justify-between gap-2 transition-all cursor-pointer ${
+              activePanel === "capacity"
+                ? "bg-blue-600 text-white border-blue-400 shadow-lg shadow-blue-600/25 scale-[1.02]"
+                : "bg-slate-800/90 hover:bg-slate-800 text-slate-200 border-slate-700/80 hover:border-slate-600"
+            }`}
+          >
+            <div className="flex items-center gap-2 min-w-0">
+              <span className="text-base sm:text-lg shrink-0">📊</span>
+              <div className="min-w-0">
+                <span className="text-xs font-bold block truncate">Farm Capacity</span>
+                <span className={`text-[10px] block truncate ${activePanel === "capacity" ? "text-blue-100" : "text-slate-400"}`}>
+                  Bags &amp; Yield
+                </span>
+              </div>
+            </div>
+            <span className={`w-2 h-2 rounded-full shrink-0 ${activePanel === "capacity" ? "bg-white" : "bg-transparent"}`} />
+          </button>
+
+          {/* Button 6: Project Estimate */}
+          <button
+            type="button"
+            onClick={() => togglePanel("estimate")}
+            className={`p-2.5 sm:p-3 rounded-xl border text-left flex items-center justify-between gap-2 transition-all cursor-pointer ${
+              activePanel === "estimate"
+                ? "bg-amber-600 text-white border-amber-400 shadow-lg shadow-amber-600/25 scale-[1.02]"
+                : "bg-slate-800/90 hover:bg-slate-800 text-slate-200 border-slate-700/80 hover:border-slate-600"
+            }`}
+          >
+            <div className="flex items-center gap-2 min-w-0">
+              <span className="text-base sm:text-lg shrink-0">💰</span>
+              <div className="min-w-0">
+                <span className="text-xs font-bold block truncate">Cost Estimate</span>
+                <span className={`text-[10px] block truncate ${activePanel === "estimate" ? "text-amber-100" : "text-slate-400"}`}>
+                  Turnkey Capex
+                </span>
+              </div>
+            </div>
+            <span className={`w-2 h-2 rounded-full shrink-0 ${activePanel === "estimate" ? "bg-white" : "bg-transparent"}`} />
+          </button>
+
+          {/* Button 7: Growth Simulation */}
+          <button
+            type="button"
+            onClick={() => togglePanel("growth")}
+            className={`p-2.5 sm:p-3 rounded-xl border text-left flex items-center justify-between gap-2 transition-all cursor-pointer ${
+              activePanel === "growth"
+                ? "bg-emerald-600 text-white border-emerald-400 shadow-lg shadow-emerald-600/25 scale-[1.02]"
+                : "bg-slate-800/90 hover:bg-slate-800 text-slate-200 border-slate-700/80 hover:border-slate-600"
+            }`}
+          >
+            <div className="flex items-center gap-2 min-w-0">
+              <span className="text-base sm:text-lg shrink-0">🌿</span>
+              <div className="min-w-0">
+                <span className="text-xs font-bold block truncate">Growth Stage</span>
+                <span className={`text-[10px] block truncate ${activePanel === "growth" ? "text-emerald-100" : "text-slate-400"}`}>
+                  Lifecycle Sim
+                </span>
+              </div>
+            </div>
+            <span className={`w-2 h-2 rounded-full shrink-0 ${activePanel === "growth" ? "bg-white" : "bg-transparent"}`} />
+          </button>
+
+          {/* Button 8: Airflow & HVAC */}
+          <button
+            type="button"
+            onClick={() => {
+              togglePanel("airflow");
+              if (activePanel !== "airflow" && !airflowEnabled) {
                 setAirflowEnabled(true);
               }
             }}
-            className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold backdrop-blur-md border shadow-lg transition-all ${
-              showAirflowControls || airflowEnabled
-                ? "bg-sky-600 text-white border-sky-400 shadow-sky-500/30 scale-105"
-                : "bg-slate-900/80 text-slate-300 border-white/10 hover:bg-slate-800 hover:text-white"
+            className={`p-2.5 sm:p-3 rounded-xl border text-left flex items-center justify-between gap-2 transition-all cursor-pointer ${
+              activePanel === "airflow" || airflowEnabled
+                ? "bg-sky-600 text-white border-sky-400 shadow-lg shadow-sky-600/25 scale-[1.02]"
+                : "bg-slate-800/90 hover:bg-slate-800 text-slate-200 border-slate-700/80 hover:border-slate-600"
             }`}
-            title={showAirflowControls ? "Hide Airflow Panel" : "Open Airflow & HVAC Controls"}
           >
-            <span>🌬️</span>
-            <span>Airflow</span>
+            <div className="flex items-center gap-2 min-w-0">
+              <span className="text-base sm:text-lg shrink-0">🌬️</span>
+              <div className="min-w-0">
+                <span className="text-xs font-bold block truncate">Airflow / HVAC</span>
+                <span className={`text-[10px] block truncate ${activePanel === "airflow" || airflowEnabled ? "text-sky-100" : "text-slate-400"}`}>
+                  Circulation
+                </span>
+              </div>
+            </div>
+            <span className={`w-2 h-2 rounded-full shrink-0 ${activePanel === "airflow" || airflowEnabled ? "bg-white" : "bg-transparent"}`} />
           </button>
 
-          {/* Step 20: Water & Fogger System Toggle */}
+          {/* Button 9: 3D Measure */}
           <button
             type="button"
-            onClick={() => setWaterEnabled(!waterEnabled)}
-            className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold backdrop-blur-md border shadow-lg transition-all ${
-              waterEnabled
-                ? "bg-cyan-600 text-white border-cyan-400 shadow-cyan-500/30 scale-105"
-                : "bg-slate-900/80 text-slate-300 border-white/10 hover:bg-slate-800 hover:text-white"
+            onClick={() => setMeasurementMode(!measurementMode)}
+            className={`p-2.5 sm:p-3 rounded-xl border text-left flex items-center justify-between gap-2 transition-all cursor-pointer ${
+              measurementMode
+                ? "bg-amber-600 text-white border-amber-400 shadow-lg shadow-amber-600/25 scale-[1.02]"
+                : "bg-slate-800/90 hover:bg-slate-800 text-slate-200 border-slate-700/80 hover:border-slate-600"
             }`}
-            title="Toggle Water, Fogger & Drainage Systems"
           >
-            <Droplets className="w-3.5 h-3.5 text-cyan-400" />
-            <span>Water</span>
+            <div className="flex items-center gap-2 min-w-0">
+              <span className="text-base sm:text-lg shrink-0">📏</span>
+              <div className="min-w-0">
+                <span className="text-xs font-bold block truncate">3D Measure</span>
+                <span className={`text-[10px] block truncate ${measurementMode ? "text-amber-100" : "text-slate-400"}`}>
+                  {measurementMode ? "Active" : "Tap 2 Points"}
+                </span>
+              </div>
+            </div>
+            <span className={`w-2 h-2 rounded-full shrink-0 ${measurementMode ? "bg-white" : "bg-transparent"}`} />
           </button>
 
-          {/* Step 21: Electrical System Toggle */}
+          {/* Button 10: 2D Floor Plan */}
           <button
             type="button"
-            onClick={() => setElectricalEnabled(!electricalEnabled)}
-            className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold backdrop-blur-md border shadow-lg transition-all ${
-              electricalEnabled
-                ? "bg-amber-600 text-white border-amber-400 shadow-amber-500/30 scale-105"
-                : "bg-slate-900/80 text-slate-300 border-white/10 hover:bg-slate-800 hover:text-white"
-            }`}
-            title="Toggle Electrical Conduits, Grow Lights & Control Panel"
+            onClick={() => setShowFloorPlan(true)}
+            className="p-2.5 sm:p-3 rounded-xl border text-left flex items-center justify-between gap-2 transition-all cursor-pointer bg-slate-800/90 hover:bg-slate-800 text-slate-200 border-slate-700/80 hover:border-slate-600"
           >
-            <Zap className="w-3.5 h-3.5 text-amber-400" />
-            <span>Electrical</span>
+            <div className="flex items-center gap-2 min-w-0">
+              <span className="text-base sm:text-lg shrink-0">🗺️</span>
+              <div className="min-w-0">
+                <span className="text-xs font-bold block truncate">2D Floor Plan</span>
+                <span className="text-[10px] text-slate-400 block truncate">CAD Blueprint</span>
+              </div>
+            </div>
           </button>
 
-          {/* Step 22: BOQ Button */}
+          {/* Button 11: BOQ */}
           <button
             type="button"
             onClick={() => setShowBOQ(true)}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold backdrop-blur-md border shadow-lg bg-slate-900/80 text-slate-300 border-white/10 hover:bg-slate-800 hover:text-white transition-all hover:scale-105"
-            title="Open Bill of Quantities (BOQ)"
+            className="p-2.5 sm:p-3 rounded-xl border text-left flex items-center justify-between gap-2 transition-all cursor-pointer bg-slate-800/90 hover:bg-slate-800 text-slate-200 border-slate-700/80 hover:border-slate-600"
           >
-            <ClipboardList className="w-3.5 h-3.5 text-emerald-400" />
-            <span>BOQ</span>
+            <div className="flex items-center gap-2 min-w-0">
+              <span className="text-base sm:text-lg shrink-0">📋</span>
+              <div className="min-w-0">
+                <span className="text-xs font-bold block truncate">BOQ Schedule</span>
+                <span className="text-[10px] text-slate-400 block truncate">Bill of Quantities</span>
+              </div>
+            </div>
           </button>
 
-          {/* Step 25: Compare Designs Button */}
+          {/* Button 12: Compare Designs */}
           <button
             type="button"
             onClick={() => setShowCompare(true)}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold backdrop-blur-md border shadow-lg bg-slate-900/80 text-slate-300 border-white/10 hover:bg-slate-800 hover:text-white transition-all hover:scale-105"
-            title="Compare with Commercial Preset Configurations"
+            className="p-2.5 sm:p-3 rounded-xl border text-left flex items-center justify-between gap-2 transition-all cursor-pointer bg-slate-800/90 hover:bg-slate-800 text-slate-200 border-slate-700/80 hover:border-slate-600"
           >
-            <ArrowLeftRight className="w-3.5 h-3.5 text-indigo-400" />
-            <span>Compare</span>
+            <div className="flex items-center gap-2 min-w-0">
+              <span className="text-base sm:text-lg shrink-0">⚖️</span>
+              <div className="min-w-0">
+                <span className="text-xs font-bold block truncate">Compare</span>
+                <span className="text-[10px] text-slate-400 block truncate">Presets Benchmark</span>
+              </div>
+            </div>
           </button>
+        </div>
 
-          {/* Step 24: Save Button */}
+        {/* Quick Utilities Row */}
+        <div className="flex items-center flex-wrap gap-2 mt-3 pt-3 border-t border-slate-800">
           <button
             type="button"
             onClick={() => {
@@ -1294,18 +1420,12 @@ export default function MushroomFarm3D({
               setSaveSuccess(true);
               setTimeout(() => setSaveSuccess(false), 2000);
             }}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold backdrop-blur-md border shadow-lg bg-slate-900/80 text-slate-300 border-white/10 hover:bg-slate-800 hover:text-white transition-all hover:scale-105"
-            title="Save configuration to local browser storage"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-all"
           >
-            {saveSuccess ? (
-              <Check className="w-3.5 h-3.5 text-emerald-400" />
-            ) : (
-              <Bookmark className="w-3.5 h-3.5 text-amber-400" />
-            )}
-            <span>{saveSuccess ? "Saved" : "Save"}</span>
+            {saveSuccess ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Bookmark className="w-3.5 h-3.5 text-amber-400" />}
+            <span>{saveSuccess ? "Saved!" : "Save"}</span>
           </button>
 
-          {/* Step 24: Share Link Button */}
           <button
             type="button"
             onClick={async () => {
@@ -1313,24 +1433,14 @@ export default function MushroomFarm3D({
               setShareSuccess(true);
               setTimeout(() => setShareSuccess(false), 2000);
             }}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold backdrop-blur-md border shadow-lg bg-slate-900/80 text-slate-300 border-white/10 hover:bg-slate-800 hover:text-white transition-all hover:scale-105"
-            title="Copy shareable design URL to clipboard"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-all"
           >
-            {shareSuccess ? (
-              <Check className="w-3.5 h-3.5 text-emerald-400" />
-            ) : (
-              <Share2 className="w-3.5 h-3.5 text-sky-400" />
-            )}
+            {shareSuccess ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Share2 className="w-3.5 h-3.5 text-sky-400" />}
             <span>{shareSuccess ? "Copied!" : "Share"}</span>
           </button>
 
-          {/* Step 23: JSON Report */}
           <ProjectReport config={config} />
-
-          {/* Step 27: Screenshot Capture */}
           <ScreenshotCapture renderer={renderer} />
-
-          {/* Step 27: PDF Export */}
           <PDFExport
             renderer={renderer}
             projectName="Commercial Mushroom Farm Project"
@@ -1357,68 +1467,146 @@ export default function MushroomFarm3D({
               { name: "Cold Storage Unit", quantity: config.coldStorage ? 1 : 0, unit: "Unit" },
             ]}
           />
-
-          <button
-            type="button"
-            onClick={toggleFullscreen}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold bg-slate-900/85 hover:bg-slate-800 text-slate-200 border border-white/15 backdrop-blur-md shadow-lg transition-all hover:scale-105"
-            title={isFullscreen ? "Exit Fullscreen" : "Enter Fullscreen"}
-          >
-            {isFullscreen ? <Minimize2 className="w-3.5 h-3.5" /> : <Maximize2 className="w-3.5 h-3.5" />}
-            <span className="hidden sm:inline">{isFullscreen ? "Exit" : "Fullscreen"}</span>
-          </button>
-        </div>
-
-        {/* Step 22: BOQ Modal */}
-        {showBOQ && (
-          <BOQ config={config} onClose={() => setShowBOQ(false)} />
-        )}
-
-        {/* Step 25: Compare Designs Modal */}
-        {showCompare && (
-          <CompareDesigns
-            currentConfig={config}
-            onApplyDesign={(newCfg) => setConfig(newCfg)}
-            onClose={() => setShowCompare(false)}
-          />
-        )}
-
-        {/* Step 17: 2D Floor Plan View Overlay */}
-        {showFloorPlan && (
-          <FloorPlan2D
-            layout={layout}
-            setLayout={setLayout}
-            farmLength={config.farmLength}
-            farmWidth={config.farmWidth}
-            onClose={() => setShowFloorPlan(false)}
-          />
-        )}
-
-        {/* Floating Measurement Mode HUD Instruction Banner */}
-        {measurementMode && (
-          <div className="absolute top-4 left-1/2 -translate-x-1/2 z-30 px-4 py-2 rounded-xl bg-amber-500/95 text-slate-950 font-medium text-xs shadow-xl backdrop-blur-md flex items-center gap-3 border border-amber-300 animate-in fade-in slide-in-from-top-2">
-            <span className="flex items-center gap-1.5 font-bold">
-              <span>📏</span>
-              <span>3D Measure Mode Active</span>
-            </span>
-            <span className="hidden sm:inline text-amber-950">
-              Click 1st point, then 2nd point to measure real distance in meters.
-            </span>
-            <button
-              type="button"
-              onClick={() => setMeasurementMode(false)}
-              className="px-2.5 py-0.5 rounded-lg bg-slate-900 text-white text-[11px] font-semibold hover:bg-slate-800 transition-colors"
-            >
-              Exit
-            </button>
-          </div>
-        )}
-
-        {/* Floating Interaction Tips */}
-        <div className="absolute top-4 left-4 pointer-events-none text-[11px] text-slate-400 bg-slate-900/80 px-3 py-1.5 rounded-lg border border-slate-800 backdrop-blur-sm hidden sm:block">
-          🖱 Rotate &bull; 🔍 Zoom &bull; 🔬 View Modes: Normal / X-Ray / Cutaway / Exploded &bull; 📏 Measure &bull; 🗺️ 2D Floor Plan
         </div>
       </div>
+
+      {/* 3. Dedicated Active Options Panel Area (Opens cleanly below button grid upon tap) */}
+      {activePanel !== null && (
+        <div className="p-4 sm:p-6 bg-slate-900/60 border-t border-slate-800 animate-in fade-in slide-in-from-top-3 duration-200">
+          {activePanel === "config" && (
+            <FarmConfigurator
+              config={config}
+              setConfig={setConfig}
+              embedded
+              onClose={() => setActivePanel(null)}
+            />
+          )}
+
+          {activePanel === "exploded" && (
+            <ExplodedViewControls
+              enabled={exploded}
+              amount={explosionAmount}
+              setEnabled={(val) => {
+                setExploded(val);
+                if (val && viewMode !== "exploded") {
+                  setViewMode("exploded");
+                } else if (!val && viewMode === "exploded") {
+                  setViewMode("normal");
+                }
+              }}
+              setAmount={(val) => {
+                setExplosionAmount(val);
+                setExplodedProgress(val / 10);
+              }}
+              embedded
+              onClose={() => setActivePanel(null)}
+            />
+          )}
+
+          {activePanel === "xray" && (
+            <XRayControls
+              viewMode={viewMode}
+              setViewMode={setViewMode}
+              cutawayProgress={cutawayProgress}
+              setCutawayProgress={setCutawayProgress}
+              cutawayAxis={cutawayAxis}
+              setCutawayAxis={setCutawayAxis}
+              explodedProgress={explodedProgress}
+              setExplodedProgress={setExplodedProgress}
+              layers={layers}
+              setLayers={setLayers}
+              visibleSystems={visibleSystems}
+              setVisibleSystems={setVisibleSystems}
+              selectedEquipment={selectedEquipment}
+              isolatedEquipment={isolatedEquipment}
+              setIsolatedEquipment={setIsolatedEquipment}
+              hiddenEquipment={hiddenEquipment}
+              toggleHideEquipment={handleToggleHideEquipment}
+              showPUFDetails={showPUFDetails}
+              setShowPUFDetails={setShowPUFDetails}
+              embedded
+              onClose={() => setActivePanel(null)}
+            />
+          )}
+
+          {activePanel === "climate" && (
+            <ClimateDashboard
+              values={climate}
+              hvac={hvac}
+              fogger={fogger}
+              exhaust={exhaust}
+              freshAir={freshAir}
+              setHVAC={setHVAC}
+              setFogger={setFogger}
+              setExhaust={setExhaust}
+              setFreshAir={setFreshAir}
+              embedded
+              onClose={() => setActivePanel(null)}
+            />
+          )}
+
+          {activePanel === "capacity" && (
+            <FarmCapacity
+              rooms={config.growingRooms}
+              racksPerRoom={config.racksPerRoom}
+              rackLevels={config.rackLevels}
+              embedded
+              onClose={() => setActivePanel(null)}
+            />
+          )}
+
+          {activePanel === "estimate" && (
+            <ProjectEstimate
+              config={config}
+              onEnquiry={() => {
+                const payload = createEnquiryPayload(config);
+                sessionStorage.setItem(
+                  "mushroomFarm3DEnquiry",
+                  JSON.stringify(payload)
+                );
+                window.location.href = "/enquiry";
+              }}
+              embedded
+              onClose={() => setActivePanel(null)}
+            />
+          )}
+
+          {activePanel === "growth" && (
+            <GrowthSimulation
+              stage={growthStage}
+              setStage={setGrowthStage}
+              embedded
+              onClose={() => setActivePanel(null)}
+            />
+          )}
+
+          {activePanel === "airflow" && (
+            <AirflowControls
+              enabled={airflowEnabled}
+              speed={airflowSpeed}
+              setEnabled={setAirflowEnabled}
+              setSpeed={setAirflowSpeed}
+              embedded
+              onClose={() => setActivePanel(null)}
+            />
+          )}
+
+          {activePanel === "equipment" && selectedEquipment && (
+            <EquipmentPanel
+              equipment={selectedEquipment}
+              embedded
+              onClose={() => {
+                setSelectedEquipment(null);
+                setEquipmentXRay(false);
+                setActivePanel(null);
+              }}
+              onShowInside={() => {
+                setEquipmentXRay(true);
+              }}
+            />
+          )}
+        </div>
+      )}
 
       {/* Process Flow Diagram */}
       {!isFullscreen && (

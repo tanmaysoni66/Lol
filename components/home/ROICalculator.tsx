@@ -34,31 +34,31 @@ export const ROICalculator = () => {
 
         <div className="bg-transparent p-2 md:p-4 rounded-2xl flex flex-col md:flex-row gap-5">
           <div className="flex-1 space-y-4">
-            <div>
-              <label className="block text-[9px] font-bold text-slate-900 dark:text-white mb-1.5">Number of Bags/Beds</label>
+            <div className="bg-white/40 dark:bg-white/5 p-3 rounded-xl border border-white/60 dark:border-white/10 backdrop-blur-md shadow-sm">
+              <label className="block text-[10px] font-bold text-slate-900 dark:text-white mb-1.5">Number of Bags/Beds</label>
               <input type="range" min="500" max="10000" step="500" value={bags} onChange={(e) => setBags(Number(e.target.value))} className="w-full accent-blue-600 h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" />
-              <div className="text-right text-[9px] font-bold text-blue-600 dark:text-blue-400 mt-1">{bags.toLocaleString()} Bags</div>
+              <div className="text-right text-[10px] font-bold text-blue-600 dark:text-blue-400 mt-1">{bags.toLocaleString()} Bags</div>
             </div>
-            <div>
-              <label className="block text-[9px] font-bold text-slate-900 dark:text-white mb-1.5">Market Selling Price (₹/kg)</label>
+            <div className="bg-white/40 dark:bg-white/5 p-3 rounded-xl border border-white/60 dark:border-white/10 backdrop-blur-md shadow-sm">
+              <label className="block text-[10px] font-bold text-slate-900 dark:text-white mb-1.5">Market Selling Price (₹/kg)</label>
               <input type="range" min="80" max="250" step="10" value={sellingPrice} onChange={(e) => setSellingPrice(Number(e.target.value))} className="w-full accent-blue-600 h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" />
-              <div className="text-right text-[9px] font-bold text-blue-600 dark:text-blue-400 mt-1">₹{sellingPrice}</div>
+              <div className="text-right text-[10px] font-bold text-blue-600 dark:text-blue-400 mt-1">₹{sellingPrice}</div>
             </div>
-            <div>
-              <label className="block text-[9px] font-bold text-slate-900 dark:text-white mb-1.5">Labor/Electricity Cost (₹/kg)</label>
+            <div className="bg-white/40 dark:bg-white/5 p-3 rounded-xl border border-white/60 dark:border-white/10 backdrop-blur-md shadow-sm">
+              <label className="block text-[10px] font-bold text-slate-900 dark:text-white mb-1.5">Labor/Electricity Cost (₹/kg)</label>
               <input type="range" min="20" max="100" step="5" value={costPrice} onChange={(e) => setCostPrice(Number(e.target.value))} className="w-full accent-blue-600 h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" />
-              <div className="text-right text-[9px] font-bold text-blue-600 dark:text-blue-400 mt-1">₹{costPrice}</div>
+              <div className="text-right text-[10px] font-bold text-blue-600 dark:text-blue-400 mt-1">₹{costPrice}</div>
             </div>
           </div>
 
-          <div className="flex-1 flex flex-col justify-center gap-2">
-            <div className="bg-blue-50/50 dark:bg-blue-900/20 border border-blue-500/20 rounded-lg py-2 px-3 text-center shadow-inner">
-              <div className="text-[7px] text-blue-600 dark:text-blue-400 font-bold uppercase tracking-wider mb-0.5">Cycle Net Profit</div>
-              <div className="text-lg md:text-xl font-black text-slate-900 dark:text-white tracking-tight">₹{netProfit.toLocaleString()}</div>
+          <div className="flex-1 flex flex-col justify-center gap-3">
+            <div className="bg-blue-500/10 dark:bg-blue-500/15 border border-blue-500/30 rounded-2xl py-4 px-4 text-center shadow-md shadow-blue-500/5 backdrop-blur-md">
+              <div className="text-[9px] text-blue-600 dark:text-blue-400 font-bold uppercase tracking-wider mb-1">Cycle Net Profit</div>
+              <div className="text-xl md:text-2xl font-black text-slate-900 dark:text-white tracking-tight">₹{netProfit.toLocaleString()}</div>
             </div>
-            <div className="bg-slate-50/50 dark:bg-slate-800/30 border border-black/5 dark:border-white/5 rounded-lg py-2 px-3 text-center shadow-inner">
-              <div className="text-[7px] text-slate-500 font-bold uppercase tracking-wider mb-0.5">Estimated Payback Period</div>
-              <div className="text-xs font-bold text-slate-700 dark:text-slate-300">
+            <div className="bg-white/50 dark:bg-white/5 border border-white/60 dark:border-white/10 rounded-2xl py-3 px-4 text-center shadow-sm backdrop-blur-md">
+              <div className="text-[9px] text-slate-500 dark:text-slate-400 font-bold uppercase tracking-wider mb-1">Estimated Payback Period</div>
+              <div className="text-sm font-bold text-slate-800 dark:text-slate-200">
                 {paybackMonths > 0 && paybackMonths < 100 ? paybackMonths.toFixed(1) : "N/A"} Months
               </div>
             </div>

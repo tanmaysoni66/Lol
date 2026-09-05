@@ -2,32 +2,30 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { MapPin, Thermometer, Droplets, Calendar, Sparkles, Phone } from "lucide-react";
+import { Thermometer, Droplets, Calendar, Sparkles } from "lucide-react";
 
 interface WeatherState {
   temp: number;
   humidity: number;
-  city: string;
   country: string;
 }
 
 export default function NavbarTopTicker() {
   const [weather, setWeather] = useState<WeatherState>({
     temp: 24,
-    humidity: 68,
-    city: "India",
+    humidity: 96,
     country: "India",
   });
-  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    // Check session cache to avoid repeated API requests
-    const cached = typeof window !== "undefined" ? sessionStorage.getItem("omf_nav_weather") : null;
+    // Cache for session to eliminate repeated network calls
+    const cached =
+      typeof window !== "undefined"
+        ? sessionStorage.getItem("omf_nav_country_weather")
+        : null;
     if (cached) {
       try {
-        const parsed = JSON.parse(cached);
-        setWeather(parsed);
-        setIsLoaded(true);
+        setWeather(JSON.parse(cached));
         return;
       } catch (e) {
         // ignore
@@ -36,22 +34,24 @@ export default function NavbarTopTicker() {
 
     let isMounted = true;
 
-    async function fetchGeoAndWeather() {
+    async function fetchCountryAndWeather() {
       try {
         let lat = 23.1815;
         let lon = 79.9864;
-        let city = "Jabalpur";
         let country = "India";
 
         try {
-          const res = await fetch("https://get.geojs.io/v1/ip/geo.json", { cache: "force-cache" });
+          const res = await fetch("https://get.geojs.io/v1/ip/geo.json", {
+            cache: "force-cache",
+          });
           if (res.ok) {
             const data = await res.json();
             if (data.latitude && data.longitude) {
               lat = parseFloat(data.latitude);
               lon = parseFloat(data.longitude);
-              city = data.city || "Local";
-              country = data.country || "India";
+            }
+            if (data.country) {
+              country = data.country;
             }
           }
         } catch {
@@ -64,86 +64,119 @@ export default function NavbarTopTicker() {
           const wData = await wRes.json();
           const wState: WeatherState = {
             temp: Math.round(wData.current?.temperature_2m ?? 24),
-            humidity: Math.round(wData.current?.relative_humidity_2m ?? 68),
-            city,
+            humidity: Math.round(wData.current?.relative_humidity_2m ?? 96),
             country,
           };
           if (isMounted) {
             setWeather(wState);
-            setIsLoaded(true);
             try {
-              sessionStorage.setItem("omf_nav_weather", JSON.stringify(wState));
+              sessionStorage.setItem(
+                "omf_nav_country_weather",
+                JSON.stringify(wState)
+              );
             } catch {
               // ignore storage errors
             }
           }
         }
       } catch (err) {
-        if (isMounted) {
-          setIsLoaded(true);
-        }
+        // Fallback silently
       }
     }
 
-    fetchGeoAndWeather();
+    fetchCountryAndWeather();
 
     return () => {
       isMounted = false;
     };
   }, []);
 
+  const countryDisplay = weather.country || "India";
+  const flag =
+    countryDisplay.toLowerCase().includes("india") || countryDisplay === "IN"
+      ? "🇮🇳"
+      : "🌍";
+
   return (
-    <div className="w-full bg-emerald-950/90 dark:bg-slate-950/95 text-emerald-100 dark:text-emerald-200 text-[10px] sm:text-[11px] font-medium py-1 px-3 sm:px-4 border-b border-emerald-500/20 dark:border-white/10 flex items-center justify-between overflow-hidden">
-      <div className="max-w-7xl mx-auto w-full flex items-center justify-between gap-2 sm:gap-4">
-        {/* Left Side: Live Location + Temp + Humidity */}
-        <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-          <div className="flex items-center gap-1 text-emerald-300 dark:text-emerald-400 font-semibold">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-            </span>
-            <span className="hidden xs:inline">LIVE</span>
-          </div>
-
-          <div className="flex items-center gap-1 text-slate-200">
-            <MapPin className="w-3 h-3 text-emerald-400 shrink-0" />
-            <span className="truncate max-w-[90px] sm:max-w-none">{weather.city || weather.country}</span>
-          </div>
-
-          <div className="flex items-center gap-1 font-semibold text-white">
-            <Thermometer className="w-3 h-3 text-amber-400 shrink-0" />
-            <span>{weather.temp}°C</span>
-          </div>
-
-          <div className="flex items-center gap-1 text-cyan-300">
-            <Droplets className="w-3 h-3 text-cyan-400 shrink-0" />
-            <span>{weather.humidity}% <span className="hidden sm:inline">RH</span></span>
-          </div>
+    <div className="w-full flex items-center justify-between text-[11px] sm:text-xs select-none">
+      {/* Desktop / Tablet view: sleek high-contrast pill */}
+      <div className="hidden md:flex items-center gap-2.5 px-3 py-1 rounded-full bg-slate-100/90 dark:bg-white/5 border border-slate-200/80 dark:border-white/10 text-slate-700 dark:text-slate-300">
+        <div className="flex items-center gap-1.5 font-semibold">
+          <span>{flag}</span>
+          <span className="text-slate-900 dark:text-white">{countryDisplay}</span>
         </div>
 
-        {/* Center / Right: Batch Start Highlight & Action */}
-        <div className="flex items-center gap-2 sm:gap-4 shrink-0">
-          <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-400/30 text-emerald-200 font-bold text-[9px] sm:text-[10px]">
-            <Calendar className="w-3 h-3 text-emerald-300 shrink-0" />
-            <span>New Batch: Starts In 2 Days 🍄</span>
-          </div>
+        <span className="text-slate-300 dark:text-slate-700">•</span>
 
-          <div className="hidden md:flex items-center gap-3 text-slate-300 text-[10px]">
-            <Link
-              href="/training"
-              className="hover:text-white underline underline-offset-2 transition-colors font-semibold"
+        <div className="flex items-center gap-1 text-amber-700 dark:text-amber-400 font-medium">
+          <Thermometer className="w-3.5 h-3.5" />
+          <span>{weather.temp}°C</span>
+        </div>
+
+        <span className="text-slate-300 dark:text-slate-700">•</span>
+
+        <div className="flex items-center gap-1 text-cyan-700 dark:text-cyan-400 font-medium">
+          <Droplets className="w-3.5 h-3.5" />
+          <span>{weather.humidity}% RH</span>
+        </div>
+
+        <span className="text-slate-300 dark:text-slate-700">|</span>
+
+        <Link
+          href="/workshop"
+          className="flex items-center gap-1.5 font-bold text-emerald-700 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-300 transition-colors"
+        >
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+          </span>
+          <span>New Batch: Starts In 2 Days</span>
+          <Sparkles className="w-3 h-3 text-amber-500 animate-pulse" />
+        </Link>
+      </div>
+
+      {/* Mobile view: Silky smooth, lag-free CSS marquee ticker */}
+      <div className="md:hidden w-full overflow-hidden relative py-0.5">
+        <div className="flex items-center w-max animate-nav-ticker">
+          {/* Loop items x 2 for seamless infinite scroll */}
+          {[0, 1].map((copyIndex) => (
+            <div
+              key={copyIndex}
+              className="flex items-center gap-2.5 px-3 text-[11px] font-medium text-slate-700 dark:text-slate-300 whitespace-nowrap"
             >
-              Enroll Training
-            </Link>
-            <span className="text-white/30">•</span>
-            <a
-              href="tel:+919203544140"
-              className="hover:text-emerald-300 flex items-center gap-1 font-semibold transition-colors"
-            >
-              <Phone className="w-2.5 h-2.5" />
-              <span>+91 9203544140</span>
-            </a>
-          </div>
+              <span className="font-bold text-slate-900 dark:text-white flex items-center gap-1">
+                <span>{flag}</span>
+                <span>{countryDisplay}</span>
+              </span>
+
+              <span className="text-slate-400 dark:text-slate-600">•</span>
+
+              <span className="flex items-center gap-1 text-amber-700 dark:text-amber-400 font-semibold">
+                <Thermometer className="w-3 h-3" />
+                {weather.temp}°C
+              </span>
+
+              <span className="text-slate-400 dark:text-slate-600">•</span>
+
+              <span className="flex items-center gap-1 text-cyan-700 dark:text-cyan-400 font-semibold">
+                <Droplets className="w-3 h-3" />
+                {weather.humidity}%
+              </span>
+
+              <span className="text-slate-400 dark:text-slate-600">|</span>
+
+              <Link
+                href="/workshop"
+                className="inline-flex items-center gap-1 text-emerald-700 dark:text-emerald-400 font-bold"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping inline-block" />
+                <span>New Batch: Starts In 2 Days</span>
+                <span>🍄</span>
+              </Link>
+
+              <span className="text-slate-300 dark:text-slate-700 mx-2">✦</span>
+            </div>
+          ))}
         </div>
       </div>
     </div>

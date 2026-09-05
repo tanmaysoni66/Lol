@@ -157,7 +157,7 @@ export const MushroomFarmSetupCostCalculator = () => {
           </div>
 
           {/* Cost Breakdown */}
-          <div className="bg-slate-50/50 dark:bg-slate-800/30 border border-black/5 dark:border-white/5 rounded-2xl p-5 mb-6">
+          <div className="bg-white/40 dark:bg-white/5 border border-white/60 dark:border-white/10 backdrop-blur-xl rounded-2xl p-5 mb-6 shadow-sm">
             <h3 className="text-[13px] font-bold text-slate-900 dark:text-white mb-4">Setup Cost Breakdown</h3>
             <div className="flex flex-col gap-3 text-[11px] text-slate-600 dark:text-slate-400 font-medium">
               <BreakdownRow label="Construction / Building" value={formatMoney(constructionCost)} />
@@ -204,7 +204,7 @@ type CostInputProps = {
 
 function CostInput({ label, description, value, onChange }: CostInputProps) {
   return (
-    <div className="bg-white/40 dark:bg-slate-800/40 p-4 rounded-xl border border-black/5 dark:border-white/5">
+    <div className="bg-white/50 dark:bg-white/5 p-4 rounded-2xl border border-white/60 dark:border-white/10 backdrop-blur-md shadow-sm transition-all hover:border-purple-500/40">
       <label className="block text-[11px] font-bold text-slate-900 dark:text-white mb-1">
         {label}
       </label>
@@ -223,7 +223,7 @@ function CostInput({ label, description, value, onChange }: CostInputProps) {
             onChange(Math.max(0, number));
           }
         }}
-        className="w-full bg-white dark:bg-slate-900 border border-black/10 dark:border-white/10 rounded-lg px-3 py-2 text-sm font-semibold text-slate-900 dark:text-white outline-none focus:border-purple-500 dark:focus:border-purple-500 transition-colors"
+        className="w-full bg-white/70 dark:bg-black/40 border border-black/10 dark:border-white/10 rounded-xl px-3 py-2 text-sm font-semibold text-slate-900 dark:text-white outline-none focus:border-purple-500 dark:focus:border-purple-500 transition-colors"
       />
     </div>
   );
@@ -237,8 +237,8 @@ type ResultCardProps = {
 
 function ResultCard({ title, value, highlight = false }: ResultCardProps) {
   return (
-    <div className={`p-4 rounded-xl border ${highlight ? 'bg-purple-50/50 dark:bg-purple-900/10 border-purple-500/20 shadow-sm' : 'bg-white/50 dark:bg-slate-800/50 border-black/5 dark:border-white/5'}`}>
-      <div className={`text-[9px] font-bold uppercase tracking-wider mb-1 ${highlight ? 'text-purple-600 dark:text-purple-400' : 'text-slate-500'}`}>
+    <div className={`p-4 rounded-2xl border backdrop-blur-md transition-all ${highlight ? 'bg-purple-500/10 dark:bg-purple-500/15 border-purple-500/30 shadow-md shadow-purple-500/5' : 'bg-white/50 dark:bg-white/5 border-white/60 dark:border-white/10 shadow-sm'}`}>
+      <div className={`text-[9px] font-bold uppercase tracking-wider mb-1 ${highlight ? 'text-purple-700 dark:text-purple-400' : 'text-slate-500 dark:text-slate-400'}`}>
         {title}
       </div>
       <div className={`text-sm md:text-base font-black tracking-tight ${highlight ? 'text-purple-700 dark:text-purple-300' : 'text-slate-900 dark:text-white'}`}>
