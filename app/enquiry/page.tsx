@@ -97,14 +97,8 @@ export default function EnquiryPage() {
   }, [serviceType]);
 
   return (
-    <div className="min-h-screen w-full relative overflow-x-hidden bg-gray-50 dark:bg-neutral-950 text-gray-900 dark:text-gray-100 flex items-center justify-center p-4 py-12">
-      {/* Animated Background Theme */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-50 dark:opacity-30">
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-purple-400 dark:bg-purple-800 blur-[120px] animate-pulse" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-emerald-400 dark:bg-emerald-900 blur-[120px] animate-pulse delay-[1000ms]" />
-        <div className="absolute top-[40%] left-[60%] w-[30%] h-[30%] rounded-full bg-blue-400 dark:bg-blue-900 blur-[100px] animate-pulse delay-[500ms]" />
-        <div className="absolute bottom-[40%] left-[10%] w-[25%] h-[25%] rounded-full bg-red-400 dark:bg-red-900 blur-[100px] animate-pulse delay-[1500ms]" />
-      </div>
+    <div className="min-h-screen w-full relative overflow-x-hidden bg-transparent text-gray-900 dark:text-gray-100 flex items-center justify-center p-4 py-12">
+      {/* Animated Background Theme removed to use global MyceliumBackground */}
 
       {/* Transparent Liquid Glass Form Container */}
       <div className="relative z-10 w-full max-w-2xl bg-gradient-to-br from-white/60 via-white/40 to-white/20 dark:from-neutral-900/60 dark:via-neutral-900/40 dark:to-neutral-900/20 backdrop-blur-xl rounded-3xl shadow-[0_8px_32px_rgba(31,38,135,0.15)] border border-white/50 dark:border-white/10 overflow-hidden">

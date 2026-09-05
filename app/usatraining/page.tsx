@@ -1,15 +1,65 @@
 import TrainingLanding from "@/components/TrainingLanding";
 import { Metadata } from "next";
+import { usaTrainingCourseSchema } from "@/lib/schema/usa-training-course-schema";
+import { usaTrainingBreadcrumbSchema } from "@/lib/schema/usa-training-breadcrumb-schema";
+import { usaTrainingFaqSchema } from "@/lib/schema/usa-training-faq-schema";
+import { usaTrainingWebPageSchema } from "@/lib/schema/usa-training-webpage-schema";
+import { usaTrainingItemListSchema } from "@/lib/schema/usa-training-item-list-schema";
+import { organizationSchema } from "@/lib/schema/organization-schema";
 
 export const metadata: Metadata = {
-  title: "USA Professional Mushroom Cultivation Training | Organic Mushroom Farm",
-  description: "Join our specialized USA mushroom cultivation masterclass. Master commercial mushroom farming techniques with our expert training program tailored for USA growers.",
+  title: "Mushroom Farming Training in USA | Online & Commercial Course",
+  description:
+    "Learn mushroom farming and cultivation with online training covering Button, Oyster and Milky mushrooms, commercial farm setup, climate control and mushroom farming business practices.",
+  keywords: [
+    "Mushroom Farming Training",
+    "Mushroom Farming Training in USA",
+    "Mushroom Cultivation Training",
+    "Mushroom Farming Course",
+    "Mushroom Cultivation Course",
+    "Button Mushroom Training",
+    "Oyster Mushroom Training",
+    "Milky Mushroom Training",
+    "Commercial Mushroom Farming Training",
+    "Online Mushroom Farming Training",
+    "Mushroom Farming Business Training",
+    "Mushroom Farm Setup Training",
+    "mushroom farming training course in USA",
+    "online mushroom cultivation training",
+    "button mushroom cultivation training",
+    "oyster mushroom cultivation training",
+    "milky mushroom cultivation training",
+    "commercial mushroom farming course",
+    "mushroom farming business training in USA",
+    "mushroom farm setup training"
+  ],
   alternates: {
-    canonical: "https://organicmushroomsfarm.com/usatraining",
+    canonical: "https://organicmushroomsfarm.com/usatraining"
   },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1
+    }
+  }
 };
 
 export default function USATrainingPage() {
-  return <TrainingLanding region="us" />;
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(usaTrainingCourseSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(usaTrainingBreadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(usaTrainingFaqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(usaTrainingWebPageSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(usaTrainingItemListSchema) }} />
+      <TrainingLanding region="us" />
+    </>
+  );
 }
 
