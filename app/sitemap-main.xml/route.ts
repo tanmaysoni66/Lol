@@ -38,12 +38,6 @@ export async function GET() {
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>${baseUrl}/3d-mushroom-farm</loc>
-    <lastmod>${now}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
     <loc>${baseUrl}/calculators</loc>
     <lastmod>${now}</lastmod>
     <changefreq>weekly</changefreq>

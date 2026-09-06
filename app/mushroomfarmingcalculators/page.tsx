@@ -166,9 +166,8 @@ export default function MushroomFarmingCalculatorsPage() {
               <h3 className="text-xs uppercase tracking-wider text-emerald-700 dark:text-emerald-400 font-bold mb-4">
                 Explore Commercial Cultivation Ecosystem
               </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
                 {[
-                  { label: "3D Mushroom Farm Viewer", href: "/3d-mushroom-farm", desc: "Interactive 3D facility tour" },
                   { label: "India Practical Training", href: "/training", desc: "Hands-on commercial workshops" },
                   { label: "USA & Global Training", href: "/usatraining", desc: "International indoor programs" },
                   { label: "Commercial Project Enquiry", href: "/enquiry", desc: "Consultancy & turnkey setup" },
