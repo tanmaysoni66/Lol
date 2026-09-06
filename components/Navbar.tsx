@@ -242,7 +242,7 @@ export const Navbar = () => {
                 height="40"
               />
               <div className="flex flex-col">
-                <span className="text-[13px] xs:text-[15px] sm:text-base md:text-lg font-black tracking-tight leading-tight bg-clip-text text-transparent bg-gradient-to-br from-purple-400 via-cyan-300 to-indigo-500 drop-shadow-[0_1px_1px_rgba(168,85,247,0.4)] dark:drop-shadow-[0_2px_4px_rgba(168,85,247,0.5)]">
+                <span className="text-[13px] xs:text-[15px] sm:text-base md:text-lg font-black tracking-tight leading-tight bg-clip-text text-transparent bg-gradient-to-br from-purple-800 via-cyan-700 to-indigo-900 dark:from-purple-400 dark:via-cyan-300 dark:to-indigo-500 drop-shadow-[0_1px_1px_rgba(168,85,247,0.4)] dark:drop-shadow-[0_2px_4px_rgba(168,85,247,0.5)]">
                   Organic Mushroom Farm
                 </span>
                 <DynamicGreeting />
@@ -342,7 +342,7 @@ export const Navbar = () => {
                   />
                   <div className="flex flex-col min-w-0">
                     <div className="flex items-center gap-1.5 flex-wrap">
-                      <span className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white leading-tight truncate">
+                      <span className="text-xs sm:text-sm font-black bg-clip-text text-transparent bg-gradient-to-br from-purple-800 via-cyan-700 to-indigo-900 dark:from-purple-400 dark:via-cyan-300 dark:to-indigo-500 leading-tight truncate drop-shadow-sm">
                         Organic Mushroom Farm
                       </span>
                       <span className="text-[10px] text-slate-400">•</span>

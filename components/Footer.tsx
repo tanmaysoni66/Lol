@@ -53,7 +53,7 @@ const Footer = () => {
           <div className="md:col-span-5 lg:col-span-4">
             <div className="flex items-center gap-2 mb-5">
               <div className="w-8 h-8 rounded-full bg-white/80 dark:bg-white/10 flex items-center justify-center text-xl shadow-inner border border-black/10 dark:border-white/20 backdrop-blur-md">🍄</div>
-              <div className="text-xl md:text-2xl font-black tracking-tight leading-tight bg-clip-text text-transparent bg-gradient-to-br from-purple-400 via-cyan-300 to-indigo-500 drop-shadow-[0_1px_1px_rgba(168,85,247,0.4)] dark:drop-shadow-[0_2px_4px_rgba(168,85,247,0.5)]">
+              <div className="text-xl md:text-2xl font-black tracking-tight leading-tight bg-clip-text text-transparent bg-gradient-to-br from-white via-purple-100 to-cyan-100 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] dark:drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)]">
                 Organic Mushroom Farm
               </div>
             </div>

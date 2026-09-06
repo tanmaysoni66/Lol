@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "motion/react";
 import { BookOpen, X, ArrowRight, ArrowLeft, Sparkles, CheckCircle2, TrendingUp, Home } from "lucide-react";
@@ -12,6 +12,27 @@ export const StickyJoinTrainingButton = ({
   const router = useRouter();
   const [showModal, setShowModal] = useState(false);
   const [modalView, setModalView] = useState<"region_select" | "india_plans" | "usa_plans">("region_select");
+  const [isHidden, setIsHidden] = useState(false);
+
+  useEffect(() => {
+    const handleMobileMenuToggle = (e: CustomEvent) => {
+      setIsHidden(e.detail);
+      if (e.detail) {
+        setShowModal(false);
+      }
+    };
+
+    window.addEventListener('mobileMenuToggle', handleMobileMenuToggle as EventListener);
+    
+    // Check initial state
+    if (typeof document !== 'undefined') {
+      setIsHidden(document.body.classList.contains('mobile-menu-open'));
+    }
+
+    return () => {
+      window.removeEventListener('mobileMenuToggle', handleMobileMenuToggle as EventListener);
+    };
+  }, []);
 
   // Next.js Navigation Helper via query params
   const handleNavigate = (path: string, query: Record<string, string>) => {
@@ -22,20 +43,28 @@ export const StickyJoinTrainingButton = ({
 
   return (
     <>
-      <button
-        onClick={() => {
-          setModalView("region_select");
-          setShowModal(true);
-        }}
-        type="button"
-        className={`relative overflow-hidden flex items-center justify-center rounded-full group transition-all backdrop-blur-xl shadow-[4px_4px_10px_rgba(0,0,0,0.1),-4px_-4px_10px_rgba(255,255,255,0.1)] dark:shadow-[4px_4px_10px_rgba(0,0,0,0.4),-2px_-2px_10px_rgba(255,255,255,0.05)] border-t border-l border-white/40 dark:border-white/10 border-r border-b border-black/10 dark:border-black/50 bg-white/10 dark:bg-black/20 hover:scale-105 hover:bg-white/20 dark:hover:bg-white/5 text-purple-800 dark:text-purple-300 ${size === "small" ? "h-7 px-2.5 min-w-[95px]" : "h-8 w-full md:w-auto md:min-w-[100px] md:px-3"}`}
-      >
-        <div className={`font-black uppercase tracking-widest z-10 flex items-center justify-center gap-1.5 leading-tight ${size === "small" ? "text-[8px]" : "text-[9px] md:text-[10px]"}`}>
-          <BookOpen size={size === "small" ? 10 : 12} className="shrink-0 text-purple-700 dark:text-purple-400" />
-          <span>Join Training</span>
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
-      </button>
+      <AnimatePresence>
+        {!isHidden && (
+          <motion.button
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.2 }}
+            onClick={() => {
+              setModalView("region_select");
+              setShowModal(true);
+            }}
+            type="button"
+            className={`relative overflow-hidden flex items-center justify-center rounded-full group transition-all backdrop-blur-xl shadow-[4px_4px_10px_rgba(0,0,0,0.1),-4px_-4px_10px_rgba(255,255,255,0.1)] dark:shadow-[4px_4px_10px_rgba(0,0,0,0.4),-2px_-2px_10px_rgba(255,255,255,0.05)] border-t border-l border-white/40 dark:border-white/10 border-r border-b border-black/10 dark:border-black/50 bg-white/10 dark:bg-black/20 hover:scale-105 hover:bg-white/20 dark:hover:bg-white/5 text-purple-800 dark:text-purple-300 ${size === "small" ? "h-7 px-2.5 min-w-[95px]" : "h-8 w-full md:w-auto md:min-w-[100px] md:px-3"}`}
+          >
+            <div className={`font-black uppercase tracking-widest z-10 flex items-center justify-center gap-1.5 leading-tight ${size === "small" ? "text-[8px]" : "text-[9px] md:text-[10px]"}`}>
+              <BookOpen size={size === "small" ? 10 : 12} className="shrink-0 text-purple-700 dark:text-purple-400" />
+              <span>Join Training</span>
+            </div>
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
+          </motion.button>
+        )}
+      </AnimatePresence>
 
       <AnimatePresence>
         {showModal && (

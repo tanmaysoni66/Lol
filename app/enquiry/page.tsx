@@ -6,6 +6,7 @@ import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { motion, AnimatePresence } from "motion/react";
 import EeatEnquiryTrust from "@/components/EeatEnquiryTrust";
+import WebMCPEnquiry from "@/components/WebMCPEnquiry";
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -120,6 +121,7 @@ export default function EnquiryPage() {
 
   return (
     <div className="min-h-screen w-full relative overflow-x-hidden bg-transparent text-gray-900 dark:text-gray-100 flex flex-col items-center p-3 py-10">
+      <WebMCPEnquiry />
       {/* Animated Background Theme removed to use global MyceliumBackground */}
 
       {/* Transparent Liquid Glass Form Container */}
