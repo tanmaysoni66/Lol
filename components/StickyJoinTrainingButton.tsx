@@ -156,7 +156,7 @@ export const StickyJoinTrainingButton = ({
                   </div>
 
                   <div className="grid grid-cols-2 gap-2 md:gap-4 max-w-2xl mx-auto mb-6">
-                    <button onClick={() => handleNavigate("/training-checkout", { type: "basic", price: "299" })} className="flex items-center justify-between p-2 md:p-3.5 rounded-xl md:rounded-2xl border border-blue-500/25 bg-blue-500/5 hover:bg-blue-500/10 transition-all text-left group/btn">
+                    <button onClick={() => handleNavigate("/training/basic/checkout", { type: "basic", price: "299" })} className="flex items-center justify-between p-2 md:p-3.5 rounded-xl md:rounded-2xl border border-blue-500/25 bg-blue-500/5 hover:bg-blue-500/10 transition-all text-left group/btn">
                       <div className="flex items-center gap-2 md:gap-3 overflow-hidden">
                         <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-blue-500/10 text-blue-500 flex items-center justify-center shrink-0">
                           <BookOpen size={14} />
@@ -167,7 +167,7 @@ export const StickyJoinTrainingButton = ({
                         </div>
                       </div>
                     </button>
-                    <button onClick={() => handleNavigate("/training-checkout", { type: "advanced", price: "699" })} className="flex items-center justify-between p-2 md:p-3.5 rounded-xl md:rounded-2xl border border-purple-500/30 bg-purple-500/5 hover:bg-purple-500/10 transition-all text-left group/btn ring-1 ring-purple-500/20">
+                    <button onClick={() => handleNavigate("/training/advanced/checkout", { type: "advanced", price: "699" })} className="flex items-center justify-between p-2 md:p-3.5 rounded-xl md:rounded-2xl border border-purple-500/30 bg-purple-500/5 hover:bg-purple-500/10 transition-all text-left group/btn ring-1 ring-purple-500/20">
                       <div className="flex items-center gap-2 md:gap-3 overflow-hidden">
                         <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-purple-500/10 text-purple-500 flex items-center justify-center shrink-0">
                           <Sparkles size={14} className="animate-pulse" />
@@ -181,6 +181,100 @@ export const StickyJoinTrainingButton = ({
                   </div>
 
                   {/* Add additional card info for India plans here if needed exactly like original app */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+                    {/* Basic Plan Card */}
+                    <div className="flex flex-col rounded-2xl border border-white/5 bg-slate-900/50 p-6 relative overflow-hidden">
+                      <div className="mb-4">
+                        <span className="inline-block px-3 py-1 rounded-full bg-blue-500/20 text-blue-400 text-xs font-bold uppercase tracking-wider mb-3">Beginner</span>
+                        <h4 className="text-2xl font-bold text-white mb-2">Basic Cultivation Training</h4>
+                        <div className="flex items-baseline gap-2 text-white">
+                          <span className="text-3xl font-black text-blue-400">₹299</span>
+                          <span className="text-xs text-gray-400 font-bold uppercase tracking-wider">One-Time Fee</span>
+                        </div>
+                      </div>
+                      <p className="text-sm text-gray-400 mb-6 flex-grow">
+                        Perfect for students and hobbyists looking to grow mushrooms at a small home scale.
+                      </p>
+                      <div className="mb-8">
+                        <h5 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-4">What's Included:</h5>
+                        <ul className="space-y-3 text-sm text-gray-300">
+                          <li className="flex items-start gap-2.5">
+                            <CheckCircle2 size={18} className="text-blue-500 shrink-0 mt-0.5" />
+                            <span><strong className="text-white">Oyster & Button</strong> cultivation step-by-step tutorial.</span>
+                          </li>
+                          <li className="flex items-start gap-2.5">
+                            <CheckCircle2 size={18} className="text-blue-500 shrink-0 mt-0.5" />
+                            <span><strong className="text-white">Home Setup:</strong> Perfect climate parameters for rooms/backyards.</span>
+                          </li>
+                          <li className="flex items-start gap-2.5">
+                            <CheckCircle2 size={18} className="text-blue-500 shrink-0 mt-0.5" />
+                            <span><strong className="text-white">Substrate Preparation:</strong> Boiling, sterilization & bag packing.</span>
+                          </li>
+                          <li className="flex items-start gap-2.5">
+                            <CheckCircle2 size={18} className="text-blue-500 shrink-0 mt-0.5" />
+                            <span><strong className="text-white">Contamination Prevention:</strong> Simple hygiene controls.</span>
+                          </li>
+                        </ul>
+                      </div>
+                      <button onClick={() => handleNavigate("/training/basic/checkout", { type: "basic", price: "299" })} className="w-full py-3 px-4 bg-white hover:bg-gray-100 text-black rounded-xl text-sm font-bold transition-all flex items-center justify-center gap-2 mt-auto">
+                        Join Mushroom Training <ArrowRight size={16} />
+                      </button>
+                    </div>
+
+                    {/* Advanced Plan Card */}
+                    <div className="flex flex-col rounded-2xl border border-purple-500/30 bg-slate-900/50 p-6 relative overflow-hidden ring-1 ring-purple-500/20">
+                      <div className="absolute top-0 right-0 p-4">
+                        <span className="inline-flex items-center gap-1 text-[10px] font-bold text-purple-400 uppercase tracking-widest"><Sparkles size={12}/> Recommended</span>
+                      </div>
+                      <div className="mb-4">
+                        <span className="inline-block px-3 py-1 rounded-full bg-purple-500/20 text-purple-400 text-xs font-bold uppercase tracking-wider mb-3">Entrepreneur</span>
+                        <h4 className="text-2xl font-bold text-white mb-2">Advanced Commercial Training</h4>
+                        <div className="flex items-baseline gap-2 text-white">
+                          <span className="text-3xl font-black text-purple-400">₹699</span>
+                          <span className="text-xs text-gray-400 font-bold uppercase tracking-wider">One-Time Fee</span>
+                        </div>
+                      </div>
+                      <p className="text-sm text-gray-400 mb-6 flex-grow">
+                        Ideal for entrepreneurs and farmers wanting to establish commercial operations and scale.
+                      </p>
+                      <div className="mb-8">
+                        <h5 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-4">What's Included:</h5>
+                        <ul className="space-y-3 text-sm text-gray-300">
+                          <li className="flex items-start gap-2.5">
+                            <CheckCircle2 size={18} className="text-purple-500 shrink-0 mt-0.5" />
+                            <span><strong className="text-white">Everything in Basic</strong> plus additional advanced guides.</span>
+                          </li>
+                          <li className="flex items-start gap-2.5">
+                            <CheckCircle2 size={18} className="text-purple-500 shrink-0 mt-0.5" />
+                            <span><strong className="text-white">Advanced Varieties:</strong> Milky (Summer), Oyster & Button Mushrooms.</span>
+                          </li>
+                          <li className="flex items-start gap-2.5">
+                            <CheckCircle2 size={18} className="text-purple-500 shrink-0 mt-0.5" />
+                            <span><strong className="text-white">Commercial Shed Setup:</strong> Layout design and low-cost shed options.</span>
+                          </li>
+                          <li className="flex items-start gap-2.5">
+                            <CheckCircle2 size={18} className="text-purple-500 shrink-0 mt-0.5" />
+                            <span><strong className="text-white">Automated Climate Systems:</strong> Foggers, AC, & humidity tools.</span>
+                          </li>
+                          <li className="flex items-start gap-2.5">
+                            <CheckCircle2 size={18} className="text-purple-500 shrink-0 mt-0.5" />
+                            <span><strong className="text-white">Disease Management:</strong> Treat green mold, flies & bacterial blotch.</span>
+                          </li>
+                          <li className="flex items-start gap-2.5">
+                            <CheckCircle2 size={18} className="text-purple-500 shrink-0 mt-0.5" />
+                            <span><strong className="text-white">Marketing & Sales:</strong> Tie-ups, wholesale market selling, ads & social media.</span>
+                          </li>
+                          <li className="flex items-start gap-2.5">
+                            <CheckCircle2 size={18} className="text-purple-500 shrink-0 mt-0.5" />
+                            <span><strong className="text-white">Exclusive Perks:</strong> Certified Certificate & active private community support.</span>
+                          </li>
+                        </ul>
+                      </div>
+                      <button onClick={() => handleNavigate("/training/advanced/checkout", { type: "advanced", price: "699" })} className="w-full py-3 px-4 bg-purple-600 hover:bg-purple-700 text-white rounded-xl text-sm font-bold transition-all flex items-center justify-center gap-2 mt-auto">
+                        Join Mushroom Training <ArrowRight size={16} />
+                      </button>
+                    </div>
+                  </div>
                 </div>
               )}
 
@@ -196,7 +290,7 @@ export const StickyJoinTrainingButton = ({
                   </div>
 
                   <div className="grid grid-cols-2 gap-2 md:gap-4 max-w-2xl mx-auto mb-6">
-                    <button onClick={() => handleNavigate("/usatraining", { plan: "basic", price: "39" })} className="flex items-center justify-between p-2 md:p-3.5 rounded-xl md:rounded-2xl border border-blue-500/25 bg-blue-500/5 hover:bg-blue-500/10 transition-all text-left group/btn">
+                    <button onClick={() => handleNavigate("/training/usa-basic/checkout", { plan: "basic", price: "39" })} className="flex items-center justify-between p-2 md:p-3.5 rounded-xl md:rounded-2xl border border-blue-500/25 bg-blue-500/5 hover:bg-blue-500/10 transition-all text-left group/btn">
                       <div className="flex items-center gap-2 md:gap-3 overflow-hidden">
                         <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-blue-500/10 text-blue-500 flex items-center justify-center shrink-0">
                           <Home size={14} />
@@ -207,7 +301,7 @@ export const StickyJoinTrainingButton = ({
                         </div>
                       </div>
                     </button>
-                    <button onClick={() => handleNavigate("/usatraining", { plan: "advanced", price: "97" })} className="flex items-center justify-between p-2 md:p-3.5 rounded-xl md:rounded-2xl border border-cyan-500/30 bg-cyan-500/5 hover:bg-cyan-500/10 transition-all text-left group/btn ring-1 ring-cyan-500/20">
+                    <button onClick={() => handleNavigate("/training/usa-advanced/checkout", { plan: "advanced", price: "97" })} className="flex items-center justify-between p-2 md:p-3.5 rounded-xl md:rounded-2xl border border-cyan-500/30 bg-cyan-500/5 hover:bg-cyan-500/10 transition-all text-left group/btn ring-1 ring-cyan-500/20">
                       <div className="flex items-center gap-2 md:gap-3 overflow-hidden">
                         <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-cyan-500/10 text-cyan-500 flex items-center justify-center shrink-0">
                           <TrendingUp size={14} className="animate-pulse" />
@@ -219,11 +313,92 @@ export const StickyJoinTrainingButton = ({
                       </div>
                     </button>
                   </div>
+                  
+                  {/* USA Card UI exactly like original app reference */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+                    {/* Basic USA Plan Card */}
+                    <div className="flex flex-col rounded-2xl border border-white/5 bg-[#0a0f1c] p-6 relative overflow-hidden">
+                      <div className="mb-4">
+                        <h4 className="text-2xl font-bold text-white mb-2">Basic Cultivation Mushroom Training</h4>
+                        <span className="text-sm text-gray-400 block mb-4">(Home Scale)</span>
+                        <div className="flex items-baseline gap-2 text-white">
+                          <span className="text-3xl font-black">$39</span>
+                          <span className="text-xs text-gray-400 font-bold uppercase tracking-wider">(ONE-TIME)</span>
+                        </div>
+                      </div>
+                      <p className="text-sm text-blue-400 mb-6 flex-grow flex items-center gap-2">
+                        <Home size={16} /> Ideal For: Beginners & Hobbyists
+                      </p>
+                      <div className="mb-8">
+                        <h5 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-4">KEY LEARNINGS:</h5>
+                        <ul className="space-y-3 text-sm text-gray-300">
+                          <li className="flex items-start gap-2.5">
+                            <CheckCircle2 size={18} className="text-green-500 shrink-0 mt-0.5" />
+                            <span>Oyster & Button mushroom home setup.</span>
+                          </li>
+                          <li className="flex items-start gap-2.5">
+                            <CheckCircle2 size={18} className="text-green-500 shrink-0 mt-0.5" />
+                            <span>Substrate boiling & basic sterilization.</span>
+                          </li>
+                          <li className="flex items-start gap-2.5">
+                            <CheckCircle2 size={18} className="text-green-500 shrink-0 mt-0.5" />
+                            <span>Simple temperature/humidity control.</span>
+                          </li>
+                        </ul>
+                      </div>
+                      <button onClick={() => handleNavigate("/training/usa-basic/checkout", { plan: "basic", price: "39" })} className="w-full py-3 px-4 bg-white hover:bg-gray-100 text-black rounded-xl text-sm font-bold transition-all flex items-center justify-center gap-2 mt-auto">
+                        Enroll Now <ArrowRight size={16} className="text-green-500" />
+                      </button>
+                    </div>
+
+                    {/* Advanced USA Plan Card */}
+                    <div className="flex flex-col rounded-2xl border border-cyan-500/30 bg-[#0a0f1c] p-6 relative overflow-hidden ring-1 ring-cyan-500/20">
+                      <div className="absolute top-0 right-0 p-4">
+                        <span className="inline-flex items-center gap-1 text-[10px] font-bold bg-cyan-500 text-black px-2 py-1 rounded-full uppercase tracking-widest"><Sparkles size={12}/> BEST VALUE</span>
+                      </div>
+                      <div className="mb-4 mt-2">
+                        <h4 className="text-2xl font-bold text-white mb-2 pr-20">Advanced Commercial Mushroom Training</h4>
+                        <span className="text-sm text-gray-400 block mb-4">(Business Scale)</span>
+                        <div className="flex items-baseline gap-2 text-white">
+                          <span className="text-3xl font-black">$97</span>
+                          <span className="text-xs text-gray-400 font-bold uppercase tracking-wider">(ONE-TIME)</span>
+                        </div>
+                      </div>
+                      <p className="text-sm text-blue-400 mb-6 flex-grow flex items-center gap-2">
+                        <TrendingUp size={16} /> Ideal For: Entrepreneurs & Commercial Growers
+                      </p>
+                      <div className="mb-8">
+                        <h5 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-4">KEY LEARNINGS:</h5>
+                        <ul className="space-y-3 text-sm text-gray-300">
+                          <li className="flex items-start gap-2.5">
+                            <CheckCircle2 size={18} className="text-blue-500 shrink-0 mt-0.5" />
+                            <span>Farm layout, vertical racks & HVAC setup.</span>
+                          </li>
+                          <li className="flex items-start gap-2.5">
+                            <CheckCircle2 size={18} className="text-blue-500 shrink-0 mt-0.5" />
+                            <span>High-yield varieties + Pest management.</span>
+                          </li>
+                          <li className="flex items-start gap-2.5">
+                            <CheckCircle2 size={18} className="text-blue-500 shrink-0 mt-0.5" />
+                            <span>Sales strategies for US Farmer's Markets & local stores.</span>
+                          </li>
+                          <li className="flex items-start gap-2.5">
+                            <CheckCircle2 size={18} className="text-blue-500 shrink-0 mt-0.5" />
+                            <span>Certificate & Private Community Access.</span>
+                          </li>
+                        </ul>
+                      </div>
+                      <button onClick={() => handleNavigate("/training/usa-advanced/checkout", { plan: "advanced", price: "97" })} className="w-full py-3 px-4 bg-[#00A3E0] hover:bg-[#0092C9] text-white rounded-xl text-sm font-bold transition-all flex items-center justify-center gap-2 mt-auto">
+                        Enroll Now <ArrowRight size={16} className="text-green-300" />
+                      </button>
+                    </div>
+                  </div>
                 </div>
               )}
 
             </motion.div>
           </div>
+
         )}
       </AnimatePresence>
     </>
