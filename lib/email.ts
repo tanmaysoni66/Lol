@@ -105,12 +105,14 @@ export const sendTrainingEmail = async ({
 
   try {
     // Send to Customer
-    await transporter.sendMail({
-      from: process.env.SMTP_EMAIL,
-      to: customerEmail,
-      subject: customerSubject,
-      html: customerHtml,
-    });
+    if (type !== 'INITIATED') {
+      await transporter.sendMail({
+        from: process.env.SMTP_EMAIL,
+        to: customerEmail,
+        subject: customerSubject,
+        html: customerHtml,
+      });
+    }
     
     // Send to Owner
     if (ownerEmail) {
