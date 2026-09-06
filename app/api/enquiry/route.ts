@@ -58,6 +58,8 @@ export async function POST(req: NextRequest) {
       productForm,
       subjectOfEnquiry,
       securityAnswer,
+      num1,
+      num2,
     } = data;
 
     // 1. Honeypot Check (Hidden Bot Trap)
@@ -74,7 +76,8 @@ export async function POST(req: NextRequest) {
     }
 
     // 5. Essential Data Validation
-    if (!fullName || !email || !serviceType || securityAnswer !== "5") {
+    const expectedAnswer = String(Number(num1) + Number(num2));
+    if (!fullName || !email || !serviceType || securityAnswer !== expectedAnswer) {
       return NextResponse.json({ error: "Missing required fields or incorrect security answer." }, { status: 400 });
     }
 

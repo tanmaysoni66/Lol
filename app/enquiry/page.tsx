@@ -30,6 +30,7 @@ export default function EnquiryPage() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [farm3DConfig, setFarm3DConfig] = useState<any>(null);
+  const [secQ, setSecQ] = useState({ num1: 3, num2: 2 });
 
   const [formData, setFormData] = useState({
     fullName: "",
@@ -53,6 +54,10 @@ export default function EnquiryPage() {
 
   useEffect(() => {
     setLoadTime(Date.now());
+    setSecQ({
+      num1: Math.floor(Math.random() * 9) + 1,
+      num2: Math.floor(Math.random() * 9) + 1,
+    });
 
     // Check for 3D Mushroom Farm Configurator payload in sessionStorage
     try {
@@ -86,7 +91,7 @@ export default function EnquiryPage() {
       const res = await fetch("/api/enquiry", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, serviceType, load_time: loadTime }),
+        body: JSON.stringify({ ...formData, serviceType, load_time: loadTime, num1: secQ.num1, num2: secQ.num2 }),
       });
 
       const data = await res.json();
@@ -390,7 +395,7 @@ export default function EnquiryPage() {
               {/* Security Question */}
               <div className="space-y-1 max-w-[200px]">
                 <label className="text-xs font-semibold text-gray-700 dark:text-gray-300 flex items-center gap-2">
-                   Security Question: What is 3 + 2? *
+                   Security Question: What is {secQ.num1} + {secQ.num2}? *
                 </label>
                 <input required type="text" name="securityAnswer" value={formData.securityAnswer} onChange={handleChange} placeholder="Your answer" className="w-full px-3 py-2 text-sm bg-transparent backdrop-blur-sm border border-gray-200 dark:border-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" />
               </div>

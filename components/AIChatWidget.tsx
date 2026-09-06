@@ -272,13 +272,7 @@ export const AIChatWidget = () => {
   return (
     <AnimatePresence>
       {!isHidden && (
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.8 }}
-          transition={{ duration: 0.2 }}
-          className="fixed left-3 md:left-[30px] bottom-[20px] md:bottom-[30px] z-[99999]"
-        >
+        <div className="relative z-[99999]">
           <AnimatePresence>
             {isOpen && (
               <motion.div
@@ -390,7 +384,7 @@ export const AIChatWidget = () => {
               </div>
             </motion.button>
           </div>
-        </motion.div>
+        </div>
       )}
     </AnimatePresence>
   );
