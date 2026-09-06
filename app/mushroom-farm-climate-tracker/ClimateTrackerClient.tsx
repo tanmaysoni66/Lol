@@ -121,10 +121,10 @@ export default function ClimateTrackerClient() {
           }}
         />
         {/* Tracker Section (Top) */}
-        <div id="climate-guidance" className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md p-8 md:p-12 rounded-3xl shadow-lg border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center text-center">
+        <div id="climate-guidance" className="w-full flex flex-col items-center justify-center text-center">
           
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-100 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 text-sm font-semibold mb-6">
-            <MapPin className="w-4 h-4" />
+          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-100 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 text-xs font-semibold mb-4">
+            <MapPin className="w-3.5 h-3.5" />
             <span>Farm Climate Intelligence</span>
           </div>
 
@@ -135,15 +135,15 @@ export default function ClimateTrackerClient() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
-                className="space-y-6 w-full max-w-md mx-auto"
+                className="space-y-4 w-full max-w-sm mx-auto"
               >
-                <h1 className="text-2xl md:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
+                <h1 className="text-xl md:text-2xl font-black text-slate-900 dark:text-white tracking-tight">
                   Start Tracking Your Farm's Climate Today
                 </h1>
                 
                 {error && (
-                  <div className="bg-red-50 dark:bg-red-500/10 text-red-600 dark:text-red-400 p-4 rounded-xl text-sm text-left flex items-start gap-3">
-                    <AlertCircle className="w-5 h-5 shrink-0 mt-0.5" />
+                  <div className="bg-red-50 dark:bg-red-500/10 text-red-600 dark:text-red-400 p-3 rounded-xl text-xs text-left flex items-start gap-2">
+                    <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
                     <p>{error}</p>
                   </div>
                 )}
@@ -151,16 +151,16 @@ export default function ClimateTrackerClient() {
                 <button
                   onClick={handleTrackLocation}
                   disabled={loading}
-                  className="w-full py-4 px-6 bg-slate-900 hover:bg-slate-800 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white rounded-xl font-bold text-lg transition-all flex items-center justify-center gap-3 disabled:opacity-70 shadow-xl shadow-slate-900/10 dark:shadow-emerald-900/20"
+                  className="w-full py-2.5 px-5 bg-slate-900 hover:bg-slate-800 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white rounded-full font-bold text-sm transition-all flex items-center justify-center gap-2 disabled:opacity-70 shadow-md"
                 >
                   {loading ? (
                     <>
-                      <Loader2 className="w-5 h-5 animate-spin" />
+                      <Loader2 className="w-4 h-4 animate-spin" />
                       Acquiring GPS Signal...
                     </>
                   ) : (
                     <>
-                      <MapPin className="w-5 h-5" />
+                      <MapPin className="w-4 h-4" />
                       Start Tracking Now
                     </>
                   )}
