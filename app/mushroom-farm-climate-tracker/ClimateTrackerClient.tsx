@@ -106,7 +106,7 @@ export default function ClimateTrackerClient() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 py-12 md:py-20 px-4 md:px-6">
+    <div className="min-h-screen bg-transparent relative z-10 py-12 md:py-20 px-4 md:px-6">
       <div className="max-w-4xl mx-auto space-y-12">
         <WebMCPClimateTracker
           getClimateData={() => ({
@@ -121,7 +121,7 @@ export default function ClimateTrackerClient() {
           }}
         />
         {/* Tracker Section (Top) */}
-        <div id="climate-guidance" className="bg-white dark:bg-slate-900 p-8 md:p-12 rounded-3xl shadow-lg border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center text-center">
+        <div id="climate-guidance" className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md p-8 md:p-12 rounded-3xl shadow-lg border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center text-center">
           
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-100 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 text-sm font-semibold mb-6">
             <MapPin className="w-4 h-4" />
@@ -186,7 +186,7 @@ export default function ClimateTrackerClient() {
 
                 <div className="grid sm:grid-cols-2 gap-4 text-left">
                   {/* Temp Card */}
-                  <div className="bg-slate-50 dark:bg-slate-950 p-5 rounded-2xl border border-slate-100 dark:border-slate-800 space-y-3">
+                  <div className="bg-white/50 dark:bg-slate-900/50 p-5 rounded-2xl border border-slate-100 dark:border-slate-800 space-y-3">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2 text-slate-600 dark:text-slate-400 font-medium">
                         <Thermometer className="w-5 h-5 text-orange-500" /> Temperature
@@ -202,7 +202,7 @@ export default function ClimateTrackerClient() {
                   </div>
 
                   {/* Humidity Card */}
-                  <div className="bg-slate-50 dark:bg-slate-950 p-5 rounded-2xl border border-slate-100 dark:border-slate-800 space-y-3">
+                  <div className="bg-white/50 dark:bg-slate-900/50 p-5 rounded-2xl border border-slate-100 dark:border-slate-800 space-y-3">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2 text-slate-600 dark:text-slate-400 font-medium">
                         <Droplets className="w-5 h-5 text-blue-500" /> Relative Humidity
@@ -218,7 +218,7 @@ export default function ClimateTrackerClient() {
                   </div>
                   {/* CO2 Card */}
                   {mcpCo2 !== undefined && (
-                    <div className="bg-slate-50 dark:bg-slate-950 p-5 rounded-2xl border border-slate-100 dark:border-slate-800 space-y-3 sm:col-span-2 md:col-span-1 md:col-start-2">
+                    <div className="bg-white/50 dark:bg-slate-900/50 p-5 rounded-2xl border border-slate-100 dark:border-slate-800 space-y-3 sm:col-span-2 md:col-span-1 md:col-start-2">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2 text-slate-600 dark:text-slate-400 font-medium">
                           <Wind className="w-5 h-5 text-emerald-500" /> CO₂ Concentration

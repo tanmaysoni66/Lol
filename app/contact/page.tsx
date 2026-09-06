@@ -31,11 +31,11 @@ export default function ContactPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
+    <div className="min-h-screen bg-transparent relative z-10">
       <StructuredData />
       
       {/* Hero Section */}
-      <section className="pt-24 pb-16 px-4 md:px-6 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
+      <section className="pt-24 pb-16 px-4 md:px-6 bg-white/40 dark:bg-slate-900/40 backdrop-blur-sm border-b border-white/20 dark:border-slate-800/50">
         <div className="max-w-4xl mx-auto text-center space-y-6">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-100 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 text-sm font-semibold mb-2">
             <Phone className="w-4 h-4" />
@@ -69,50 +69,56 @@ export default function ContactPage() {
       <section className="py-12 md:py-20 px-4 md:px-6 max-w-7xl mx-auto space-y-16">
         
         {/* Contact Info Cards */}
-        <div className="grid md:grid-cols-3 gap-6">
-          <div className="bg-white dark:bg-slate-900 p-6 md:p-8 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-800 text-center space-y-4">
-            <div className="w-12 h-12 bg-emerald-100 dark:bg-emerald-500/10 rounded-full flex items-center justify-center mx-auto text-emerald-600 dark:text-emerald-400">
-              <Phone className="w-6 h-6" />
+        <div className="grid md:grid-cols-1 gap-4 max-w-2xl mx-auto">
+          <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md p-5 rounded-3xl shadow-sm border border-slate-200/50 dark:border-slate-800/50 flex flex-col md:flex-row items-center md:items-start text-center md:text-left gap-4">
+            <div className="w-10 h-10 bg-emerald-100 dark:bg-emerald-500/10 rounded-full flex items-center justify-center text-emerald-600 dark:text-emerald-400 shrink-0">
+              <Phone className="w-5 h-5" />
             </div>
-            <h3 className="text-xl font-bold text-slate-900 dark:text-white">Call or WhatsApp Us</h3>
-            <p className="text-lg font-semibold text-emerald-600 dark:text-emerald-400">+91 9203544140</p>
-            <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-              For quick assistance regarding mushroom farming, training programs, project setup, consultation, and other services, contact us directly by phone or WhatsApp.
-            </p>
-            <div className="pt-2">
-              <a href="https://wa.me/919203544140" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-semibold rounded-full hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+            <div className="flex-grow space-y-1">
+              <h3 className="text-base font-bold text-slate-900 dark:text-white">Call or WhatsApp Us</h3>
+              <p className="text-sm font-semibold text-emerald-600 dark:text-emerald-400">+91 9203544140</p>
+              <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                For quick assistance regarding mushroom farming, training programs, project setup, consultation, and other services.
+              </p>
+            </div>
+            <div className="pt-2 md:pt-0 shrink-0">
+              <a href="https://wa.me/919203544140" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold rounded-full hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
                 Call / WhatsApp
               </a>
             </div>
           </div>
 
-          <div className="bg-white dark:bg-slate-900 p-6 md:p-8 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-800 text-center space-y-4">
-            <div className="w-12 h-12 bg-blue-100 dark:bg-blue-500/10 rounded-full flex items-center justify-center mx-auto text-blue-600 dark:text-blue-400">
-              <Mail className="w-6 h-6" />
+          <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md p-5 rounded-3xl shadow-sm border border-slate-200/50 dark:border-slate-800/50 flex flex-col md:flex-row items-center md:items-start text-center md:text-left gap-4">
+            <div className="w-10 h-10 bg-blue-100 dark:bg-blue-500/10 rounded-full flex items-center justify-center text-blue-600 dark:text-blue-400 shrink-0">
+              <Mail className="w-5 h-5" />
             </div>
-            <h3 className="text-xl font-bold text-slate-900 dark:text-white">Email Us</h3>
-            <p className="text-lg font-semibold text-blue-600 dark:text-blue-400 break-all">support@mushroomtraining.online</p>
-            <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-              For training enquiries, business enquiries, project requirements, and detailed information, you can contact us by email.
-            </p>
-            <div className="pt-2">
-              <a href="mailto:support@mushroomtraining.online" className="inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-semibold rounded-full hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+            <div className="flex-grow space-y-1">
+              <h3 className="text-base font-bold text-slate-900 dark:text-white">Email Us</h3>
+              <p className="text-sm font-semibold text-blue-600 dark:text-blue-400 break-all">support@mushroomtraining.online</p>
+              <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                For training enquiries, business enquiries, project requirements, and detailed information.
+              </p>
+            </div>
+            <div className="pt-2 md:pt-0 shrink-0">
+              <a href="mailto:support@mushroomtraining.online" className="inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold rounded-full hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
                 Send Email
               </a>
             </div>
           </div>
 
-          <div className="bg-white dark:bg-slate-900 p-6 md:p-8 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-800 text-center space-y-4">
-            <div className="w-12 h-12 bg-orange-100 dark:bg-orange-500/10 rounded-full flex items-center justify-center mx-auto text-orange-600 dark:text-orange-400">
-              <MapPin className="w-6 h-6" />
+          <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md p-5 rounded-3xl shadow-sm border border-slate-200/50 dark:border-slate-800/50 flex flex-col md:flex-row items-center md:items-start text-center md:text-left gap-4">
+            <div className="w-10 h-10 bg-orange-100 dark:bg-orange-500/10 rounded-full flex items-center justify-center text-orange-600 dark:text-orange-400 shrink-0">
+              <MapPin className="w-5 h-5" />
             </div>
-            <h3 className="text-xl font-bold text-slate-900 dark:text-white">Visit Our Location</h3>
-            <p className="text-lg font-semibold text-orange-600 dark:text-orange-400">Katangi, Jabalpur, MP, India</p>
-            <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-              If you would like to visit our farm or discuss a mushroom farming project in person, please contact us in advance to confirm availability and schedule a visit.
-            </p>
-            <div className="pt-2">
-              <a href="https://maps.google.com/?q=Organic+Mushroom+Farm+Katangi+Jabalpur" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-semibold rounded-full hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+            <div className="flex-grow space-y-1">
+              <h3 className="text-base font-bold text-slate-900 dark:text-white">Visit Our Location</h3>
+              <p className="text-sm font-semibold text-orange-600 dark:text-orange-400">Katangi, Jabalpur, MP, India</p>
+              <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                If you would like to visit our farm or discuss a mushroom farming project in person, please contact us in advance.
+              </p>
+            </div>
+            <div className="pt-2 md:pt-0 shrink-0">
+              <a href="https://maps.google.com/?q=Organic+Mushroom+Farm+Katangi+Jabalpur" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold rounded-full hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
                 Get Directions
               </a>
             </div>
@@ -121,10 +127,12 @@ export default function ContactPage() {
 
         {/* Enquiry Form and Why Contact Us */}
         <div id="enquiry-form" className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start scroll-mt-24">
-          <ContactForm />
+          <div className="max-w-md w-full mx-auto lg:ml-auto lg:mr-0">
+            <ContactForm />
+          </div>
           
-          <div className="space-y-8">
-            <div className="bg-white dark:bg-slate-900 p-6 md:p-8 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-800 space-y-6">
+          <div className="space-y-8 max-w-lg mx-auto lg:mx-0">
+            <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md p-6 md:p-8 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-800 space-y-6">
               <h3 className="text-2xl font-bold text-slate-900 dark:text-white">Why Contact Us?</h3>
               <p className="text-slate-600 dark:text-slate-400 text-sm font-medium">Your Mushroom Farming Journey Starts With the Right Guidance</p>
               
@@ -201,7 +209,7 @@ export default function ContactPage() {
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service, i) => (
-              <div key={i} className="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col items-start text-left group hover:border-emerald-500/50 transition-colors">
+              <div key={i} className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col items-start text-left group hover:border-emerald-500/50 transition-colors">
                 <div className="w-10 h-10 rounded-lg bg-emerald-50 dark:bg-emerald-500/10 flex items-center justify-center text-emerald-600 dark:text-emerald-400 mb-4 group-hover:scale-110 transition-transform">
                   <service.icon className="w-5 h-5" />
                 </div>
@@ -216,7 +224,7 @@ export default function ContactPage() {
         </div>
 
         {/* FAQs */}
-        <div className="bg-white dark:bg-slate-900 p-6 md:p-10 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-800 space-y-8 max-w-4xl mx-auto">
+        <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md p-6 md:p-10 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-800 space-y-8 max-w-4xl mx-auto">
           <div className="text-center space-y-3 mb-8">
             <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white">Frequently Asked Questions</h2>
             <p className="text-slate-600 dark:text-slate-400 text-sm">Contact & Mushroom Farming FAQs</p>
@@ -224,7 +232,7 @@ export default function ContactPage() {
           
           <div className="space-y-4">
             {faqs.map((faq, idx) => (
-              <details key={idx} className="group bg-slate-50 dark:bg-slate-950 rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden [&_summary::-webkit-details-marker]:hidden">
+              <details key={idx} className="group bg-white/50 dark:bg-slate-900/50 rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden [&_summary::-webkit-details-marker]:hidden">
                 <summary className="flex items-center justify-between cursor-pointer p-5 font-semibold text-slate-900 dark:text-white text-sm md:text-base">
                   <span className="flex items-center gap-3">
                     <HelpCircle className="w-5 h-5 text-emerald-500 shrink-0" />
@@ -241,8 +249,24 @@ export default function ContactPage() {
         </div>
       </section>
 
+      {/* Google Map Section */}
+      <section className="py-12 md:py-16 px-4 md:px-6 max-w-7xl mx-auto w-full relative z-10">
+        <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md p-4 rounded-3xl shadow-sm border border-slate-200/50 dark:border-slate-800/50 overflow-hidden">
+          <iframe
+            src="https://maps.google.com/maps?q=Organic+Mushroom+Farm,+Katangi,+Jabalpur,+Madhya+Pradesh+483105,+India&t=&z=13&ie=UTF8&iwloc=&output=embed"
+            width="100%"
+            height="450"
+            style={{ border: 0, borderRadius: '1.25rem' }}
+            allowFullScreen={true}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="Map of Organic Mushroom Farm, Katangi, Jabalpur"
+          ></iframe>
+        </div>
+      </section>
+
       {/* Footer Callout */}
-      <section className="py-16 md:py-24 px-4 bg-emerald-600 dark:bg-emerald-900 text-center">
+      <section className="py-16 md:py-24 px-4 bg-emerald-600/90 dark:bg-emerald-900/90 backdrop-blur-md text-center relative z-10">
         <div className="max-w-3xl mx-auto space-y-6">
           <h2 className="text-3xl md:text-4xl font-black text-white">Let's Build Your Mushroom Farming Project Together</h2>
           <p className="text-emerald-100 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
