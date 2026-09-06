@@ -120,54 +120,14 @@ export default function ClimateTrackerClient() {
             if (typeof data.co2 === 'number') setMcpCo2(data.co2);
           }}
         />
-        {/* Header Section */}
-        <div className="text-center space-y-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-100 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 text-sm font-semibold mb-4">
+        {/* Tracker Section (Top) */}
+        <div id="climate-guidance" className="bg-white dark:bg-slate-900 p-8 md:p-12 rounded-3xl shadow-lg border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center text-center">
+          
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-100 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 text-sm font-semibold mb-6">
             <MapPin className="w-4 h-4" />
             <span>Farm Climate Intelligence</span>
           </div>
-          <h1 className="text-3xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tight">
-            Mushroom Farm <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-blue-500">Climate Tracker</span>
-          </h1>
-          <p className="text-base md:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
-            Allow location access to check your farm's live environment with a single click. Equip yourself with accurate data to make your mushroom growing process even more successful.
-          </p>
-        </div>
 
-        {/* Benefits Section */}
-        <div className="grid md:grid-cols-3 gap-6">
-          <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 space-y-3">
-            <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-500/10 flex items-center justify-center text-blue-600 dark:text-blue-400">
-              <Thermometer className="w-5 h-5" />
-            </div>
-            <h3 className="font-bold text-slate-900 dark:text-white text-lg">Optimize Your Yield</h3>
-            <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-              Manage ventilation, misting, and cooling at the right time to maximize your mushroom harvest.
-            </p>
-          </div>
-          <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 space-y-3">
-            <div className="w-10 h-10 rounded-full bg-red-100 dark:bg-red-500/10 flex items-center justify-center text-red-600 dark:text-red-400">
-              <AlertTriangle className="w-5 h-5" />
-            </div>
-            <h3 className="font-bold text-slate-900 dark:text-white text-lg">Prevent Diseases</h3>
-            <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-              Monitor excess humidity and overheating to prevent fungal infections like bacterial blotch and cobweb mold.
-            </p>
-          </div>
-          <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 space-y-3">
-            <div className="w-10 h-10 rounded-full bg-emerald-100 dark:bg-emerald-500/10 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
-              <Gauge className="w-5 h-5" />
-            </div>
-            <h3 className="font-bold text-slate-900 dark:text-white text-lg">Smart Agriculture</h3>
-            <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-              Streamline organic farming and modern digital agriculture with ease.
-            </p>
-          </div>
-        </div>
-
-        {/* Action / Results Section */}
-        <div id="climate-guidance" className="bg-white dark:bg-slate-900 p-8 md:p-12 rounded-3xl shadow-lg border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center text-center">
-          
           <AnimatePresence mode="wait">
             {!weatherData && currentTemp === undefined ? (
               <motion.div 
@@ -177,7 +137,9 @@ export default function ClimateTrackerClient() {
                 exit={{ opacity: 0, y: -20 }}
                 className="space-y-6 w-full max-w-md mx-auto"
               >
-                <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Start Tracking Your Farm's Climate Today</h2>
+                <h1 className="text-2xl md:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
+                  Start Tracking Your Farm's Climate Today
+                </h1>
                 
                 {error && (
                   <div className="bg-red-50 dark:bg-red-500/10 text-red-600 dark:text-red-400 p-4 rounded-xl text-sm text-left flex items-start gap-3">
@@ -314,6 +276,90 @@ export default function ClimateTrackerClient() {
               </motion.div>
             )}
           </AnimatePresence>
+        </div>
+        
+        {/* Intro Text Section (Moved below tracker) */}
+        <div className="text-center space-y-4 max-w-3xl mx-auto pt-4">
+          <h2 className="text-2xl md:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
+            Mushroom Farm <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-blue-500">Climate Tracker</span>
+          </h2>
+          <p className="text-sm md:text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+            Allow location access to check your farm's live environment with a single click. Equip yourself with accurate data to make your mushroom growing process even more successful.
+          </p>
+        </div>
+
+        {/* Benefits Section (3 lines, small text/icons) */}
+        <div className="flex flex-col gap-5 max-w-xl mx-auto">
+          <div className="flex items-start gap-4">
+            <div className="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-500/10 flex items-center justify-center text-blue-600 dark:text-blue-400 shrink-0 mt-0.5">
+              <Thermometer className="w-4 h-4" />
+            </div>
+            <div>
+              <h3 className="font-bold text-slate-900 dark:text-white text-sm text-left">Optimize Your Yield</h3>
+              <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed text-left">
+                Manage ventilation, misting, and cooling at the right time to maximize your mushroom harvest.
+              </p>
+            </div>
+          </div>
+          
+          <div className="flex items-start gap-4">
+            <div className="w-8 h-8 rounded-full bg-red-100 dark:bg-red-500/10 flex items-center justify-center text-red-600 dark:text-red-400 shrink-0 mt-0.5">
+              <AlertTriangle className="w-4 h-4" />
+            </div>
+            <div>
+              <h3 className="font-bold text-slate-900 dark:text-white text-sm text-left">Prevent Diseases</h3>
+              <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed text-left">
+                Monitor excess humidity and overheating to prevent fungal infections like bacterial blotch and cobweb mold.
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-start gap-4">
+            <div className="w-8 h-8 rounded-full bg-emerald-100 dark:bg-emerald-500/10 flex items-center justify-center text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5">
+              <Gauge className="w-4 h-4" />
+            </div>
+            <div>
+              <h3 className="font-bold text-slate-900 dark:text-white text-sm text-left">Smart Agriculture</h3>
+              <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed text-left">
+                Streamline organic farming and modern digital agriculture with ease.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Informational Content Section */}
+        <div className="bg-white dark:bg-slate-900 p-8 md:p-10 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-800 text-left space-y-6">
+          <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white">Smart GPS Temperature & Humidity Tracker for Global Mushroom Farmers</h2>
+          
+          <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
+            Mushroom cultivation is a precise science where even the slightest weather shifts can impact your entire crop. Whether you are running an indoor fruiting chamber or an outdoor organic mushroom farm, precise climate control is non-negotiable for a high yield. Our Live GPS Temperature and Humidity Tracker is a smart tool designed for mushroom growers worldwide, providing real-time weather and micro-climate data based exactly on your location.
+          </p>
+
+          <h3 className="text-xl font-semibold text-slate-900 dark:text-white pt-4">How Our Real-Time Location Tracking Works</h3>
+          <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
+            Our advanced GPS tracking system detects your current location to measure live atmospheric conditions. No matter where you are in the world—be it North America, Europe, Asia, or Australia—this tool accurately calculates the surrounding air moisture (relative humidity) and heat (temperature) levels.
+          </p>
+
+          <h3 className="text-xl font-semibold text-slate-900 dark:text-white pt-4">Why Accurate Climate Tracking is Crucial for Mushroom Farming</h3>
+          <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
+            Different mushroom varieties require highly specific environmental conditions to thrive:
+          </p>
+          <ul className="space-y-3 text-slate-600 dark:text-slate-400 leading-relaxed list-disc list-outside ml-5">
+            <li><strong className="text-slate-900 dark:text-white">Button Mushroom Cultivation:</strong> During button mushroom spawn preparation and mycelium running, the temperature must stay between 22°C and 25°C. However, the fruiting stage requires a strict drop to 14°C to 18°C alongside 80-90% humidity.</li>
+            <li><strong className="text-slate-900 dark:text-white">Oyster & Shiitake Mushrooms:</strong> While their temperature ranges differ, they also rely on high relative humidity (RH) to prevent pinning abortion and dry caps.</li>
+          </ul>
+          <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
+            If humidity drops suddenly or a heatwave hits, your crop is at risk of drying out or falling prey to contamination like green mold. Our online climate tracker keeps you alert, allowing you to instantly adjust your greenhouse, grow tent, or fruiting chamber environment.
+          </p>
+
+          <h3 className="text-xl font-semibold text-slate-900 dark:text-white pt-4">Key Benefits of Our Global Temperature Tool</h3>
+          <ul className="space-y-3 text-slate-600 dark:text-slate-400 leading-relaxed">
+            <li className="flex items-start gap-2"><CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" /> <span><strong className="text-slate-900 dark:text-white">Pinpoint Accuracy:</strong> Exact location-based weather data integrated with GPS tracking.</span></li>
+            <li className="flex items-start gap-2"><CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" /> <span><strong className="text-slate-900 dark:text-white">Global Accessibility:</strong> Accurate climate readings for any country, state, or city worldwide.</span></li>
+            <li className="flex items-start gap-2"><CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" /> <span><strong className="text-slate-900 dark:text-white">Optimize Your Yield:</strong> Manage ventilation, misting, and cooling at the right time to maximize your mushroom harvest.</span></li>
+            <li className="flex items-start gap-2"><CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" /> <span><strong className="text-slate-900 dark:text-white">Prevent Diseases:</strong> Monitor excess humidity and overheating to prevent fungal infections like bacterial blotch and cobweb mold.</span></li>
+            <li className="flex items-start gap-2"><CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" /> <span><strong className="text-slate-900 dark:text-white">Smart Agriculture:</strong> Streamline organic farming and modern digital agriculture with ease.</span></li>
+          </ul>
         </div>
       </div>
     </div>

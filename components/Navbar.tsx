@@ -77,7 +77,7 @@ const NAV_ITEMS = [
   { name: "3D Farm", href: "/3d-mushroom-farm", icon: Box },
   { name: "Workshop", href: "/workshop", icon: Calendar },
   { name: "Gallery", href: "/gallery", icon: ImageIcon },
-  { name: "Live Weather", href: "/live-weather", icon: Cloud },
+  { name: "Live Weather", href: "/mushroom-farm-climate-tracker", icon: Cloud },
   { name: "Blog", href: "/blog", icon: FileText },
   { name: "FAQ", href: "/faq", icon: HelpCircle },
   {

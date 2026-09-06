@@ -6,6 +6,9 @@ import { MushroomFarmSetupCostCalculator } from "@/components/home/MushroomFarmS
 export const metadata: Metadata = {
   title: "Mushroom Farming Calculators | ROI, Cost, Yield & Profit",
   description: "Use practical mushroom farming calculators to estimate farm ROI, setup costs, mushroom yield, production capacity, batch profit and break-even requirements.",
+  alternates: {
+    canonical: "https://organicmushroomsfarm.com/calculators",
+  },
 };
 
 export default function CalculatorsPage() {

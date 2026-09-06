@@ -5,6 +5,9 @@ import { CheckCircle2, ShieldCheck, MapPin, Mail, Phone, ExternalLink } from "lu
 export const metadata = {
   title: "AI & LLM Documentation | Organic Mushroom Farm",
   description: "Official structured data and ecosystem documentation for AI agents, LLMs, and researchers.",
+  alternates: {
+    canonical: "https://organicmushroomsfarm.com/llms",
+  },
 };
 
 export default function LLMsPage() {

@@ -1,3 +1,11 @@
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
+
 import USATrainingPayment from "@/components/USATrainingPayment";
 import Link from "next/link";
 import { trainingContent } from "@/lib/training-content";

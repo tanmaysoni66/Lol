@@ -1,4 +1,14 @@
+import { Metadata } from "next";
 import MushroomCalculatorSchema from "./components/MushroomCalculatorSchema";
+
+export const metadata: Metadata = {
+  title: "Mushroom Farming Calculators | Yield, Profit, Substrate",
+  description: "Calculate mushroom farm production, capacity, substrate requirements and financial ROI for button and oyster mushrooms.",
+  alternates: {
+    canonical: "https://organicmushroomsfarm.com/mushroomfarmingcalculators",
+  },
+};
+
 import MushroomFarmingCalculators from "@/components/MushroomFarmingCalculators";
 import CalculatorAmbientBackground from "./components/CalculatorAmbientBackground";
 import Link from "next/link";

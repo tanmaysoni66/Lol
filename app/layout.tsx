@@ -92,7 +92,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${poppins.variable} scroll-smooth`}>
+    <html lang="en-IN" className={`${inter.variable} ${poppins.variable} scroll-smooth`}>
       <head>
         <link rel="preconnect" href="https://res.cloudinary.com" />
         <link rel="preconnect" href="https://api.open-meteo.com" />
