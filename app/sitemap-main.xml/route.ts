@@ -61,6 +61,12 @@ export async function GET() {
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
   </url>
+  <url>
+    <loc>${baseUrl}/contact</loc>
+    <lastmod>${now}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
 </urlset>`;
 
   return new NextResponse(xml, {
