@@ -5,59 +5,10 @@ import {
   CheckCircle2, BookOpen, Factory, Settings, TestTube, Truck, Calendar, HelpCircle, ChevronDown 
 } from "lucide-react";
 import ContactForm from "./ContactForm";
-import ContactStructuredData from "./StructuredData";
+import StructuredData from "./StructuredData";
+import contactMetadata from "./metadata";
 
-export const metadata: Metadata = {
-  title: "Contact Organic Mushroom Farm | Mushroom Farming Training & Support",
-  description:
-    "Contact Organic Mushroom Farm for mushroom farming training, commercial farm setup, spawn supply, consultancy, equipment and mushroom cultivation support in India.",
-  keywords: [
-    "contact mushroom farm",
-    "mushroom farming contact",
-    "organic mushroom farm contact",
-    "mushroom farming training contact",
-    "mushroom farm setup contact",
-    "mushroom cultivation consultancy",
-    "mushroom spawn supplier contact",
-    "commercial mushroom farming support",
-  ],
-  alternates: {
-    canonical: "https://organicmushroomsfarm.com/contact",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-video-preview": -1,
-      "max-snippet": -1,
-    },
-  },
-  openGraph: {
-    title: "Contact Organic Mushroom Farm | Mushroom Farming Training & Support",
-    description: "Get in touch with Organic Mushroom Farm for mushroom farming training, farm setup, spawn supply, consultancy and commercial cultivation support.",
-    url: "https://organicmushroomsfarm.com/contact",
-    siteName: "Organic Mushroom Farm",
-    locale: "en_IN",
-    type: "website",
-    images: [
-      {
-        url: "https://organicmushroomsfarm.com/opengraph-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Contact Organic Mushroom Farm",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Contact Organic Mushroom Farm | Mushroom Farming Training & Support",
-    description: "Contact us for mushroom farming training, commercial farm setup, spawn supply and cultivation support.",
-    images: ["https://organicmushroomsfarm.com/opengraph-image.png"],
-  },
-};
+export const metadata: Metadata = contactMetadata;
 
 export default function ContactPage() {
   const faqs = [
@@ -81,7 +32,7 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
-      <ContactStructuredData />
+      <StructuredData />
       
       {/* Hero Section */}
       <section className="pt-24 pb-16 px-4 md:px-6 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
