@@ -135,6 +135,28 @@ export const AIChatWidget = () => {
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const [isHidden, setIsHidden] = useState(false);
+
+  useEffect(() => {
+    const handleMobileMenuToggle = (e: CustomEvent) => {
+      setIsHidden(e.detail);
+      // If hiding, also close the chat window
+      if (e.detail) {
+        setIsOpen(false);
+      }
+    };
+
+    window.addEventListener('mobileMenuToggle', handleMobileMenuToggle as EventListener);
+    
+    // Check initial state
+    if (typeof document !== 'undefined') {
+      setIsHidden(document.body.classList.contains('mobile-menu-open'));
+    }
+
+    return () => {
+      window.removeEventListener('mobileMenuToggle', handleMobileMenuToggle as EventListener);
+    };
+  }, []);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent | TouchEvent) => {
@@ -248,118 +270,128 @@ export const AIChatWidget = () => {
   };
 
   return (
-    <>
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            ref={chatRef}
-            initial={{ opacity: 0, y: 20, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className={`fixed z-[100000] bg-white dark:bg-slate-900 flex flex-col overflow-hidden shadow-2xl ${
-              isFullScreen
-                ? "inset-0 w-full h-full rounded-none"
-                : "bottom-[85px] md:bottom-[90px] left-3 md:left-[30px] w-[300px] sm:w-[350px] border border-slate-200 dark:border-white/10 rounded-2xl"
-            }`}
-            style={{ 
-              transformOrigin: "bottom left",
-              ...(isFullScreen ? {} : { maxHeight: "calc(100vh - 140px)", height: "450px" })
-            }}
-          >
-            {/* Header */}
-            <div className="bg-gradient-to-r from-emerald-500 to-blue-500 p-4 text-white flex items-center justify-between shadow-md z-10 shrink-0">
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-full bg-white/20 p-1">
-                  <BotAvatar isAnimating={false} />
-                </div>
-                <span className="font-bold">AI Assistant</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <button onClick={() => setIsFullScreen(!isFullScreen)} className="p-1 hover:bg-white/20 rounded-full transition-colors">
-                  {isFullScreen ? <Minimize2 size={18} /> : <Maximize2 size={18} />}
-                </button>
-                <button onClick={() => { setIsOpen(false); setIsFullScreen(false); }} className="p-1 hover:bg-white/20 rounded-full transition-colors">
-                  <X size={18} />
-                </button>
-              </div>
-            </div>
-
-            {/* Chat Area */}
-            <div className="flex-1 overflow-y-auto p-4 flex flex-col gap-3 bg-transparent dark:bg-slate-950/50">
-              {messages.map((msg) => (
-                <div key={msg.id} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                  <div className={`max-w-[85%] rounded-2xl px-4 py-2 text-sm ${
-                    msg.role === 'user' 
-                      ? 'bg-blue-600 text-white rounded-br-sm' 
-                      : 'bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-white/5 rounded-bl-sm shadow-sm'
-                  }`}>
-                    {msg.text}
-                  </div>
-                </div>
-              ))}
-              {isLoading && (
-                <div className="flex justify-start">
-                  <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-white/5 rounded-2xl rounded-bl-sm px-4 py-3 shadow-sm">
-                    <Loader2 size={16} className="animate-spin text-blue-500" />
-                  </div>
-                </div>
-              )}
-              <div ref={messagesEndRef} />
-            </div>
-
-            {/* Input Area */}
-            <div className="p-3 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-white/10 shrink-0">
-              <form onSubmit={handleSendMessage} className="flex items-center gap-2 bg-slate-100 dark:bg-slate-800 rounded-full pr-1 pl-4 py-1 border border-slate-200 dark:border-white/5">
-                <input
-                  type="text"
-                  value={inputValue}
-                  onChange={(e) => setInputValue(e.target.value)}
-                  placeholder="Ask me anything..."
-                  className="flex-1 bg-transparent border-none outline-none text-sm text-slate-800 dark:text-slate-200 py-2"
-                />
-                <button
-                  type="submit"
-                  disabled={!inputValue.trim() || isLoading}
-                  className="p-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors shrink-0"
-                >
-                  <Send size={14} />
-                </button>
-              </form>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      <div className="relative z-[99999] flex flex-col items-center gap-1">
-        <AnimatePresence>
-          {isGreeting && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.5, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.8 }}
-              className="absolute -top-10 left-2 bg-white dark:bg-slate-800 text-emerald-600 dark:text-emerald-400 font-bold px-3 py-1.5 text-xs md:text-sm rounded-2xl rounded-bl-none shadow-lg border border-emerald-100 dark:border-emerald-900 whitespace-nowrap z-10"
-            >
-              {greetingText}
-            </motion.div>
-          )}
-        </AnimatePresence>
-        
-        <motion.button
-          onClick={handleOpenClick}
-          aria-label="Toggle AI Assistant"
-          className="relative w-12 h-12 flex items-center justify-center hover:scale-110 active:scale-95 transition-all outline-none"
-          animate={{ 
-            filter: ["drop-shadow(0px 0px 8px rgba(16, 185, 129, 0.4))", "drop-shadow(0px 0px 16px rgba(59, 130, 246, 0.6))", "drop-shadow(0px 0px 8px rgba(16, 185, 129, 0.4))"],
-            y: [0, -8, 0]
-          }}
-          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+    <AnimatePresence>
+      {!isHidden && (
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.8 }}
+          transition={{ duration: 0.2 }}
+          className="fixed left-3 md:left-[30px] bottom-[20px] md:bottom-[30px] z-[99999]"
         >
-          <div className="w-full h-full">
-            <BotAvatar isAnimating={isGreeting} />
+          <AnimatePresence>
+            {isOpen && (
+              <motion.div
+                ref={chatRef}
+                initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 20, scale: 0.95 }}
+                transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                className={`absolute z-[100000] bg-white dark:bg-slate-900 flex flex-col overflow-hidden shadow-2xl ${
+                  isFullScreen
+                    ? "fixed inset-0 w-full h-full rounded-none"
+                    : "bottom-[70px] left-0 w-[300px] sm:w-[350px] border border-slate-200 dark:border-white/10 rounded-2xl"
+                }`}
+                style={{ 
+                  transformOrigin: "bottom left",
+                  ...(isFullScreen ? {} : { maxHeight: "calc(100vh - 140px)", height: "450px" })
+                }}
+              >
+                {/* Header */}
+                <div className="bg-gradient-to-r from-emerald-500 to-blue-500 p-4 text-white flex items-center justify-between shadow-md z-10 shrink-0">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 rounded-full bg-white/20 p-1">
+                      <BotAvatar isAnimating={false} />
+                    </div>
+                    <span className="font-bold">AI Assistant</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <button onClick={() => setIsFullScreen(!isFullScreen)} className="p-1 hover:bg-white/20 rounded-full transition-colors">
+                      {isFullScreen ? <Minimize2 size={18} /> : <Maximize2 size={18} />}
+                    </button>
+                    <button onClick={() => { setIsOpen(false); setIsFullScreen(false); }} className="p-1 hover:bg-white/20 rounded-full transition-colors">
+                      <X size={18} />
+                    </button>
+                  </div>
+                </div>
+
+                {/* Chat Area */}
+                <div className="flex-1 overflow-y-auto p-4 flex flex-col gap-3 bg-transparent dark:bg-slate-950/50">
+                  {messages.map((msg) => (
+                    <div key={msg.id} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                      <div className={`max-w-[85%] rounded-2xl px-4 py-2 text-sm ${
+                        msg.role === 'user' 
+                          ? 'bg-blue-600 text-white rounded-br-sm' 
+                          : 'bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-white/5 rounded-bl-sm shadow-sm'
+                      }`}>
+                        {msg.text}
+                      </div>
+                    </div>
+                  ))}
+                  {isLoading && (
+                    <div className="flex justify-start">
+                      <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-white/5 rounded-2xl rounded-bl-sm px-4 py-3 shadow-sm">
+                        <Loader2 size={16} className="animate-spin text-blue-500" />
+                      </div>
+                    </div>
+                  )}
+                  <div ref={messagesEndRef} />
+                </div>
+
+                {/* Input Area */}
+                <div className="p-3 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-white/10 shrink-0">
+                  <form onSubmit={handleSendMessage} className="flex items-center gap-2 bg-slate-100 dark:bg-slate-800 rounded-full pr-1 pl-4 py-1 border border-slate-200 dark:border-white/5">
+                    <input
+                      type="text"
+                      value={inputValue}
+                      onChange={(e) => setInputValue(e.target.value)}
+                      placeholder="Ask me anything..."
+                      className="flex-1 bg-transparent border-none outline-none text-sm text-slate-800 dark:text-slate-200 py-2"
+                    />
+                    <button
+                      type="submit"
+                      disabled={!inputValue.trim() || isLoading}
+                      className="p-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors shrink-0"
+                    >
+                      <Send size={14} />
+                    </button>
+                  </form>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          <div className="relative flex flex-col items-center gap-1">
+            <AnimatePresence>
+              {isGreeting && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.5, y: 20 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  className="absolute -top-10 left-2 bg-white dark:bg-slate-800 text-emerald-600 dark:text-emerald-400 font-bold px-3 py-1.5 text-xs md:text-sm rounded-2xl rounded-bl-none shadow-lg border border-emerald-100 dark:border-emerald-900 whitespace-nowrap z-10"
+                >
+                  {greetingText}
+                </motion.div>
+              )}
+            </AnimatePresence>
+            
+            <motion.button
+              onClick={handleOpenClick}
+              aria-label="Toggle AI Assistant"
+              className="relative w-12 h-12 flex items-center justify-center hover:scale-110 active:scale-95 transition-all outline-none"
+              animate={{ 
+                filter: ["drop-shadow(0px 0px 8px rgba(16, 185, 129, 0.4))", "drop-shadow(0px 0px 16px rgba(59, 130, 246, 0.6))", "drop-shadow(0px 0px 8px rgba(16, 185, 129, 0.4))"],
+                y: [0, -8, 0]
+              }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <div className="w-full h-full">
+                <BotAvatar isAnimating={isGreeting} />
+              </div>
+            </motion.button>
           </div>
-        </motion.button>
-      </div>
-    </>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
