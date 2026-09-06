@@ -33,18 +33,27 @@ const DynamicGreeting = () => {
       const cached = sessionStorage.getItem('omf_dynamic_weather_cache');
       if (cached) {
         setWeather(JSON.parse(cached));
-        return;
       }
     } catch {
       // ignore storage error
     }
 
     const fetchLocationAndWeather = async () => {
+      // If precise weather already exists in localStorage, prefer that!
+      try {
+        const precise = localStorage.getItem('preciseWeather');
+        if (precise) {
+          setWeather(JSON.parse(precise));
+          return; // Skip normal fetching
+        }
+      } catch (e) {
+        // ignore
+      }
+
       try {
         let lat = 28.6139;
         let lon = 77.2090;
         let country = "India";
-
         try {
           const ipRes = await fetch('https://get.geojs.io/v1/ip/geo.json');
           if (ipRes.ok) {
@@ -87,6 +96,21 @@ const DynamicGreeting = () => {
     };
 
     fetchLocationAndWeather();
+
+    // Listen for precise GPS updates from the new tracker page
+    const handlePreciseUpdate = () => {
+      try {
+        const precise = localStorage.getItem('preciseWeather');
+        if (precise) {
+          setWeather(JSON.parse(precise));
+        }
+      } catch (e) {
+        console.error("Failed to parse preciseWeather", e);
+      }
+    };
+
+    window.addEventListener('preciseWeatherUpdated', handlePreciseUpdate);
+    return () => window.removeEventListener('preciseWeatherUpdated', handlePreciseUpdate);
   }, []);
 
   const getSuggestion = (temp: number) => {

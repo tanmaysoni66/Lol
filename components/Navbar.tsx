@@ -243,7 +243,7 @@ export const Navbar = () => {
               />
               <div className="flex flex-col">
                 <span className="text-[13px] xs:text-[15px] sm:text-base md:text-lg font-black tracking-tight leading-tight text-slate-900 dark:text-white drop-shadow-sm">
-                  Organic Mushroom Farm
+                  Organic <span className="text-purple-500 dark:text-purple-300">Mushroom Farm</span>
                 </span>
                 <DynamicGreeting />
               </div>
@@ -343,7 +343,7 @@ export const Navbar = () => {
                   <div className="flex flex-col min-w-0">
                     <div className="flex items-center gap-1.5 flex-wrap">
                       <span className="text-xs sm:text-sm font-black text-slate-900 dark:text-white leading-tight truncate drop-shadow-sm">
-                        Organic Mushroom Farm
+                        Organic <span className="text-purple-500 dark:text-purple-300">Mushroom Farm</span>
                       </span>
                       <span className="text-[10px] text-slate-400">•</span>
                       <span className="text-[10px] font-semibold text-slate-700 dark:text-slate-200">

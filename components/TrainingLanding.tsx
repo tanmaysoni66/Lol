@@ -99,7 +99,7 @@ export default function TrainingLanding({ region }: { region: "in" | "us" }) {
 
               <Link 
                 href={`${pathname}/enroll?plan=${plan.id}`}
-                className={`block w-full py-2 px-3 rounded-lg text-center text-[11px] font-bold transition-all shadow-md ${i === 1 ? 'bg-purple-600 hover:bg-purple-700 text-white' : 'bg-gray-900 hover:bg-gray-800 dark:bg-gray-100 dark:hover:bg-white dark:text-gray-900 text-white'}`}
+                className={`block w-full py-2 px-3 rounded-lg text-center text-[11px] font-bold transition-all shadow-md ${i === 1 ? 'bg-purple-600 hover:bg-purple-700 text-white' : 'bg-blue-500 hover:bg-blue-600 text-white'}`}
               >
                 {region === 'in' ? 'Join Mushroom Training →' : 'Enroll Now'}
               </Link>
